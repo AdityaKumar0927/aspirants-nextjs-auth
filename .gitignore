@@ -25,10 +25,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# local env files
-.env*.local
-.env
-.env.example
+# local env files (keep only the placeholder template committed)
+.env*
+!.env.example
+
+# database dumps / backups — may contain user PII, never commit
+*_backup.json
+
+# user/AI-generated uploads
+/public/uploads/
 
 # vercel
 .vercel

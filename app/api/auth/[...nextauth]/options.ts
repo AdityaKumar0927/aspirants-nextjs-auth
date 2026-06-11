@@ -1,10 +1,7 @@
 import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
-
-// Initialize Prisma
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
 
 export const authOptions: NextAuthOptions = {
   // Connect Prisma + NextAuth
@@ -73,17 +70,39 @@ export const authOptions: NextAuthOptions = {
 
     // ------------------------------------------------
     // (B) jwt() callback
+    //
+    // The role is re-synced from the database periodically (and on an explicit
+    // session update()), so a revoked admin loses access within ROLE_TTL_MS
+    // instead of keeping it for the full token lifetime.
     // ------------------------------------------------
-    async jwt({ token, user }) {
-      if (user && user.email) {
+    async jwt({ token, user, trigger }) {
+      const ROLE_TTL_MS = 5 * 60 * 1000
+
+      // Initial sign-in: stamp id + role from the freshly linked user.
+      if (user?.email) {
         const dbUser = await prisma.user.findUnique({
           where: { email: user.email },
           include: { UserRole: true },
         })
-        if (dbUser && dbUser.UserRole) {
+        if (dbUser) {
           token.id = dbUser.id
-          token.role = dbUser.UserRole.name
+          token.role = dbUser.UserRole?.name ?? "member"
+          token.roleSyncedAt = Date.now()
         }
+        return token
+      }
+
+      // Subsequent requests: re-sync role when stale or explicitly refreshed.
+      const stale =
+        !token.roleSyncedAt || Date.now() - token.roleSyncedAt > ROLE_TTL_MS
+      if (token.id && (trigger === "update" || stale)) {
+        const dbUser = await prisma.user.findUnique({
+          where: { id: token.id },
+          include: { UserRole: true },
+        })
+        // User deleted => drop privileges; otherwise reflect current role.
+        token.role = dbUser ? dbUser.UserRole?.name ?? "member" : undefined
+        token.roleSyncedAt = Date.now()
       }
       return token
     },
@@ -103,6 +122,8 @@ export const authOptions: NextAuthOptions = {
   // No `pages` config in the App Router
   session: {
     strategy: "jwt",
+    // Shorter than the 30-day default so stale roles / revoked sessions expire.
+    maxAge: 7 * 24 * 60 * 60, // 7 days
   },
 
   // Enable debug logs in development only

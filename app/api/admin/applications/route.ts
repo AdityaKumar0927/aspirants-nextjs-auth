@@ -11,8 +11,6 @@ export async function GET(request: NextRequest) {
   try {
     // Check if the user is authenticated and is an admin
     const session = await getServerSession(authOptions);
-    
-    console.log('Session:', session); // Keep this line for debugging
 
     if (!session || !session.user || session.user.role !== 'administrator') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

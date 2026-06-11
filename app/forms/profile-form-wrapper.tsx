@@ -74,7 +74,7 @@ export default function ProfileFormWrapper() {
   return (
     <ProfileForm
       initialData={initialData}
-      userRole={session?.user?.role?.name || 'member'}
+      userRole={session?.user?.role || 'member'}
       userId={session?.user?.id || ''}
     />
   );

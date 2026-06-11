@@ -17,6 +17,9 @@ import {
   QuestionType,
   ExamResultsType,
   TopicPerformance,
+  normalizeQuestion,
+  gradeAnswer,
+  displayCorrectAnswer,
 } from "@/lib/exam-helpers"
 
 const HOUR_IN_SECONDS = 3600
@@ -128,7 +131,7 @@ export default function MockExam() {
       }
 
       const data = await res.json()
-      const questions: QuestionType[] = data.data
+      const questions: QuestionType[] = (data.data ?? []).map(normalizeQuestion)
 
       if (!questions || questions.length === 0) {
         toast({
@@ -277,18 +280,25 @@ export default function MockExam() {
     updateTimeSpent()
 
     const totalQuestions = filteredQuestions.length
-    const correctCount = filteredQuestions.reduce((acc, q, i) => {
-      return acc + (answers[i] === q.correctOption ? 1 : 0)
-    }, 0)
-    const incorrectAnswers = totalQuestions - correctCount
-    const score = (correctCount / totalQuestions) * 100
+
+    // Grade each question with the shared grader. `null` => not auto-gradable
+    // (Subjective, or no answer key) and is excluded from the score.
+    const grades = filteredQuestions.map((q, i) => gradeAnswer(q, answers[i]))
+    const gradedQuestions = grades.filter((g) => g !== null).length
+    const correctCount = grades.filter((g) => g === true).length
+    const incorrectAnswers = gradedQuestions - correctCount
+    const ungradedQuestions = totalQuestions - gradedQuestions
+    const score = gradedQuestions > 0 ? (correctCount / gradedQuestions) * 100 : 0
 
     const topicPerformance: Record<string, TopicPerformance> = {}
     const subtopicPerformance: Record<string, TopicPerformance> = {}
     const topicWiseIncorrectAnswers: Record<string, number> = {}
 
     filteredQuestions.forEach((q, i) => {
-      const isCorrect = answers[i] === q.correctOption
+      const grade = grades[i]
+      if (grade === null) return // skip ungradable in topic stats
+
+      const isCorrect = grade === true
       const top = q.topic || "Unknown Topic"
 
       if (!topicPerformance[top]) {
@@ -336,15 +346,17 @@ export default function MockExam() {
 
     setExamResults({
       totalQuestions,
+      gradedQuestions,
       correctAnswersCount: correctCount,
       incorrectAnswers,
+      ungradedQuestions,
       score,
       topicPerformance,
       subtopicPerformance,
       topStrengths,
       topWeaknesses,
       userAnswers: answers.map((a) => a || ""),
-      correctAnswers: filteredQuestions.map((q) => q.correctOption),
+      correctAnswers: filteredQuestions.map((q) => displayCorrectAnswer(q)),
       timeSpentPerQuestion,
       averageTimePerQuestion: avgTimePerQ,
       topicWiseIncorrectAnswers,

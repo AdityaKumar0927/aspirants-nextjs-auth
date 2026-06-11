@@ -33,6 +33,7 @@ import { Progress } from "@/components/ui/progress";
 import Popover from "@/components/shared/popover";
 import Question from "@/components/shared/Question";
 import { DialogClose } from "@/components/ui/dialog";
+import { gradeAnswer, normalizeQuestion } from "@/lib/exam-helpers";
 
 /* ------------------------------------------------------------------
    1) Enums & Types
@@ -557,7 +558,12 @@ export default function QuestionBankContent() {
 
   const handleOptionClick = useCallback(
     (questionId: string, option: string, correct: string) => {
-      const isCorrect = option === correct;
+      // Grade with the shared grader so Multiple Correct (and letter/text
+      // mismatches) score correctly; fall back to a direct compare if the
+      // question isn't found.
+      const q = state.questions.find((x) => x.questionId === questionId);
+      const graded = q ? gradeAnswer(normalizeQuestion(q), option) : option === correct;
+      const isCorrect = graded === true;
       dispatch({
         type: "SET_FEEDBACK",
         payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
@@ -580,10 +586,16 @@ export default function QuestionBankContent() {
     async (questionId: string, userAns: string, correctAns: string) => {
       dispatch({ type: "SET_ACTION_LOADING", payload: true });
       try {
-        const isCorrect = userAns === correctAns;
+        const q = state.questions.find((x) => x.questionId === questionId);
+        // null => not auto-gradable (Subjective): record the answer without a
+        // correct/incorrect verdict.
+        const graded = q ? gradeAnswer(normalizeQuestion(q), userAns) : userAns === correctAns;
         dispatch({
           type: "SET_FEEDBACK",
-          payload: { ...state.feedback, [questionId]: isCorrect ? "correct" : "incorrect" },
+          payload: {
+            ...state.feedback,
+            [questionId]: graded === null ? undefined : graded ? "correct" : "incorrect",
+          },
         });
         dispatch({
           type: "SET_NUMERICAL_ANSWERS",

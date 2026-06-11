@@ -1,12 +1,12 @@
-import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
-
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
+import { cached } from "@/lib/cache"
 
 /**
  * GET /api/filters
  * Returns all distinct exams, subjects, topics, subtopics, difficulties, years, types
- * AND now also customTags.
+ * AND now also customTags. Cached for 60s (the facet set changes rarely; this
+ * absorbs repeated guest-browser calls instead of re-scanning per request).
  *
  * Usage: /api/filters
  */
@@ -14,49 +14,51 @@ export async function GET() {
   try {
     // 1) Distinct fields from the 'question' table
     const [exams, subjects, topics, subtopics, difficulties, years, types, customTagRows] =
-      await Promise.all([
-        prisma.question.findMany({
-          distinct: ["exam"],
-          select: { exam: true },
-          where: { exam: { not: null } },
-        }),
-        prisma.question.findMany({
-          distinct: ["subject"],
-          select: { subject: true },
-          where: { subject: { not: null } },
-        }),
-        prisma.question.findMany({
-          distinct: ["topic"],
-          select: { topic: true },
-          where: { topic: { not: null } },
-        }),
-        prisma.question.findMany({
-          distinct: ["subtopic"],
-          select: { subtopic: true },
-          where: { subtopic: { not: null } },
-        }),
-        prisma.question.findMany({
-          distinct: ["difficulty"],
-          select: { difficulty: true },
-          where: { difficulty: { not: null } },
-        }),
-        prisma.question.findMany({
-          distinct: ["year"],
-          select: { year: true },
-          where: { year: { not: null } },
-        }),
-        prisma.question.findMany({
-          distinct: ["type"],
-          select: { type: true },
-          where: { type: { not: null } },
-        }),
-        // 2) Distinct customTag CSV strings:
-        prisma.question.findMany({
-          distinct: ["customTag"],
-          select: { customTag: true },
-          where: { customTag: { not: null } },
-        }),
-      ])
+      await cached("filters:all", 60_000, () =>
+        Promise.all([
+          prisma.question.findMany({
+            distinct: ["exam"],
+            select: { exam: true },
+            where: { exam: { not: null } },
+          }),
+          prisma.question.findMany({
+            distinct: ["subject"],
+            select: { subject: true },
+            where: { subject: { not: null } },
+          }),
+          prisma.question.findMany({
+            distinct: ["topic"],
+            select: { topic: true },
+            where: { topic: { not: null } },
+          }),
+          prisma.question.findMany({
+            distinct: ["subtopic"],
+            select: { subtopic: true },
+            where: { subtopic: { not: null } },
+          }),
+          prisma.question.findMany({
+            distinct: ["difficulty"],
+            select: { difficulty: true },
+            where: { difficulty: { not: null } },
+          }),
+          prisma.question.findMany({
+            distinct: ["year"],
+            select: { year: true },
+            where: { year: { not: null } },
+          }),
+          prisma.question.findMany({
+            distinct: ["type"],
+            select: { type: true },
+            where: { type: { not: null } },
+          }),
+          // 2) Distinct customTag CSV strings:
+          prisma.question.findMany({
+            distinct: ["customTag"],
+            select: { customTag: true },
+            where: { customTag: { not: null } },
+          }),
+        ])
+      )
 
     // 3) Map each array and filter out null
     const examList = exams

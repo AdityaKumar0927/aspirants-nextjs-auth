@@ -1,5 +1,15 @@
 export type QuestionStatus = 'ACTIVE' | 'DRAFT' | 'ARCHIVED'
 
+export const QUESTION_TYPES = [
+  'Multiple Choice',
+  'Multiple Correct',
+  'Integer',
+  'Numerical',
+  'Subjective',
+] as const
+
+export type QuestionTypeName = (typeof QUESTION_TYPES)[number]
+
 export interface Question {
   questionId: string
   exam: string
@@ -14,8 +24,12 @@ export interface Question {
   completed: boolean
   options: string[]
   correctOption: string | null
+  correctOptions: string[]
+  answerText: string | null
+  answerMin: number | null
+  answerMax: number | null
   markscheme: string | null
-  notes: { id: string; content: string }[]
+  notes?: { id: string; content: string }[]
   lastAttempted: string | null
   diagramUrl: string | null
   status: QuestionStatus

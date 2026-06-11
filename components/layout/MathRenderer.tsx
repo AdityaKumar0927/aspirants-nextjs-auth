@@ -1,107 +1,87 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import katex from "katex";
-// Removed these lines:
-// import 'katex/dist/contrib/amscd.css'
-// import 'katex/dist/contrib/amscd'
-
-// Keep mhchem if you still need it:
 import "katex/dist/contrib/mhchem";
+import { escapeHtml, sanitizeMathHtml } from "@/lib/sanitize";
 
 interface MathRendererProps {
   text: string;
 }
 
 /**
- * A "maximal" KaTeX-based MathRenderer that:
+ * KaTeX-based renderer for question text that may contain math.
  *
- *  1) Removes newlines (so sub/superscripts don't break).
- *  2) Replaces $$...$$ and \[...\] (display math).
- *  3) Replaces $...$ and \(...\) (inline math).
- *  4) If no delimiters found but the text has \LaTeX commands, tries to parse entire string.
- *  5) Uses strict: false, trust: true => maximum KaTeX leniency.
- *  6) Optionally includes mhchem for advanced chemistry syntax if you import it above.
+ * Security: non-math text is HTML-ESCAPED before assembly, only the matched
+ * math spans are replaced with KaTeX output, KaTeX `trust` is DISABLED (so
+ * \href{javascript:...}/\includegraphics etc. cannot inject), and the final
+ * string is run through DOMPurify. Previously this rendered arbitrary text
+ * straight into dangerouslySetInnerHTML with trust:true — a stored-XSS sink,
+ * since question/option text is attacker-influenceable.
  */
-export default function MathRenderer({ text }: MathRendererProps) {
-  if (!text) return null;
+const KATEX_OPTIONS: katex.KatexOptions = {
+  throwOnError: false,
+  trust: false,
+  strict: false,
+};
 
-  // 1) Replace raw newlines with a space
-  let rendered = text.replace(/\r?\n|\r/g, " ");
-
-  // KaTeX config: be lenient
-  const options: katex.KatexOptions = {
-    throwOnError: false,
-    trust: true,
-    strict: false,
-    displayMode: false, // toggled to true for display blocks below
-  };
-
-  // -------------------------------
-  // 2a) DISPLAY MATH: $$...$$
-  // -------------------------------
-  rendered = rendered.replace(/\$\$([\s\S]+?)\$\$/g, (_, mathExpr) => {
-    try {
-      return `<div class="katex-block">${katex.renderToString(mathExpr, {
-        ...options,
-        displayMode: true,
-      })}</div>`;
-    } catch {
-      // Return original text if there's a parse error
-      return `<div class="katex-block">${mathExpr}</div>`;
-    }
-  });
-
-  // -------------------------------
-  // 2b) DISPLAY MATH: \[...\]
-  // -------------------------------
-  rendered = rendered.replace(/\\\[([\s\S]+?)\\\]/g, (_, mathExpr) => {
-    try {
-      return `<div class="katex-block">${katex.renderToString(mathExpr, {
-        ...options,
-        displayMode: true,
-      })}</div>`;
-    } catch {
-      return `<div class="katex-block">${mathExpr}</div>`;
-    }
-  });
-
-  // -------------------------------
-  // 3a) INLINE MATH: $...$
-  // -------------------------------
-  rendered = rendered.replace(/\$([\s\S]+?)\$/g, (_, mathExpr) => {
-    try {
-      return katex.renderToString(mathExpr, { ...options, displayMode: false });
-    } catch {
-      return mathExpr;
-    }
-  });
-
-  // -------------------------------
-  // 3b) INLINE MATH: \(...\)
-  // -------------------------------
-  rendered = rendered.replace(/\\\(([\s\S]+?)\\\)/g, (_, mathExpr) => {
-    try {
-      return katex.renderToString(mathExpr, { ...options, displayMode: false });
-    } catch {
-      return mathExpr;
-    }
-  });
-
-  // -------------------------------
-  // 4) If no delimiters but has \commands => parse entire
-  // -------------------------------
-  const hadDelimiters = /\$\$|\\\[|\$|\\\(/.test(text);
-  const hasLatexCommands = /\\[a-zA-Z]+/.test(text); // e.g. \frac, \sqrt, \lim, etc.
-
-  if (!hadDelimiters && hasLatexCommands) {
-    try {
-      rendered = katex.renderToString(rendered, { ...options, displayMode: false });
-    } catch (err) {
-      console.warn("MathRenderer fallback parse error:", err);
-      // If parse fails, leave 'rendered' as-is
-    }
+function renderMath(expr: string, displayMode: boolean): string {
+  try {
+    return katex.renderToString(expr, { ...KATEX_OPTIONS, displayMode });
+  } catch {
+    return escapeHtml(expr);
   }
+}
 
-  return <span dangerouslySetInnerHTML={{ __html: rendered }} />;
+/**
+ * Splits text on math delimiters, escaping the prose and KaTeX-rendering the
+ * math, so raw HTML in the prose can never reach the DOM unescaped.
+ */
+function renderMixed(input: string): string {
+  const source = input.replace(/\r?\n|\r/g, " ");
+
+  // Ordered so display delimiters are matched before their inline cousins.
+  const pattern =
+    /(\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\$[^$]+?\$|\\\([\s\S]+?\\\))/g;
+
+  let result = "";
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(source)) !== null) {
+    result += escapeHtml(source.slice(lastIndex, match.index));
+    const token = match[0];
+    if (token.startsWith("$$")) {
+      result += `<span class="katex-block">${renderMath(token.slice(2, -2), true)}</span>`;
+    } else if (token.startsWith("\\[")) {
+      result += `<span class="katex-block">${renderMath(token.slice(2, -2), true)}</span>`;
+    } else if (token.startsWith("\\(")) {
+      result += renderMath(token.slice(2, -2), false);
+    } else {
+      result += renderMath(token.slice(1, -1), false);
+    }
+    lastIndex = pattern.lastIndex;
+  }
+  result += escapeHtml(source.slice(lastIndex));
+  return result;
+}
+
+export default function MathRenderer({ text }: MathRendererProps) {
+  const html = useMemo(() => {
+    if (!text) return "";
+
+    const hasDelimiters = /\$\$|\\\[|\$|\\\(/.test(text);
+    const hasLatexCommands = /\\[a-zA-Z]+/.test(text);
+
+    // No delimiters but bare LaTeX commands => treat the whole string as math.
+    const raw =
+      !hasDelimiters && hasLatexCommands
+        ? renderMath(text.replace(/\r?\n|\r/g, " "), false)
+        : renderMixed(text);
+
+    return sanitizeMathHtml(raw);
+  }, [text]);
+
+  if (!text) return null;
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }

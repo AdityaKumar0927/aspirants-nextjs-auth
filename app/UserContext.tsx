@@ -2,10 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getSession } from 'next-auth/react';
+import type { Session } from 'next-auth';
+
+type SessionUser = Session['user'] | null;
 
 interface UserContextProps {
-  user: any;
-  setUser: React.Dispatch<React.SetStateAction<any>>;
+  user: SessionUser;
+  setUser: React.Dispatch<React.SetStateAction<SessionUser>>;
 }
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
@@ -19,7 +22,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<SessionUser>(null);
 
   useEffect(() => {
     const fetchUser = async () => {

@@ -1,19 +1,15 @@
 import { NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
-import { getServerSession } from "next-auth"
-
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
+import { requireSession } from "@/lib/auth"
 
 /**
  * GET /api/mock-exams/:attemptId
  * Returns the single attempt if it belongs to the logged in user
  */
 export async function GET(request: Request, { params }: any) {
+  const { session, response } = await requireSession()
+  if (response) return response
   try {
-    const session = await getServerSession()
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
-    }
     const userId = session.user.id
     const attemptId = params.attemptId
 
@@ -44,11 +40,9 @@ export async function GET(request: Request, { params }: any) {
  * }
  */
 export async function PATCH(request: Request, { params }: any) {
+  const { session, response } = await requireSession()
+  if (response) return response
   try {
-    const session = await getServerSession()
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
-    }
     const userId = session.user.id
     const attemptId = params.attemptId
 
@@ -81,11 +75,9 @@ export async function PATCH(request: Request, { params }: any) {
  * Remove a single attempt
  */
 export async function DELETE(request: Request, { params }: any) {
+  const { session, response } = await requireSession()
+  if (response) return response
   try {
-    const session = await getServerSession()
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
-    }
     const userId = session.user.id
     const attemptId = params.attemptId
 

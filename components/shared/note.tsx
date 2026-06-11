@@ -31,6 +31,7 @@ import {
   MicOff,
 } from "lucide-react"
 
+import { sanitizeRichText } from "@/lib/sanitize"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -690,7 +691,7 @@ export default function OptimizedNoteApp({ questionId }: { questionId?: string }
                         </p>
                       ) : note.type === "TEXT" ? (
                         <div
-                          dangerouslySetInnerHTML={{ __html: note.content }}
+                          dangerouslySetInnerHTML={{ __html: sanitizeRichText(note.content) }}
                           className="prose max-w-none"
                         />
                       ) : note.type === "IMAGE" ? (

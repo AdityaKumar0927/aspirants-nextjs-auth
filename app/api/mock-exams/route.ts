@@ -1,21 +1,15 @@
 import { NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
-import { getServerSession } from "next-auth" // or your auth method
-
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
+import { requireSession } from "@/lib/auth"
 
 /**
  * GET /api/mock-exams
  * Returns all mock exam attempts for the currently logged-in user.
  */
 export async function GET() {
+  const { session, response } = await requireSession()
+  if (response) return response
   try {
-    // e.g. get user from session
-    // (adjust to your setup if you have a custom auth)
-    const session = await getServerSession()
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
-    }
     const userId = session.user.id
 
     // fetch all attempts
@@ -44,11 +38,9 @@ export async function GET() {
  * }
  */
 export async function POST(request: Request) {
+  const { session, response } = await requireSession()
+  if (response) return response
   try {
-    const session = await getServerSession()
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Not authenticated" }, { status: 401 })
-    }
     const userId = session.user.id
 
     const body = await request.json()

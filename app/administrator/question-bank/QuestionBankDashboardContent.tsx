@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import Link from "next/link"
 import { useState, useCallback, useMemo, createContext, useContext } from "react"
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
 import { useToast } from "@/components/ui/use-toast"
@@ -16,7 +17,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Search, Plus, Upload, Trash2, Edit } from "lucide-react"
+import { Search, Plus, Upload, Trash2, Edit, CheckCircle2, Archive } from "lucide-react"
 import debounce from "lodash/debounce"
 import type { Question, QuestionStatus } from "./types"
 import { Separator } from "@/components/ui/separator"
@@ -37,9 +38,12 @@ type FiltersType = {
 // Custom Hooks
 function useQuestions(filters: FiltersType, searchQuery: string) {
   const fetchQuestions = async (): Promise<Question[]> => {
-    const response = await fetch("/api/questions")
+    // Admin view: request every status (incl. DRAFT/ARCHIVED). The API returns
+    // a paginated { data, totalCount } envelope, so unwrap .data.
+    const response = await fetch("/api/questions?status=all&pageSize=200")
     if (!response.ok) throw new Error("Failed to fetch questions")
-    return response.json()
+    const json = await response.json()
+    return Array.isArray(json) ? json : json.data ?? []
   }
 
   const {
@@ -76,7 +80,13 @@ function useQuestions(filters: FiltersType, searchQuery: string) {
       .sort((a, b) => Number.parseInt(a.questionId) - Number.parseInt(b.questionId))
   }, [questions, filters, searchQuery])
 
-  return { questions: filteredQuestions, isLoading, error }
+  const statusCounts = useMemo(() => {
+    const counts = { ACTIVE: 0, DRAFT: 0, ARCHIVED: 0 } as Record<string, number>
+    for (const q of questions) counts[q.status] = (counts[q.status] ?? 0) + 1
+    return counts
+  }, [questions])
+
+  return { questions: filteredQuestions, isLoading, error, statusCounts, totalCount: questions.length }
 }
 
 // Contexts
@@ -324,11 +334,13 @@ function QuestionTable({
   pageSize,
   onEdit,
   onDelete,
+  onSetStatus,
 }: {
   currentPage: number
   pageSize: number
   onEdit: (question: Question) => void
   onDelete: (questionId: string) => void
+  onSetStatus: (questionId: string, status: QuestionStatus) => void
 }) {
   const { questions, isLoading } = useContext(QuestionsContext)!
   const { selectedQuestions, toggleQuestionSelection } = useContext(SelectedQuestionsContext)!
@@ -397,9 +409,38 @@ function QuestionTable({
                 <Badge variant="outline">{question.difficulty}</Badge>
               </TableCell>
               <TableCell>
-                <Badge>{question.status}</Badge>
+                <Badge
+                  variant={
+                    question.status === "ACTIVE"
+                      ? "default"
+                      : question.status === "DRAFT"
+                      ? "secondary"
+                      : "outline"
+                  }
+                >
+                  {question.status}
+                </Badge>
               </TableCell>
-              <TableCell className="text-right space-x-2">
+              <TableCell className="text-right space-x-1">
+                {question.status !== "ACTIVE" ? (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    title="Activate (publish to question bank)"
+                    onClick={() => onSetStatus(question.questionId, "ACTIVE")}
+                  >
+                    <CheckCircle2 className="h-4 w-4 text-green-600" />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    title="Archive (hide from question bank)"
+                    onClick={() => onSetStatus(question.questionId, "ARCHIVED")}
+                  >
+                    <Archive className="h-4 w-4 text-amber-600" />
+                  </Button>
+                )}
                 <Button variant="ghost" size="sm" onClick={() => onEdit(question)}>
                   <Edit className="h-4 w-4" />
                 </Button>
@@ -474,7 +515,7 @@ export function QuestionBankDashboardContent() {
     [],
   )
 
-  const { questions, isLoading, error } = useQuestions(filters, searchQuery)
+  const { questions, isLoading, error, statusCounts, totalCount } = useQuestions(filters, searchQuery)
 
   const totalPages = Math.ceil(questions.length / pageSize)
 
@@ -486,7 +527,10 @@ export function QuestionBankDashboardContent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newQuestion),
       })
-      if (!response.ok) throw new Error("Failed to add question")
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}))
+        throw new Error(err.error || "Failed to add question")
+      }
       return response.json()
     },
     onSuccess: () => {
@@ -496,10 +540,10 @@ export function QuestionBankDashboardContent() {
         description: "New question has been successfully added.",
       })
     },
-    onError: () => {
+    onError: (error: unknown) => {
       toast({
         title: "Error",
-        description: "Failed to add question. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to add question.",
         variant: "destructive",
       })
     },
@@ -512,7 +556,10 @@ export function QuestionBankDashboardContent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedQuestion),
       })
-      if (!response.ok) throw new Error("Failed to update question")
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}))
+        throw new Error(err.error || "Failed to update question")
+      }
       return response.json()
     },
     onSuccess: () => {
@@ -522,10 +569,10 @@ export function QuestionBankDashboardContent() {
         description: "Question has been successfully updated.",
       })
     },
-    onError: () => {
+    onError: (error: unknown) => {
       toast({
         title: "Error",
-        description: "Failed to update question. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to update question.",
         variant: "destructive",
       })
     },
@@ -533,8 +580,10 @@ export function QuestionBankDashboardContent() {
 
   const deleteQuestionMutation = useMutation({
     mutationFn: async (questionId: string) => {
-      const response = await fetch(`/api/questions/${questionId}`, {
+      const response = await fetch(`/api/questions`, {
         method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId }),
       })
       if (!response.ok) throw new Error("Failed to delete question")
       return response.json()
@@ -567,6 +616,10 @@ export function QuestionBankDashboardContent() {
 
   const handleDeleteQuestion = async (questionId: string) => {
     await deleteQuestionMutation.mutateAsync(questionId)
+  }
+
+  const handleSetStatus = async (questionId: string, status: QuestionStatus) => {
+    await editQuestionMutation.mutateAsync({ questionId, status })
   }
 
   const toggleQuestionSelection = (questionId: string) => {
@@ -620,9 +673,11 @@ export function QuestionBankDashboardContent() {
                           </ScrollArea>
                         </DialogContent>
                       </Dialog>
-                      <Button variant="outline">
-                        <Upload className="mr-2 h-4 w-4" />
-                        Batch Upload
+                      <Button variant="outline" asChild>
+                        <Link href="/administrator/question-bank/import">
+                          <Upload className="mr-2 h-4 w-4" />
+                          Import from PDF
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -634,20 +689,65 @@ export function QuestionBankDashboardContent() {
                         <CardTitle className="text-sm font-medium">Total Questions</CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <div className="text-2xl font-bold">{questions.length}</div>
+                        <div className="text-2xl font-bold">{totalCount}</div>
+                      </CardContent>
+                    </Card>
+                    <Card
+                      className={statusCounts.DRAFT > 0 ? "border-amber-300" : undefined}
+                    >
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Drafts to review</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{statusCounts.DRAFT ?? 0}</div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Active</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{statusCounts.ACTIVE ?? 0}</div>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">Archived</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">{statusCounts.ARCHIVED ?? 0}</div>
                       </CardContent>
                     </Card>
                   </div>
 
-                  {/* Search */}
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      type="text"
-                      placeholder="Search questions..."
-                      onChange={(e) => debouncedSearch(e.target.value)}
-                      className="pl-10"
-                    />
+                  {/* Search + status filter */}
+                  <div className="flex items-center gap-3">
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+                      <Input
+                        type="text"
+                        placeholder="Search questions..."
+                        onChange={(e) => debouncedSearch(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                    <Select
+                      value={filters.status}
+                      onValueChange={(value) => {
+                        setFilters((prev) => ({ ...prev, status: value as QuestionStatus | "all" }))
+                        setCurrentPage(1)
+                      }}
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Status" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All statuses</SelectItem>
+                        <SelectItem value="DRAFT">Draft (needs review)</SelectItem>
+                        <SelectItem value="ACTIVE">Active</SelectItem>
+                        <SelectItem value="ARCHIVED">Archived</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {/* Questions Table */}
@@ -656,6 +756,7 @@ export function QuestionBankDashboardContent() {
                     pageSize={pageSize}
                     onEdit={(question) => setEditingQuestion(question)}
                     onDelete={handleDeleteQuestion}
+                    onSetStatus={handleSetStatus}
                   />
 
                   {/* Pagination */}

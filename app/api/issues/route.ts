@@ -1,65 +1,76 @@
-import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '../auth/[...nextauth]/options'
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import prisma from "@/lib/prisma";
+import { requireSession } from "@/lib/auth";
 
-export async function GET() {
+const MAX_ISSUES = 500;
+
+const createSchema = z.object({
+  title: z.string().trim().min(1).max(300),
+  description: z.string().trim().min(1).max(10_000),
+  priority: z.enum(["LOW", "MEDIUM", "HIGH", "CRITICAL"]),
+  area: z.enum(["CONTENT", "UI", "BUG", "FEATURE", "OTHER"]),
+});
+
+/**
+ * GET /api/issues            -> issues for the community board (auth required)
+ * GET /api/issues?user=true  -> only the caller's own issues
+ *
+ * Reporter EMAIL is never returned (only name) — it previously leaked the
+ * email of every reporter to any unauthenticated caller.
+ */
+export async function GET(req: NextRequest) {
+  const { session, response } = await requireSession();
+  if (response) return response;
+
   try {
-    // Now that we've renamed the Issue relations, we can do include: { createdBy: ... }
+    const onlyMine = req.nextUrl.searchParams.get("user") === "true";
     const issues = await prisma.issue.findMany({
+      where: onlyMine ? { createdById: session.user.id } : undefined,
+      take: MAX_ISSUES,
+      orderBy: { createdAt: "desc" },
       include: {
-        createdBy: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
+        createdBy: { select: { id: true, name: true, image: true } },
       },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    })
-    return NextResponse.json(issues)
+    });
+    return NextResponse.json(issues);
   } catch (error) {
-    console.error('Error fetching issues:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error("Error fetching issues:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
+  const { session, response } = await requireSession();
+  if (response) return response;
+
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.email) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const parsed = createSchema.safeParse(await req.json());
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Validation failed", issues: parsed.error.flatten() },
+        { status: 400 }
+      );
     }
+    const { title, description, priority, area } = parsed.data;
 
-    const { title, description, priority, area } = await req.json()
-
-    // We connect the "createdBy" relation by email:
     const newIssue = await prisma.issue.create({
       data: {
         title,
         description,
         priority,
         area,
-        status: 'OPEN',
-        // your schema has "createdById String" + "createdBy User?"
-        // So to connect by email, we do:
-        createdBy: { connect: { email: session.user.email } },
+        status: "OPEN",
+        createdBy: { connect: { id: session.user.id } },
       },
       include: {
-        createdBy: {
-          select: {
-            name: true,
-            email: true,
-          },
-        },
+        createdBy: { select: { id: true, name: true, image: true } },
       },
-    })
+    });
 
-    return NextResponse.json(newIssue)
+    return NextResponse.json(newIssue, { status: 201 });
   } catch (error) {
-    console.error('Error creating issue:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error("Error creating issue:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

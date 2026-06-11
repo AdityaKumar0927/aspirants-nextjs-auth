@@ -1,97 +1,99 @@
-import { PrismaClient } from "@prisma/client"
-import { NextResponse } from "next/server"
-import { getServerSession } from "next-auth"
-import { authOptions } from "../../auth/[...nextauth]/options"
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import prisma from "@/lib/prisma";
+import { requireSession } from "@/lib/auth";
 
-const prisma = new PrismaClient()
+// UserPerformance feeds only the user's OWN analytics dashboard (the public
+// leaderboard is static), so we don't fully recompute it server-side — but we
+// DO bound every value so a crafted request can't store absurd numbers or
+// bloat the JSON columns.
+const count = z.coerce.number().int().min(0).max(1_000_000).default(0);
+const ratio = z.coerce.number().min(0).max(100).default(0); // percentages/normalized scores
+const boundedJson = z
+  .unknown()
+  .optional()
+  .refine(
+    (v) => v === undefined || JSON.stringify(v).length <= 20_000,
+    "JSON field too large"
+  );
+
+const schema = z.object({
+  questionId: z.string().trim().min(1).max(120),
+  correctAnswers: count,
+  incorrectAnswers: count,
+  uniqueQuestions: count,
+  questionsAttempted: count,
+  timeSpent: z.coerce.number().int().min(0).max(86_400_000).default(0),
+  accuracy: ratio,
+  attemptRate: ratio,
+  firstAttemptSuccessRate: ratio,
+  reattemptAccuracy: ratio,
+  consistency: ratio,
+  engagementLevel: ratio,
+  weaknessBySubtopic: boundedJson,
+  improvementOverTime: boundedJson,
+  topicPerformance: boundedJson,
+  completed: z.boolean().default(false),
+  reviewed: z.boolean().default(false),
+  lastAttempted: z.coerce.date().optional(),
+});
 
 export async function POST(request: Request) {
+  const { session, response } = await requireSession();
+  if (response) return response;
+
   try {
-    const session = await getServerSession(authOptions)
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    const parsed = schema.safeParse(await request.json());
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Validation failed", issues: parsed.error.flatten() },
+        { status: 400 }
+      );
     }
+    const d = parsed.data;
 
-    const body = await request.json()
-    const {
-      questionId,
-      correctAnswers,
-      incorrectAnswers,
-      uniqueQuestions,
-      questionsAttempted,
-      timeSpent,
-      accuracy,
-      weaknessBySubtopic,
-      improvementOverTime,
-      attemptRate,
-      firstAttemptSuccessRate,
-      reattemptAccuracy,
-      topicPerformance,
-      consistency,
-      engagementLevel,
-      completed,
-      reviewed,
-      lastAttempted,
-    } = body
+    const data = {
+      correctAnswers: d.correctAnswers,
+      incorrectAnswers: d.incorrectAnswers,
+      uniqueQuestions: d.uniqueQuestions,
+      questionsAttempted: d.questionsAttempted,
+      timeSpent: d.timeSpent,
+      accuracy: d.accuracy,
+      attemptRate: d.attemptRate,
+      firstAttemptSuccessRate: d.firstAttemptSuccessRate,
+      reattemptAccuracy: d.reattemptAccuracy,
+      consistency: d.consistency,
+      engagementLevel: d.engagementLevel,
+      weaknessBySubtopic: (d.weaknessBySubtopic ?? {}) as object,
+      improvementOverTime: (d.improvementOverTime ?? {}) as object,
+      topicPerformance: (d.topicPerformance ?? {}) as object,
+      completed: d.completed,
+      reviewed: d.reviewed,
+      lastAttempted: d.lastAttempted ?? new Date(),
+    };
 
-    const existingPerformance = await prisma.userPerformance.findFirst({
-      where: { userId: session.user.id, questionId },
-    })
+    const existing = await prisma.userPerformance.findFirst({
+      where: { userId: session.user.id, questionId: d.questionId },
+      select: { id: true },
+    });
 
-    let userPerformance
-    if (existingPerformance) {
-      userPerformance = await prisma.userPerformance.update({
-        where: { id: existingPerformance.id },
-        data: {
-          correctAnswers,
-          incorrectAnswers,
-          uniqueQuestions,
-          questionsAttempted,
-          timeSpent,
-          accuracy,
-          weaknessBySubtopic,
-          improvementOverTime,
-          attemptRate,
-          firstAttemptSuccessRate,
-          reattemptAccuracy,
-          topicPerformance,
-          consistency,
-          engagementLevel,
-          completed,
-          reviewed,
-          lastAttempted,
-        },
-      })
-    } else {
-      userPerformance = await prisma.userPerformance.create({
-        data: {
-          userId: session.user.id,
-          questionId,
-          correctAnswers: correctAnswers || 0,
-          incorrectAnswers: incorrectAnswers || 0,
-          uniqueQuestions: uniqueQuestions || 0,
-          questionsAttempted: questionsAttempted || 0,
-          timeSpent: timeSpent || 0,
-          accuracy: accuracy || 0,
-          weaknessBySubtopic: weaknessBySubtopic || {},
-          improvementOverTime: improvementOverTime || {},
-          attemptRate: attemptRate || 0,
-          firstAttemptSuccessRate: firstAttemptSuccessRate || 0,
-          reattemptAccuracy: reattemptAccuracy || 0,
-          topicPerformance: topicPerformance || {},
-          consistency: consistency || 0,
-          engagementLevel: engagementLevel || 0,
-          completed: completed || false,
-          reviewed: reviewed || false,
-          lastAttempted: lastAttempted ? new Date(lastAttempted) : new Date(),
-          updatedAt: new Date(),
-        },
-      })
-    }
+    const userPerformance = existing
+      ? await prisma.userPerformance.update({
+          where: { id: existing.id },
+          data: { ...data, updatedAt: new Date() },
+        })
+      : await prisma.userPerformance.create({
+          data: {
+            userId: session.user.id,
+            questionId: d.questionId,
+            ...data,
+            updatedAt: new Date(),
+          },
+        });
 
-    return NextResponse.json(userPerformance)
+    return NextResponse.json(userPerformance);
   } catch (error) {
-    console.error("Error updating user performance:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("Error updating user performance:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

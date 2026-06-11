@@ -1,22 +1,10 @@
 import { MetadataRoute } from "next";
-import prisma from "@/lib/prisma";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const users = await prisma.user.findMany({
-    select: {
-      id: true,
-    },
-    take: 1,
-  });
-
-  return [
-    {
-      url: "https://aspirants.tech",
-      lastModified: new Date(),
-    },
-    ...users.map((user) => ({
-      url: `https://aspirants.tech/${user.id}`,
-      lastModified: new Date(),
-    })),
-  ];
+// Only list real, public pages. Internal user IDs must never appear in the
+// public sitemap (it previously published a database user id under the root).
+export default function sitemap(): MetadataRoute.Sitemap {
+  const base = "https://aspirants.tech";
+  const routes = ["", "/QuestionBank", "/leaderboard", "/Contact", "/mission"];
+  const lastModified = new Date();
+  return routes.map((path) => ({ url: `${base}${path}`, lastModified }));
 }

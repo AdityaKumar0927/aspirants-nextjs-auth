@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
 import { Loader2 } from 'lucide-react'
-import { getServerSession } from 'next-auth/next'
 import { redirect } from 'next/navigation'
+import { getCurrentSession } from '@/lib/auth'
 import ApplicationForm from './ApplicationForm'
 
 export default async function ApplyPage() {
-  const session = await getServerSession()
+  const session = await getCurrentSession()
 
   if (!session) {
     redirect('/api/auth/signin?callbackUrl=/apply')

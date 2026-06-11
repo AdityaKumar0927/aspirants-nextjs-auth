@@ -187,6 +187,11 @@ model Question {
   negMarks             Float?
   options              String[]
   correctOption        String?
+  // Typed answers for non-single-choice questions:
+  correctOptions       String[]       @default([]) // "Multiple Correct" questions
+  answerText           String?        // "Integer"/"Subjective" model answer
+  answerMin            Float?         // "Numerical" accepted range (inclusive)
+  answerMax            Float?
   markscheme           String?
   correctAttempts      String?
   wrongAttempts        String?
@@ -211,7 +216,8 @@ model Question {
   yearKey              String?
   status               QuestionStatus @default(ACTIVE)
   createdAt            DateTime       @default(now())
-  updatedAt            DateTime
+  updatedAt            DateTime       @updatedAt
+  importJobId          String?
   chapter              String?
   chapterGroup         String?
   content              Json?
@@ -234,9 +240,36 @@ model Question {
   UserAnswer      UserAnswer[]
   UserPerformance UserPerformance[]
   UserProgress    UserProgress[]
+  ImportJob       ImportJob?     @relation(fields: [importJobId], references: [id], onDelete: SetNull)
 
   // If you have solutions
   solutions Solution[]
+
+  @@index([importJobId])
+}
+
+// Tracks a "PDF -> question bank" import run (who imported what, when, and how it went).
+model ImportJob {
+  id            String          @id @default(uuid())
+  userId        String
+  fileName      String
+  status        ImportJobStatus @default(PROCESSING)
+  pageCount     Int             @default(0)
+  questionCount Int             @default(0)
+  tokensUsed    Int             @default(0)
+  error         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  User          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Question      Question[]
+
+  @@index([userId])
+}
+
+enum ImportJobStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
 }
 
 model Session {
@@ -278,9 +311,11 @@ model User {
   subscriptionTier               SubscriptionTier?     @default(MEMBER)
   updatedAt                      DateTime              @default(now())
   verifiedTeacher                Boolean               @default(false)
+  likedSolutionIds               String[]              @default([]) // solutions this user has liked (prevents like-spam)
 
   Account                        Account[]
   AiUsageLog                     AiUsageLog[]
+  ImportJob                      ImportJob[]
   Application                    Application[]
   Feedback                       Feedback[]
   Issue_Issue_createdByIdToUser  Issue[]               @relation("Issue_createdByIdToUser")

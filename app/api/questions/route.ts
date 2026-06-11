@@ -1,7 +1,21 @@
 import { NextResponse } from "next/server";
-import { PrismaClient, QuestionStatus } from "@prisma/client";
+import { QuestionStatus } from "@prisma/client";
+import { z } from "zod";
+import prisma from "@/lib/prisma";
+import {
+  getCurrentSession,
+  isAdmin,
+  requireAdmin,
+  requireSession,
+} from "@/lib/auth";
+import {
+  memberQuestionPatchSchema,
+  questionCreateSchema,
+  questionUpdateSchema,
+  toQuestionCreateData,
+} from "@/lib/validations/question";
 
-const prisma = new PrismaClient();
+const MAX_PAGE_SIZE = 200;
 
 /**
  * Utility to parse comma-separated query params:
@@ -9,105 +23,113 @@ const prisma = new PrismaClient();
  */
 function parseCommaParam(value: string | null): string[] | undefined {
   if (!value) return undefined;
-  return value
+  const parts = value
     .split(",")
     .map((s) => s.trim())
     .filter((s) => s.length > 0);
+  return parts.length ? parts : undefined;
+}
+
+function csvToTags(customTag: string | null): string[] {
+  if (!customTag) return [];
+  return customTag.split(",").map((tag) => tag.trim());
+}
+
+function validationError(error: z.ZodError) {
+  return NextResponse.json(
+    { error: "Validation failed", issues: error.flatten() },
+    { status: 400 }
+  );
 }
 
 /**
  * GET /api/questions
  *
- * Optional Query parameters:
- *   ?exam=JEE,NEET
- *   &subject=Physics,Chemistry
- *   &difficulty=Easy,Medium
- *   &year=2021,2022
- *   &type=Multiple Choice,Numerical
- *   &yearKey=JEE-2023-Shift1
- *   &page=1
- *   &pageSize=20
+ * Optional query parameters (comma-separated for multi-value):
+ *   exam, subject, topic, subtopic, difficulty, year, type, yearKey,
+ *   page (default 1), pageSize (default 10, max 200)
  */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
 
-    // 1) Pagination
-    const pageParam = searchParams.get("page") || "1";
-    const pageSizeParam = searchParams.get("pageSize") || "10";
-    const page = parseInt(pageParam, 10) || 1;
-    const pageSize = parseInt(pageSizeParam, 10) || 10;
-    const skip = (page - 1) * pageSize;
-    const take = pageSize;
+    const page = Math.max(parseInt(searchParams.get("page") || "1", 10) || 1, 1);
+    const pageSize = Math.min(
+      Math.max(parseInt(searchParams.get("pageSize") || "10", 10) || 10, 1),
+      MAX_PAGE_SIZE
+    );
 
-    // 2) Parse multi-value filters
-    const examArr       = parseCommaParam(searchParams.get("exam"));
-    const subjectArr    = parseCommaParam(searchParams.get("subject"));
-    const topicArr      = parseCommaParam(searchParams.get("topic"));
-    const subtopicArr   = parseCommaParam(searchParams.get("subtopic"));
+    const examArr = parseCommaParam(searchParams.get("exam"));
+    const subjectArr = parseCommaParam(searchParams.get("subject"));
+    const topicArr = parseCommaParam(searchParams.get("topic"));
+    const subtopicArr = parseCommaParam(searchParams.get("subtopic"));
     const difficultyArr = parseCommaParam(searchParams.get("difficulty"));
-    const yearStrArr    = parseCommaParam(searchParams.get("year"));
-    const typeArr       = parseCommaParam(searchParams.get("type"));
-    const yearKeyArr    = parseCommaParam(searchParams.get("yearKey"));
+    const yearStrArr = parseCommaParam(searchParams.get("year"));
+    const typeArr = parseCommaParam(searchParams.get("type"));
+    const yearKeyArr = parseCommaParam(searchParams.get("yearKey"));
+    const statusArr = parseCommaParam(searchParams.get("status"));
 
-    // 3) Build Prisma WHERE object
-    const where: any = {};
+    const where: Record<string, unknown> = {};
 
-    if (examArr)        where.exam       = { in: examArr };
-    if (subjectArr)     where.subject    = { in: subjectArr };
-    if (topicArr)       where.topic      = { in: topicArr };
-    if (subtopicArr)    where.subtopic   = { in: subtopicArr };
-    if (difficultyArr)  where.difficulty = { in: difficultyArr };
-    if (typeArr)        where.type       = { in: typeArr };
-    if (yearKeyArr)     where.yearKey    = { in: yearKeyArr };
+    // Status visibility: the public only ever sees ACTIVE questions. DRAFT /
+    // ARCHIVED (e.g. freshly imported, unreviewed questions) are admin-only —
+    // without this, imported drafts would leak into the public question bank.
+    const VALID_STATUSES = ["ACTIVE", "DRAFT", "ARCHIVED"];
+    if (statusArr && !(statusArr.length === 1 && statusArr[0] === "ACTIVE")) {
+      const isAdminViewer = isAdmin(await getCurrentSession());
+      if (isAdminViewer) {
+        const requested = statusArr.includes("all")
+          ? []
+          : statusArr.filter((s) => VALID_STATUSES.includes(s));
+        if (requested.length) where.status = { in: requested };
+        // "all" => no status filter (every status visible to admins)
+      } else {
+        where.status = "ACTIVE";
+      }
+    } else {
+      where.status = "ACTIVE";
+    }
+
+    if (examArr) where.exam = { in: examArr };
+    if (subjectArr) where.subject = { in: subjectArr };
+    if (topicArr) where.topic = { in: topicArr };
+    if (subtopicArr) where.subtopic = { in: subtopicArr };
+    if (difficultyArr) where.difficulty = { in: difficultyArr };
+    if (typeArr) where.type = { in: typeArr };
+    if (yearKeyArr) where.yearKey = { in: yearKeyArr };
 
     if (yearStrArr) {
       const years = yearStrArr
         .map((y) => parseInt(y, 10))
         .filter((n) => !isNaN(n));
-      if (years.length) {
-        where.year = { in: years };
-      }
+      if (years.length) where.year = { in: years };
     }
 
-    // 4) Fetch matching questions + total count
     const [questions, totalCount] = await Promise.all([
       prisma.question.findMany({
-        skip,
-        take,
+        skip: (page - 1) * pageSize,
+        take: pageSize,
         where,
         orderBy: { id: "asc" },
         include: {
-          // If you have related tables, include them as needed:
           Exam: true,
-          Feedback: true,
-          Issue: true,
-          Note: true,
-          UserAnswer: true,
-          UserPerformance: true,
-          UserProgress: true,
-
-          // For a parent question relation (if any):
+          // Parent/child questions (comprehension sets):
           Question: true,
-          // For child questions:
           other_Question: true,
+          // NOTE: Note / Feedback / Issue / UserAnswer / UserPerformance /
+          // UserProgress are deliberately NOT included — they hold per-user
+          // content and PII (e.g. reporter identities, private notes) and were
+          // previously leaked to every, even unauthenticated, caller. Clients
+          // fetch their own state via the dedicated scoped endpoints.
         },
       }),
       prisma.question.count({ where }),
     ]);
 
-    // 5) Convert customTag CSV -> array
-    const data = questions.map((q) => {
-      let customTags: string[] = [];
-      if (q.customTag) {
-        customTags = q.customTag.split(",").map((tag) => tag.trim());
-      }
-      return {
-        ...q,
-        customTags,
-        // IMPORTANT: we keep "explanation" as is—no rename to "markscheme"
-      };
-    });
+    const data = questions.map((q) => ({
+      ...q,
+      customTags: csvToTags(q.customTag),
+    }));
 
     return NextResponse.json({
       data,
@@ -125,45 +147,30 @@ export async function GET(request: Request) {
 }
 
 /**
- * POST /api/questions
+ * POST /api/questions  (admin only)
  *
- * Body example:
- * {
- *   "questionId": "Q123",
- *   "text": "Which is correct?",
- *   "options": ["A) ...","B) ..."],
- *   "correctOption": "A",
- *   "exam": "JEE",
- *   "subject": "Physics",
- *   "explanation": "Your explanation here!",
- *   "customTags": ["tag1","tag2"],
- *   ...
- * }
+ * Creates a single question in the canonical format
+ * (see lib/validations/question.ts).
  */
 export async function POST(request: Request) {
+  const { response } = await requireAdmin();
+  if (response) return response;
+
   try {
-    const data = await request.json();
-    console.log("POST /api/questions => creating question", data);
-
-    // DO NOT rename explanation => markscheme; we just keep data.explanation
-
-    // Convert customTags array -> CSV if needed
-    if (Array.isArray(data.customTags)) {
-      data.customTag = data.customTags.join(",");
-      delete data.customTags;
-    }
-
-    // default status if not provided
-    const status = data.status || QuestionStatus.ACTIVE;
+    const parsed = questionCreateSchema.safeParse(await request.json());
+    if (!parsed.success) return validationError(parsed.error);
 
     const created = await prisma.question.create({
       data: {
-        ...data,
-        status,
+        ...toQuestionCreateData(parsed.data),
+        status: parsed.data.status ?? QuestionStatus.ACTIVE,
       },
     });
 
-    return NextResponse.json(created);
+    return NextResponse.json(
+      { ...created, customTags: csvToTags(created.customTag) },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error creating question:", error);
     return NextResponse.json(
@@ -176,50 +183,38 @@ export async function POST(request: Request) {
 /**
  * PATCH /api/questions
  *
- * Body example:
- * {
- *   "questionId": "Q123",
- *   "completed": true,
- *   "reviewed": false,
- *   "explanation": "Updated explanation text",
- *   "customTags": ["tag1","tag2"]
- * }
+ * - Admins may update any canonical field.
+ * - Signed-in members may only toggle lightweight study-state fields
+ *   (completed, reviewed, customTags, difficulty, difficultyRating).
  */
 export async function PATCH(request: Request) {
+  const { session, response } = await requireSession();
+  if (response) return response;
+
   try {
     const body = await request.json();
-    console.log("PATCH /api/questions => updating question", body);
+    const schema = isAdmin(session)
+      ? questionUpdateSchema
+      : memberQuestionPatchSchema;
+    const parsed = schema.safeParse(body);
+    if (!parsed.success) return validationError(parsed.error);
 
-    const { questionId, ...rest } = body;
-    if (!questionId) {
-      return NextResponse.json(
-        { error: "questionId is required" },
-        { status: 400 }
-      );
-    }
+    const { questionId, customTags, ...rest } = parsed.data as Record<
+      string,
+      unknown
+    > & { questionId: string; customTags?: string[] };
 
-    // DO NOT rename explanation => markscheme; keep it as rest.explanation
-
-    // If array of customTags => store as CSV
-    if (Array.isArray(rest.customTags)) {
-      rest.customTag = rest.customTags.join(",");
-      delete rest.customTags;
-    }
+    const data: Record<string, unknown> = { ...rest };
+    if (customTags !== undefined) data.customTag = customTags.join(",");
 
     const updated = await prisma.question.update({
       where: { questionId },
-      data: rest,
+      data,
     });
-
-    // Re-parse customTag => customTags array
-    let customTags: string[] = [];
-    if (updated.customTag) {
-      customTags = updated.customTag.split(",").map((t) => t.trim());
-    }
 
     return NextResponse.json({
       ...updated,
-      customTags,
+      customTags: csvToTags(updated.customTag),
     });
   } catch (error) {
     console.error("Error updating question:", error);
@@ -231,20 +226,17 @@ export async function PATCH(request: Request) {
 }
 
 /**
- * DELETE /api/questions
+ * DELETE /api/questions  (admin only)
  *
- * Body example:
- * {
- *   "questionId": "Q123"
- * }
+ * Body: { "questionId": "Q123" }
  */
 export async function DELETE(request: Request) {
-  try {
-    const body = await request.json();
-    console.log("DELETE /api/questions => removing question", body);
+  const { response } = await requireAdmin();
+  if (response) return response;
 
-    const { questionId } = body;
-    if (!questionId) {
+  try {
+    const { questionId } = await request.json();
+    if (!questionId || typeof questionId !== "string") {
       return NextResponse.json(
         { error: "questionId is required" },
         { status: 400 }

@@ -48,7 +48,7 @@ export default async function SettingsProfilePage() {
         cookiePolicyAccepted: false,
       }
 
-      const userRole = session.user?.role?.name || 'member'
+      const userRole = session.user?.role || 'member'
 
       return (
         <div className="space-y-6">
@@ -81,7 +81,7 @@ export default async function SettingsProfilePage() {
       cookiePolicyAccepted: false, // You may want to fetch this from the database
     }
 
-    const userRole = session.user?.role?.name || 'member'
+    const userRole = session.user?.role || 'member'
 
     return (
       <div className="space-y-6">

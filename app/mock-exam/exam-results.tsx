@@ -38,7 +38,19 @@ import {
 } from "@/components/ui/accordion"
 
 import MathRenderer from "@/components/layout/MathRenderer"
-import type { ExamResultsType, QuestionType } from "@/lib/exam-helpers"
+import {
+  displayCorrectAnswer,
+  displayUserAnswer,
+  gradeAnswer,
+  parseMultiAnswer,
+  type ExamResultsType,
+  type QuestionType,
+} from "@/lib/exam-helpers"
+
+/** Correct option letters for a choice question. */
+function correctLetters(q: QuestionType): Set<string> {
+  return new Set([q.correctOption, ...q.correctOptions].filter(Boolean))
+}
 
 /** Helper: format seconds into mm:ss */
 function formatTime(seconds: number) {
@@ -132,20 +144,24 @@ function renderDiagram(diagramUrl?: string) {
  * Returns a "read-only" display of the question’s options, highlighting
  * correct vs. user’s incorrect choice for MCQ. 
  */
-function renderOptions(
-  q: QuestionType,
-  userAnswer: string | null,
-  correctAnswer: string | undefined
-) {
+function renderOptions(q: QuestionType, userAnswer: string | null) {
   if (!q.options) return null
+
+  const correct = correctLetters(q)
+  const userLetters =
+    q.type === "Multiple Correct"
+      ? parseMultiAnswer(userAnswer)
+      : userAnswer
+      ? [userAnswer]
+      : []
 
   return (
     <div className="space-y-2 mt-4">
       {Object.entries(q.options).map(([optionKey, optionText]) => {
-        // Was this the correct option?
-        const isCorrectOption = optionKey === correctAnswer
+        // Was this a correct option?
+        const isCorrectOption = correct.has(optionKey)
         // Did user choose this?
-        const isUserOption = optionKey === userAnswer
+        const isUserOption = userLetters.includes(optionKey)
 
         // Decide color
         // If user got it right => highlight that single one in green
@@ -196,12 +212,14 @@ function renderOptions(
 function QuestionReviewBlock({
   question,
   userAnswer,
-  correctAnswer,
 }: {
   question: QuestionType
   userAnswer: string | null
-  correctAnswer?: string
 }) {
+  const isChoice =
+    question.type === "Multiple Choice" || question.type === "Multiple Correct"
+  const correctAnswer = displayCorrectAnswer(question)
+
   return (
     <div className="border rounded p-4 mt-3 bg-white">
       {/* Title + meta tags */}
@@ -223,34 +241,43 @@ function QuestionReviewBlock({
         </div>
       )}
 
-      {/* If MCQ or multiple choice, show all options read-only */}
-      {question.type?.toLowerCase().includes("mcq") && question.options ? (
-        renderOptions(question, userAnswer, correctAnswer)
-      ) : question.type?.toLowerCase().includes("num") ||
-        question.type?.toLowerCase().includes("int") ? (
-        // Numeric or integer type => just show "Your Answer" and "Correct"
-        <div className="mt-4">
-          <p className="text-sm text-gray-700">
-            <strong>Your Numeric Answer:</strong>{" "}
-            {userAnswer ?? "Not answered"}
-          </p>
-          {correctAnswer && (
-            <p className="text-sm text-gray-700">
-              <strong>Correct Answer:</strong> {correctAnswer}
+      {isChoice && question.options ? (
+        <>
+          {renderOptions(question, userAnswer)}
+          {question.type === "Multiple Correct" && (
+            <p className="mt-2 text-sm text-gray-700">
+              <strong>Correct option(s):</strong> {correctAnswer}
             </p>
           )}
+        </>
+      ) : question.type === "Subjective" ? (
+        <div className="mt-4 space-y-2 text-sm text-gray-700">
+          <div>
+            <strong>Your Answer:</strong>
+            <div className="mt-1 whitespace-pre-wrap rounded border bg-gray-50 p-2">
+              {userAnswer ? <MathRenderer text={userAnswer} /> : "Not answered"}
+            </div>
+          </div>
+          <div>
+            <strong>Model Answer:</strong>
+            <div className="mt-1 whitespace-pre-wrap rounded border bg-green-50 p-2">
+              <MathRenderer text={correctAnswer} />
+            </div>
+          </div>
+          <p className="text-xs italic text-gray-500">
+            Subjective answers are not auto-scored — compare against the model answer.
+          </p>
         </div>
       ) : (
-        // For any other type, just show "Your Answer" & "Correct"
+        // Integer / Numerical
         <div className="mt-4 text-sm text-gray-700">
           <p>
-            <strong>Your Answer:</strong> {userAnswer ?? "Not answered"}
+            <strong>Your Answer:</strong>{" "}
+            {displayUserAnswer(question, userAnswer)}
           </p>
-          {correctAnswer && (
-            <p>
-              <strong>Correct Answer:</strong> {correctAnswer}
-            </p>
-          )}
+          <p>
+            <strong>Correct Answer:</strong> {correctAnswer}
+          </p>
         </div>
       )}
     </div>
@@ -477,6 +504,14 @@ export default function AdvancedExamResults({
                         {examResults.incorrectAnswers}
                       </span>
                     </p>
+                    {examResults.ungradedQuestions > 0 && (
+                      <p className="text-sm font-medium">
+                        Not auto-graded (subjective):{" "}
+                        <span className="font-bold text-gray-500">
+                          {examResults.ungradedQuestions}
+                        </span>
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <p className="text-sm font-medium">
@@ -484,6 +519,11 @@ export default function AdvancedExamResults({
                       <span className="font-bold text-primary">
                         {examResults.score.toFixed(2)}%
                       </span>
+                      {examResults.ungradedQuestions > 0 && (
+                        <span className="ml-1 text-xs font-normal text-gray-500">
+                          (of {examResults.gradedQuestions} auto-graded)
+                        </span>
+                      )}
                     </p>
                     <p className="text-sm font-medium">
                       Avg Time per Q:{" "}
@@ -720,8 +760,7 @@ export default function AdvancedExamResults({
                   <Accordion type="single" collapsible className="w-full">
                     {filteredQuestions.map((question, index) => {
                       const userA = examResults.userAnswers[index] || null
-                      const correctA = question.correctOption
-                      const isCorrect = userA === correctA
+                      const grade = gradeAnswer(question, userA)
                       const timeSpent = examResults.timeSpentPerQuestion[index]
 
                       return (
@@ -734,10 +773,19 @@ export default function AdvancedExamResults({
                               <span
                                 className={`
                                   w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white
-                                  ${isCorrect ? "bg-green-500" : "bg-red-500"}
+                                  ${grade === null ? "bg-gray-400" : grade ? "bg-green-500" : "bg-red-500"}
                                 `}
+                                title={
+                                  grade === null
+                                    ? "Not auto-graded"
+                                    : grade
+                                    ? "Correct"
+                                    : "Incorrect"
+                                }
                               >
-                                {isCorrect ? (
+                                {grade === null ? (
+                                  <AlertCircle className="w-4 h-4" />
+                                ) : grade ? (
                                   <Check className="w-4 h-4" />
                                 ) : (
                                   <XCircle className="w-4 h-4" />
@@ -763,7 +811,6 @@ export default function AdvancedExamResults({
                               <QuestionReviewBlock
                                 question={question}
                                 userAnswer={userA}
-                                correctAnswer={correctA}
                               />
 
                               <p className="text-sm text-gray-700 mt-3">

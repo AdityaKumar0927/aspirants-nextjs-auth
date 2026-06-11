@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from 'openai-e
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
-import { headers } from 'next/headers'
+import { getToken } from 'next-auth/jwt'
 
 export const runtime = 'edge'
 
@@ -74,8 +74,14 @@ For normal text, provide it directly without any specific heading.
 }
 
 export async function POST(req: NextRequest) {
-  const ip = headers().get('x-forwarded-for') ?? '127.0.0.1'
-  const { success } = await ratelimit.limit(ip)
+  // Only signed-in users may consume the AI hint feature.
+  const token = await getToken({ req })
+  if (!token?.sub) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+
+  // Rate-limit per user (not per IP, which is shared behind NATs/proxies).
+  const { success } = await ratelimit.limit(`openai:${token.sub}`)
   if (!success) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   }
@@ -99,18 +105,26 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    if (!chatHistory[sessionId]) {
-      chatHistory[sessionId] = [
+    // Scope history to the authenticated user so one user can never read
+    // (or poison) another user's conversation by guessing a sessionId.
+    const historyKey = `${token.sub}:${sessionId}`
+    if (!chatHistory[historyKey]) {
+      chatHistory[historyKey] = [
         systemPrompt,
         { role: 'system', content: `Context: ${JSON.stringify(context)}` } as ChatCompletionRequestMessage
       ]
     }
 
-    chatHistory[sessionId].push({ role: 'user', content: question } as ChatCompletionRequestMessage)
+    chatHistory[historyKey].push({ role: 'user', content: question } as ChatCompletionRequestMessage)
+
+    // Keep the 2 system messages + the 20 most recent turns (memory + token cap).
+    if (chatHistory[historyKey].length > 22) {
+      chatHistory[historyKey].splice(2, chatHistory[historyKey].length - 22)
+    }
 
     const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: chatHistory[sessionId],
+      model: process.env.OPENAI_HINT_MODEL || 'gpt-4o-mini',
+      messages: chatHistory[historyKey],
       max_tokens: 1500,
       temperature: 0.7,
       stream: true,
@@ -118,7 +132,7 @@ export async function POST(req: NextRequest) {
 
     const stream = OpenAIStream(response)
 
-    chatHistory[sessionId].push({ role: 'assistant', content: '[Streaming Response]' } as ChatCompletionRequestMessage)
+    chatHistory[historyKey].push({ role: 'assistant', content: '[Streaming Response]' } as ChatCompletionRequestMessage)
 
     return new StreamingTextResponse(stream)
   } catch (error) {

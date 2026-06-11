@@ -13,6 +13,7 @@ import "react-loading-skeleton/dist/skeleton.css"
 
 import { Filter } from "bad-words"
 
+import { sanitizeRichText } from "@/lib/sanitize"
 import { Button } from "@/components/ui/button"
 import {
   Bold,
@@ -450,10 +451,10 @@ function SolutionItem({
         </div>
       </div>
 
-      {/* Content */}
+      {/* Content — sanitized at render (the API also sanitizes on write). */}
       <div
         className="prose prose-sm max-w-none font-light tracking-tight"
-        dangerouslySetInnerHTML={{ __html: solution.content }}
+        dangerouslySetInnerHTML={{ __html: sanitizeRichText(solution.content) }}
       />
 
       {/* Reply button if logged in */}

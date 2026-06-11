@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client"
 import { NextResponse } from "next/server"
-
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma"
+import { cached } from "@/lib/cache"
 
 function parseCommaParam(value: string | null): string[] | undefined {
   if (!value) return undefined
@@ -53,16 +52,23 @@ export async function GET(request: Request) {
       }
     }
 
-    // Distinct fields from only the matching set
-    const [exams, subjects, topics, subtopics, difficulties, years, types] = await Promise.all([
-      prisma.question.findMany({ where, distinct: ["exam"], select: { exam: true } }),
-      prisma.question.findMany({ where, distinct: ["subject"], select: { subject: true } }),
-      prisma.question.findMany({ where, distinct: ["topic"], select: { topic: true } }),
-      prisma.question.findMany({ where, distinct: ["subtopic"], select: { subtopic: true } }),
-      prisma.question.findMany({ where, distinct: ["difficulty"], select: { difficulty: true } }),
-      prisma.question.findMany({ where, distinct: ["year"], select: { year: true } }),
-      prisma.question.findMany({ where, distinct: ["type"], select: { type: true } }),
-    ])
+    // Distinct fields from only the matching set. Cached per filter combination
+    // for 60s so repeated calls don't each trigger 7 full scans.
+    const cacheKey = `filters:smart:${new URL(request.url).searchParams.toString()}`
+    const [exams, subjects, topics, subtopics, difficulties, years, types] = await cached(
+      cacheKey,
+      60_000,
+      () =>
+        Promise.all([
+          prisma.question.findMany({ where, distinct: ["exam"], select: { exam: true } }),
+          prisma.question.findMany({ where, distinct: ["subject"], select: { subject: true } }),
+          prisma.question.findMany({ where, distinct: ["topic"], select: { topic: true } }),
+          prisma.question.findMany({ where, distinct: ["subtopic"], select: { subtopic: true } }),
+          prisma.question.findMany({ where, distinct: ["difficulty"], select: { difficulty: true } }),
+          prisma.question.findMany({ where, distinct: ["year"], select: { year: true } }),
+          prisma.question.findMany({ where, distinct: ["type"], select: { type: true } }),
+        ])
+    )
 
     // Now we map each array with typed callbacks:
     const examList = exams

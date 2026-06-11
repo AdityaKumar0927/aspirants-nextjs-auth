@@ -18,8 +18,6 @@ export async function GET() {
       where: { userId: session.user.id },
     });
 
-    console.log('User performance data fetched:', userPerformance);
-
     return NextResponse.json(userPerformance);
   } catch (error) {
     console.error('Error fetching user performance:', error);
