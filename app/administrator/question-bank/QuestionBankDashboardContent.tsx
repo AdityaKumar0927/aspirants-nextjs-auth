@@ -38,12 +38,24 @@ type FiltersType = {
 // Custom Hooks
 function useQuestions(filters: FiltersType, searchQuery: string) {
   const fetchQuestions = async (): Promise<Question[]> => {
-    // Admin view: request every status (incl. DRAFT/ARCHIVED). The API returns
-    // a paginated { data, totalCount } envelope, so unwrap .data.
-    const response = await fetch("/api/questions?status=all&pageSize=200")
-    if (!response.ok) throw new Error("Failed to fetch questions")
-    const json = await response.json()
-    return Array.isArray(json) ? json : json.data ?? []
+    // Admin view: request every status (incl. DRAFT/ARCHIVED). The API caps
+    // pageSize at 200, so page through to get the FULL set — otherwise the
+    // dashboard's in-memory filtering, pagination and stat cards were silently
+    // wrong (only the first 200) on banks larger than 200 questions.
+    const PAGE = 200;
+    const MAX_PAGES = 50; // safety cap (10k questions)
+    const all: Question[] = [];
+    let total = Infinity;
+    for (let page = 1; page <= MAX_PAGES && all.length < total; page++) {
+      const res = await fetch(`/api/questions?status=all&page=${page}&pageSize=${PAGE}`);
+      if (!res.ok) throw new Error("Failed to fetch questions");
+      const json = await res.json();
+      const batch: Question[] = Array.isArray(json) ? json : json.data ?? [];
+      total = Array.isArray(json) ? batch.length : json.totalCount ?? batch.length;
+      all.push(...batch);
+      if (batch.length < PAGE) break;
+    }
+    return all;
   }
 
   const {

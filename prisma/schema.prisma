@@ -38,7 +38,7 @@ model AiUsageLog {
   tokensUsed  Int       @default(0)
   cost        Float     @default(0)
   createdAt   DateTime  @default(now())
-  User        User?     @relation(fields: [userId], references: [id])
+  User        User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model Application {
@@ -85,8 +85,8 @@ model Feedback {
   questionId   String?
   resolved     Boolean      @default(false)
   resolvedBy   String?
-  Question     Question?    @relation(fields: [questionId], references: [questionId])
-  User         User         @relation(fields: [userId], references: [id])
+  Question     Question?    @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  User         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Issue {
@@ -104,8 +104,8 @@ model Issue {
   userNotified Boolean        @default(false)
 
   createdBy    User     @relation("Issue_createdByIdToUser", fields: [createdById], references: [id], onDelete: Cascade)
-  question     Question? @relation(fields: [questionId], references: [questionId])
-  resolvedBy   User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id])
+  question     Question? @relation(fields: [questionId], references: [questionId], onDelete: SetNull)
+  resolvedBy   User?    @relation("Issue_resolvedByIdToUser", fields: [resolvedById], references: [id], onDelete: SetNull)
   VolunteerTask VolunteerTask[]
 
   @@index([questionId])
@@ -116,7 +116,7 @@ model ModeratorLimit {
   userId          String    @unique
   changesThisHour Int       @default(0)
   lastChangeHour  DateTime?
-  User            User      @relation(fields: [userId], references: [id])
+  User            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Note {
@@ -128,7 +128,7 @@ model Note {
   updatedAt  DateTime  @updatedAt
   userId     String
   questionId String?
-  Question   Question? @relation(fields: [questionId], references: [questionId])
+  Question   Question? @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
   User       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([questionId])
@@ -235,7 +235,7 @@ model Question {
   Issue           Issue[]
   Note            Note[]
   Exam            Exam?          @relation(fields: [examId], references: [id], onDelete: Cascade)
-  Question        Question?      @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id])
+  Question        Question?      @relation("QuestionToQuestion", fields: [parentQuestionId], references: [id], onDelete: SetNull)
   other_Question  Question[]     @relation("QuestionToQuestion")
   UserAnswer      UserAnswer[]
   UserPerformance UserPerformance[]
@@ -246,6 +246,7 @@ model Question {
   solutions Solution[]
 
   @@index([importJobId])
+  @@index([parentQuestionId])
   // Indexes for the question-bank filter/cascade query (status is filtered on
   // every read; exam/subject/topic/year are the primary facets).
   @@index([status])
@@ -443,8 +444,8 @@ model VolunteerTask {
   issueId     String?
   status      String   @default("PENDING")
   createdAt   DateTime @default(now())
-  Issue       Issue?   @relation(fields: [issueId], references: [id])
-  User        User     @relation(fields: [volunteerId], references: [id])
+  Issue       Issue?   @relation(fields: [issueId], references: [id], onDelete: SetNull)
+  User        User     @relation(fields: [volunteerId], references: [id], onDelete: Cascade)
 }
 
 enum AiService {

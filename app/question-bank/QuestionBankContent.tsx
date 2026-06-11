@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useReducer, useEffect, useCallback, useMemo, useState } from "react";
+import React, { useReducer, useEffect, useCallback, useMemo, useState, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { motion, AnimatePresence } from "framer-motion";
@@ -233,7 +233,9 @@ function reducer(state: StateType, action: ActionType): StateType {
     case "SET_QUESTIONS":
       return { ...state, questions: action.payload };
     case "SET_FILTERS":
-      return { ...state, filters: action.payload };
+      // Reset to page 1 on any filter change, else a narrower filter can leave
+      // currentPage out of range and show a spurious "no questions found".
+      return { ...state, filters: action.payload, currentPage: 1 };
     case "SET_FILTER_OPTIONS":
       return { ...state, filterOptions: action.payload };
     case "SET_SEARCH_QUERY":
@@ -319,6 +321,7 @@ function Pagination({
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { toast } = useToast();
+  const fetchSeqRef = useRef(0);
 
   // For mobile single-question navigation
   const [mobileIndex, setMobileIndex] = useState(0);
@@ -413,6 +416,9 @@ export default function QuestionBankContent() {
      (C) Fetch questions
      ------------------------------ */
   const fetchQuestions = useCallback(async () => {
+    // Monotonic request id: rapid filter/page changes can resolve out of order,
+    // so only the most recent request is allowed to apply its results.
+    const seq = ++fetchSeqRef.current;
     dispatch({ type: "SET_LOADING", payload: true });
     try {
       const { currentPage, pageSize, filters } = state;
@@ -445,6 +451,7 @@ export default function QuestionBankContent() {
         throw new Error(`Failed to fetch questions. ${txt}`);
       }
       const result = await res.json();
+      if (seq !== fetchSeqRef.current) return; // superseded by a newer request
 
       let data: QuestionType[] = [];
       let totalCount = 0;
@@ -477,7 +484,10 @@ export default function QuestionBankContent() {
         variant: "destructive",
       });
     } finally {
-      dispatch({ type: "SET_LOADING", payload: false });
+      // Only the latest request clears the loading flag.
+      if (seq === fetchSeqRef.current) {
+        dispatch({ type: "SET_LOADING", payload: false });
+      }
     }
   }, [state.filters, state.currentPage, state.pageSize, toast]);
 

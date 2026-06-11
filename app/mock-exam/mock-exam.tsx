@@ -98,6 +98,7 @@ export default function MockExam() {
     skipCompleted?: boolean
     difficulty?: string
     selectedTopics?: string[]
+    numQuestions?: number
   }) {
     const {
       exam,
@@ -107,39 +108,76 @@ export default function MockExam() {
       skipCompleted = false,
       difficulty,
       selectedTopics = [],
+      numQuestions: requestedCount = 0,
     } = params
 
     setIsLoading(true)
 
     try {
-      const query = new URLSearchParams()
-      query.set("exam", exam)
-      query.set("year", String(year))
-      query.set("page", "1")
-      query.set("pageSize", "9999")
+      // Page through ALL matching questions. The API caps pageSize at 200, so a
+      // single pageSize=9999 request silently truncated long papers to 200.
+      const baseParams = new URLSearchParams()
+      baseParams.set("exam", exam)
+      baseParams.set("year", String(year))
+      if (yearKey) baseParams.set("yearKey", yearKey)
+      if (selectedTopics.length > 0) baseParams.set("topic", selectedTopics.join(","))
+      if (difficulty) baseParams.set("difficulty", difficulty)
 
-      if (yearKey) query.set("yearKey", yearKey)
-      if (selectedTopics.length > 0) {
-        query.set("topic", selectedTopics.join(","))
+      const PAGE_SIZE = 200
+      const MAX_PAGES = 50 // safety cap (10k questions)
+      const raw: any[] = []
+      let total = Infinity
+      for (let page = 1; page <= MAX_PAGES && raw.length < total; page++) {
+        const p = new URLSearchParams(baseParams)
+        p.set("page", String(page))
+        p.set("pageSize", String(PAGE_SIZE))
+        const res = await fetch(`/api/questions?${p.toString()}`)
+        if (!res.ok) throw new Error("Failed to fetch questions.")
+        const data = await res.json()
+        total = data.totalCount ?? (data.data?.length ?? 0)
+        const batch = data.data ?? []
+        raw.push(...batch)
+        if (batch.length < PAGE_SIZE) break
       }
-      if (skipCompleted) query.set("skipCompleted", "true")
-      if (difficulty) query.set("difficulty", difficulty)
 
-      const res = await fetch(`/api/questions?${query.toString()}`)
-      if (!res.ok) {
-        throw new Error("Failed to fetch questions.")
+      let questions: QuestionType[] = raw.map(normalizeQuestion)
+
+      // Skip questions the user has already completed (per-user UserProgress).
+      if (skipCompleted) {
+        try {
+          const pr = await fetch("/api/user-progress")
+          if (pr.ok) {
+            const progress = await pr.json()
+            const done = new Set<string>(
+              (Array.isArray(progress) ? progress : [])
+                .filter((x: any) => x?.completed)
+                .map((x: any) => String(x.questionId))
+            )
+            questions = questions.filter(
+              (q) => !done.has(String(q.questionId ?? q.id))
+            )
+          }
+        } catch {
+          /* progress is best-effort; ignore and keep all */
+        }
       }
 
-      const data = await res.json()
-      const questions: QuestionType[] = (data.data ?? []).map(normalizeQuestion)
-
-      if (!questions || questions.length === 0) {
+      if (!questions.length) {
         toast({
           title: "No Questions Found",
           description: "No matches. Try different filters.",
           variant: "destructive",
         })
         return
+      }
+
+      // Honor the requested count: randomly sample when fewer than available.
+      if (requestedCount > 0 && requestedCount < questions.length) {
+        for (let i = questions.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[questions[i], questions[j]] = [questions[j], questions[i]]
+        }
+        questions = questions.slice(0, requestedCount)
       }
 
       // update local states

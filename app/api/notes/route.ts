@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from 'next-auth/next'
 import authOptions from '../auth/[...nextauth]/options'
 import { Ratelimit } from '@upstash/ratelimit'
-import { Redis } from '@upstash/redis'
+import { Redis } from '@upstash/redis'
 const redis = new Redis({
   url: process.env.REDIS_URL!,
   token: process.env.REDIS_TOKEN!,
@@ -22,8 +22,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const ip = req.ip ?? '127.0.0.1'
-    const { success } = await ratelimit.limit(ip)
+    const { success } = await ratelimit.limit(`notes:${session.user.id}`)
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
@@ -34,7 +33,7 @@ export async function GET(req: NextRequest) {
     })
 
     const res = NextResponse.json(notes)
-    res.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=30')
+    res.headers.set('Cache-Control', 'private, no-store')
     return res
   } catch (error) {
     console.error('GET /api/notes error:', error)
@@ -49,8 +48,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const ip = req.ip ?? '127.0.0.1'
-    const { success } = await ratelimit.limit(ip)
+    const { success } = await ratelimit.limit(`notes:${session.user.id}`)
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
@@ -86,8 +84,7 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const ip = req.ip ?? '127.0.0.1'
-    const { success } = await ratelimit.limit(ip)
+    const { success } = await ratelimit.limit(`notes:${session.user.id}`)
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }
@@ -123,8 +120,7 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const ip = req.ip ?? '127.0.0.1'
-    const { success } = await ratelimit.limit(ip)
+    const { success } = await ratelimit.limit(`notes:${session.user.id}`)
     if (!success) {
       return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
     }

@@ -72,24 +72,23 @@ export async function POST(request: Request) {
       lastAttempted: d.lastAttempted ?? new Date(),
     };
 
-    const existing = await prisma.userPerformance.findFirst({
-      where: { userId: session.user.id, questionId: d.questionId },
-      select: { id: true },
+    // Atomic upsert on the unique (userId, questionId): findFirst + create
+    // raced on concurrent submits and 500'd on the unique-constraint violation.
+    const userPerformance = await prisma.userPerformance.upsert({
+      where: {
+        userId_questionId: {
+          userId: session.user.id,
+          questionId: d.questionId,
+        },
+      },
+      update: { ...data, updatedAt: new Date() },
+      create: {
+        userId: session.user.id,
+        questionId: d.questionId,
+        ...data,
+        updatedAt: new Date(),
+      },
     });
-
-    const userPerformance = existing
-      ? await prisma.userPerformance.update({
-          where: { id: existing.id },
-          data: { ...data, updatedAt: new Date() },
-        })
-      : await prisma.userPerformance.create({
-          data: {
-            userId: session.user.id,
-            questionId: d.questionId,
-            ...data,
-            updatedAt: new Date(),
-          },
-        });
 
     return NextResponse.json(userPerformance);
   } catch (error) {
