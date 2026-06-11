@@ -159,18 +159,37 @@ const Chat: React.FC<ChatProps> = ({ questionId, questionText, options, marksche
         body: JSON.stringify({ question: prompt, context, sessionId }),
       })
 
-      const data = await response.json()
-      if (response.ok) {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { role: "assistant", text: formatAssistantResponse(data.response, prevMessages.length === 0) },
-        ])
-      } else {
+      if (!response.ok) {
+        // Error responses are JSON ({ error }); a successful reply is a stream.
+        const data = await response.json().catch(() => null)
         console.error("Error:", data)
         setMessages((prevMessages) => [
           ...prevMessages,
-          { role: "assistant", text: "Error: " + data.error },
+          { role: "assistant", text: "Error: " + (data?.error ?? "The request failed.") },
         ])
+        return
+      }
+
+      // Success: /api/openai returns a StreamingTextResponse — a raw text token
+      // stream, NOT JSON. Append an assistant message and fill it as chunks
+      // arrive so the hint renders progressively.
+      const reader = response.body?.getReader()
+      if (!reader) throw new Error("The response had no body to stream")
+      const decoder = new TextDecoder()
+
+      setIsTyping(false)
+      setMessages((prevMessages) => [...prevMessages, { role: "assistant", text: "" }])
+
+      let acc = ""
+      for (;;) {
+        const { done, value } = await reader.read()
+        if (done) break
+        acc += decoder.decode(value, { stream: true })
+        setMessages((prevMessages) => {
+          const next = [...prevMessages]
+          next[next.length - 1] = { role: "assistant", text: acc }
+          return next
+        })
       }
     } catch (error) {
       console.error("Error:", error)
@@ -178,10 +197,10 @@ const Chat: React.FC<ChatProps> = ({ questionId, questionText, options, marksche
         ...prevMessages,
         { role: "assistant", text: "An unknown error occurred" },
       ])
+    } finally {
+      setInputDisabled(false)
+      setIsTyping(false)
     }
-
-    setInputDisabled(false)
-    setIsTyping(false)
   }
 
   const handleEdit = (index: number) => {
@@ -197,17 +216,6 @@ const Chat: React.FC<ChatProps> = ({ questionId, questionText, options, marksche
   const handleCancelEdit = () => {
     setUserInput("")
     setEditingIndex(null)
-  }
-
-  const formatAssistantResponse = (response: string, isFirst: boolean) => {
-    if (isFirst) {
-      const example = "This is an example of how to solve a different problem."
-      const hint = "Here is a hint about your problem."
-      const note = "This is a note about your problem."
-      return `Example:\n\n${example}\n\nHint:\n\n${hint}\n\nNote:\n\n${note}`
-    } else {
-      return response
-    }
   }
 
   useEffect(() => {
