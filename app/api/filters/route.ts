@@ -2,6 +2,11 @@ import { NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { cached } from "@/lib/cache"
 
+// Data endpoint backed by the DB — must not be statically pre-executed at build
+// time (the no-arg GET would otherwise be generated against the live database,
+// timing the build out when the DB is slow/unreachable).
+export const dynamic = "force-dynamic"
+
 /**
  * GET /api/filters
  * Returns all distinct exams, subjects, topics, subtopics, difficulties, years, types

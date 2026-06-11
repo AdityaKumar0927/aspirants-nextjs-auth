@@ -370,25 +370,27 @@ export default function MockExam() {
   // ----------------------------------------------------------------
   // 4) Timer => auto submit
   // ----------------------------------------------------------------
+  // Tick only. The interval must NOT call handleSubmit() directly — it would
+  // close over the answers captured when the exam started (all null), so a
+  // time-out auto-submit would grade an empty paper. Submission is fired from
+  // a separate effect below that runs in a render with the CURRENT answers.
   useEffect(() => {
-    let examTimer: NodeJS.Timeout
-    if (isExamStarted && !isExamFinished) {
-      examTimer = setInterval(() => {
-        setExamTimeLeft((prev) => {
-          if (prev <= 1) {
-            clearInterval(examTimer)
-            updateTimeSpent()
-            handleSubmit()
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-    }
-    return () => {
-      if (examTimer) clearInterval(examTimer)
-    }
+    if (!isExamStarted || isExamFinished) return
+    const examTimer = setInterval(() => {
+      setExamTimeLeft((prev) => Math.max(0, prev - 1))
+    }, 1000)
+    return () => clearInterval(examTimer)
   }, [isExamStarted, isExamFinished])
+
+  // Auto-submit when the timer expires (current state, not the stale snapshot).
+  useEffect(() => {
+    if (isExamStarted && !isExamFinished && examTimeLeft === 0) {
+      updateTimeSpent()
+      handleSubmit()
+    }
+    // updateTimeSpent/handleSubmit intentionally omitted: fire once on expiry.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [examTimeLeft, isExamStarted, isExamFinished])
 
   // track question start time
   useEffect(() => {

@@ -964,6 +964,7 @@ export default function QuestionBankContent() {
 
           {/* Single question in mobile */}
           <Question
+            key={currentQ.questionId}
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
             selectedOption={state.selectedOptions[currentQ.questionId]}

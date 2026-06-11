@@ -950,6 +950,7 @@ export default function GuestQuestionBank() {
 
           {/* Single question in mobile */}
           <Question
+            key={currentQ.questionId}
             question={currentQ}
             feedback={state.feedback[currentQ.questionId]}
             selectedOption={state.selectedOptions[currentQ.questionId]}

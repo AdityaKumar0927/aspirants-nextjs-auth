@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import prisma from "@/lib/prisma";
 import { getServerSession } from 'next-auth/next';
-import authOptions from '../../auth/[...nextauth]/options';
-
-const prisma = new PrismaClient();
+import authOptions from '../../auth/[...nextauth]/options';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,7 +25,5 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Error fetching applications:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 }

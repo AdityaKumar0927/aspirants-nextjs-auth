@@ -389,37 +389,13 @@ export default function Question({
   /* ------------------------------
      Difficulty rating
      ------------------------------ */
-  async function handleDifficultyChange(newRating: number) {
+  function handleDifficultyChange(newRating: number) {
     if (!question.questionId) return
+    // Personal/visual rating only. A question's difficulty is global content and
+    // must not be overwritten for every user by a member action — so this no
+    // longer PATCHes the shared Question row (it previously did, letting one
+    // user change a question's difficulty for everyone).
     setLocalDifficultyRating(newRating)
-
-    let newDifficulty = "easy"
-    if (newRating === 2) newDifficulty = "medium"
-    else if (newRating === 3) newDifficulty = "hard"
-
-    try {
-      await fetch("/api/questions", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          questionId: question.questionId,
-          difficultyRating: newRating,
-          difficulty: newDifficulty,
-        }),
-      })
-      toast({
-        title: "Difficulty Updated",
-        description: `Set question #${displayNumber} difficulty to ${newDifficulty}.`,
-        variant: "success",
-      })
-    } catch (err) {
-      console.error(err)
-      toast({
-        title: "Error",
-        description: "Could not update difficulty rating.",
-        variant: "destructive",
-      })
-    }
   }
 
   /* ------------------------------

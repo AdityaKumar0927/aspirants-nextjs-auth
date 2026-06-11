@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server"
-import { PrismaClient, ApplicationRole } from "@prisma/client"
+import { ApplicationRole } from "@prisma/client"
+import prisma from "@/lib/prisma"
 import { getServerSession } from "next-auth/next"
-import authOptions from "../auth/[...nextauth]/options"
-
-const prisma = new PrismaClient()
+import authOptions from "../auth/[...nextauth]/options"
 
 export const dynamic = "force-dynamic"
 
@@ -75,7 +74,5 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error creating application:", error)
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
-  } finally {
-    await prisma.$disconnect()
   }
 }

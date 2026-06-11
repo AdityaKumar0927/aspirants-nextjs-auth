@@ -246,6 +246,13 @@ model Question {
   solutions Solution[]
 
   @@index([importJobId])
+  // Indexes for the question-bank filter/cascade query (status is filtered on
+  // every read; exam/subject/topic/year are the primary facets).
+  @@index([status])
+  @@index([exam])
+  @@index([subject])
+  @@index([topic])
+  @@index([year])
 }
 
 // Tracks a "PDF -> question bank" import run (who imported what, when, and how it went).

@@ -759,9 +759,13 @@ export default function AdvancedExamResults({
                 <ScrollArea className="h-[400px]">
                   <Accordion type="single" collapsible className="w-full">
                     {filteredQuestions.map((question, index) => {
-                      const userA = examResults.userAnswers[index] || null
+                      // userAnswers / timeSpentPerQuestion are indexed by the
+                      // ORIGINAL question order, so map back through the
+                      // unfiltered list (the difficulty filter reorders these).
+                      const originalIndex = examResults.questions.indexOf(question)
+                      const userA = examResults.userAnswers[originalIndex] || null
                       const grade = gradeAnswer(question, userA)
-                      const timeSpent = examResults.timeSpentPerQuestion[index]
+                      const timeSpent = examResults.timeSpentPerQuestion[originalIndex]
 
                       return (
                         <AccordionItem

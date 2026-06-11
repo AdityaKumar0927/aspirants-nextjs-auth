@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
+import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next"
-import authOptions from "../../auth/[...nextauth]/options"
-
-const prisma = new PrismaClient()
+import authOptions from "../../auth/[...nextauth]/options"
 
 export async function POST(request: NextRequest) {
   try {
@@ -60,7 +58,5 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error updating user role:", error)
     return NextResponse.json({ error: "Failed to update user role" }, { status: 500 })
-  } finally {
-    await prisma.$disconnect()
   }
 }

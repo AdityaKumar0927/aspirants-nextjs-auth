@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getToken } from "next-auth/jwt"
-import { PrismaClient } from "@prisma/client"
-
-const prisma = new PrismaClient()
+import prisma from "@/lib/prisma";
 
 async function checkAuthorization(req: NextRequest, allowedRoles: string[]) {
   try {

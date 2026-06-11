@@ -1,11 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import prisma from "@/lib/prisma";
 import { getServerSession } from 'next-auth/next'
 import authOptions from '../auth/[...nextauth]/options'
 import { Ratelimit } from '@upstash/ratelimit'
-import { Redis } from '@upstash/redis'
-
-const prisma = new PrismaClient()
+import { Redis } from '@upstash/redis'
 const redis = new Redis({
   url: process.env.REDIS_URL!,
   token: process.env.REDIS_TOKEN!,

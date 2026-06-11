@@ -69,6 +69,9 @@ export async function GET(request: Request) {
     const yearKeyArr = parseCommaParam(searchParams.get("yearKey"));
     const statusArr = parseCommaParam(searchParams.get("status"));
 
+    // Fetched once: used both for status visibility and the per-user overlay.
+    const session = await getCurrentSession();
+
     const where: Record<string, unknown> = {};
 
     // Status visibility: the public only ever sees ACTIVE questions. DRAFT /
@@ -76,7 +79,7 @@ export async function GET(request: Request) {
     // without this, imported drafts would leak into the public question bank.
     const VALID_STATUSES = ["ACTIVE", "DRAFT", "ARCHIVED"];
     if (statusArr && !(statusArr.length === 1 && statusArr[0] === "ACTIVE")) {
-      const isAdminViewer = isAdmin(await getCurrentSession());
+      const isAdminViewer = isAdmin(session);
       if (isAdminViewer) {
         const requested = statusArr.includes("all")
           ? []
@@ -113,23 +116,41 @@ export async function GET(request: Request) {
         orderBy: { id: "asc" },
         include: {
           Exam: true,
-          // Parent/child questions (comprehension sets):
-          Question: true,
-          other_Question: true,
-          // NOTE: Note / Feedback / Issue / UserAnswer / UserPerformance /
-          // UserProgress are deliberately NOT included — they hold per-user
-          // content and PII (e.g. reporter identities, private notes) and were
-          // previously leaked to every, even unauthenticated, caller. Clients
-          // fetch their own state via the dedicated scoped endpoints.
+          // NOTE: parent/child self-relations (Question / other_Question) are
+          // NOT included — they returned full related question objects WITHOUT
+          // a status filter, leaking DRAFT/ARCHIVED questions and their answer
+          // keys; no client consumes them. Note / Feedback / Issue / UserAnswer
+          // / UserPerformance / UserProgress are likewise excluded (per-user
+          // content + PII); clients use the dedicated scoped endpoints.
         },
       }),
       prisma.question.count({ where }),
     ]);
 
-    const data = questions.map((q) => ({
-      ...q,
-      customTags: csvToTags(q.customTag),
-    }));
+    // Overlay PER-USER study state. completed/reviewed live in UserProgress
+    // (keyed by user), not the shared Question row — so reads reflect the
+    // current user's progress, defaulting to false for guests.
+    let progressByQid = new Map<string, { completed: boolean; reviewed: boolean }>();
+    if (session?.user?.id) {
+      const rows = await prisma.userProgress.findMany({
+        where: {
+          userId: session.user.id,
+          questionId: { in: questions.map((q) => q.questionId) },
+        },
+        select: { questionId: true, completed: true, reviewed: true },
+      });
+      progressByQid = new Map(rows.map((r) => [r.questionId, r]));
+    }
+
+    const data = questions.map((q) => {
+      const p = progressByQid.get(q.questionId);
+      return {
+        ...q,
+        completed: p?.completed ?? false,
+        reviewed: p?.reviewed ?? false,
+        customTags: csvToTags(q.customTag),
+      };
+    });
 
     return NextResponse.json({
       data,
@@ -183,9 +204,10 @@ export async function POST(request: Request) {
 /**
  * PATCH /api/questions
  *
- * - Admins may update any canonical field.
- * - Signed-in members may only toggle lightweight study-state fields
- *   (completed, reviewed, customTags, difficulty, difficultyRating).
+ * - Members: per-user study state only. completed/reviewed are written to the
+ *   per-user UserProgress table (NOT the shared Question row — doing the latter
+ *   corrupted the flag for every user); customTags are community tags.
+ * - Admins: any canonical field on the global Question row.
  */
 export async function PATCH(request: Request) {
   const { session, response } = await requireSession();
@@ -193,10 +215,46 @@ export async function PATCH(request: Request) {
 
   try {
     const body = await request.json();
-    const schema = isAdmin(session)
-      ? questionUpdateSchema
-      : memberQuestionPatchSchema;
-    const parsed = schema.safeParse(body);
+
+    // ---------- Member: per-user study state ----------
+    if (!isAdmin(session)) {
+      const parsed = memberQuestionPatchSchema.safeParse(body);
+      if (!parsed.success) return validationError(parsed.error);
+      const { questionId, completed, reviewed, customTags } = parsed.data;
+
+      if (completed !== undefined || reviewed !== undefined) {
+        await prisma.userProgress.upsert({
+          where: {
+            userId_questionId: { userId: session.user.id, questionId },
+          },
+          update: {
+            ...(completed !== undefined ? { completed } : {}),
+            ...(reviewed !== undefined ? { reviewed } : {}),
+            lastAttempted: new Date(),
+          },
+          create: {
+            userId: session.user.id,
+            questionId,
+            completed: completed ?? false,
+            reviewed: reviewed ?? false,
+            lastAttempted: new Date(),
+          },
+        });
+      }
+
+      // Community tags are shared by design; still live on the question row.
+      if (customTags !== undefined) {
+        await prisma.question.update({
+          where: { questionId },
+          data: { customTag: customTags.join(",") },
+        });
+      }
+
+      return NextResponse.json({ questionId, completed, reviewed, customTags });
+    }
+
+    // ---------- Admin: full update of global content ----------
+    const parsed = questionUpdateSchema.safeParse(body);
     if (!parsed.success) return validationError(parsed.error);
 
     const { questionId, customTags, ...rest } = parsed.data as Record<

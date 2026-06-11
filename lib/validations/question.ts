@@ -198,8 +198,12 @@ export const questionUpdateSchema = questionBaseSchema
   });
 
 /**
- * Non-admin PATCH: only lightweight study-state fields the existing
- * QuestionBank UI toggles. `.strict()` rejects anything else.
+ * Non-admin PATCH: only per-user study state (completed/reviewed, routed to
+ * the per-user UserProgress table by the handler) and community customTags.
+ * `difficulty`/`difficultyRating` are intentionally NOT here — they are global
+ * question content and must not be writable by members (a member must not be
+ * able to change a question's difficulty for everyone). `.strict()` rejects
+ * anything else.
  */
 export const memberQuestionPatchSchema = z
   .object({
@@ -207,8 +211,6 @@ export const memberQuestionPatchSchema = z
     completed: z.boolean().optional(),
     reviewed: z.boolean().optional(),
     customTags: z.array(z.string().trim().min(1).max(100)).max(50).optional(),
-    difficultyRating: z.number().min(0).max(5).optional(),
-    difficulty: z.string().trim().max(50).optional(),
   })
   .strict();
 
