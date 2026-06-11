@@ -333,7 +333,14 @@ export default function OptimizedNoteApp({ questionId }: { questionId?: string }
   useEffect(() => {
     const cached = localStorage.getItem(CACHE_KEY)
     if (cached) {
-      setNotes(JSON.parse(cached))
+      // Corrupt cache must not crash the editor on mount.
+      try {
+        const parsed = JSON.parse(cached)
+        if (Array.isArray(parsed)) setNotes(parsed)
+        else localStorage.removeItem(CACHE_KEY)
+      } catch {
+        localStorage.removeItem(CACHE_KEY)
+      }
     }
     fetchNotes()
   }, [fetchNotes])

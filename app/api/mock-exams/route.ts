@@ -1,6 +1,22 @@
 import { NextResponse } from "next/server"
+import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { requireSession } from "@/lib/auth"
+
+const createSchema = z.object({
+  exam: z.string().trim().max(200).nullish(),
+  shift: z.string().trim().max(100).nullish(),
+  year: z.coerce.number().int().min(1900).max(2100).nullish(),
+  completed: z.boolean().optional(),
+  // Client-computed results blob — bounded so it can't bloat the Json column.
+  results: z
+    .unknown()
+    .optional()
+    .refine(
+      (v) => v === undefined || v === null || JSON.stringify(v).length <= 200_000,
+      "results payload too large"
+    ),
+})
 
 /**
  * GET /api/mock-exams
@@ -43,16 +59,22 @@ export async function POST(request: Request) {
   try {
     const userId = session.user.id
 
-    const body = await request.json()
-    const { exam, year, shift, results, completed } = body
+    const parsed = createSchema.safeParse(await request.json())
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Validation failed", issues: parsed.error.flatten() },
+        { status: 400 }
+      )
+    }
+    const { exam, year, shift, results, completed } = parsed.data
 
     const created = await prisma.userMockExam.create({
       data: {
         userId,
-        exam: exam || null,
-        year: year || null,
-        shift: shift || null,
-        results: results || undefined,
+        exam: exam ?? null,
+        year: year ?? null,
+        shift: shift ?? null,
+        results: (results ?? undefined) as object | undefined,
         completed: completed ?? false,
       },
     })

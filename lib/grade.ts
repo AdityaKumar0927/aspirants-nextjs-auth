@@ -42,10 +42,7 @@ export function gradeAnswer(
     return null;
   }
 
-  // Choice answers: normalize the selection to an option letter.
-  const selectedLetter = toLetter(selected, question.options);
-  if (!selectedLetter) return false;
-
+  // Build the correct-letter set.
   const correctLetters = new Set<string>();
   if (question.correctOption) {
     const l = toLetter(question.correctOption, question.options);
@@ -57,6 +54,20 @@ export function gradeAnswer(
   }
   if (correctLetters.size === 0) return null;
 
+  // Multiple Correct: the selection ("A,C" or '["A","C"]') must EXACTLY equal
+  // the correct set — neither partial nor superset counts.
+  if (type === "Multiple Correct") {
+    const picked = new Set(
+      (selected.toUpperCase().match(/[A-J]/g) ?? []).map((l) => l)
+    );
+    if (picked.size !== correctLetters.size) return false;
+    for (const l of picked) if (!correctLetters.has(l)) return false;
+    return true;
+  }
+
+  // Multiple Choice: a single letter that is one of the correct options.
+  const selectedLetter = toLetter(selected, question.options);
+  if (!selectedLetter) return false;
   return correctLetters.has(selectedLetter);
 }
 

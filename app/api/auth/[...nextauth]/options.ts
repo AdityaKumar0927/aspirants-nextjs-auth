@@ -100,8 +100,14 @@ export const authOptions: NextAuthOptions = {
           where: { id: token.id },
           include: { UserRole: true },
         })
-        // User deleted => drop privileges; otherwise reflect current role.
-        token.role = dbUser ? dbUser.UserRole?.name ?? "member" : undefined
+        if (dbUser) {
+          token.role = dbUser.UserRole?.name ?? "member"
+        } else {
+          // User was deleted => invalidate the identity entirely, so
+          // requireSession() (which checks user.id) rejects the stale token.
+          token.id = undefined
+          token.role = undefined
+        }
         token.roleSyncedAt = Date.now()
       }
       return token

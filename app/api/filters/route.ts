@@ -24,43 +24,43 @@ export async function GET() {
           prisma.question.findMany({
             distinct: ["exam"],
             select: { exam: true },
-            where: { exam: { not: null } },
+            where: { status: "ACTIVE", exam: { not: null } },
           }),
           prisma.question.findMany({
             distinct: ["subject"],
             select: { subject: true },
-            where: { subject: { not: null } },
+            where: { status: "ACTIVE", subject: { not: null } },
           }),
           prisma.question.findMany({
             distinct: ["topic"],
             select: { topic: true },
-            where: { topic: { not: null } },
+            where: { status: "ACTIVE", topic: { not: null } },
           }),
           prisma.question.findMany({
             distinct: ["subtopic"],
             select: { subtopic: true },
-            where: { subtopic: { not: null } },
+            where: { status: "ACTIVE", subtopic: { not: null } },
           }),
           prisma.question.findMany({
             distinct: ["difficulty"],
             select: { difficulty: true },
-            where: { difficulty: { not: null } },
+            where: { status: "ACTIVE", difficulty: { not: null } },
           }),
           prisma.question.findMany({
             distinct: ["year"],
             select: { year: true },
-            where: { year: { not: null } },
+            where: { status: "ACTIVE", year: { not: null } },
           }),
           prisma.question.findMany({
             distinct: ["type"],
             select: { type: true },
-            where: { type: { not: null } },
+            where: { status: "ACTIVE", type: { not: null } },
           }),
           // 2) Distinct customTag CSV strings:
           prisma.question.findMany({
             distinct: ["customTag"],
             select: { customTag: true },
-            where: { customTag: { not: null } },
+            where: { status: "ACTIVE", customTag: { not: null } },
           }),
         ])
       )

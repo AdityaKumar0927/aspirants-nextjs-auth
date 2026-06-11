@@ -27,6 +27,7 @@ export async function GET(request: Request) {
     const typeArr = parseCommaParam(searchParams.get("type"))
 
     const where: any = {}
+    where.status = "ACTIVE"
     if (examArr) {
       where.exam = { in: examArr }
     }
@@ -46,7 +47,7 @@ export async function GET(request: Request) {
       where.type = { in: typeArr }
     }
     if (yearStrArr) {
-      const years = yearStrArr.map((y) => parseInt(y, 10)).filter(Boolean)
+      const years = yearStrArr.map((y) => parseInt(y, 10)).filter((n) => !Number.isNaN(n))
       if (years.length) {
         where.year = { in: years }
       }

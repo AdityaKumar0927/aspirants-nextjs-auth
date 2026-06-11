@@ -182,12 +182,26 @@ const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 /** Canonical create payload for a draft (validated by the shared Zod schema). */
 function toPayload(d: DraftQuestion, hints: PaperHints) {
   const text = d.passage.trim() ? `${d.passage.trim()}\n\n${d.text}` : d.text;
+
+  // Dropping blank options shifts the letter positions, so remap the correct
+  // answer letters to the surviving options (else the key points at the wrong
+  // option). Build old-letter -> new-letter from the kept indices.
+  const letterRemap = new Map<string, string>();
+  let kept = 0;
+  d.options.forEach((opt, i) => {
+    if (opt.trim()) {
+      letterRemap.set(letterFor(i), letterFor(kept));
+      kept++;
+    }
+  });
+  const remap = (l: string) => letterRemap.get(l) ?? "";
+
   return {
     text,
     type: d.type,
     options: d.options.map((o) => o.trim()).filter(Boolean),
-    correctOption: d.correctOption || null,
-    correctOptions: d.correctOptions,
+    correctOption: d.correctOption ? remap(d.correctOption) || null : null,
+    correctOptions: d.correctOptions.map(remap).filter(Boolean),
     answerText: d.answerText.trim() || null,
     answerMin: numOrNull(d.answerMin),
     answerMax: numOrNull(d.answerMax),

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from "@/lib/prisma";
 import { getServerSession } from 'next-auth/next';
-import authOptions from '../../../auth/[...nextauth]/options';
+import authOptions from '../../../auth/[...nextauth]/options';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,19 +18,21 @@ export async function PATCH(
     }
 
     const { id } = params;
-    const data = await request.json();
+    const body = await request.json();
 
-    // Validate the request body
-    if (!data || Object.keys(data).length === 0) {
-      return NextResponse.json({ error: 'No data provided' }, { status: 400 });
+    // Allowlist the only admin-mutable field — never pass the raw body to
+    // prisma.update (mass assignment over applicant-owned columns).
+    const status = body?.status;
+    if (!['PENDING', 'APPROVED', 'REJECTED'].includes(status)) {
+      return NextResponse.json(
+        { error: 'status must be PENDING, APPROVED or REJECTED' },
+        { status: 400 }
+      );
     }
 
-    // Update the application
     const updatedApplication = await prisma.application.update({
-      where: {
-        id: id
-      },
-      data: data
+      where: { id },
+      data: { status },
     });
 
     return NextResponse.json(updatedApplication);

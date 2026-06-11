@@ -6,7 +6,7 @@ import { requireSession } from "@/lib/auth"
  * GET /api/mock-exams/:attemptId
  * Returns the single attempt if it belongs to the logged in user
  */
-export async function GET(request: Request, { params }: any) {
+export async function GET(request: Request, { params }: { params: { attemptId: string } }) {
   const { session, response } = await requireSession()
   if (response) return response
   try {
@@ -39,7 +39,7 @@ export async function GET(request: Request, { params }: any) {
  *   "completed": true
  * }
  */
-export async function PATCH(request: Request, { params }: any) {
+export async function PATCH(request: Request, { params }: { params: { attemptId: string } }) {
   const { session, response } = await requireSession()
   if (response) return response
   try {
@@ -49,8 +49,11 @@ export async function PATCH(request: Request, { params }: any) {
     const attempt = await prisma.userMockExam.findUnique({
       where: { id: attemptId },
     })
-    if (!attempt || attempt.userId !== userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
+    if (!attempt) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 })
+    }
+    if (attempt.userId !== userId) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
     const body = await request.json()
@@ -74,7 +77,7 @@ export async function PATCH(request: Request, { params }: any) {
  * DELETE /api/mock-exams/:attemptId
  * Remove a single attempt
  */
-export async function DELETE(request: Request, { params }: any) {
+export async function DELETE(request: Request, { params }: { params: { attemptId: string } }) {
   const { session, response } = await requireSession()
   if (response) return response
   try {
@@ -84,8 +87,11 @@ export async function DELETE(request: Request, { params }: any) {
     const attempt = await prisma.userMockExam.findUnique({
       where: { id: attemptId },
     })
-    if (!attempt || attempt.userId !== userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
+    if (!attempt) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 })
+    }
+    if (attempt.userId !== userId) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
     await prisma.userMockExam.delete({ where: { id: attemptId } })

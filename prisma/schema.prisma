@@ -54,7 +54,7 @@ model Application {
   updatedAt  DateTime          @updatedAt
   User       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([id, userId])
+  @@index([userId])
 }
 
 model Exam {
@@ -87,6 +87,9 @@ model Feedback {
   resolvedBy   String?
   Question     Question?    @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
   User         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([questionId])
 }
 
 model Issue {
@@ -147,6 +150,8 @@ model Notification {
   relatedFeedbackId String?
   relatedQuestionId String?
   User              User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model Pyq {
@@ -446,6 +451,9 @@ model VolunteerTask {
   createdAt   DateTime @default(now())
   Issue       Issue?   @relation(fields: [issueId], references: [id], onDelete: SetNull)
   User        User     @relation(fields: [volunteerId], references: [id], onDelete: Cascade)
+
+  @@index([volunteerId])
+  @@index([issueId])
 }
 
 enum AiService {

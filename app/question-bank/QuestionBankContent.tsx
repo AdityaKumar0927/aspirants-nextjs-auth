@@ -1337,7 +1337,7 @@ function DesktopFilterSearch({
   // 1) Filter by searchTerm
   // 2) Sort so that selected items are at the top
   const displayedValues = useMemo(() => {
-    let arr = filterValues;
+    let arr = [...filterValues]; // copy — .sort() mutates, and filterValues is state
     if (searchTerm) {
       const lower = searchTerm.toLowerCase();
       arr = arr.filter((val) => val.toLowerCase().includes(lower));
@@ -1499,7 +1499,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
 
   // filter & sort selected to top
   const filterAndSort = (items: string[], cat: FilterKey) => {
-    let arr = items;
+    let arr = [...items]; // copy — .sort() below mutates in place
     const st = searches[cat]?.toLowerCase() || "";
     if (st) {
       arr = arr.filter((it) => it.toLowerCase().includes(st));
