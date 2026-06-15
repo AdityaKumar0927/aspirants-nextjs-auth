@@ -7,7 +7,7 @@ import SuspendedActions from "./suspended-actions";
  */
 export default function SuspendedPage() {
   return (
-    <div className="paper-sheet w-full max-w-md p-8 text-center">
+    <div className="paper-sheet w-full max-w-md p-6 text-center sm:p-8">
       <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
         Access restricted
       </p>
@@ -19,7 +19,7 @@ export default function SuspendedPage() {
       </p>
       <a
         href={`mailto:${GRIEVANCE_OFFICER_EMAIL}`}
-        className="mt-5 inline-block text-sm text-ballpoint underline"
+        className="mt-5 inline-block break-all text-sm text-ballpoint underline"
       >
         {GRIEVANCE_OFFICER_EMAIL}
       </a>

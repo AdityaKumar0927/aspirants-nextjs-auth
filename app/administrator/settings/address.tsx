@@ -10,7 +10,7 @@ export function Address() {
   let [country, setCountry] = useState(countries[0])
 
   return (
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
       <Input
         aria-label="Street Address"
         name="address"

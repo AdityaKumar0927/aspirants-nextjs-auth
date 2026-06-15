@@ -778,7 +778,7 @@ export default function QuestionBankContent() {
       <div className="w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
           <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
-          <div className="flex space-x-4 mb-6">
+          <div className="flex flex-wrap gap-3 sm:gap-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
@@ -813,17 +813,18 @@ export default function QuestionBankContent() {
         <div className="min-h-screen p-4">
           <div className="max-w-3xl mx-auto">
             {/* Keep filter access so the user can fix the empty result */}
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-6 flex items-center justify-between gap-2">
               <Button
                 variant="outline"
                 size="sm"
+                className="min-h-11"
                 onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
               >
                 Desktop view
               </Button>
               <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
                 <DialogTrigger asChild>
-                  <Button variant="outline" size="sm" className="flex items-center">
+                  <Button variant="outline" size="sm" className="flex min-h-11 items-center">
                     <Filter className="w-4 h-4 mr-2" />
                     Filters
                   </Button>
@@ -840,7 +841,7 @@ export default function QuestionBankContent() {
                 </DialogContent>
               </Dialog>
             </div>
-            <div className="paper-sheet p-10 text-center">
+            <div className="paper-sheet p-6 text-center sm:p-10">
               <p className="text-ink">No questions match these filters.</p>
               <p className="mt-1 text-sm text-pencil">
                 Open Filters to clear one and see more.
@@ -860,11 +861,11 @@ export default function QuestionBankContent() {
       <div className="min-h-screen p-4">
         <div className="max-w-3xl mx-auto">
           {/* Top bar */}
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex justify-between items-center gap-2 mb-6">
             <Button
               variant="outline"
               size="sm"
-              
+              className="min-h-11"
               onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
             >
               Desktop View
@@ -875,7 +876,7 @@ export default function QuestionBankContent() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex items-center"
+                    className="flex min-h-11 items-center"
                   >
                     <Filter className="w-4 h-4 mr-2" />
                     Filters
@@ -911,7 +912,7 @@ export default function QuestionBankContent() {
           <Button
             variant="outline"
             size="sm"
-            className="mb-4"
+            className="mb-4 min-h-11"
             onClick={() => setProgressOpen(true)}
           >
             View Progress
@@ -997,10 +998,10 @@ export default function QuestionBankContent() {
           />
 
           {/* Next/Prev on mobile */}
-          <div className="flex justify-between mt-6">
+          <div className="flex justify-between gap-3 mt-6">
             <Button
               variant="outline"
-              
+              className="min-h-11 flex-1"
               onClick={() => setMobileIndex(Math.max(0, mobileIndex - 1))}
               disabled={mobileIndex === 0}
             >
@@ -1008,7 +1009,7 @@ export default function QuestionBankContent() {
             </Button>
             <Button
               variant="outline"
-              
+              className="min-h-11 flex-1"
               onClick={() => setMobileIndex(Math.min(total - 1, mobileIndex + 1))}
               disabled={mobileIndex === total - 1}
             >
@@ -1322,7 +1323,7 @@ export default function QuestionBankContent() {
               />
             </>
           ) : (
-            <div className="paper-sheet mt-2 p-10 text-center">
+            <div className="paper-sheet mt-2 p-6 text-center sm:p-10">
               <p className="text-ink">No questions match these filters.</p>
               <p className="mt-1 text-sm text-pencil">
                 Clear a filter or your search above to see more.

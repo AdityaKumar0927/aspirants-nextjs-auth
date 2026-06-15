@@ -28,30 +28,25 @@ interface SettingsLayoutProps {
 
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
-    <>
-      <div className="md:hidden">
-        {/* Mobile view can have a different layout or nothing */}
+    <div className="w-full space-y-6 px-4 py-8 sm:px-6 md:p-10 md:pb-16">
+      <div className="space-y-1">
+        <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+          Your desk
+        </p>
+        <h2 className="type-display text-3xl sm:text-4xl md:text-5xl">
+          <span className="highlight-sweep">Settings</span>
+        </h2>
+        <p className="text-pencil">
+          Manage your account details and email preferences.
+        </p>
       </div>
-      <div className="hidden space-y-6 p-10 pb-16 md:block">
-        <div className="space-y-1">
-          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
-            Your desk
-          </p>
-          <h2 className="type-display text-4xl sm:text-5xl">
-            <span className="highlight-sweep">Settings</span>
-          </h2>
-          <p className="text-pencil">
-            Manage your account details and email preferences.
-          </p>
-        </div>
-        <Separator className="my-6" />
-        <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <aside className="-mx-4 lg:w-1/5">
-            <SidebarNav items={sidebarNavItems} className="" />
-          </aside>
-          <div className="flex-1 lg:max-w-2xl w-full lg:w-[640px] min-h-[500px]">{children}</div>
-        </div>
+      <Separator className="my-6" />
+      <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
+        <aside className="-mx-2 sm:-mx-4 lg:w-1/5">
+          <SidebarNav items={sidebarNavItems} className="" />
+        </aside>
+        <div className="w-full flex-1 md:min-h-[500px] lg:max-w-2xl lg:w-[640px]">{children}</div>
       </div>
-    </>
+    </div>
   );
 }

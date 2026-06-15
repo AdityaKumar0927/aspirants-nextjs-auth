@@ -527,7 +527,7 @@ function Question({
 
                 {/* Add new tag */}
                 <div className="mt-2 flex items-center gap-2">
-                  <div className="relative">
+                  <div className="relative flex-1 sm:flex-none">
                     <Tag className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
                     <Input
                       type="text"
@@ -540,7 +540,7 @@ function Question({
                           handleAddTag()
                         }
                       }}
-                      className="h-9 w-44 bg-paper pl-8 text-sm"
+                      className="h-9 w-full bg-paper pl-8 text-sm sm:w-44"
                     />
                   </div>
                   <Button
@@ -555,12 +555,12 @@ function Question({
               </div>
 
               {/* Mark complete & flag — labelled toggle buttons */}
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="mt-3 flex flex-wrap shrink-0 items-center gap-2 md:mt-0">
                 <button
                   type="button"
                   onClick={() => toggleComplete(!isMarkedComplete)}
                   aria-pressed={isMarkedComplete}
-                  className={`flex min-h-9 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                  className={`flex min-h-11 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors sm:min-h-9 ${
                     isMarkedComplete
                       ? "border-st-answered bg-st-answered/10 text-st-answered"
                       : "border-rule bg-secondary text-pencil hover:border-st-answered/50 hover:text-ink"
@@ -574,7 +574,7 @@ function Question({
                   type="button"
                   onClick={toggleReview}
                   aria-pressed={isMarkedForReview}
-                  className={`flex min-h-9 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                  className={`flex min-h-11 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors sm:min-h-9 ${
                     isMarkedForReview
                       ? "border-st-review bg-st-review/10 text-st-review"
                       : "border-rule bg-secondary text-pencil hover:border-st-review/50 hover:text-ink"

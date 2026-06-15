@@ -252,20 +252,20 @@ export default function FeatureRequestPage() {
         <T k="auto.featureRequestsPage.featureRequests" />
       </h1>
 
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="relative">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 md:gap-0">
+        <div className="flex w-full flex-wrap items-center gap-2 md:w-auto">
+          <div className="relative w-full sm:w-64">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
             <Input
               type="text"
               placeholder="Search feature requests..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-64 pl-9"
+              className="w-full pl-9"
             />
           </div>
           <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="w-[170px]">
+            <SelectTrigger className="w-[calc(50%-0.25rem)] sm:w-[170px]">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
@@ -280,7 +280,7 @@ export default function FeatureRequestPage() {
             </SelectContent>
           </Select>
           <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-            <SelectTrigger className="w-[170px]">
+            <SelectTrigger className="w-[calc(50%-0.25rem)] sm:w-[170px]">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -295,7 +295,7 @@ export default function FeatureRequestPage() {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex w-full flex-wrap items-center gap-2 md:w-auto">
           <Button
             variant="outline"
             size="sm"
@@ -389,7 +389,7 @@ export default function FeatureRequestPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ScrollArea className="h-[800px] rounded-md border border-rule p-4">
+        <ScrollArea className="h-[60vh] md:h-[800px] rounded-md border border-rule p-4">
           {loading ? (
             <p className="py-12 text-center text-sm text-pencil">Loading…</p>
           ) : filteredAndSortedFeatures.length === 0 ? (
@@ -462,7 +462,7 @@ export default function FeatureRequestPage() {
           )}
         </ScrollArea>
 
-        <Card className="flex h-[800px] flex-col">
+        <Card className="flex h-[60vh] md:h-[800px] flex-col">
           <CardHeader>
             <CardTitle>
               <T k="auto.featureRequestsPage.featureDetails" />

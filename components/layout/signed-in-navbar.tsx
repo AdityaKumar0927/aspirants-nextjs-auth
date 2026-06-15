@@ -101,13 +101,13 @@ export default function NavBar({ session }: { session: Session | null }) {
           scrolled ? "bg-paper/70 backdrop-blur-md shadow-sm" : "",
         )}
       >
-        <div className="mx-auto flex h-16 items-center justify-between w-11/12 md:w-10/12 lg:w-9/12">
-          <Link href="/" className="flex items-center font-display text-2xl">
+        <div className="mx-auto flex h-16 items-center justify-between gap-2 w-11/12 md:w-10/12 lg:w-9/12">
+          <Link href="/" className="flex min-w-0 items-center font-display text-2xl">
             <p className="text-left font-display text-2xl tracking-[-0.07em] sm:text-3xl sm:leading-[4rem] dark:text-white">
               penwise
             </p>
-            <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-2" />
-            <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 px-2 py-1 rounded-full">
+            <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-1.5 h-6 w-6 shrink-0 sm:ml-2 sm:h-7.5 sm:w-7.5" />
+            <span className="ml-1.5 shrink-0 text-[10px] font-semibold bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 px-1.5 py-0.5 rounded-full sm:ml-2 sm:text-xs sm:px-2 sm:py-1">
               BETA
             </span>
           </Link>
@@ -148,7 +148,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         {menuOpen && (
           <div
             ref={menuRef}
-            className="absolute top-full left-0 right-0 bg-white dark:bg-gray-800 shadow-lg z-20 md:hidden"
+            className="absolute top-full left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-800 shadow-lg z-20 md:hidden"
           >
             <MobileNavLinks
               session={session}
@@ -245,31 +245,31 @@ function MobileNavLinks({
 }: MobileNavLinksProps) {
   const { t } = useTranslation()
   return (
-    <nav className="p-4 space-y-4">
+    <nav className="p-4 space-y-2">
       <Link
         href={session ? "/question-bank" : "/question-bank/guest"}
-        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.questionBank")}
       </Link>
       <Link
         href="/mock-exam"
-        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.mockExam")}
       </Link>
       <Link
         href="/leaderboard"
-        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.leaderboard")}
       </Link>
       <div>
         <button
-          className="flex items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           onClick={toggleSupport}
           aria-expanded={supportOpen}
         >
@@ -277,12 +277,12 @@ function MobileNavLinks({
           <ChevronDown size={20} className={cn("transition-transform", supportOpen && "rotate-180")} />
         </button>
         {supportOpen && (
-          <ul className="mt-2 space-y-2 pl-4">
+          <ul className="mt-1 space-y-1 pl-4">
             {supportLinks.map((link) => (
               <li key={link.key}>
                 <Link
                   href={link.href}
-                  className="block text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                  className="flex min-h-11 items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {t(`nav.supportLinks.${link.key}.title`)}
@@ -308,7 +308,7 @@ function MobileNavLinks({
           <FeedbackPopover />
           <Button
             variant="outline"
-            className="w-full mt-4 flex items-center justify-center dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+            className="w-full min-h-11 mt-4 flex items-center justify-center dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
             onClick={handleLogout}
           >
             <LogOut className="mr-2 h-4 w-4" /> {t("nav.logOut")}
@@ -317,7 +317,7 @@ function MobileNavLinks({
       ) : (
         <Button
           variant="outline"
-          className="w-full mt-4 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+          className="w-full min-h-11 mt-4 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
           onClick={() => {
             setShowSignInModal(true)
             setMenuOpen(false)

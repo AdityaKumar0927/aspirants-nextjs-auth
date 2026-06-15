@@ -135,7 +135,7 @@ export function QuestionForm({ initialData, onSubmit, onCancel, submitting }: Qu
     <form onSubmit={handleSubmit} className="space-y-4">
       {/* Type & status */}
       <Section title="Type & status">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="type">Question type</Label>
             <Select value={type} onValueChange={(v) => set('type', v)}>
@@ -185,7 +185,7 @@ export function QuestionForm({ initialData, onSubmit, onCancel, submitting }: Qu
 
       {/* Classification */}
       <Section title="Classification" hint="Powers filtering and the Exam Blueprint — fill exam & year where known.">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="exam">Exam</Label>
             <Input id="exam" name="exam" value={formData.exam ?? ''} onChange={handleInputChange} placeholder="e.g. jee-main" />
@@ -321,7 +321,7 @@ export function QuestionForm({ initialData, onSubmit, onCancel, submitting }: Qu
         )}
 
         {type === 'Numerical' && (
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div className="space-y-2">
               <Label htmlFor="answerText">Answer</Label>
               <Input
@@ -351,7 +351,7 @@ export function QuestionForm({ initialData, onSubmit, onCancel, submitting }: Qu
 
       {/* Marks & solution */}
       <Section title="Marks & solution">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="marks">Marks</Label>
             <Input

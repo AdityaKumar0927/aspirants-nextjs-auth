@@ -73,7 +73,7 @@ export default function AdminDataRequestsPage() {
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="h-11 rounded-md border border-rule bg-paper px-3 text-sm text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="h-11 w-full rounded-md border border-rule bg-paper px-3 text-sm text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-auto"
         >
           <option value="">All</option>
           {STATUSES.map((s) => (
@@ -110,7 +110,7 @@ export default function AdminDataRequestsPage() {
                     <div className="font-medium text-ink">{r.User?.name ?? "—"}</div>
                     <div className="type-data text-xs text-pencil">{r.User?.email ?? ""}</div>
                     {r.message && (
-                      <div className="mt-1 max-w-xs text-xs text-pencil">{r.message}</div>
+                      <div className="mt-1 max-w-xs break-words text-xs text-pencil">{r.message}</div>
                     )}
                   </td>
                   <td className="px-4 py-3 text-pencil">{r.type.replace(/_/g, " ")}</td>

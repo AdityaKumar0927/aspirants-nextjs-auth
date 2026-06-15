@@ -280,7 +280,7 @@ export default function PrivacyDashboard({
         </h4>
         <p className="mt-1 text-pencil">
           {grievanceName} —{" "}
-          <a href={`mailto:${grievanceEmail}`} className="text-ballpoint underline">
+          <a href={`mailto:${grievanceEmail}`} className="break-all text-ballpoint underline">
             {grievanceEmail}
           </a>
         </p>

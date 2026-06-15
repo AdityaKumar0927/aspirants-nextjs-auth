@@ -94,8 +94,8 @@ export default function Page() {
                 className="mx-auto mt-6 flex flex-col sm:flex-row animate-fade-up items-center justify-center space-y-4 sm:space-y-0 sm:space-x-5 opacity-0"
                 style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}
               >
-                <Link className="group flex max-w-fit items-center" href="QuestionBank/guest">
-                  <ShimmerButton className="shadow-2xl">
+                <Link className="group flex w-full max-w-xs sm:max-w-fit items-center" href="QuestionBank/guest">
+                  <ShimmerButton className="w-full min-h-11 shadow-2xl sm:w-auto">
                     <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:text-dark-background lg:text-lg">
                       Try Now
                     </span>
@@ -110,7 +110,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="relative w-11/12 h-[800px] border-4 border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden flex items-center justify-center my-8 mx-auto">
+      <div className="relative w-full sm:w-11/12 h-[70vh] sm:h-[800px] border-4 border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden flex items-center justify-center my-8 mx-auto">
         <div className="absolute inset-0 hidden sm:block">
           <Image
             src="/imac.jpg"
@@ -125,11 +125,11 @@ export default function Page() {
         </div>
       </div>
 
-      <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
+      <h4 className="text-center font-light text-2xl leading-tight lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
         Review Your Performance
       </h4>
 
-      <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto text-gray-600 dark:text-gray-300 text-center font-normal">
+      <p className="text-sm mb-8 lg:text-base max-w-2xl my-4 mx-auto px-4 text-gray-600 dark:text-gray-300 text-center font-normal">
         Understand your strengths and weaknesses questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
       </p>
 
@@ -142,11 +142,11 @@ export default function Page() {
       </div>
 
       <div className="mb-20">
-        <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
+        <h4 className="text-center font-light text-2xl leading-tight lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-2xl sm:leading-[4rem]">
           A Plethora of Exams
         </h4>
 
-        <div className="max-w-5xl mx-auto px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-8">
           <HoverEffect items={projects} />
         </div>
 
@@ -166,21 +166,21 @@ export default function Page() {
 
         <FAQ />
 
-        <div className="h-full w-3/4 border border-gray-200 dark:border-gray-700 justify-self-center rounded-3xl bg-gray-100 dark:bg-gray-900 relative overflow-hidden mx-auto">
+        <div className="h-full w-full sm:w-3/4 border border-gray-200 dark:border-gray-700 justify-self-center rounded-3xl bg-gray-100 dark:bg-gray-900 relative overflow-hidden mx-auto">
           {/* Gradient overlay */}
           <div className="absolute bottom-0 w-full h-[40vh] bg-gradient-to-r from-orange-400/20 via-white/10 to-blue-400/20 dark:from-orange-600/20 dark:via-gray-800/10 dark:to-blue-600/20 blur-3xl" />
         
-          <div className="relative z-10 container mx-auto px-4 py-12">
+          <div className="relative z-10 container mx-auto px-4 py-8 sm:py-12">
             {/* Main content */}
-            <div className="max-w-3xl mx-auto mt-24 text-center space-y-8">
-              <h1 className="text-5xl md:text-6xl font-normal text-gray-800 dark:text-white tracking-tight">
+            <div className="max-w-3xl mx-auto mt-12 sm:mt-24 text-center space-y-6 sm:space-y-8">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-normal text-gray-800 dark:text-white tracking-tight">
                 Join aspirants today{' '}
                 <span className="block italic font-light">
                   save time
                 </span>
               </h1>
-            
-              <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+
+              <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                 High-quality question banks, mock exams, progress tracking, and much more. 
               </p>
             

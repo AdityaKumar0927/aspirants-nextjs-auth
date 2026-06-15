@@ -174,7 +174,7 @@ export default function ImprovedStudyPlanner() {
 
   return (
     <Card className="paper-sheet w-full max-w-5xl mx-auto">
-      <CardHeader>
+      <CardHeader className="p-4 sm:p-6">
         <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
           <T k="auto.studyPlannerPage.dailyStudyRegister" />
         </p>
@@ -185,9 +185,9 @@ export default function ImprovedStudyPlanner() {
           <T k="auto.studyPlannerPage.setAGoalPerSubject" />
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4 pt-0 sm:p-6 sm:pt-0">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-3 gap-4">
+          <TabsList className="grid w-full grid-cols-3 gap-2 sm:gap-4">
             <TabsTrigger value="subjects" className="min-h-9"><T k="auto.studyPlannerPage.subjects" /></TabsTrigger>
             <TabsTrigger value="calendar" className="min-h-9"><T k="auto.studyPlannerPage.calendar" /></TabsTrigger>
             <TabsTrigger value="statistics" className="min-h-9"><T k="auto.studyPlannerPage.statistics" /></TabsTrigger>
@@ -208,15 +208,15 @@ export default function ImprovedStudyPlanner() {
             </div>
             {subjects.length > 0 && (
               <div>
-                <div className="ledger-row type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <div className="ledger-row type-data gap-2 text-[11px] uppercase tracking-[0.14em] text-pencil sm:gap-4">
                   <span className="flex-1"><T k="auto.studyPlannerPage.subject" /></span>
-                  <span className="w-28 sm:w-32"><T k="auto.studyPlannerPage.goalH" /></span>
-                  <span className="w-28 sm:w-32"><T k="auto.studyPlannerPage.doneH" /></span>
+                  <span className="w-20 sm:w-32"><T k="auto.studyPlannerPage.goalH" /></span>
+                  <span className="w-20 sm:w-32"><T k="auto.studyPlannerPage.doneH" /></span>
                   <span className="hidden w-28 sm:block"><T k="auto.studyPlannerPage.progress" /></span>
                   <span className="w-11" aria-hidden="true" />
                 </div>
                 {subjects.map((subject) => (
-                  <div key={subject.id} className="ledger-row last:border-b-0">
+                  <div key={subject.id} className="ledger-row gap-2 last:border-b-0 sm:gap-4">
                     <span className="min-w-0 flex-1 truncate font-medium text-ink">
                       {subject.name}
                     </span>
@@ -225,14 +225,14 @@ export default function ImprovedStudyPlanner() {
                       placeholder="Goal"
                       value={subject.goal || ""}
                       onChange={(e) => updateGoal(subject.id, Number(e.target.value))}
-                      className="type-data w-28 bg-paper sm:w-32"
+                      className="type-data w-20 bg-paper sm:w-32"
                     />
                     <Input
                       type="number"
                       placeholder="Done"
                       value={subject.progress || ""}
                       onChange={(e) => updateProgress(subject.id, Number(e.target.value))}
-                      className="type-data w-28 bg-paper sm:w-32"
+                      className="type-data w-20 bg-paper sm:w-32"
                     />
                     <Progress
                       value={subject.goal > 0 ? (subject.progress / subject.goal) * 100 : 0}
@@ -257,7 +257,7 @@ export default function ImprovedStudyPlanner() {
               <p className="type-data mb-3 text-[11px] uppercase tracking-[0.14em] text-pencil">
                 <T k="auto.studyPlannerPage.logAStudySession" />
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <Label htmlFor="date" className="text-sm font-medium"><T k="auto.studyPlannerPage.date" /></Label>
                   <Input

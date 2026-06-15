@@ -12,7 +12,7 @@ export default function GrievancePage() {
         <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
           Your data rights
         </p>
-        <h1 className="type-display mt-1 text-3xl">
+        <h1 className="type-display mt-1 text-2xl sm:text-3xl">
           <span className="highlight-sweep">Grievance</span> &amp; data protection
         </h1>
         <p className="mt-2 text-sm text-pencil">
@@ -30,7 +30,7 @@ export default function GrievancePage() {
           <strong>{GRIEVANCE_OFFICER_NAME}</strong>
         </p>
         <p className="mt-1 text-sm">
-          <a href={`mailto:${GRIEVANCE_OFFICER_EMAIL}`} className="type-data text-ballpoint underline">
+          <a href={`mailto:${GRIEVANCE_OFFICER_EMAIL}`} className="type-data break-all text-ballpoint underline">
             {GRIEVANCE_OFFICER_EMAIL}
           </a>
         </p>

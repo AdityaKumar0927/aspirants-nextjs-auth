@@ -267,26 +267,26 @@ const Chat: React.FC<ChatProps> = ({ questionId, questionText, options, marksche
           )}
         </div>
 
-        <div className="flex justify-between mt-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-3 mt-4">
           <p className="text-xs text-gray-500">
             ChatGPT may display inaccurate info, including about people, so double-check its responses.{" "}
             <a href="#" className="text-blue-600">
               Your privacy and ChatGPT Apps
             </a>
           </p>
-          <button className="p-2 bg-red-500 text-white rounded-lg sm:w-auto hover:bg-red-600" onClick={() => setMessages([])}>
+          <button className="min-h-11 p-2 bg-red-500 text-white rounded-lg w-full sm:w-auto sm:min-h-0 hover:bg-red-600" onClick={() => setMessages([])}>
             Clear
           </button>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center mt-4 space-x-2">
-        <Button variant="outline" className="mb-2">
+      <div className="flex flex-wrap justify-center mt-4 gap-2">
+        <Button variant="outline" className="min-h-11 sm:min-h-0">
           Explain the question
         </Button>
-        <Button variant="outline" className="mb-2">
+        <Button variant="outline" className="min-h-11 sm:min-h-0">
           Provide a hint
         </Button>
-        <Button variant="outline" className="mb-2">
+        <Button variant="outline" className="min-h-11 sm:min-h-0">
           Break down the solution
         </Button>
       </div>

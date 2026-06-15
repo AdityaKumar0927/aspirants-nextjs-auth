@@ -111,7 +111,7 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="theme-desk w-88 border-rule bg-paper p-0 text-ink sm:w-md">
+      <PopoverContent className="theme-desk w-[calc(100vw-2rem)] max-w-88 border-rule bg-paper p-0 text-ink sm:w-md sm:max-w-md">
         <Card className="w-full border-0 bg-transparent">
           <CardHeader className="pb-3">
             <CardTitle className="text-base">Report a problem</CardTitle>

@@ -177,8 +177,8 @@ export default function AdminNotificationsPage() {
             {items.map((a) => (
               <div key={a.id} className="flex items-start gap-3 px-5 py-4">
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium text-ink">{a.title}</p>
-                  <p className="mt-0.5 text-sm text-pencil">{a.message}</p>
+                  <p className="break-words font-medium text-ink">{a.title}</p>
+                  <p className="mt-0.5 break-words text-sm text-pencil">{a.message}</p>
                   <p className="type-data mt-1 text-[11px] text-pencil">
                     {new Date(a.createdAt).toLocaleString("en-IN", {
                       day: "numeric",

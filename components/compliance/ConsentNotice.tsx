@@ -45,6 +45,7 @@ export default function ConsentNotice({
       <h4 className="type-data mt-4 text-[11px] uppercase tracking-[0.14em] text-pencil">
         What we collect and why
       </h4>
+      <div className="overflow-x-auto">
       <table className="w-full border-collapse text-left">
         <thead>
           <tr>
@@ -65,6 +66,7 @@ export default function ConsentNotice({
           ))}
         </tbody>
       </table>
+      </div>
 
       {!compact && (
         <>
@@ -106,7 +108,7 @@ export default function ConsentNotice({
       </h4>
       <p>
         Grievance / Data Protection Officer: <strong>{grievanceName}</strong> —{" "}
-        <a href={`mailto:${grievanceEmail}`} className="text-ballpoint underline">
+        <a href={`mailto:${grievanceEmail}`} className="break-all text-ballpoint underline">
           {grievanceEmail}
         </a>
         . You may also complain to the Data Protection Board of India.

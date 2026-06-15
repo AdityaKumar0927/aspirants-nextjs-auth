@@ -212,7 +212,7 @@ const BrowseResources: NextPage = () => {
         <title><T k="auto.browseResourcesPage.browseResources" /></title>
       </Head>
       <section id="resources">
-        <div className="space-y-12 w-full py-12">
+        <div className="space-y-12 w-full px-4 py-12 sm:px-6 lg:px-8">
           <BlurFade>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">

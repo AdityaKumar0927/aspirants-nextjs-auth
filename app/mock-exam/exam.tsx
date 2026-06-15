@@ -281,7 +281,7 @@ export default function Exam({
   /* ---------- the question palette (shared desktop/mobile) ---------- */
   function Palette() {
     return (
-      <div className="grid grid-cols-6 gap-2 md:grid-cols-5">
+      <div className="grid grid-cols-5 gap-2 sm:grid-cols-6 md:grid-cols-5">
         {filteredQuestions.map((_, idx) => {
           const status = questionStatuses[idx] || "notVisited"
           const isCurrent = currentQuestion === idx
@@ -442,12 +442,13 @@ export default function Exam({
 
           {/* sticky action bar */}
           <div className="shrink-0 border-t border-rule bg-paper/95 px-4 py-3 backdrop-blur-sm sm:px-6">
-            <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-between gap-2">
+            <div className="mx-auto flex w-full max-w-4xl flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
               <div className="flex gap-2">
                 <Button
                   onClick={onPrevious}
                   variant="outline"
                   size="sm"
+                  className="min-h-11 flex-1 sm:min-h-0 sm:flex-none"
                   disabled={currentQuestion === 0}
                 >
                   <ChevronLeft className="mr-1 h-4 w-4" />
@@ -457,21 +458,22 @@ export default function Exam({
                   onClick={onNext}
                   variant="outline"
                   size="sm"
+                  className="min-h-11 flex-1 sm:min-h-0 sm:flex-none"
                   disabled={currentQuestion === total - 1}
                 >
                   Next
                   <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
-                <Button onClick={onClear} variant="ghost" size="sm" className="text-pencil">
+                <Button onClick={onClear} variant="ghost" size="sm" className="min-h-11 flex-1 text-pencil sm:min-h-0 sm:flex-none">
                   Clear
                 </Button>
               </div>
               <div className="flex gap-2">
-                <Button onClick={onReviewAndNext} variant="outline" size="sm">
+                <Button onClick={onReviewAndNext} variant="outline" size="sm" className="min-h-11 flex-1 sm:min-h-0 sm:flex-none">
                   <Flag className="mr-1.5 h-4 w-4" />
                   Review &amp; next
                 </Button>
-                <Button onClick={onSaveAndNext} size="sm">
+                <Button onClick={onSaveAndNext} size="sm" className="min-h-11 flex-1 sm:min-h-0 sm:flex-none">
                   <Check className="mr-1.5 h-4 w-4" />
                   Save &amp; next
                 </Button>

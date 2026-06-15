@@ -300,7 +300,7 @@ export default function AdvancedExamResults({
       className="mx-auto w-full max-w-5xl space-y-8 px-4 py-8 sm:px-6 lg:px-8"
     >
       {/* ---------- THE MARKSHEET ---------- */}
-      <div className="paper-sheet ruled-margin p-6 pl-14 sm:p-8 sm:pl-16">
+      <div className="paper-sheet ruled-margin p-5 pl-10 sm:p-8 sm:pl-16">
         {/* header */}
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div>

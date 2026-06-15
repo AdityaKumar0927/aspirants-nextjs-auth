@@ -69,7 +69,7 @@ export default function Component() {
     <div className="container mx-auto px-4 py-16 space-y-16">
       {/* Values Section */}
       <section className="space-y-8">
-        <h2 className="text-4xl font-serif text-center"><T k="auto.volunteerPage.ourValues" /></h2>
+        <h2 className="text-3xl sm:text-4xl font-serif text-center"><T k="auto.volunteerPage.ourValues" /></h2>
         <div className="grid md:grid-cols-3 gap-6">
           {values.map((value, index) => (
             <Card key={index} className="text-center">
@@ -85,7 +85,7 @@ export default function Component() {
 
       {/* Careers Section */}
       <section className="space-y-8">
-        <h2 className="text-4xl font-serif text-center"><T k="auto.volunteerPage.readyToShapeTheFuture" /></h2>
+        <h2 className="text-3xl sm:text-4xl font-serif text-center"><T k="auto.volunteerPage.readyToShapeTheFuture" /></h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {positions.map((position, index) => (
             <Link

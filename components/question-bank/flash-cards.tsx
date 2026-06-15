@@ -12,7 +12,7 @@ export default function Component() {
   return (
     <div className="flex flex-col items-center w-full min-h-screen p-4">
       <header className="w-full max-w-5xl">
-        <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
+        <nav className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
           <a href="#" className="hover:underline">
             CBSE
           </a>
@@ -26,7 +26,7 @@ export default function Component() {
           </a>
         </nav>
         <h1 className="mt-2 text-2xl font-bold">Fundamentals of partnership Firms</h1>
-        <div className="flex items-center mt-4 space-x-4">
+        <div className="flex flex-wrap items-center gap-3 mt-4 sm:gap-4">
           <a href="#" className="text-muted-foreground hover:underline">
             Overview
           </a>
@@ -39,7 +39,7 @@ export default function Component() {
           <a href="#" className="text-muted-foreground hover:underline">
             Notes
           </a>
-          <Button variant="outline" className="ml-auto">
+          <Button variant="outline" className="ml-auto min-h-11">
             Flashcards
           </Button>
         </div>
@@ -63,7 +63,7 @@ export default function Component() {
           <ShuffleIcon className="w-4 h-4" />
           <span>Shuffle</span>
         </Button>
-        <Card className="w-full p-8 text-center">
+        <Card className="w-full p-6 text-center sm:p-8">
           <CardContent>
             <p className="text-lg">What is a partnership?</p>
           </CardContent>
@@ -71,21 +71,21 @@ export default function Component() {
             <VolumeIcon className="w-6 h-6" />
           </Button>
         </Card>
-        <div className="flex items-center space-x-4">
-          <Button variant="destructive" className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <Button variant="destructive" className="flex min-h-11 items-center space-x-2">
             <ThumbsDownIcon className="w-4 h-4" />
             <span>Bad</span>
           </Button>
-          <Button variant="outline" className="flex items-center space-x-2">
+          <Button variant="outline" className="flex min-h-11 items-center space-x-2">
             <MehIcon className="w-4 h-4" />
             <span>Mid</span>
           </Button>
-          <Button variant="outline" className="flex items-center space-x-2">
+          <Button variant="outline" className="flex min-h-11 items-center space-x-2">
             <ThumbsUpIcon className="w-4 h-4" />
             <span>Good</span>
           </Button>
         </div>
-        <Button variant="outline" className="mt-4">
+        <Button variant="outline" className="mt-4 min-h-11">
           Reset card confidence
         </Button>
       </main>

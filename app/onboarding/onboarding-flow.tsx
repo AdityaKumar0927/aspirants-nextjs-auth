@@ -148,7 +148,7 @@ export default function OnboardingFlow({
 
   if (phase === "awaitingParental") {
     return (
-      <div className="paper-sheet w-full max-w-md p-8 text-center">
+      <div className="paper-sheet w-full max-w-md p-6 text-center sm:p-8">
         <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
           Awaiting parental approval
         </p>
@@ -181,11 +181,11 @@ export default function OnboardingFlow({
   }
 
   return (
-    <div className="paper-sheet w-full max-w-2xl p-8">
+    <div className="paper-sheet w-full max-w-2xl p-6 sm:p-8">
       <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
         Before you begin
       </p>
-      <h1 className="type-display mt-1 text-2xl">Welcome{name ? `, ${name}` : ""}</h1>
+      <h1 className="type-display mt-1 text-xl sm:text-2xl">Welcome{name ? `, ${name}` : ""}</h1>
       <p className="mt-2 text-sm text-pencil">
         Before you start, a few details and your consent — required under
         India&rsquo;s Digital Personal Data Protection Act.

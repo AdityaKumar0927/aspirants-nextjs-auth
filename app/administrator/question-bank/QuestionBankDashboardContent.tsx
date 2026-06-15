@@ -474,12 +474,12 @@ export function QuestionBankDashboardContent() {
               : "Browse, review and publish the question bank."}
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <Button onClick={() => setIsAddOpen(true)}>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+          <Button className="w-full sm:w-auto" onClick={() => setIsAddOpen(true)}>
             <Plus className="mr-2 h-4 w-4" />
             Add question
           </Button>
-          <Button variant="outline" asChild>
+          <Button variant="outline" className="w-full sm:w-auto" asChild>
             <Link href="/administrator/question-bank/import">
               <Upload className="mr-2 h-4 w-4" />
               Import from PDF

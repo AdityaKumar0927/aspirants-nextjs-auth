@@ -29,7 +29,7 @@ const footerNavs = [
 export function Footer() {
   return (
     <footer className="border-t bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <Link href="/" className="flex flex-col items-start">
@@ -39,7 +39,7 @@ export function Footer() {
               <T k="footer.description" />
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:col-span-2">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-2 sm:gap-8 md:grid-cols-2 lg:col-span-2">
             {footerNavs.map((nav) => (
               <div key={nav.key}>
                 <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
@@ -47,10 +47,10 @@ export function Footer() {
                 </h2>
                 <ul className="text-gray-600 dark:text-gray-400">
                   {nav.items.map((item) => (
-                    <li key={item.key} className="mb-4">
+                    <li key={item.key} className="mb-1 sm:mb-4">
                       <Link
                         href={item.href}
-                        className="hover:underline transition-all duration-200"
+                        className="flex min-h-11 items-center wrap-break-word hover:underline transition-all duration-200 sm:min-h-0"
                       >
                         <T k={item.key} />
                       </Link>

@@ -67,7 +67,7 @@ export default function LanguagePopup() {
             type="button"
             aria-label={t("language.continueInEnglish")}
             onClick={() => choose(DEFAULT_LANG)}
-            className="shrink-0 rounded-md p-1.5 text-pencil hover:bg-secondary hover:text-ink"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-pencil hover:bg-secondary hover:text-ink sm:h-auto sm:w-auto sm:p-1.5"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" className="h-5 w-5" aria-hidden="true">
               <path d="M6 6l12 12M18 6L6 18" />

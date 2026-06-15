@@ -360,7 +360,7 @@ function StatCard({
 
 function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="paper-sheet mt-5 p-5">
+    <section className="paper-sheet mt-5 p-4 sm:p-5">
       <h2 className="type-display mb-4 text-base text-ink">{title}</h2>
       <div className="h-64">{children}</div>
     </section>
@@ -1044,7 +1044,7 @@ function MobileFiltersDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
-          fixed top-0 left-0 w-screen h-screen
+          fixed top-0 left-0 w-screen h-screen max-w-none max-h-none
           sm:w-[500px] sm:h-auto sm:max-h-[90vh]
           sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
           bg-paper text-ink

@@ -374,7 +374,7 @@ function Detail({
   return (
     <div>
       <h4 className="type-data text-[11px] uppercase tracking-wider text-pencil">{label}</h4>
-      <div className={`mt-1 text-sm text-ink ${block ? "leading-relaxed" : ""} ${className ?? ""}`}>
+      <div className={`mt-1 break-words text-sm text-ink ${block ? "leading-relaxed" : ""} ${className ?? ""}`}>
         {children}
       </div>
     </div>

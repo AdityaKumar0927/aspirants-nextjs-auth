@@ -427,8 +427,8 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           )}
         />
 
-        <div className="counterfoil flex items-center justify-between pt-6">
-          <Button type="submit" disabled={submitting} className="min-h-11">
+        <div className="counterfoil flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <Button type="submit" disabled={submitting} className="min-h-11 w-full sm:w-auto">
             {submitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -440,7 +440,7 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           </Button>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="destructive" className="min-h-11">
+              <Button variant="destructive" className="min-h-11 w-full sm:w-auto">
                 <T k="auto.formsProfileForm.resetAccount" />
               </Button>
             </AlertDialogTrigger>

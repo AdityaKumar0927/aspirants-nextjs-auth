@@ -518,10 +518,10 @@ export default function ImportWizard() {
     });
 
   return (
-    <div className="container mx-auto max-w-5xl p-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="container mx-auto max-w-5xl p-4 sm:p-6 space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Import Questions from PDF
           </h1>
           <p className="text-muted-foreground mt-1">
@@ -530,7 +530,7 @@ export default function ImportWizard() {
             from the PDF, and an AI structures it into reviewable questions.
           </p>
         </div>
-        <Button variant="ghost" asChild>
+        <Button variant="ghost" className="self-start sm:self-auto" asChild>
           <Link href="/administrator/question-bank">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Question Bank
@@ -662,7 +662,7 @@ export default function ImportWizard() {
               {tokensUsed.toLocaleString()} tokens). Review and edit before
               importing.
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Button variant="outline" onClick={() => setStep("upload")}>
                 Start over
               </Button>
@@ -708,8 +708,8 @@ export default function ImportWizard() {
                       : undefined
                   }
                 >
-                  <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-3">
-                    <div className="flex items-center gap-3">
+                  <CardHeader className="flex flex-col gap-3 space-y-0 pb-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                       <Checkbox
                         checked={d.include}
                         onCheckedChange={(v) =>
@@ -735,7 +735,7 @@ export default function ImportWizard() {
                     </div>
                     <div className="flex items-center gap-2">
                       <select
-                        className="h-9 rounded-md border border-input bg-background px-2 text-sm"
+                        className="h-9 flex-1 rounded-md border border-input bg-background px-2 text-sm sm:flex-none"
                         value={d.type}
                         onChange={(e) =>
                           updateDraft(d.localId, {

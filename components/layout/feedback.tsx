@@ -77,7 +77,7 @@ export default function FeedbackPopover() {
         </PopoverTrigger>
         {/* `theme-desk` scopes the whole popup (it portals to <body>, which is
             only themed on inner pages) so its content is desk-styled everywhere. */}
-        <PopoverContent className="theme-desk w-80 border-rule bg-paper p-0 text-ink">
+        <PopoverContent className="theme-desk w-[calc(100vw-2rem)] max-w-80 border-rule bg-paper p-0 text-ink">
           <AnimatePresence>
             {isOpen && (
               <motion.div

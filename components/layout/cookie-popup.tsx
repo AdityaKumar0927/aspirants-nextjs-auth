@@ -52,9 +52,9 @@ const CookiePopup = () => {
   };
 
   const outlineBtn =
-    "rounded-lg border border-rule px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-secondary focus:outline-none";
+    "inline-flex min-h-11 items-center justify-center rounded-lg border border-rule px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-secondary focus:outline-none sm:min-h-0";
   const primaryBtn =
-    "rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-paper transition-colors hover:bg-ink/90 focus:outline-none";
+    "inline-flex min-h-11 items-center justify-center rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-paper transition-colors hover:bg-ink/90 focus:outline-none sm:min-h-0";
 
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">

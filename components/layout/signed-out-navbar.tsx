@@ -72,13 +72,13 @@ export default function SignedOutNavbar() {
         transition={{ duration: 0.3 }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center font-display text-2xl">
+          <div className="flex justify-between items-center gap-2 h-16">
+            <Link href="/" className="flex min-w-0 items-center font-display text-2xl">
               <p className="font-display text-2xl tracking-[-0.07em] sm:text-3xl sm:leading-[4rem]">
                 penwise
               </p>
-              <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-2" />
-              <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full">BETA</span>
+              <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-1.5 h-6 w-6 shrink-0 sm:ml-2 sm:h-7.5 sm:w-7.5" />
+              <span className="ml-1.5 shrink-0 text-[10px] font-semibold bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-full sm:ml-2 sm:text-xs sm:px-2 sm:py-1">BETA</span>
             </Link>
 
             <div className="hidden md:flex items-center space-x-4">
@@ -111,7 +111,7 @@ export default function SignedOutNavbar() {
           {menuOpen && (
             <motion.div
               ref={menuRef}
-              className="absolute top-full left-0 right-0 bg-white dark:bg-dark-background shadow-lg z-20 md:hidden"
+              className="absolute top-full left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-dark-background shadow-lg z-20 md:hidden"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -203,31 +203,31 @@ interface MobileNavLinksProps {
 function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSupport }: MobileNavLinksProps) {
   const { t } = useTranslation()
   return (
-    <nav className="p-4 space-y-4 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
+    <nav className="p-4 space-y-2 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
       <Link
         href="/question-bank/guest"
-        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.questionBank")}
       </Link>
       <Link
         href="/mock-exam"
-        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.mockExam")}
       </Link>
       <Link
         href="/leaderboard"
-        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.leaderboard")}
       </Link>
       <div>
         <button
-          className="flex items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           onClick={toggleSupport}
           aria-expanded={supportOpen}
         >
@@ -260,7 +260,7 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
       <div className="space-y-2">
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full min-h-11"
           onClick={() => {
             setMenuOpen(false)
             setShowSignInModal(true)
