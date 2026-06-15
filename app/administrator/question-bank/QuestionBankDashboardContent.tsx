@@ -41,9 +41,18 @@ import {
   X,
   FileQuestion,
 } from "lucide-react"
-import debounce from "lodash/debounce"
 import type { Question, QuestionStatus } from "./types"
 import { QuestionForm } from "./QuestionForm"
+
+// Minimal trailing debounce (replaces lodash/debounce — lodash is no longer a
+// dependency). Returns a debounced wrapper that fires `fn` `ms` after the last call.
+function debounce<A extends unknown[]>(fn: (...args: A) => void, ms: number) {
+  let timer: ReturnType<typeof setTimeout>
+  return (...args: A) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => fn(...args), ms)
+  }
+}
 
 const PAGE_SIZE = 20
 
