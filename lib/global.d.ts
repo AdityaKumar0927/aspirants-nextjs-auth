@@ -109,10 +109,5 @@ declare global {
   
 }
 
-declare module 'react-mathjax-preview' {
-  const MathJax: React.FC<{ math: string }>;
-  export default MathJax;
-}
-
 
 export {};
