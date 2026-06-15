@@ -1,29 +1,52 @@
 "use client"
 
-import type React from "react"
 import Link from "next/link"
-import { useState, useCallback, useMemo, createContext, useContext } from "react"
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMemo, useState } from "react"
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  keepPreviousData,
+} from "@tanstack/react-query"
 import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { TooltipProvider } from "@/components/ui/tooltip"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
 import { Skeleton } from "@/components/ui/skeleton"
-import { Search, Plus, Upload, Trash2, Edit, CheckCircle2, Archive } from "lucide-react"
+import {
+  Search,
+  Plus,
+  Upload,
+  Trash2,
+  Edit,
+  CheckCircle2,
+  Archive,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  FileQuestion,
+} from "lucide-react"
 import debounce from "lodash/debounce"
 import type { Question, QuestionStatus } from "./types"
-import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
+import { QuestionForm } from "./QuestionForm"
 
-// Types
+const PAGE_SIZE = 20
+
 type FiltersType = {
   exams: string[]
   subjects: string[]
@@ -35,765 +58,765 @@ type FiltersType = {
   status: QuestionStatus | "all"
 }
 
-// Custom Hooks
-function useQuestions(filters: FiltersType, searchQuery: string) {
-  const fetchQuestions = async (): Promise<Question[]> => {
-    // Admin view: request every status (incl. DRAFT/ARCHIVED). The API caps
-    // pageSize at 200, so page through to get the FULL set — otherwise the
-    // dashboard's in-memory filtering, pagination and stat cards were silently
-    // wrong (only the first 200) on banks larger than 200 questions.
-    const PAGE = 200;
-    const MAX_PAGES = 50; // safety cap (10k questions)
-    const all: Question[] = [];
-    let total = Infinity;
-    for (let page = 1; page <= MAX_PAGES && all.length < total; page++) {
-      const res = await fetch(`/api/questions?status=all&page=${page}&pageSize=${PAGE}`);
-      if (!res.ok) throw new Error("Failed to fetch questions");
-      const json = await res.json();
-      const batch: Question[] = Array.isArray(json) ? json : json.data ?? [];
-      total = Array.isArray(json) ? batch.length : json.totalCount ?? batch.length;
-      all.push(...batch);
-      if (batch.length < PAGE) break;
-    }
-    return all;
-  }
-
-  const {
-    data: questions = [],
-    isLoading,
-    error,
-  } = useQuery<Question[]>({
-    queryKey: ["questions"],
-    queryFn: fetchQuestions,
-  })
-
-  const filteredQuestions = useMemo(() => {
-    return questions
-      .filter((question) => {
-        const lowerSearchQuery = searchQuery.toLowerCase()
-        const matchesSearch =
-          question.text.toLowerCase().includes(lowerSearchQuery) ||
-          question.topic.toLowerCase().includes(lowerSearchQuery) ||
-          (question.subtopic?.toLowerCase().includes(lowerSearchQuery) ?? false) ||
-          question.subject.toLowerCase().includes(lowerSearchQuery)
-
-        const matchesFilters =
-          (!filters.exams.length || filters.exams.includes(question.exam)) &&
-          (!filters.subjects.length || filters.subjects.includes(question.subject)) &&
-          (!filters.topics.length || filters.topics.includes(question.topic)) &&
-          (!filters.subtopics.length || (question.subtopic && filters.subtopics.includes(question.subtopic))) &&
-          (!filters.difficulties.length || filters.difficulties.includes(question.difficulty)) &&
-          (!filters.years.length || filters.years.includes(question.year.toString())) &&
-          (!filters.types.length || filters.types.includes(question.type)) &&
-          (filters.status === "all" || question.status === filters.status)
-
-        return matchesSearch && matchesFilters
-      })
-      .sort((a, b) => Number.parseInt(a.questionId) - Number.parseInt(b.questionId))
-  }, [questions, filters, searchQuery])
-
-  const statusCounts = useMemo(() => {
-    const counts = { ACTIVE: 0, DRAFT: 0, ARCHIVED: 0 } as Record<string, number>
-    for (const q of questions) counts[q.status] = (counts[q.status] ?? 0) + 1
-    return counts
-  }, [questions])
-
-  return { questions: filteredQuestions, isLoading, error, statusCounts, totalCount: questions.length }
+const EMPTY_FILTERS: FiltersType = {
+  exams: [],
+  subjects: [],
+  topics: [],
+  subtopics: [],
+  difficulties: [],
+  types: [],
+  years: [],
+  status: "all",
 }
 
-// Contexts
-const FiltersContext = createContext<{
-  filters: FiltersType
-  setFilters: React.Dispatch<React.SetStateAction<FiltersType>>
-} | null>(null)
+// Facet category -> the filters key + the API query param it maps to.
+const FACETS = [
+  { key: "exams", label: "Exams", param: "exam", optionsKey: "exams" },
+  { key: "subjects", label: "Subjects", param: "subject", optionsKey: "subjects" },
+  { key: "difficulties", label: "Difficulty", param: "difficulty", optionsKey: "difficulties" },
+  { key: "types", label: "Type", param: "type", optionsKey: "types" },
+  { key: "years", label: "Years", param: "year", optionsKey: "years" },
+  { key: "topics", label: "Topics", param: "topic", optionsKey: "topics" },
+  { key: "subtopics", label: "Subtopics", param: "subtopic", optionsKey: "subtopics" },
+] as const
 
-const SelectedQuestionsContext = createContext<{
-  selectedQuestions: Set<string>
-  toggleQuestionSelection: (questionId: string) => void
-  clearSelection: () => void
-} | null>(null)
+type FacetKey = (typeof FACETS)[number]["key"]
 
-const QuestionsContext = createContext<{
-  questions: Question[]
-  isLoading: boolean
-} | null>(null)
-
-// Filters Component
-function Filters() {
-  const { filters, setFilters } = useContext(FiltersContext)!
-  const { questions } = useContext(QuestionsContext)!
-
-  const handleFilterChange = useCallback(
-    (tag: keyof FiltersType, value: string) => {
-      setFilters((prevFilters) => {
-        const filterValues = prevFilters[tag]
-        if (Array.isArray(filterValues)) {
-          const isSelected = filterValues.includes(value)
-          const updatedFilter = isSelected ? filterValues.filter((v) => v !== value) : [...filterValues, value]
-          return { ...prevFilters, [tag]: updatedFilter }
-        }
-        return prevFilters
-      })
-    },
-    [setFilters],
-  )
-
-  const filterCategories = [
-    { key: "exams", label: "Exams" },
-    { key: "subjects", label: "Subjects" },
-    { key: "topics", label: "Topics" },
-    { key: "subtopics", label: "Subtopics" },
-    { key: "difficulties", label: "Difficulties" },
-    { key: "types", label: "Types" },
-    { key: "years", label: "Years" },
-  ] as const
-
-  return (
-    <div className="w-64 p-4 bg-background border-r">
-      <h3 className="text-lg font-semibold mb-4">Filters</h3>
-      <Separator className="my-4" />
-      {filterCategories.map((category) => {
-        const values = Array.from(
-          new Set(
-            questions.map((q) => {
-              switch (category.key) {
-                case "exams":
-                  return q.exam
-                case "subjects":
-                  return q.subject
-                case "topics":
-                  return q.topic
-                case "subtopics":
-                  return q.subtopic ?? ""
-                case "difficulties":
-                  return q.difficulty
-                case "types":
-                  return q.type
-                case "years":
-                  return q.year?.toString() ?? ""
-                default:
-                  return ""
-              }
-            }),
-          ),
-        ).filter((v) => v !== "")
-
-        return (
-          <div key={category.key} className="mb-6">
-            <Label className="font-medium mb-2 block">{category.label}</Label>
-            <div className="space-y-2">
-              {values.map((value) => (
-                <div key={value} className="flex items-center">
-                  <Checkbox
-                    id={`${category.key}-${value}`}
-                    checked={filters[category.key as keyof FiltersType].includes(value)}
-                    onCheckedChange={() => handleFilterChange(category.key as keyof FiltersType, value)}
-                    className="mr-2"
-                  />
-                  <Label htmlFor={`${category.key}-${value}`} className="text-sm cursor-pointer">
-                    {value}
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
+interface FilterOptions {
+  exams: string[]
+  subjects: string[]
+  topics: string[]
+  subtopics: string[]
+  difficulties: string[]
+  years: (string | number)[]
+  types: string[]
 }
 
-// QuestionForm Component
-function QuestionForm({
-  initialData,
-  onSubmit,
-}: {
-  initialData?: Partial<Question>
-  onSubmit: (question: Partial<Question>) => void
-}) {
-  const [formData, setFormData] = useState<Partial<Question>>(() => ({
-    text: "",
-    subject: "",
-    topic: "",
-    difficulty: "",
-    options: [],
-    correctOption: "",
-    markscheme: "",
-    notes: [],
-    ...initialData,
-  }))
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleOptionChange = (index: number, value: string) => {
-    setFormData((prev) => {
-      const newOptions = [...(prev.options || [])]
-      newOptions[index] = value
-      return { ...prev, options: newOptions }
-    })
-  }
-
-  const handleAddOption = () => {
-    setFormData((prev) => ({
-      ...prev,
-      options: [...(prev.options || []), ""],
-    }))
-  }
-
-  const handleRemoveOption = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      options: prev.options?.filter((_, i) => i !== index) || [],
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSubmit(formData)
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="space-y-2">
-        <Label htmlFor="text">Question Text</Label>
-        <Textarea id="text" name="text" value={formData.text} onChange={handleInputChange} required />
-      </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="subject">Subject</Label>
-          <Input id="subject" name="subject" value={formData.subject} onChange={handleInputChange} required />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="topic">Topic</Label>
-          <Input id="topic" name="topic" value={formData.topic} onChange={handleInputChange} required />
-        </div>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="difficulty">Difficulty</Label>
-        <Select
-          name="difficulty"
-          value={formData.difficulty || ""}
-          onValueChange={(value) => handleSelectChange("difficulty", value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select difficulty" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Easy">Easy</SelectItem>
-            <SelectItem value="Medium">Medium</SelectItem>
-            <SelectItem value="Hard">Hard</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label>Options</Label>
-        {formData.options?.map((option, index) => (
-          <div key={index} className="flex items-center space-x-2">
-            <Input
-              value={option}
-              onChange={(e) => handleOptionChange(index, e.target.value)}
-              placeholder={`Option ${index + 1}`}
-            />
-            <Button type="button" variant="outline" size="icon" onClick={() => handleRemoveOption(index)}>
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </div>
-        ))}
-        <Button type="button" variant="outline" onClick={handleAddOption}>
-          Add Option
-        </Button>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="correctOption">Correct Option</Label>
-        <Select
-          name="correctOption"
-          value={formData.correctOption || ""}
-          onValueChange={(value) => handleSelectChange("correctOption", value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select correct option" />
-          </SelectTrigger>
-          <SelectContent>
-            {formData.options?.map((option, index) => (
-              <SelectItem key={index} value={option}>
-                {option}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="markscheme">Mark Scheme</Label>
-        <Textarea id="markscheme" name="markscheme" value={formData.markscheme || ""} onChange={handleInputChange} />
-      </div>
-      <DialogFooter>
-        <Button type="submit">Save Question</Button>
-      </DialogFooter>
-    </form>
-  )
-}
-
-// QuestionTable Component
-function QuestionTable({
-  currentPage,
-  pageSize,
-  onEdit,
-  onDelete,
-  onSetStatus,
-}: {
+interface QuestionsResponse {
+  data: Question[]
   currentPage: number
   pageSize: number
-  onEdit: (question: Question) => void
-  onDelete: (questionId: string) => void
-  onSetStatus: (questionId: string, status: QuestionStatus) => void
-}) {
-  const { questions, isLoading } = useContext(QuestionsContext)!
-  const { selectedQuestions, toggleQuestionSelection } = useContext(SelectedQuestionsContext)!
-  const startIndex = (currentPage - 1) * pageSize
-  const paginatedQuestions = questions.slice(startIndex, startIndex + pageSize)
+  totalCount: number
+}
 
-  if (isLoading) {
-    return (
-      <div className="space-y-4">
-        {[...Array(5)].map((_, index) => (
-          <div key={index} className="flex items-center space-x-4">
-            <Skeleton className="h-12 w-12 rounded-full" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
-            </div>
-          </div>
-        ))}
-      </div>
-    )
+interface QuestionStats {
+  total: number
+  active: number
+  draft: number
+  archived: number
+}
+
+function buildQuery(filters: FiltersType, search: string, page: number): string {
+  const p = new URLSearchParams()
+  p.set("page", String(page))
+  p.set("pageSize", String(PAGE_SIZE))
+  p.set("status", filters.status === "all" ? "all" : filters.status)
+  for (const facet of FACETS) {
+    const values = filters[facet.key]
+    if (values.length) p.set(facet.param, values.join(","))
   }
+  if (search.trim()) p.set("q", search.trim())
+  return p.toString()
+}
 
+function StatusDot({ status }: { status: QuestionStatus }) {
+  const dot =
+    status === "ACTIVE" ? "bg-st-answered" : status === "DRAFT" ? "bg-st-review" : "bg-st-notvisited"
+  const label = status.charAt(0) + status.slice(1).toLowerCase()
   return (
-    <div className="overflow-x-auto">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[50px]">
-              <Checkbox
-                checked={selectedQuestions.size === paginatedQuestions.length}
-                onCheckedChange={(checked) => {
-                  paginatedQuestions.forEach((q) => {
-                    if (checked) {
-                      selectedQuestions.add(q.questionId)
-                    } else {
-                      selectedQuestions.delete(q.questionId)
-                    }
-                  })
-                }}
-              />
-            </TableHead>
-            <TableHead>Question</TableHead>
-            <TableHead>Subject</TableHead>
-            <TableHead>Difficulty</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {paginatedQuestions.map((question) => (
-            <TableRow key={question.questionId}>
-              <TableCell>
-                <Checkbox
-                  checked={selectedQuestions.has(question.questionId)}
-                  onCheckedChange={() => toggleQuestionSelection(question.questionId)}
-                />
-              </TableCell>
-              <TableCell>
-                <div className="font-medium">{question.text.substring(0, 50)}...</div>
-                <div className="text-sm text-muted-foreground">ID: {question.questionId}</div>
-              </TableCell>
-              <TableCell>
-                <Badge variant="outline">{question.subject}</Badge>
-              </TableCell>
-              <TableCell>
-                <Badge variant="outline">{question.difficulty}</Badge>
-              </TableCell>
-              <TableCell>
-                <Badge
-                  variant={
-                    question.status === "ACTIVE"
-                      ? "default"
-                      : question.status === "DRAFT"
-                      ? "secondary"
-                      : "outline"
-                  }
-                >
-                  {question.status}
-                </Badge>
-              </TableCell>
-              <TableCell className="text-right space-x-1">
-                {question.status !== "ACTIVE" ? (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    title="Activate (publish to question bank)"
-                    onClick={() => onSetStatus(question.questionId, "ACTIVE")}
-                  >
-                    <CheckCircle2 className="h-4 w-4 text-green-600" />
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    title="Archive (hide from question bank)"
-                    onClick={() => onSetStatus(question.questionId, "ARCHIVED")}
-                  >
-                    <Archive className="h-4 w-4 text-amber-600" />
-                  </Button>
-                )}
-                <Button variant="ghost" size="sm" onClick={() => onEdit(question)}>
-                  <Edit className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" onClick={() => onDelete(question.questionId)}>
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+    <span className="type-data inline-flex items-center gap-2 text-xs text-pencil">
+      <span className={`h-2 w-2 rounded-full ${dot}`} />
+      {label}
+    </span>
   )
 }
 
-// Pagination Component
-function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
+function plain(s: string) {
+  return s.replace(/<[^>]+>/g, " ").replace(/\$+/g, "").replace(/\s+/g, " ").trim()
+}
+
+/** A collapsible facet group with an in-list filter for long option sets. */
+function FilterGroup({
+  label,
+  options,
+  selected,
+  onToggle,
+  defaultOpen,
 }: {
-  currentPage: number
-  totalPages: number
-  onPageChange: (page: number) => void
+  label: string
+  options: string[]
+  selected: string[]
+  onToggle: (value: string) => void
+  defaultOpen?: boolean
 }) {
+  const [open, setOpen] = useState(!!defaultOpen)
+  const [needle, setNeedle] = useState("")
+
+  if (!options.length) return null
+
+  const shown =
+    needle.trim().length > 0
+      ? options.filter((o) => o.toLowerCase().includes(needle.toLowerCase()))
+      : options
+
   return (
-    <div className="flex justify-center mt-4">
-      <Button variant="outline" onClick={() => onPageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
-        Previous
-      </Button>
-      <span className="mx-4">
-        Page {currentPage} of {totalPages}
-      </span>
-      <Button
-        variant="outline"
-        onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-        disabled={currentPage === totalPages}
+    <div className="border-b border-rule pb-3">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center justify-between py-2 text-left"
       >
-        Next
-      </Button>
+        <span className="type-data text-[11px] uppercase tracking-[0.12em] text-pencil">
+          {label}
+          {selected.length > 0 && (
+            <span className="ml-1.5 rounded-full bg-secondary px-1.5 py-0.5 text-[10px] text-ballpoint">
+              {selected.length}
+            </span>
+          )}
+        </span>
+        <ChevronDown
+          className={`h-4 w-4 text-pencil transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <div className="space-y-2">
+          {options.length > 10 && (
+            <Input
+              value={needle}
+              onChange={(e) => setNeedle(e.target.value)}
+              placeholder={`Filter ${label.toLowerCase()}…`}
+              className="h-8 text-xs"
+            />
+          )}
+          <div className="max-h-52 space-y-1.5 overflow-y-auto pr-1">
+            {shown.map((value) => (
+              <label
+                key={value}
+                className="flex cursor-pointer items-center gap-2 text-sm text-ink"
+              >
+                <Checkbox
+                  checked={selected.includes(value)}
+                  onCheckedChange={() => onToggle(value)}
+                />
+                <span className="truncate" title={value}>
+                  {value}
+                </span>
+              </label>
+            ))}
+            {shown.length === 0 && (
+              <p className="type-data text-xs text-pencil">No matches.</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
 
-// Main Component
 export function QuestionBankDashboardContent() {
-  const [filters, setFilters] = useState<FiltersType>({
-    exams: [],
-    subjects: [],
-    topics: [],
-    subtopics: [],
-    difficulties: [],
-    types: [],
-    years: [],
-    status: "all",
-  })
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedQuestions, setSelectedQuestions] = useState<Set<string>>(new Set())
-  const [currentPage, setCurrentPage] = useState(1)
-  const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false)
-  const [editingQuestion, setEditingQuestion] = useState<Question | null>(null)
-  const pageSize = 20
   const { toast } = useToast()
   const queryClient = useQueryClient()
+
+  const [filters, setFilters] = useState<FiltersType>(EMPTY_FILTERS)
+  const [searchInput, setSearchInput] = useState("")
+  const [search, setSearch] = useState("")
+  const [page, setPage] = useState(1)
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [isAddOpen, setIsAddOpen] = useState(false)
+  const [editing, setEditing] = useState<Question | null>(null)
+
+  // A filter/search/status change invalidates both the page number and any
+  // cross-page selection.
+  const resetPaging = () => {
+    setPage(1)
+    setSelected(new Set())
+  }
+
+  const toggleFacet = (key: FacetKey, value: string) => {
+    setFilters((prev) => {
+      const current = prev[key]
+      const next = current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value]
+      return { ...prev, [key]: next }
+    })
+    resetPaging()
+  }
 
   const debouncedSearch = useMemo(
     () =>
       debounce((value: string) => {
-        setSearchQuery(value)
-        setCurrentPage(1)
+        setSearch(value)
+        resetPaging()
       }, 300),
-    [],
+    []
   )
 
-  const { questions, isLoading, error, statusCounts, totalCount } = useQuestions(filters, searchQuery)
+  const clearAll = () => {
+    setFilters(EMPTY_FILTERS)
+    setSearch("")
+    setSearchInput("")
+    resetPaging()
+  }
 
-  const totalPages = Math.ceil(questions.length / pageSize)
+  const qs = buildQuery(filters, search, page)
 
-  // Mutations for add, edit, delete operations
-  const addQuestionMutation = useMutation({
-    mutationFn: async (newQuestion: Partial<Question>) => {
-      const response = await fetch("/api/questions", {
+  const { data: filterOptions } = useQuery<FilterOptions>({
+    queryKey: ["question-filters"],
+    queryFn: async () => {
+      const res = await fetch("/api/filters", { cache: "no-store" })
+      if (!res.ok) throw new Error("Failed to fetch filters")
+      return res.json()
+    },
+  })
+
+  const { data: stats } = useQuery<QuestionStats>({
+    queryKey: ["admin-question-stats"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/question-stats")
+      if (!res.ok) throw new Error("Failed to fetch stats")
+      return res.json()
+    },
+  })
+
+  const {
+    data: result,
+    isLoading,
+    isFetching,
+    error,
+  } = useQuery<QuestionsResponse>({
+    queryKey: ["admin-questions", qs],
+    queryFn: async () => {
+      const res = await fetch(`/api/questions?${qs}`)
+      if (!res.ok) throw new Error("Failed to fetch questions")
+      return res.json()
+    },
+    placeholderData: keepPreviousData,
+  })
+
+  const questions = result?.data ?? []
+  const totalCount = result?.totalCount ?? 0
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE))
+
+  const invalidate = () => {
+    queryClient.invalidateQueries({ queryKey: ["admin-questions"] })
+    queryClient.invalidateQueries({ queryKey: ["admin-question-stats"] })
+  }
+
+  const addMutation = useMutation({
+    mutationFn: async (q: Partial<Question>) => {
+      const res = await fetch("/api/questions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newQuestion),
+        body: JSON.stringify(q),
       })
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}))
-        throw new Error(err.error || "Failed to add question")
-      }
-      return response.json()
+      if (!res.ok) throw new Error((await res.json().catch(() => ({})))?.error || "Failed to add question")
+      return res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["questions"] })
-      toast({
-        title: "Question Added",
-        description: "New question has been successfully added.",
-      })
+      invalidate()
+      setIsAddOpen(false)
+      toast({ title: "Question added", description: "The question has been created." })
     },
-    onError: (error: unknown) => {
+    onError: (e: unknown) =>
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to add question.",
+        title: "Couldn't add question",
+        description: e instanceof Error ? e.message : "Please try again.",
         variant: "destructive",
-      })
-    },
+      }),
   })
 
-  const editQuestionMutation = useMutation({
-    mutationFn: async (updatedQuestion: Partial<Question>) => {
-      const response = await fetch("/api/questions", {
+  const editMutation = useMutation({
+    mutationFn: async (q: Partial<Question>) => {
+      const res = await fetch("/api/questions", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedQuestion),
+        body: JSON.stringify(q),
       })
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}))
-        throw new Error(err.error || "Failed to update question")
-      }
-      return response.json()
+      if (!res.ok) throw new Error((await res.json().catch(() => ({})))?.error || "Failed to update question")
+      return res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["questions"] })
-      toast({
-        title: "Question Updated",
-        description: "Question has been successfully updated.",
-      })
+      invalidate()
+      setEditing(null)
+      toast({ title: "Question updated", description: "Your changes have been saved." })
     },
-    onError: (error: unknown) => {
+    onError: (e: unknown) =>
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to update question.",
+        title: "Couldn't update question",
+        description: e instanceof Error ? e.message : "Please try again.",
         variant: "destructive",
-      })
-    },
+      }),
   })
 
-  const deleteQuestionMutation = useMutation({
+  const deleteMutation = useMutation({
     mutationFn: async (questionId: string) => {
-      const response = await fetch(`/api/questions`, {
+      const res = await fetch("/api/questions", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ questionId }),
       })
-      if (!response.ok) throw new Error("Failed to delete question")
-      return response.json()
+      if (!res.ok) throw new Error("Failed to delete question")
+      return res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["questions"] })
-      toast({
-        title: "Question Deleted",
-        description: "Question has been successfully deleted.",
-      })
+      invalidate()
+      toast({ title: "Question deleted" })
     },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to delete question. Please try again.",
-        variant: "destructive",
-      })
-    },
+    onError: () =>
+      toast({ title: "Couldn't delete question", variant: "destructive" }),
   })
 
-  const handleAddQuestion = async (newQuestion: Partial<Question>) => {
-    await addQuestionMutation.mutateAsync(newQuestion)
-    setIsAddQuestionOpen(false)
-  }
+  const setStatus = (questionId: string, status: QuestionStatus) =>
+    editMutation.mutate({ questionId, status })
 
-  const handleEditQuestion = async (editedQuestion: Partial<Question>) => {
-    await editQuestionMutation.mutateAsync(editedQuestion)
-    setEditingQuestion(null)
-  }
-
-  const handleDeleteQuestion = async (questionId: string) => {
-    await deleteQuestionMutation.mutateAsync(questionId)
-  }
-
-  const handleSetStatus = async (questionId: string, status: QuestionStatus) => {
-    await editQuestionMutation.mutateAsync({ questionId, status })
-  }
-
-  const toggleQuestionSelection = (questionId: string) => {
-    setSelectedQuestions((prevSelected) => {
-      const newSelected = new Set(prevSelected)
-      if (newSelected.has(questionId)) {
-        newSelected.delete(questionId)
-      } else {
-        newSelected.add(questionId)
-      }
-      return newSelected
+  const toggleSelect = (questionId: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev)
+      if (next.has(questionId)) next.delete(questionId)
+      else next.add(questionId)
+      return next
     })
   }
 
-  const clearSelection = () => {
-    setSelectedQuestions(new Set())
+  const toggleSelectAll = () => {
+    setSelected((prev) =>
+      prev.size === questions.length ? new Set() : new Set(questions.map((q) => q.questionId))
+    )
   }
 
-  if (error) {
-    return <div>Error loading questions. Please try again later.</div>
+  // Bulk actions loop the per-question endpoints (there is no bulk-mutate API,
+  // and the server's mass-delete guard still applies — by design).
+  const [bulkBusy, setBulkBusy] = useState(false)
+  const runBulk = async (action: "activate" | "archive" | "delete") => {
+    const ids = Array.from(selected)
+    if (!ids.length) return
+    if (action === "delete" && !window.confirm(`Delete ${ids.length} question(s)? This cannot be undone.`)) {
+      return
+    }
+    setBulkBusy(true)
+    const results = await Promise.allSettled(
+      ids.map((id) =>
+        action === "delete"
+          ? fetch("/api/questions", {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ questionId: id }),
+            }).then((r) => {
+              if (!r.ok) throw new Error()
+            })
+          : fetch("/api/questions", {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                questionId: id,
+                status: action === "activate" ? "ACTIVE" : "ARCHIVED",
+              }),
+            }).then((r) => {
+              if (!r.ok) throw new Error()
+            })
+      )
+    )
+    const ok = results.filter((r) => r.status === "fulfilled").length
+    const failed = results.length - ok
+    setBulkBusy(false)
+    setSelected(new Set())
+    invalidate()
+    toast({
+      title: `${ok} question(s) ${action === "delete" ? "deleted" : action === "activate" ? "activated" : "archived"}`,
+      description: failed ? `${failed} failed (possibly rate-limited).` : undefined,
+      variant: failed ? "destructive" : undefined,
+    })
   }
+
+  // Active filter chips (everything currently narrowing the list).
+  const activeChips: { label: string; onRemove: () => void }[] = []
+  for (const facet of FACETS) {
+    for (const value of filters[facet.key]) {
+      activeChips.push({
+        label: `${facet.label.replace(/s$/, "")}: ${value}`,
+        onRemove: () => toggleFacet(facet.key, value),
+      })
+    }
+  }
+  if (filters.status !== "all") {
+    activeChips.push({
+      label: `Status: ${filters.status}`,
+      onRemove: () => {
+        setFilters((prev) => ({ ...prev, status: "all" }))
+        resetPaging()
+      },
+    })
+  }
+
+  const rangeStart = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1
+  const rangeEnd = Math.min(page * PAGE_SIZE, totalCount)
 
   return (
-    <TooltipProvider>
-      <FiltersContext.Provider value={{ filters, setFilters }}>
-        <SelectedQuestionsContext.Provider value={{ selectedQuestions, toggleQuestionSelection, clearSelection }}>
-          <QuestionsContext.Provider value={{ questions, isLoading }}>
-            <div className="flex h-screen overflow-hidden">
-              {/* Sidebar Filters */}
-              <Filters />
+    <div className="mx-auto max-w-6xl space-y-8">
+      {/* Header */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="space-y-1">
+          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Content</p>
+          <h1 className="type-display text-2xl text-ink sm:text-3xl">Question bank</h1>
+          <p className="text-sm text-pencil">
+            {stats
+              ? `${stats.total.toLocaleString("en-IN")} questions in the bank.`
+              : "Browse, review and publish the question bank."}
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <Button onClick={() => setIsAddOpen(true)}>
+            <Plus className="mr-2 h-4 w-4" />
+            Add question
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/administrator/question-bank/import">
+              <Upload className="mr-2 h-4 w-4" />
+              Import from PDF
+            </Link>
+          </Button>
+        </div>
+      </div>
 
-              {/* Main Content */}
-              <div className="flex-1 overflow-auto">
-                <div className="p-8 space-y-8">
-                  <div className="flex justify-between items-center">
-                    <h1 className="text-3xl font-bold tracking-tight">Question Bank</h1>
-                    <div className="flex items-center space-x-4">
-                      <Dialog open={isAddQuestionOpen} onOpenChange={setIsAddQuestionOpen}>
-                        <DialogTrigger asChild>
-                          <Button>
-                            <Plus className="mr-2 h-4 w-4" />
-                            Add Question
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[625px]">
-                          <DialogHeader>
-                            <DialogTitle>Add New Question</DialogTitle>
-                          </DialogHeader>
-                          <ScrollArea className="max-h-[80vh] overflow-y-auto">
-                            <QuestionForm onSubmit={handleAddQuestion} />
-                          </ScrollArea>
-                        </DialogContent>
-                      </Dialog>
-                      <Button variant="outline" asChild>
-                        <Link href="/administrator/question-bank/import">
-                          <Upload className="mr-2 h-4 w-4" />
-                          Import from PDF
-                        </Link>
+      {/* Accurate stat cards (from the DB, not a capped client tally) */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard label="Total questions" value={stats?.total} />
+        <StatCard label="Active" value={stats?.active} tone="active" />
+        <StatCard label="Drafts to review" value={stats?.draft} tone={stats && stats.draft > 0 ? "review" : undefined} />
+        <StatCard label="Archived" value={stats?.archived} />
+      </div>
+
+      <div className="flex flex-col gap-6 lg:flex-row">
+        {/* Filters sidebar */}
+        <aside className="shrink-0 lg:w-60">
+          <div className="paper-sheet p-4">
+            <div className="flex items-center justify-between">
+              <h2 className="type-display text-sm text-ink">Filters</h2>
+              {activeChips.length > 0 && (
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  className="type-data text-xs text-ballpoint hover:underline"
+                >
+                  Clear all
+                </button>
+              )}
+            </div>
+            <div className="mt-3 space-y-1">
+              {FACETS.map((facet, i) => (
+                <FilterGroup
+                  key={facet.key}
+                  label={facet.label}
+                  options={(filterOptions?.[facet.optionsKey] ?? []).map(String)}
+                  selected={filters[facet.key]}
+                  onToggle={(v) => toggleFacet(facet.key, v)}
+                  defaultOpen={i < 2}
+                />
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        {/* Main column */}
+        <div className="min-w-0 flex-1 space-y-4">
+          {/* Toolbar */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="relative flex-1">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
+              <Input
+                type="text"
+                placeholder="Search question text, topic, subject…"
+                value={searchInput}
+                onChange={(e) => {
+                  setSearchInput(e.target.value)
+                  debouncedSearch(e.target.value)
+                }}
+                className="pl-9"
+              />
+            </div>
+            <Select
+              value={filters.status}
+              onValueChange={(value) => {
+                setFilters((prev) => ({ ...prev, status: value as QuestionStatus | "all" }))
+                resetPaging()
+              }}
+            >
+              <SelectTrigger className="w-full sm:w-48">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All statuses</SelectItem>
+                <SelectItem value="DRAFT">Draft (needs review)</SelectItem>
+                <SelectItem value="ACTIVE">Active</SelectItem>
+                <SelectItem value="ARCHIVED">Archived</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Active filter chips */}
+          {activeChips.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {activeChips.map((chip) => (
+                <button
+                  key={chip.label}
+                  type="button"
+                  onClick={chip.onRemove}
+                  className="inline-flex items-center gap-1 rounded-full border border-rule bg-paper px-2.5 py-1 text-xs text-ink hover:border-redpen hover:text-redpen"
+                >
+                  {chip.label}
+                  <X className="h-3 w-3" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Result summary / bulk action bar */}
+          {selected.size > 0 ? (
+            <div className="flex flex-wrap items-center gap-3 rounded-lg border border-ballpoint bg-secondary px-4 py-2.5">
+              <span className="text-sm font-medium text-ink">{selected.size} selected</span>
+              <div className="ml-auto flex flex-wrap gap-2">
+                <Button size="sm" variant="outline" disabled={bulkBusy} onClick={() => runBulk("activate")}>
+                  <CheckCircle2 className="mr-1.5 h-4 w-4" />
+                  Activate
+                </Button>
+                <Button size="sm" variant="outline" disabled={bulkBusy} onClick={() => runBulk("archive")}>
+                  <Archive className="mr-1.5 h-4 w-4" />
+                  Archive
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="text-redpen hover:text-redpen"
+                  disabled={bulkBusy}
+                  onClick={() => runBulk("delete")}
+                >
+                  <Trash2 className="mr-1.5 h-4 w-4" />
+                  Delete
+                </Button>
+                <Button size="sm" variant="ghost" onClick={() => setSelected(new Set())}>
+                  Clear
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <p className="type-data text-xs text-pencil">
+              {totalCount > 0
+                ? `Showing ${rangeStart.toLocaleString("en-IN")}–${rangeEnd.toLocaleString("en-IN")} of ${totalCount.toLocaleString("en-IN")}`
+                : isLoading
+                  ? "Loading…"
+                  : "No questions match."}
+            </p>
+          )}
+
+          {/* Table */}
+          <div className="paper-sheet overflow-hidden">
+            {/* header row */}
+            <div className="flex items-center gap-3 border-b border-rule px-4 py-2.5">
+              <Checkbox
+                checked={questions.length > 0 && selected.size === questions.length}
+                onCheckedChange={toggleSelectAll}
+                aria-label="Select all on this page"
+              />
+              <span className="type-data flex-1 text-[11px] uppercase tracking-wider text-pencil">
+                Question
+              </span>
+              <span className="type-data hidden w-28 text-[11px] uppercase tracking-wider text-pencil sm:block">
+                Subject
+              </span>
+              <span className="type-data hidden w-24 text-[11px] uppercase tracking-wider text-pencil md:block">
+                Status
+              </span>
+              <span className="type-data w-24 text-right text-[11px] uppercase tracking-wider text-pencil">
+                Actions
+              </span>
+            </div>
+
+            {isLoading ? (
+              <div className="divide-y divide-rule">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-3 px-4 py-3.5">
+                    <Skeleton className="h-4 w-4" />
+                    <div className="flex-1 space-y-2">
+                      <Skeleton className="h-3.5 w-2/3" />
+                      <Skeleton className="h-2.5 w-1/3" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : error ? (
+              <p className="px-4 py-12 text-center text-sm text-redpen">
+                Couldn&apos;t load questions. Please retry.
+              </p>
+            ) : questions.length === 0 ? (
+              <div className="flex flex-col items-center gap-2 px-4 py-16 text-center">
+                <FileQuestion className="h-8 w-8 text-pencil" />
+                <p className="text-sm text-ink">No questions match your filters.</p>
+                {activeChips.length > 0 && (
+                  <button type="button" onClick={clearAll} className="text-xs text-ballpoint hover:underline">
+                    Clear all filters
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div className={`divide-y divide-rule ${isFetching ? "opacity-60" : ""}`}>
+                {questions.map((q) => (
+                  <div key={q.questionId} className="flex items-center gap-3 px-4 py-3">
+                    <Checkbox
+                      checked={selected.has(q.questionId)}
+                      onCheckedChange={() => toggleSelect(q.questionId)}
+                      aria-label="Select question"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm text-ink">
+                        {plain(q.text).slice(0, 110) || "Untitled question"}
+                      </p>
+                      <p className="type-data mt-0.5 truncate text-xs text-pencil">
+                        {[q.exam, q.year, q.difficulty, q.type].filter(Boolean).join(" · ") || q.questionId}
+                      </p>
+                    </div>
+                    <span className="hidden w-28 truncate text-sm text-pencil sm:block" title={q.subject}>
+                      {q.subject || "—"}
+                    </span>
+                    <span className="hidden w-24 md:block">
+                      <StatusDot status={q.status} />
+                    </span>
+                    <div className="flex w-24 shrink-0 items-center justify-end gap-0.5">
+                      {q.status !== "ACTIVE" ? (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8"
+                          title="Publish (set active)"
+                          onClick={() => setStatus(q.questionId, "ACTIVE")}
+                        >
+                          <CheckCircle2 className="h-4 w-4 text-st-answered" />
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8"
+                          title="Archive (hide from bank)"
+                          onClick={() => setStatus(q.questionId, "ARCHIVED")}
+                        >
+                          <Archive className="h-4 w-4 text-st-review" />
+                        </Button>
+                      )}
+                      <Button variant="ghost" size="icon" className="h-8 w-8" title="Edit" onClick={() => setEditing(q)}>
+                        <Edit className="h-4 w-4 text-pencil" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        title="Delete"
+                        onClick={() => {
+                          if (window.confirm("Delete this question? This cannot be undone.")) {
+                            deleteMutation.mutate(q.questionId)
+                          }
+                        }}
+                      >
+                        <Trash2 className="h-4 w-4 text-redpen" />
                       </Button>
                     </div>
                   </div>
-
-                  {/* Statistics */}
-                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    <Card>
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Questions</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold">{totalCount}</div>
-                      </CardContent>
-                    </Card>
-                    <Card
-                      className={statusCounts.DRAFT > 0 ? "border-amber-300" : undefined}
-                    >
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Drafts to review</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold">{statusCounts.DRAFT ?? 0}</div>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Active</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold">{statusCounts.ACTIVE ?? 0}</div>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Archived</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold">{statusCounts.ARCHIVED ?? 0}</div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Search + status filter */}
-                  <div className="flex items-center gap-3">
-                    <div className="relative flex-1">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-                      <Input
-                        type="text"
-                        placeholder="Search questions..."
-                        onChange={(e) => debouncedSearch(e.target.value)}
-                        className="pl-10"
-                      />
-                    </div>
-                    <Select
-                      value={filters.status}
-                      onValueChange={(value) => {
-                        setFilters((prev) => ({ ...prev, status: value as QuestionStatus | "all" }))
-                        setCurrentPage(1)
-                      }}
-                    >
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="all">All statuses</SelectItem>
-                        <SelectItem value="DRAFT">Draft (needs review)</SelectItem>
-                        <SelectItem value="ACTIVE">Active</SelectItem>
-                        <SelectItem value="ARCHIVED">Archived</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Questions Table */}
-                  <QuestionTable
-                    currentPage={currentPage}
-                    pageSize={pageSize}
-                    onEdit={(question) => setEditingQuestion(question)}
-                    onDelete={handleDeleteQuestion}
-                    onSetStatus={handleSetStatus}
-                  />
-
-                  {/* Pagination */}
-                  <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-                </div>
+                ))}
               </div>
+            )}
+          </div>
 
-              {/* Edit Question Dialog */}
-              {editingQuestion && (
-                <Dialog open={!!editingQuestion} onOpenChange={() => setEditingQuestion(null)}>
-                  <DialogContent className="sm:max-w-[625px]">
-                    <DialogHeader>
-                      <DialogTitle>Edit Question</DialogTitle>
-                    </DialogHeader>
-                    <ScrollArea className="max-h-[80vh] overflow-y-auto">
-                      <QuestionForm initialData={editingQuestion} onSubmit={handleEditQuestion} />
-                    </ScrollArea>
-                  </DialogContent>
-                </Dialog>
-              )}
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between">
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={page <= 1 || isFetching}
+                onClick={() => {
+                  setPage((p) => Math.max(1, p - 1))
+                  setSelected(new Set())
+                }}
+              >
+                <ChevronLeft className="mr-1 h-4 w-4" />
+                Previous
+              </Button>
+              <span className="type-data text-sm text-pencil">
+                Page {page} of {totalPages.toLocaleString("en-IN")}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={page >= totalPages || isFetching}
+                onClick={() => {
+                  setPage((p) => Math.min(totalPages, p + 1))
+                  setSelected(new Set())
+                }}
+              >
+                Next
+                <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
             </div>
-          </QuestionsContext.Provider>
-        </SelectedQuestionsContext.Provider>
-      </FiltersContext.Provider>
-    </TooltipProvider>
+          )}
+        </div>
+      </div>
+
+      {/* Add dialog */}
+      <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
+        <DialogContent className="max-h-[90vh] sm:max-w-[680px]">
+          <DialogHeader>
+            <DialogTitle>Add new question</DialogTitle>
+          </DialogHeader>
+          <ScrollArea className="max-h-[75vh] pr-3">
+            <QuestionForm
+              onSubmit={(q) => addMutation.mutate(q)}
+              onCancel={() => setIsAddOpen(false)}
+              submitting={addMutation.isPending}
+            />
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit dialog */}
+      {editing && (
+        <Dialog open={!!editing} onOpenChange={() => setEditing(null)}>
+          <DialogContent className="max-h-[90vh] sm:max-w-[680px]">
+            <DialogHeader>
+              <DialogTitle>Edit question</DialogTitle>
+            </DialogHeader>
+            <ScrollArea className="max-h-[75vh] pr-3">
+              <QuestionForm
+                initialData={editing}
+                onSubmit={(q) => editMutation.mutate({ ...q, questionId: editing.questionId })}
+                onCancel={() => setEditing(null)}
+                submitting={editMutation.isPending}
+              />
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
+      )}
+    </div>
   )
 }
 
+function StatCard({
+  label,
+  value,
+  tone,
+}: {
+  label: string
+  value?: number
+  tone?: "active" | "review"
+}) {
+  const valueColor = tone === "review" ? "text-redpen" : "text-ink"
+  return (
+    <div className={`paper-sheet p-5 ${tone === "review" && value ? "border-st-review" : ""}`}>
+      <p className="text-sm text-pencil">{label}</p>
+      {value === undefined ? (
+        <Skeleton className="mt-2 h-8 w-20" />
+      ) : (
+        <p className={`type-data mt-2 text-3xl ${valueColor}`}>{value.toLocaleString("en-IN")}</p>
+      )}
+    </div>
+  )
+}

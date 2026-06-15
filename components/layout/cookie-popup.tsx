@@ -1,177 +1,180 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useConsent } from "@/components/compliance/ConsentProvider";
+import CookiePolicyContent from "@/components/legal/CookiePolicyContent";
 
+/**
+ * Cookie consent modal. Centered, with the full cookie policy in a scrollable
+ * window and the choices fixed below it — so the policy is readable in place
+ * (no navigating away). Visibility and persistence are driven by the shared
+ * ConsentProvider (first-party cookie + server mirror), so a choice here
+ * actually gates analytics via <AnalyticsGate/>; essential cookies are always
+ * on, non-essential are OFF until the user opts in (no pre-ticked boxes).
+ */
 const CookiePopup = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const { analytics, marketing, bannerOpen, updateConsent, closeBanner } =
+    useConsent();
   const [showPreferences, setShowPreferences] = useState(false);
-  const [cookiePreferences, setCookiePreferences] = useState<Record<string, boolean>>({
-    essential: true,
-    analytics: false,
-    marketing: false,
-  });
+  const [draft, setDraft] = useState({ analytics: false, marketing: false });
+  const dialogRef = useRef<HTMLDivElement>(null);
 
-  // Check for cookie consent in local storage or cookies
+  // While the modal is open: lock background scroll, move focus into the dialog,
+  // and close on Escape (mirrors AnimatedModal's behaviour for a true overlay).
   useEffect(() => {
-    const consent = localStorage.getItem("cookieConsent");
-    if (!consent) {
-      setIsVisible(true);
-    }
-  }, []);
+    if (!bannerOpen) return;
+    document.body.style.overflow = "hidden";
+    dialogRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeBanner();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [bannerOpen, closeBanner]);
 
-  // Handle Accept all button click
-  const handleAccept = () => {
-    localStorage.setItem(
-      "cookieConsent",
-      JSON.stringify({ accepted: true, preferences: cookiePreferences })
-    );
-    setIsVisible(false);
-  };
+  if (!bannerOpen) return null;
 
-  // Handle Reject all button click
-  const handleReject = () => {
-    localStorage.setItem(
-      "cookieConsent",
-      JSON.stringify({ accepted: false, preferences: cookiePreferences })
-    );
-    setIsVisible(false);
-  };
-
-  // Handle Close button click
-  const handleClose = () => {
-    setIsVisible(false);
-  };
-
-  // Handle Preferences button click
-  const handlePreferences = () => {
+  // Seed the preferences draft from current consent when opening the panel
+  // (in the event handler, not an effect).
+  const openPreferences = () => {
+    setDraft({ analytics, marketing });
     setShowPreferences(true);
   };
 
-  // Save preferences and close modal
-  const handleSavePreferences = () => {
-    localStorage.setItem(
-      "cookieConsent",
-      JSON.stringify({ accepted: true, preferences: cookiePreferences })
-    );
+  const acceptAll = () => updateConsent({ analytics: true, marketing: true });
+  const rejectAll = () => updateConsent({ analytics: false, marketing: false });
+  const savePreferences = () => {
+    updateConsent({ analytics: draft.analytics, marketing: draft.marketing });
     setShowPreferences(false);
-    setIsVisible(false);
   };
 
-  // Handle change in preferences
-  const handlePreferenceChange = (type: keyof typeof cookiePreferences) => {
-    setCookiePreferences((prev) => ({
-      ...prev,
-      [type]: !prev[type],
-    }));
-  };
-
-  // Do not render if the user has already accepted or rejected cookies
-  if (!isVisible) return null;
+  const outlineBtn =
+    "rounded-lg border border-rule px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-secondary focus:outline-none";
+  const primaryBtn =
+    "rounded-lg bg-ink px-3 py-1.5 text-xs font-medium text-paper transition-colors hover:bg-ink/90 focus:outline-none";
 
   return (
-    <>
-      {/* Cookie Popup */}
-      <section className="z-[1000] fixed max-w-md p-4 mx-auto bg-white border border-gray-200 dark:bg-gray-800 left-12 bottom-16 dark:border-gray-700 rounded-2xl">
-        <h2 className="font-semibold text-gray-800 dark:text-white">🍪 We use cookies!</h2>
-        <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">
-          Hi, this website uses essential cookies to ensure its proper operation and tracking
-          cookies to understand how you interact with it. The latter will be set only after
-          consent.{" "}
-          <a
-            href="#"
-            className="font-medium text-gray-700 underline transition-colors duration-300 dark:hover:text-blue-400 dark:text-white hover:text-blue-500"
-          >
-            Let me choose
-          </a>
-          .
-        </p>
-        <p className="mt-3 text-sm text-gray-600 dark:text-gray-300">
-          Closing this modal default settings will be saved.
-        </p>
-        <div className="grid grid-cols-2 gap-4 mt-4 shrink-0">
-          <button
-            onClick={handleAccept}
-            className="text-xs bg-gray-900 font-medium rounded-lg hover:bg-gray-700 text-white px-4 py-2.5 duration-300 transition-colors focus:outline-none"
-          >
-            Accept all
-          </button>
-          <button
-            onClick={handleReject}
-            className="text-xs border text-gray-800 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 font-medium rounded-lg px-4 py-2.5 duration-300 transition-colors focus:outline-none"
-          >
-            Reject all
-          </button>
-          <button
-            onClick={handlePreferences}
-            className="text-xs border text-gray-800 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 font-medium rounded-lg px-4 py-2.5 duration-300 transition-colors focus:outline-none"
-          >
-            Preferences
-          </button>
-          <button
-            onClick={handleClose}
-            className="text-xs border text-gray-800 hover:bg-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 font-medium rounded-lg px-4 py-2.5 duration-300 transition-colors focus:outline-none"
-          >
-            Close
-          </button>
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-ink/30 backdrop-blur-md" aria-hidden="true" />
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Cookie consent"
+        tabIndex={-1}
+        className="relative flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-rule bg-paper shadow-[0_20px_60px_rgba(15,18,35,0.25)] focus:outline-none"
+      >
+        {/* Header */}
+        <div className="border-b border-rule px-5 py-4 sm:px-6">
+          <h2 className="type-display text-xl text-ink">🍪 We use cookies</h2>
+          <p className="mt-1 text-sm text-pencil">
+            Essential cookies keep the site running. Analytics cookies stay off
+            until you allow them — and never for users under 18. Review the policy
+            below, then choose.
+          </p>
         </div>
-      </section>
 
-      {/* Preferences Modal */}
-      {showPreferences && (
-        <div className="fixed inset-0 z-[1100] flex items-center justify-center backdrop-blur-md">
-          <div className="bg-white p-6 rounded-lg shadow-md w-11/12 max-w-lg">
-            <h3 className="font-semibold text-lg text-gray-800 mb-4">Cookie Preferences</h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Choose which cookies you want to accept. You can always change these settings later.
-            </p>
+        {/* Scrollable body: policy, or the preferences panel */}
+        <div className="custom-scrollbar flex-1 overflow-y-auto px-5 py-4 sm:px-6">
+          {showPreferences ? (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Essential Cookies</span>
-                <input
-                  type="checkbox"
-                  checked={cookiePreferences.essential}
+              <div>
+                <h3 className="type-display text-base text-ink">Cookie preferences</h3>
+                <p className="mt-1 text-sm text-pencil">
+                  Choose which cookies you allow. You can change this anytime from
+                  Settings → Privacy &amp; Data.
+                </p>
+              </div>
+              <div className="divide-y divide-rule rounded-lg border border-rule">
+                <PreferenceRow
+                  label="Essential cookies"
+                  hint="Required for the site to work."
+                  checked
                   disabled
-                  className="form-checkbox h-4 w-4 text-blue-600"
                 />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Analytics Cookies</span>
-                <input
-                  type="checkbox"
-                  checked={cookiePreferences.analytics}
-                  onChange={() => handlePreferenceChange("analytics")}
-                  className="form-checkbox h-4 w-4 text-blue-600"
+                <PreferenceRow
+                  label="Analytics cookies"
+                  hint="Help us understand usage to improve the site."
+                  checked={draft.analytics}
+                  onChange={() => setDraft((d) => ({ ...d, analytics: !d.analytics }))}
                 />
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-700">Marketing Cookies</span>
-                <input
-                  type="checkbox"
-                  checked={cookiePreferences.marketing}
-                  onChange={() => handlePreferenceChange("marketing")}
-                  className="form-checkbox h-4 w-4 text-blue-600"
+                <PreferenceRow
+                  label="Marketing cookies"
+                  hint="Currently unused; reserved for future relevant updates."
+                  checked={draft.marketing}
+                  onChange={() => setDraft((d) => ({ ...d, marketing: !d.marketing }))}
                 />
               </div>
             </div>
-            <div className="flex justify-end mt-6 space-x-4">
-              <button
-                onClick={() => setShowPreferences(false)}
-                className="px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-100"
-              >
+          ) : (
+            <CookiePolicyContent />
+          )}
+        </div>
+
+        {/* Footer: choices, fixed below the scroll area */}
+        <div className="border-t border-rule px-5 py-4 sm:px-6">
+          {showPreferences ? (
+            <div className="flex justify-end gap-3">
+              <button onClick={() => setShowPreferences(false)} className={outlineBtn}>
                 Cancel
               </button>
-              <button
-                onClick={handleSavePreferences}
-                className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700"
-              >
-                Save Preferences
+              <button onClick={savePreferences} className={primaryBtn}>
+                Save preferences
               </button>
             </div>
-          </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <button onClick={acceptAll} className={primaryBtn}>
+                Accept all
+              </button>
+              <button onClick={rejectAll} className={outlineBtn}>
+                Reject non-essential
+              </button>
+              <button onClick={openPreferences} className={outlineBtn}>
+                Preferences
+              </button>
+              <button onClick={closeBanner} className={outlineBtn}>
+                Close
+              </button>
+            </div>
+          )}
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };
+
+function PreferenceRow({
+  label,
+  hint,
+  checked,
+  disabled,
+  onChange,
+}: {
+  label: string;
+  hint: string;
+  checked: boolean;
+  disabled?: boolean;
+  onChange?: () => void;
+}) {
+  return (
+    <label className="flex items-center justify-between gap-4 px-4 py-3">
+      <span className="min-w-0">
+        <span className="block text-sm font-medium text-ink">{label}</span>
+        <span className="block text-xs text-pencil">{hint}</span>
+      </span>
+      <input
+        type="checkbox"
+        checked={checked}
+        disabled={disabled}
+        onChange={onChange}
+        className="h-4 w-4 shrink-0 accent-(--ballpoint) disabled:opacity-60"
+      />
+    </label>
+  );
+}
 
 export default CookiePopup;

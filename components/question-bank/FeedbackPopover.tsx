@@ -106,70 +106,69 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline">Feedback</Button>
+        <Button variant="outline" size="sm">
+          Report
+        </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-full p-0">
-        <Card className="w-full max-w-md bg-white text-black border-zinc-200">
-          <CardHeader>
-            <CardTitle>Give feedback</CardTitle>
+      <PopoverContent className="theme-desk w-88 border-rule bg-paper p-0 text-ink sm:w-md">
+        <Card className="w-full border-0 bg-transparent">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base">Report a problem</CardTitle>
           </CardHeader>
 
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-5">
             {/* Feedback Options */}
-            <div className="space-y-1">
-              <Label className="text-zinc-900">
-                Provide additional feedback on this message. Select all that apply.
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">
+                What&apos;s wrong with this question? Select all that apply.
               </Label>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {feedbackOptions.map((option) => (
-                  <div
+                  <button
+                    type="button"
                     key={option.id}
-                    className={`flex items-center space-x-2 rounded-lg border p-3 ${
+                    onClick={() => toggleFeedback(option.id)}
+                    aria-pressed={selectedFeedback.includes(option.id)}
+                    className={`flex min-h-11 items-center gap-2 rounded-md border px-3 text-left text-sm transition-colors ${
                       selectedFeedback.includes(option.id)
-                        ? "border-blue-600 bg-blue-50"
-                        : "border-zinc-200"
+                        ? "border-ballpoint bg-ballpoint/5 text-ballpoint"
+                        : "border-rule text-ink hover:bg-secondary"
                     }`}
                   >
-                    <input
-                      type="checkbox"
-                      id={option.id}
-                      checked={selectedFeedback.includes(option.id)}
-                      onChange={() => toggleFeedback(option.id)}
-                      className="h-4 w-4 rounded-sm border-zinc-300 text-blue-600 focus:ring-2 focus:ring-blue-600"
-                    />
-                    <Label
-                      htmlFor={option.id}
-                      className={`font-normal ${
+                    <span
+                      aria-hidden="true"
+                      className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border ${
                         selectedFeedback.includes(option.id)
-                          ? "text-blue-600"
-                          : "text-zinc-900"
+                          ? "border-ballpoint bg-ballpoint text-paper"
+                          : "border-pencil"
                       }`}
                     >
-                      {option.label}
-                    </Label>
-                  </div>
+                      {selectedFeedback.includes(option.id) && (
+                        <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none">
+                          <path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </span>
+                    {option.label}
+                  </button>
                 ))}
               </div>
             </div>
 
             {/* Feedback Area */}
             <div className="space-y-2">
-              <Label className="text-zinc-900">Feedback Area</Label>
+              <Label className="text-sm text-pencil">Area</Label>
               <RadioGroup
                 value={area}
                 onValueChange={setArea}
-                className="flex flex-wrap gap-2"
+                className="flex flex-wrap gap-3"
               >
                 {["CONTENT", "UI", "BUG", "FEATURE", "OTHER"].map((value) => (
                   <div key={value} className="flex items-center space-x-2">
-                    <RadioGroupItem
-                      value={value}
-                      id={value}
-                      className="h-5 w-5 border-zinc-300 text-blue-600"
-                    />
-                    <Label htmlFor={value} className="capitalize text-zinc-900">
+                    <RadioGroupItem value={value} id={value} className="h-4 w-4" />
+                    <Label htmlFor={value} className="capitalize text-ink">
                       {value.toLowerCase()}
                     </Label>
                   </div>
@@ -179,9 +178,9 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
 
             {/* Priority */}
             <div className="space-y-2">
-              <Label className="text-zinc-900">Priority</Label>
+              <Label className="text-sm text-pencil">Priority</Label>
               <Select value={priority} onValueChange={setPriority}>
-                <SelectTrigger className="bg-zinc-50 border-zinc-300 text-zinc-900">
+                <SelectTrigger className="bg-paper">
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>
                 <SelectContent>
@@ -195,40 +194,34 @@ export default function FeedbackPopover({ questionId }: FeedbackPopoverProps) {
 
             {/* Description */}
             <div className="space-y-2">
-              <Label htmlFor="feedback" className="text-zinc-900">
-                How can we improve? (optional)
+              <Label htmlFor="feedback" className="text-sm text-pencil">
+                Anything else? (optional)
               </Label>
               <Textarea
                 id="feedback"
-                placeholder="Your feedback..."
+                placeholder="Describe the problem"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="min-h-[100px] bg-zinc-50 border-zinc-300 placeholder:text-zinc-500 text-zinc-900"
+                className="min-h-[100px] bg-paper placeholder:text-pencil"
               />
             </div>
           </CardContent>
 
-          <CardFooter className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              className="border-zinc-300 text-zinc-900 hover:bg-zinc-200"
-              onClick={handleCancel}
-              disabled={isSubmitting}
-            >
+          <CardFooter className="flex justify-end gap-2">
+            <Button variant="ghost" className="text-pencil" onClick={handleCancel} disabled={isSubmitting}>
               Cancel
             </Button>
             <Button
-              className="bg-white text-black hover:bg-zinc-200"
               onClick={handleSubmit}
               disabled={selectedFeedback.length === 0 || isSubmitting}
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Submitting...
+                  Submitting
                 </>
               ) : (
-                "Submit"
+                "Submit report"
               )}
             </Button>
           </CardFooter>

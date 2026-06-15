@@ -4,13 +4,14 @@ import React, { useReducer, useEffect, useCallback, useMemo, useState, useRef } 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
+import { useSession, signIn } from "next-auth/react";
+import { ToastAction } from "@/components/ui/toast";
 import {
   Check,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Search,
-  List,
   Filter,
   HelpCircle,
   Flag,
@@ -321,7 +322,46 @@ function Pagination({
 export default function QuestionBankContent() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { toast } = useToast();
+  const { status } = useSession();
   const fetchSeqRef = useRef(0);
+
+  // Guests can browse and answer freely, but persisting progress needs a session.
+  // Prompt them to sign in rather than letting the PATCH fail silently with a 401
+  // (which previously left the UI looking saved while nothing was written).
+  const notifySignInToSave = useCallback(() => {
+    toast({
+      variant: "info",
+      title: "Sign in to save your progress",
+      description:
+        "Browse and answer all you like — sign in to keep your completed and flagged questions across sessions.",
+      action: (
+        <ToastAction altText="Sign in" onClick={() => signIn()}>
+          Sign in
+        </ToastAction>
+      ),
+    });
+  }, [toast]);
+
+  const persistProgress = useCallback(
+    async (body: Record<string, unknown>): Promise<boolean> => {
+      if (status === "unauthenticated") {
+        notifySignInToSave();
+        return false;
+      }
+      const res = await fetch("/api/questions", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (res.status === 401) {
+        notifySignInToSave();
+        return false;
+      }
+      if (!res.ok) throw new Error(`Failed to save progress (${res.status})`);
+      return true;
+    },
+    [status, notifySignInToSave]
+  );
 
   // For mobile single-question navigation
   const [mobileIndex, setMobileIndex] = useState(0);
@@ -514,11 +554,7 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_ACTION_LOADING", payload: true });
       try {
         const val = newVal ?? true;
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: val }),
-        });
+        await persistProgress({ questionId, completed: val });
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
@@ -536,7 +572,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.questions, toast]
+    [state.questions, toast, persistProgress]
   );
 
   const handleMarkForReview = useCallback(
@@ -544,11 +580,7 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_ACTION_LOADING", payload: true });
       try {
         const val = newVal ?? true;
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, reviewed: val }),
-        });
+        await persistProgress({ questionId, reviewed: val });
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
@@ -566,7 +598,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.questions, toast]
+    [state.questions, toast, persistProgress]
   );
 
   const handleOptionClick = useCallback(
@@ -615,11 +647,7 @@ export default function QuestionBankContent() {
           payload: { ...state.numericalAnswers, [questionId]: userAns },
         });
 
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: true }),
-        });
+        await persistProgress({ questionId, completed: true });
 
         dispatch({
           type: "SET_QUESTIONS",
@@ -638,7 +666,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.feedback, state.numericalAnswers, state.questions, toast]
+    [state.feedback, state.numericalAnswers, state.questions, toast, persistProgress]
   );
 
   const handleResetQuestion = useCallback(
@@ -664,11 +692,7 @@ export default function QuestionBankContent() {
           ),
         });
 
-        await fetch("/api/questions", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questionId, completed: false, reviewed: false }),
-        });
+        await persistProgress({ questionId, completed: false, reviewed: false });
       } catch (err) {
         console.error("Error resetting question:", err);
         toast({
@@ -680,7 +704,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions, toast]
+    [state.feedback, state.selectedOptions, state.numericalAnswers, state.questions, toast, persistProgress]
   );
 
   /* ------------------------------
@@ -713,98 +737,33 @@ export default function QuestionBankContent() {
     const progressPct = total > 0 ? Math.round((answered / total) * 100) : 0;
 
     return (
-      <Card
-        className="
-          bg-gradient-to-br from-gray-200 to-gray-100
-          dark:from-gray-900 dark:to-gray-800
-          text-gray-900 dark:text-gray-100
-          border-gray-200 dark:border-gray-700
-          mb-6
-        "
-      >
-        <CardContent className="p-6">
-          <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-200 mb-6">
-            Question Progress
-          </h2>
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                Overall Progress
-              </span>
-              <span className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-300">
-                {progressPct}%
-              </span>
-            </div>
-            <Progress
-              value={progressPct}
-              className="w-full h-1.5 bg-gray-300 dark:bg-gray-700"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {/* total */}
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                <div className="text-blue-400 p-2 rounded-full bg-blue-400/10">
-                  <HelpCircle className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-2xl font-light tracking-tighter text-blue-600 dark:text-blue-300">
-                    {total}
-                  </p>
-                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                    Total Questions
-                  </p>
-                </div>
-              </div>
-              {/* answered */}
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                <div className="text-green-400 p-2 rounded-full bg-green-400/10">
-                  <svg
-                    className="h-5 w-5"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-2xl font-light tracking-tighter text-green-600 dark:text-green-300">
-                    {answered}
-                  </p>
-                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                    Answered
-                  </p>
-                </div>
-              </div>
-              {/* flagged */}
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                <div className="text-yellow-400 p-2 rounded-full bg-yellow-400/10">
-                  <Flag className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-2xl font-light tracking-tighter text-yellow-600 dark:text-yellow-300">
-                    {reviewed}
-                  </p>
-                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                    For Review
-                  </p>
-                </div>
-              </div>
-              {/* not answered */}
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
-                <div className="text-red-400 p-2 rounded-full bg-red-400/10">
-                  <HelpCircle className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-2xl font-light tracking-tighter text-red-600 dark:text-red-300">
-                    {notAnswered}
-                  </p>
-                  <p className="text-sm font-light tracking-tight text-gray-500 dark:text-gray-400">
-                    Not Answered
-                  </p>
-                </div>
-              </div>
-            </div>
+      <Card className="paper-sheet mb-6">
+        <CardContent className="p-5 sm:p-6">
+          {/* Attempt-sheet summary: one ledger line, not stat tiles */}
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+              Attempt sheet
+            </p>
+            <p className="type-data text-sm text-ink">
+              {answered}
+              <span className="text-pencil">/{total}</span>
+              <span className="ml-2 text-pencil">{progressPct}% inked</span>
+            </p>
+          </div>
+          <Progress value={progressPct} className="mt-3 h-1 w-full bg-rule" />
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="flex items-center gap-2 text-sm text-pencil">
+              <span className="h-2 w-2 rounded-full bg-st-answered" aria-hidden="true" />
+              <span className="type-data text-ink">{answered}</span> answered
+            </span>
+            <span className="flex items-center gap-2 text-sm text-pencil">
+              <span className="h-2 w-2 rounded-full bg-st-review" aria-hidden="true" />
+              <span className="type-data text-ink">{reviewed}</span> marked for review
+            </span>
+            <span className="flex items-center gap-2 text-sm text-pencil">
+              <span className="h-2 w-2 rounded-full bg-st-notvisited" aria-hidden="true" />
+              <span className="type-data text-ink">{notAnswered}</span> unattempted
+            </span>
           </div>
         </CardContent>
       </Card>
@@ -816,8 +775,8 @@ export default function QuestionBankContent() {
      ------------------------------ */
   if (state.loading || state.actionLoading) {
     return (
-      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
+      <div className="w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
           <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
           <div className="flex space-x-4 mb-6">
             <Skeleton height={40} width={120} />
@@ -833,7 +792,7 @@ export default function QuestionBankContent() {
           </div>
           <div>
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="mb-4 p-4 border rounded-md dark:border-gray-700">
+              <div key={i} className="paper-sheet mb-4 p-4">
                 <Skeleton height={20} width={"80%"} />
                 <Skeleton height={20} width={"90%"} />
                 <Skeleton height={20} width={"60%"} />
@@ -851,16 +810,42 @@ export default function QuestionBankContent() {
   if (state.viewMode === ViewMode.MOBILE) {
     if (!filteredQuestions.length) {
       return (
-        <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
+        <div className="min-h-screen p-4">
           <div className="max-w-3xl mx-auto">
-            <Button
-              variant="outline"
-              onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
-              className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100"
-            >
-              Desktop View
-            </Button>
-            <p className="mt-6 text-red-300">No questions found with these filters.</p>
+            {/* Keep filter access so the user can fix the empty result */}
+            <div className="mb-6 flex items-center justify-between">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
+              >
+                Desktop view
+              </Button>
+              <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
+                <DialogTrigger asChild>
+                  <Button variant="outline" size="sm" className="flex items-center">
+                    <Filter className="w-4 h-4 mr-2" />
+                    Filters
+                  </Button>
+                </DialogTrigger>
+                <DialogContent
+                  className="fixed top-0 left-0 w-screen h-screen bg-paper text-ink flex flex-col custom-scrollbar pt-10 sm:w-[500px] sm:h-auto sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md"
+                >
+                  <FiltersDialogMobile
+                    open={filtersOpenMobile}
+                    onOpenChange={setFiltersOpenMobile}
+                    state={state}
+                    dispatch={dispatch}
+                  />
+                </DialogContent>
+              </Dialog>
+            </div>
+            <div className="paper-sheet p-10 text-center">
+              <p className="text-ink">No questions match these filters.</p>
+              <p className="mt-1 text-sm text-pencil">
+                Open Filters to clear one and see more.
+              </p>
+            </div>
           </div>
         </div>
       );
@@ -872,14 +857,14 @@ export default function QuestionBankContent() {
     const displayNumber = mobileIndex + 1;
 
     return (
-      <div className="min-h-screen p-4 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900">
+      <div className="min-h-screen p-4">
         <div className="max-w-3xl mx-auto">
           {/* Top bar */}
           <div className="flex justify-between items-center mb-6">
             <Button
               variant="outline"
               size="sm"
-              className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100"
+              
               onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.DESKTOP })}
             >
               Desktop View
@@ -890,7 +875,7 @@ export default function QuestionBankContent() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100 flex items-center"
+                    className="flex items-center"
                   >
                     <Filter className="w-4 h-4 mr-2" />
                     Filters
@@ -899,7 +884,7 @@ export default function QuestionBankContent() {
                 <DialogContent
                   className={`
                     fixed top-0 left-0 w-screen h-screen
-                    bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                    bg-paper text-ink
                     flex flex-col custom-scrollbar
                     pt-10
                     sm:w-[500px] sm:h-auto sm:max-h-[90vh]
@@ -916,7 +901,7 @@ export default function QuestionBankContent() {
                 </DialogContent>
               </Dialog>
 
-              <span className="text-sm text-gray-500 dark:text-gray-400">
+              <span className="type-data text-sm text-pencil">
                 {displayNumber} / {total}
               </span>
             </div>
@@ -939,7 +924,7 @@ export default function QuestionBankContent() {
       sm:fixed sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2
       w-screen h-screen   /* full for mobile */
       sm:w-[500px] sm:h-auto sm:max-h-[90vh]
-      bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+      bg-paper text-ink
       sm:rounded-md
       flex flex-col
     `}
@@ -1015,7 +1000,7 @@ export default function QuestionBankContent() {
           <div className="flex justify-between mt-6">
             <Button
               variant="outline"
-              className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100"
+              
               onClick={() => setMobileIndex(Math.max(0, mobileIndex - 1))}
               disabled={mobileIndex === 0}
             >
@@ -1023,7 +1008,7 @@ export default function QuestionBankContent() {
             </Button>
             <Button
               variant="outline"
-              className="border-gray-300 font-medium text-gray-700 dark:border-gray-600 dark:text-gray-100"
+              
               onClick={() => setMobileIndex(Math.min(total - 1, mobileIndex + 1))}
               disabled={mobileIndex === total - 1}
             >
@@ -1038,58 +1023,49 @@ export default function QuestionBankContent() {
   /* ------------------------------------------------------------------
      13) DESKTOP VIEW
      ------------------------------------------------------------------ */
-  if (!filteredQuestions.length) {
-    return (
-      <div className="bg-white dark:bg-gray-900 w-full min-h-screen p-4 sm:p-8 text-gray-900 dark:text-gray-100">
-        <div className="max-w-6xl mx-auto">
-          <Button
-            variant="outline"
-            onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })}
-          >
-            Mobile View
-          </Button>
-          <p className="mt-6 text-red-300">No questions found with these filters.</p>
-        </div>
-      </div>
-    );
-  }
+  // Note: we intentionally do NOT early-return on an empty result here — the
+  // search, filters, status row and the attempt/answer sheets must stay on
+  // screen so the user can adjust the filters that produced no matches. The
+  // empty message is shown in the question-list area below instead.
 
   return (
     <TooltipProvider>
-      <div className="bg-white dark:bg-gray-900 w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
-        <div className="max-w-6xl w-full text-gray-900 dark:text-gray-100">
+      <div className="w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
+        <div className="max-w-6xl w-full">
           {/* Switch to Mobile */}
           <div className="flex justify-end mb-4">
             <Button
               variant="outline"
               onClick={() => dispatch({ type: "SET_VIEW_MODE", payload: ViewMode.MOBILE })}
             >
-              Switch to Mobile View
+              Switch to mobile view
             </Button>
           </div>
 
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
+          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+            Previous year questions
+          </p>
+          <h1 className="type-display mb-2 mt-1 text-left text-3xl sm:text-4xl">
+            Question Bank
+          </h1>
 
           {/* Search + mobile filters + navigator */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">
               <Input
                 type="text"
-                placeholder="Search questions..."
+                placeholder="Search questions"
                 value={state.searchQuery}
                 onChange={(e) => dispatch({ type: "SET_SEARCH_QUERY", payload: e.target.value })}
-                className="pl-10 dark:text-gray-100 dark:bg-gray-800 dark:placeholder-gray-400"
+                className="bg-paper pl-10"
               />
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-300" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
             </div>
 
             {/* Mobile filters button (hidden on desktop) */}
             <Dialog open={filtersOpenMobile} onOpenChange={setFiltersOpenMobile}>
               <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 sm:hidden flex items-center"
-                >
+                <Button variant="outline" className="sm:hidden flex items-center">
                   <Filter className="mr-2 h-4 w-4" />
                   Filters
                 </Button>
@@ -1098,7 +1074,7 @@ export default function QuestionBankContent() {
                 className="
                   fixed top-0 left-0 w-screen h-screen
                   sm:w-[500px] sm:max-h-[90vh] sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
-                  bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                  bg-paper text-ink
                   flex flex-col custom-scrollbar
                   pt-10
                 "
@@ -1115,47 +1091,69 @@ export default function QuestionBankContent() {
             {/* Desktop question navigator */}
             <Dialog open={navigatorOpen} onOpenChange={setNavigatorOpen}>
               <DialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="dark:border-gray-700 dark:hover:border-gray-500 dark:text-gray-100 hidden sm:flex"
-                >
-                  <List className="mr-2 h-4 w-4" />
-                  Question Navigator
+                <Button variant="outline" className="hidden sm:flex">
+                  Answer sheet
                 </Button>
               </DialogTrigger>
               <DialogContent
                 onCloseAutoFocus={(e) => e.preventDefault()}
-                className="sm:max-w-[80vw] sm:max-h-[80vh] dark:bg-gray-800 dark:text-gray-100 custom-scrollbar pt-6"
+                className="paper-sheet sm:max-w-2xl sm:max-h-[85vh]"
               >
-                <ScrollArea className="h-[60vh] custom-scrollbar">
-                  <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 p-4">
+                <DialogHeader className="text-left">
+                  <DialogTitle className="type-display text-lg text-ink">Answer sheet</DialogTitle>
+                  <p className="text-sm text-pencil">Tap a number to jump to that question.</p>
+                </DialogHeader>
+
+                {/* Status summary */}
+                <div className="flex flex-wrap gap-x-6 gap-y-2 border-y border-rule py-3">
+                  {(
+                    [
+                      ["answered", "Answered", "bg-st-answered"],
+                      ["review", "For review", "bg-st-review"],
+                      ["notvisited", "Not visited", "bg-st-notvisited"],
+                    ] as const
+                  ).map(([key, label, dot]) => {
+                    const n = filteredQuestions.filter((q) =>
+                      key === "answered"
+                        ? q.completed
+                        : key === "review"
+                        ? !q.completed && q.reviewed
+                        : !q.completed && !q.reviewed
+                    ).length;
+                    return (
+                      <span key={key} className="flex items-center gap-2 text-sm text-pencil">
+                        <span className={`h-2.5 w-2.5 rounded-sm ${dot}`} />
+                        <span className="type-data text-ink">{n}</span> {label}
+                      </span>
+                    );
+                  })}
+                </div>
+
+                <ScrollArea className="h-[55vh] custom-scrollbar">
+                  <div className="grid grid-cols-6 gap-2.5 py-4 sm:grid-cols-10">
                     {filteredQuestions.map((q, index) => {
                       const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
                       const displayNum = absoluteIndex + 1;
+                      const tile = q.completed
+                        ? "border-st-answered bg-st-answered text-paper"
+                        : q.reviewed
+                        ? "border-st-review bg-st-review text-paper"
+                        : "border-rule bg-paper text-pencil hover:border-ballpoint hover:text-ballpoint";
+                      const status = q.completed ? "answered" : q.reviewed ? "for review" : "not visited";
                       return (
-                        <Button
+                        <button
                           key={q.questionId}
-                          variant={q.completed ? "default" : "outline"}
-                          size="sm"
+                          type="button"
+                          aria-label={`Go to question ${displayNum} (${status})`}
                           onClick={() => {
                             const el = document.getElementById(`question-${q.questionId}`);
-                            if (el) {
-                              el.scrollIntoView({ behavior: "smooth", block: "start" });
-                            }
+                            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                            setNavigatorOpen(false);
                           }}
-                          className={`
-                            w-10 h-10 dark:border-gray-700
-                            ${
-                              q.completed
-                                ? "bg-green-100 border-green-500 text-green-700 dark:bg-green-900 dark:border-green-500 dark:text-green-300"
-                                : q.reviewed
-                                ? "bg-yellow-100 border-yellow-500 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
-                                : ""
-                            }
-                          `}
+                          className={`flex h-10 w-10 items-center justify-center rounded-md border type-data text-sm font-medium transition-colors ${tile}`}
                         >
                           {displayNum}
-                        </Button>
+                        </button>
                       );
                     })}
                   </div>
@@ -1169,26 +1167,35 @@ export default function QuestionBankContent() {
             <ProgressCard />
           </div>
 
-          {/* Status Filter Row (desktop) */}
-          <div className="hidden sm:flex space-x-4 mb-2">
-            {["all", "complete", "review", "incomplete"].map((st) => {
-              const isActive = state.filters.status === st;
+          {/* Status filter row (desktop) — speaks the CBT legend */}
+          <div className="hidden sm:flex gap-2 mb-2">
+            {(
+              [
+                { key: "all", label: "All", dot: "bg-ballpoint" },
+                { key: "complete", label: "Answered", dot: "bg-st-answered" },
+                { key: "review", label: "Marked for review", dot: "bg-st-review" },
+                { key: "incomplete", label: "Unattempted", dot: "bg-st-notvisited" },
+              ] as const
+            ).map(({ key, label, dot }) => {
+              const isActive = state.filters.status === key;
               return (
                 <button
-                  key={st}
+                  key={key}
                   onClick={() =>
-                    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: st } })
+                    dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: key } })
                   }
+                  aria-pressed={isActive}
                   className={`
-                    px-4 py-2 rounded-md transition-colors
+                    flex min-h-11 items-center gap-2 rounded-md border px-4 py-2 text-sm transition-colors
                     ${
                       isActive
-                        ? "border border-green-500 bg-green-50 text-green-700"
-                        : "bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-gray-700 dark:hover:border-gray-500 text-gray-500 dark:text-gray-100"
+                        ? "border-ink bg-paper font-medium text-ink"
+                        : "border-rule bg-transparent text-pencil hover:border-pencil"
                     }
                   `}
                 >
-                  {st.charAt(0).toUpperCase() + st.slice(1)}
+                  <span className={`h-2 w-2 rounded-full ${dot}`} aria-hidden="true" />
+                  {label}
                 </button>
               );
             })}
@@ -1219,7 +1226,7 @@ export default function QuestionBankContent() {
                     dispatch({ type: "SET_DROPDOWN", payload: { tag: filterType, value: !!open } });
                   }}
                   content={
-                    <div className="p-2 w-full sm:w-80 bg-white dark:bg-gray-800 rounded-md custom-scrollbar max-h-60 overflow-auto">
+                    <div className="p-2 w-full sm:w-80 rounded-md border border-rule bg-paper custom-scrollbar max-h-60 overflow-auto">
                       <DesktopFilterSearch
                         filterType={filterType}
                         filterValues={filterValues}
@@ -1237,20 +1244,24 @@ export default function QuestionBankContent() {
                       });
                     }}
                     className={`
-                      flex w-full sm:w-36 items-center justify-between
-                      rounded-md border border-gray-300 dark:border-gray-700 px-4 py-2
-                      bg-white dark:bg-gray-800
-                      transition-all duration-75
-                      hover:border-gray-800 dark:hover:border-gray-500
-                      focus:outline-none active:bg-gray-100 dark:active:bg-gray-700
+                      flex w-full sm:w-36 min-h-11 items-center justify-between
+                      rounded-md border px-4 py-2 text-sm capitalize
+                      transition-colors duration-75
+                      ${
+                        state.filters[filterType].length
+                          ? "border-ballpoint bg-paper text-ballpoint"
+                          : "border-rule bg-paper text-pencil hover:border-pencil"
+                      }
                     `}
                   >
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p>
                       {state.filters[filterType].length
                         ? `${state.filters[filterType].length} selected`
+                        : filterType === "customTags"
+                        ? "my tags"
                         : filterType}
                     </p>
-                    <ChevronDown className="h-4 w-4 text-gray-600 dark:text-gray-300 transition-all" />
+                    <ChevronDown className="h-4 w-4 transition-all" />
                   </button>
                 </Popover>
               );
@@ -1258,7 +1269,7 @@ export default function QuestionBankContent() {
           </div>
 
           {/* Desktop: Questions List + Pagination */}
-          {state.questions.length > 0 ? (
+          {filteredQuestions.length > 0 ? (
             <>
               {filteredQuestions.map((q, index) => {
                 const absoluteIndex = (state.currentPage - 1) * state.pageSize + index;
@@ -1311,9 +1322,12 @@ export default function QuestionBankContent() {
               />
             </>
           ) : (
-            <p className="text-red-400 dark:text-red-300">
-              No questions found with these filters.
-            </p>
+            <div className="paper-sheet mt-2 p-10 text-center">
+              <p className="text-ink">No questions match these filters.</p>
+              <p className="mt-1 text-sm text-pencil">
+                Clear a filter or your search above to see more.
+              </p>
+            </div>
           )}
         </div>
       </div>
@@ -1377,10 +1391,10 @@ function DesktopFilterSearch({
     <>
       <Input
         type="text"
-        placeholder={`Search ${filterType.toLowerCase()}...`}
+        placeholder={`Search ${filterType.toLowerCase()}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-2 dark:text-gray-100 dark:bg-gray-700 dark:placeholder-gray-400"
+        className="mb-2 bg-paper"
       />
       <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
         {displayedValues.map((val) => {
@@ -1391,26 +1405,15 @@ function DesktopFilterSearch({
               layout
               initial={false}
               onClick={() => toggleItem(val)}
-              animate={{
-                backgroundColor: isSelected ? "#E6F7FF" : "rgba(229, 231, 235, 0.5)",
-              }}
-              whileHover={{
-                backgroundColor: isSelected ? "#CCEEFF" : "rgba(229, 231, 235, 0.8)",
-              }}
-              whileTap={{
-                backgroundColor: isSelected ? "#B3E6FF" : "rgba(229, 231, 235, 0.9)",
-              }}
-              transition={{
-                ...transitionProps,
-                backgroundColor: { duration: 0.1 },
-              }}
+              transition={transitionProps}
               className={`
                 inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
                 whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                transition-colors
                 ${
                   isSelected
-                    ? "text-blue-600 ring-blue-200"
-                    : "text-gray-600 ring-gray-200"
+                    ? "text-ballpoint ring-ballpoint bg-secondary"
+                    : "text-pencil ring-rule bg-transparent hover:bg-secondary"
                 }
               `}
             >
@@ -1435,8 +1438,8 @@ function DesktopFilterSearch({
                       transition={transitionProps}
                       className="absolute right-0"
                     >
-                      <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
-                        <Check className="w-2.5 h-2.5 text-white" strokeWidth={2} />
+                      <div className="w-3.5 h-3.5 rounded-full bg-ballpoint flex items-center justify-center">
+                        <Check className="w-2.5 h-2.5 text-paper" strokeWidth={2} />
                       </div>
                     </motion.span>
                   )}
@@ -1541,8 +1544,8 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
       transition-all duration-200 ease-in-out
       ${
         selected
-          ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
-          : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
+          ? "bg-secondary text-ballpoint ring-ballpoint"
+          : "bg-transparent text-pencil ring-rule hover:bg-secondary"
       }
     `;
   }
@@ -1551,7 +1554,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className={`
-          w-screen h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+          w-screen h-screen bg-paper text-ink
           custom-scrollbar pt-10
           sm:w-[500px] sm:h-auto sm:max-h-[90vh]
           sm:left-1/2 sm:top-1/2 sm:fixed sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
@@ -1559,15 +1562,15 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
         style={{ overflowY: "auto" }}
       >
         {/* top bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b dark:border-gray-700">
-          <h2 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-rule">
+          <h2 className="type-display text-2xl">
             Filters
           </h2>
           <Button
             variant="ghost"
             size="icon"
             onClick={() => onOpenChange(false)}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-all"
+            className="text-pencil hover:text-ink transition-all"
           >
             ✕
           </Button>
@@ -1577,7 +1580,7 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
           <div className="max-w-3xl mx-auto space-y-10">
             {/* Status row */}
             <div>
-              <p className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100 mb-2">
+              <p className="type-display text-2xl mb-2">
                 Status
               </p>
               <div className="flex flex-wrap gap-2">
@@ -1702,25 +1705,25 @@ function MobileFilterSection({
       transition-all duration-200 ease-in-out
       ${
         selected
-          ? "bg-blue-50 text-blue-600 ring-blue-200 hover:bg-blue-100"
-          : "bg-gray-50 text-gray-600 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:ring-gray-700 dark:text-gray-200"
+          ? "bg-secondary text-ballpoint ring-ballpoint"
+          : "bg-transparent text-pencil ring-rule hover:bg-secondary"
       }
     `;
   }
 
   return (
     <div className="space-y-4">
-      <h3 className="text-2xl font-semibold tracking-tight text-gray-800 dark:text-gray-100">
-        {title}
+      <h3 className="type-display text-2xl">
+        {title === "customTags" ? "My Tags" : transformFilterItem(title)}
       </h3>
       <div className="relative">
         <Input
           placeholder={`Search ${title.toLowerCase()}...`}
           value={searchValue}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-blue-500 pl-10 py-2 text-gray-800 dark:text-gray-100"
+          className="bg-paper pl-10 py-2"
         />
-        <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+        <Search className="absolute left-3 top-3 h-5 w-5 text-pencil" />
       </div>
       <div className="flex flex-col gap-2">
         {items.map((item) => {
@@ -1734,8 +1737,8 @@ function MobileFilterSection({
               <span className="mr-1.5">{transformFilterItem(item)}</span>
               {isSelected && (
                 <span className="flex-shrink-0">
-                  <div className="w-3.5 h-3.5 rounded-full bg-blue-500 flex items-center justify-center">
-                    <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />
+                  <div className="w-3.5 h-3.5 rounded-full bg-ballpoint flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 text-paper" strokeWidth={3} />
                   </div>
                 </span>
               )}

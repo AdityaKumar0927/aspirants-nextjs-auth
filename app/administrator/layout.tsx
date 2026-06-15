@@ -7,6 +7,7 @@ import { sfPro, inter } from "../fonts";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { AdminLayout } from "./application-layout";
+import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import { useSession, SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -14,58 +15,37 @@ import { useEffect } from 'react';
 // Configuration for FontAwesome
 config.autoAddCss = false;
 
-// Define the updated Event type to match the ApplicationLayout's expected type
-interface Event {
-  id: number;
-  name: string;
-  url: string;
-  date: string;
-  time: string;
-  location: string;
-  totalRevenue: string;
-  totalRevenueChange: string;
-  ticketsAvailable: number;
-  ticketsSold: number;
-  ticketsSoldChange: string;
-  thumbUrl: string;
-  pageViews: string; // Corrected to match the expected type
-  pageViewsChange: string;
-  status: string;
-  imgUrl: string;
-}
-
+// Client-side guard by ROLE (not a hardcoded email allowlist). This is a UX
+// convenience only — the authoritative gate is the edge middleware, which
+// blocks /administrator for anyone whose JWT role !== "administrator".
 function AuthorizationGuard({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const allowedEmails = ['artistadityakumar@gmail.com', 'aditanshu.sinha@gmail.com'];
+  const isAdmin = session?.user?.role === "administrator";
 
   useEffect(() => {
-    if (status === 'loading') return;
+    if (status === "loading") return;
+    if (!isAdmin) router.replace("/");
+  }, [isAdmin, status, router]);
 
-    if (!session || !allowedEmails.includes(session.user?.email || '')) {
-      router.push('/'); // Redirect unauthorized users
-    }
-  }, [session, status, router]);
-
-  return session && allowedEmails.includes(session.user?.email || '') ? <>{children}</> : null;
+  if (status === "loading") {
+    return (
+      <div className="flex h-screen items-center justify-center bg-desk text-pencil">
+        Checking access…
+      </div>
+    );
+  }
+  return isAdmin ? <>{children}</> : null;
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Correctly typed events array, initializing with an empty array
-  const events: Event[] = []; // Replace with actual events fetching logic if needed
-
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <script
-          async
-          id="MathJax-script"
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>
-      </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
+        </head>
+      <body className={cx(sfPro.variable, inter.variable, "theme-desk")}>
         <SessionProvider>
           <AuthorizationGuard>
             <AdminLayout>
@@ -73,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </AdminLayout>
           </AuthorizationGuard>
         </SessionProvider>
+        <ComplianceProviders />
       </body>
     </html>
   );

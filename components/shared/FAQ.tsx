@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import {
   Accordion,
   AccordionContent,
@@ -9,42 +10,47 @@ import {
 
 const faqs = [
   {
-    section: "General",
+    section: "Getting started",
     qa: [
       {
-        question: "What is aspirants?",
-        answer: "aspirants is an online platform designed to help students and professionals prepare for competitive exams with comprehensive resources, practice tests, and interactive features.",
+        question: "What is Penwise?",
+        answer:
+          "Penwise is a study platform for Indian competitive exams — JEE, NEET, GATE, UPSC and more. You get a large bank of past-paper questions, full-length mock exams, study notes and progress tracking in one place.",
       },
       {
-        question: "How can I get started with aspirants?",
-        answer: "To get started, simply create an account on our website, explore our available resources, and start practicing with our tailored study materials and tests.",
+        question: "How do I get started?",
+        answer:
+          "Sign in with Google, tell us your date of birth and accept the consent notice, and you're in. Head to the question bank to start practising, or take a mock exam to benchmark yourself.",
       },
-    ],
-  },
-  {
-    section: "Support",
-    qa: [
       {
-        question: "Does aspirants offer technical support?",
-        answer: "Yes, aspirants provides technical support through our help center and customer support email. You can also find answers to common issues in our FAQ section.",
+        question: "Is it free?",
+        answer:
+          "The core question bank and practice tools are free to use. Sign in to save your progress, notes and mock-exam attempts.",
       },
     ],
   },
   {
-    section: "Customization",
+    section: "Practising",
     qa: [
       {
-        question: "Can I customize my study plan on aspirants?",
-        answer: "aspirants allows you to customize your study plan based on your specific goals and timelines. You can track your progress and adjust your plan as needed.",
+        question: "Can I tailor my practice?",
+        answer:
+          "Yes. Filter questions by exam, subject, topic, year, difficulty and type, mark questions for review, and track what you've completed. Your progress and notes are saved to your account.",
+      },
+      {
+        question: "How do mock exams work?",
+        answer:
+          "Pick an exam, year and shift, then sit a timed paper in a CBT-style interface with an answer sheet and review flags. At the end you get a scorecard with a topic-by-topic breakdown.",
       },
     ],
   },
   {
-    section: "Integration",
+    section: "Your data",
     qa: [
       {
-        question: "Can I integrate aspirants with other tools?",
-        answer: "Currently, aspirants is a standalone platform, but we are working on integrating with other popular tools and apps to enhance your study experience. Stay tuned for updates!",
+        question: "How is my data handled?",
+        answer:
+          "We follow India's Digital Personal Data Protection Act. You can download your data, manage your consents, or request erasure any time from Settings → Privacy & Data.",
       },
     ],
   },
@@ -52,43 +58,55 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-16 bg-white dark:bg-dark-background">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <h2 className="text-3xl font-light tracking-tight text-center mb-2 text-black dark:text-white">
-          Still Got Questions?
-        </h2>
-        <p className="text-lg text-center text-gray-500 dark:text-gray-400 mb-12 tracking-tight">
-          We&apos;ve got answers
-        </p>
-        
-        {faqs.map((faq, idx) => (
-          <div key={idx} className="mb-8">
-            <h3 className="text-lg font-normal text-gray-400 dark:text-gray-500 mb-4 tracking-tight">
-              {faq.section}
-            </h3>
-            <Accordion type="single" collapsible className="border-t border-gray-100 dark:border-gray-800">
-              {faq.qa.map((item, itemIdx) => (
-                <AccordionItem key={itemIdx} value={item.question} className="border-b border-gray-100 dark:border-gray-800">
-                  <AccordionTrigger className="text-left py-4 hover:no-underline font-light tracking-tight text-black dark:text-white">
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="py-4 text-gray-500 dark:text-gray-400 font-light tracking-tight">
-                    {item.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        ))}
-        
-        <p className="text-center text-sm text-gray-400 dark:text-gray-500 mt-12 tracking-tight">
-          Still have questions? Email us at{" "}
-          <a href="mailto:contactus@aspirants.tech" className="text-blue-500 hover:underline">
-            contactus@aspirants.tech
-          </a>
-        </p>
+    <section id="faq" className="py-20 sm:py-28">
+      <div className="container mx-auto grid max-w-5xl gap-12 px-4 lg:grid-cols-[2fr,3fr] lg:gap-16">
+        {/* Left rail — heading + contact CTA */}
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
+            FAQ
+          </p>
+          <h2 className="mt-3 text-3xl font-light tracking-tight text-black dark:text-white sm:text-4xl">
+            Still got questions?
+          </h2>
+          <p className="mt-3 text-base font-light tracking-tight text-gray-500 dark:text-gray-400">
+            Everything you need to know about practising on Penwise. Can&apos;t
+            find your answer?
+          </p>
+          <Link
+            href="/contact"
+            className="mt-5 inline-flex h-11 items-center rounded-lg bg-black px-5 text-sm font-medium text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+          >
+            Contact us
+          </Link>
+        </div>
+
+        {/* Right — grouped questions */}
+        <div className="space-y-10">
+          {faqs.map((faq) => (
+            <div key={faq.section}>
+              <h3 className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-gray-400 dark:text-gray-500">
+                {faq.section}
+              </h3>
+              <Accordion type="single" collapsible className="w-full">
+                {faq.qa.map((item) => (
+                  <AccordionItem
+                    key={item.question}
+                    value={item.question}
+                    className="border-b border-gray-200 dark:border-gray-800"
+                  >
+                    <AccordionTrigger className="py-5 text-left text-base font-normal tracking-tight text-black hover:no-underline dark:text-white">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 text-[15px] font-light leading-relaxed tracking-tight text-gray-600 dark:text-gray-400">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
-

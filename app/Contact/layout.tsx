@@ -1,10 +1,10 @@
 import "../globals.css";
 import cx from "classnames";
-import { sfPro, inter } from "../fonts";
+import { sfPro, inter, deskFontVars } from "../fonts";
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { Suspense } from "react";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
@@ -16,7 +16,7 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 config.autoAddCss = false;
 
 export const metadata = {
-  title: "aspirants",
+  title: "penwise",
   description: "",
   metadataBase: new URL("https://aspirants.tech/"),
 };
@@ -34,34 +34,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <script
-          async
-          id="MathJax-script"
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.MathJax = {
-                tex: {
-                  inlineMath: [['$', '$'], ['\\(', '\\)']],
-                  displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                },
-                options: {
-                  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                },
-                startup: {
-                  ready: () => {
-                    window.MathJax.startup.defaultReady();
-                    window.MathJax.startup.promise.then(() => {
-                      console.log('MathJax is loaded, configured, and ready');
-                    });
-                  },
-                },
-              };
-            `,
-          }}
-        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -83,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, "bg-white")}>
+      <body className={cx(sfPro.variable, inter.variable, deskFontVars, "theme-desk desk-grid")}>
         <LoadingProvider> 
           <UserPerformanceProvider userId={userId}> 
             <TooltipProvider>
@@ -96,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </main>
               <Bar userId={userId} />
               <Footer />
-              <VercelAnalytics />
+              <ComplianceProviders />
             </TooltipProvider>
             <Toaster />
           </UserPerformanceProvider> 

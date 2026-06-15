@@ -11,21 +11,24 @@ import { useSession } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
+import Popover from "@/components/shared/popover";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import {
   Check,
   ChevronDown,
   Filter,
   Search,
-} from "lucide-react";
+  Chart,
+  Target,
+  Refresh,
+  Layers,
+} from "@/components/desk/icons";
 import {
   ResponsiveContainer,
   CartesianGrid,
@@ -35,11 +38,8 @@ import {
   Legend,
   BarChart,
   Bar,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
-  Cell,
+  AreaChart,
+  Area,
 } from "recharts";
 
 /* ------------------------------------------------------------------
@@ -305,17 +305,67 @@ function transformFilterItem(value: string): string {
     .join(" ");
 }
 
-function fuzzyContains(haystack: string, needle: string): boolean {
-  if (!needle) return true;
-  return haystack.toLowerCase().includes(needle.toLowerCase());
-}
-
 const transitionProps: Transition = {
   type: "spring",
   stiffness: 500,
   damping: 30,
   mass: 0.5,
 };
+
+/* Desk chart palette — the app forces light theme in this modal, so concrete
+   hex (recharts can't read CSS vars in its portalled SVG/tooltip reliably). */
+const C = {
+  green: "#2e7d4f",
+  red: "#be3a28",
+  ink: "#1e2749",
+  ballpoint: "#2946c4",
+  pencil: "#646b80",
+  rule: "#e3e5dc",
+};
+
+const tooltipProps = {
+  contentStyle: {
+    background: "#fbfbf8",
+    border: "1px solid #e3e5dc",
+    borderRadius: 8,
+    fontSize: 12,
+    color: "#1e2749",
+    boxShadow: "0 8px 24px -12px rgba(30,39,73,0.35)",
+  },
+  labelStyle: { color: "#646b80", fontWeight: 600 },
+  cursor: { fill: "rgba(30,39,73,0.05)" },
+} as const;
+
+function StatCard({
+  icon,
+  value,
+  label,
+}: {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+}) {
+  return (
+    <div className="flex items-center gap-3 bg-paper p-4 sm:p-5">
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-secondary text-ballpoint">
+        {icon}
+      </span>
+      <div className="min-w-0">
+        <p className="type-data text-2xl leading-none text-ink">{value}</p>
+        <p className="mt-1 truncate text-xs text-pencil">{label}</p>
+      </div>
+    </div>
+  );
+}
+
+function ChartCard({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="paper-sheet mt-5 p-5">
+      <h2 className="type-display mb-4 text-base text-ink">{title}</h2>
+      <div className="h-64">{children}</div>
+    </section>
+  );
+}
 
 /* ------------------------------------------------------------------
    6) Stats component
@@ -567,13 +617,14 @@ export default function Stats() {
   // If loading => skeleton
   if (state.loading || state.filterOptionsLoading) {
     return (
-      <div className="p-4">
-        <Skeleton className="h-8 w-48 mb-4" />
-        <div className="grid grid-cols-2 gap-4">
+      <div className="mx-auto w-full max-w-5xl p-4 sm:p-6">
+        <Skeleton className="mb-6 h-9 w-56" />
+        <div className="mb-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
           {[...Array(4)].map((_, i) => (
-            <Skeleton key={i} className="h-36 w-full" />
+            <Skeleton key={i} className="h-20 w-full rounded-xl" />
           ))}
         </div>
+        <Skeleton className="h-64 w-full rounded-xl" />
       </div>
     );
   }
@@ -581,227 +632,220 @@ export default function Stats() {
   const hasData = state.userPerformance.length > 0;
 
   return (
-    <div className="max-w-6xl mx-auto p-4 text-gray-900 dark:text-gray-100">
-      {/* Title with user name */}
-      <h1 className="font-display text-2xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] mb-8 font-light text-gray-800 dark:text-gray-100">
-        {userName}&apos;s Performance
-      </h1>
+    <div className="mx-auto w-full max-w-5xl p-4 sm:p-6">
+      {/* Header */}
+      <div className="mb-6 border-b border-ink/15 pb-5">
+        <p className="type-data text-[11px] uppercase tracking-[0.18em] text-pencil">
+          Your progress
+        </p>
+        <h1 className="type-display text-2xl text-ink sm:text-3xl">
+          {userName}&apos;s Performance
+        </h1>
+      </div>
 
-      {/* Filters row */}
-      <div className="flex flex-wrap items-center gap-4 mb-6">
-        {/* Status row (desktop) */}
-        <div className="space-x-2 hidden sm:flex">
-          {["all","complete","review","incomplete"].map((st) => {
-            const isActive = state.filters.status === st;
-            return (
+      {/* Status filter row (desktop) — same legend & styling as the Question Bank */}
+      <div className="mb-2 hidden gap-2 sm:flex">
+        {(
+          [
+            { key: "all", label: "All", dot: "bg-ballpoint" },
+            { key: "complete", label: "Answered", dot: "bg-st-answered" },
+            { key: "review", label: "Marked for review", dot: "bg-st-review" },
+            { key: "incomplete", label: "Unattempted", dot: "bg-st-notvisited" },
+          ] as const
+        ).map(({ key, label, dot }) => {
+          const isActive = state.filters.status === key;
+          return (
+            <button
+              key={key}
+              onClick={() =>
+                dispatch({ type: "SET_FILTERS", payload: { ...state.filters, status: key } })
+              }
+              aria-pressed={isActive}
+              className={`
+                flex min-h-11 items-center gap-2 rounded-md border px-4 py-2 text-sm transition-colors
+                ${
+                  isActive
+                    ? "border-ink bg-paper font-medium text-ink"
+                    : "border-rule bg-transparent text-pencil hover:border-pencil"
+                }
+              `}
+            >
+              <span className={`h-2 w-2 rounded-full ${dot}`} aria-hidden="true" />
+              {label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Desktop filter popovers — same as the Question Bank */}
+      <div className="mb-6 hidden flex-wrap items-center gap-2 sm:flex sm:gap-4">
+        {(Object.keys(state.filterOptions) as FilterKey[]).map((filterType) => {
+          const filterValues = state.filterOptions[filterType] || [];
+          const isOpen = state.dropdowns[filterType];
+          return (
+            <Popover
+              key={filterType}
+              align="start"
+              openPopover={isOpen}
+              setOpenPopover={(open) =>
+                dispatch({ type: "SET_DROPDOWN", payload: { key: filterType, value: !!open } })
+              }
+              content={
+                <div className="max-h-60 w-full overflow-auto rounded-md border border-rule bg-paper p-2 custom-scrollbar sm:w-80">
+                  <DesktopFilterSearch
+                    filterType={filterType}
+                    filterValues={filterValues}
+                    state={state}
+                    dispatch={dispatch}
+                  />
+                </div>
+              }
+            >
               <button
-                key={st}
                 onClick={() =>
-                  dispatch({
-                    type: "SET_FILTERS",
-                    payload: { ...state.filters, status: st },
-                  })
+                  dispatch({ type: "SET_DROPDOWN", payload: { key: filterType, value: !isOpen } })
                 }
                 className={`
-                  px-3 py-1.5 rounded-md transition-colors text-sm tracking-tight font-light
+                  flex min-h-11 w-full items-center justify-between rounded-md border px-4 py-2 text-sm capitalize transition-colors duration-75 sm:w-36
                   ${
-                    isActive
-                      ? "border border-blue-500 bg-blue-50 text-blue-800"
-                      : "border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 hover:border-gray-500"
+                    state.filters[filterType].length
+                      ? "border-ballpoint bg-paper text-ballpoint"
+                      : "border-rule bg-paper text-pencil hover:border-pencil"
                   }
                 `}
               >
-                {st.charAt(0).toUpperCase() + st.slice(1)}
+                <p>
+                  {state.filters[filterType].length
+                    ? `${state.filters[filterType].length} selected`
+                    : filterType}
+                </p>
+                <ChevronDown className="h-4 w-4 transition-all" />
               </button>
-            );
-          })}
-        </div>
-
-        {/* Desktop filter popovers */}
-        <div className="hidden sm:flex flex-wrap gap-2">
-          {(Object.keys(state.filterOptions) as FilterKey[]).map((fKey) => {
-            const filterValues = state.filterOptions[fKey] || [];
-            const isOpen = state.dropdowns[fKey];
-            return (
-              <div className="relative" key={fKey}>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    dispatch({
-                      type: "SET_DROPDOWN",
-                      payload: { key: fKey, value: !isOpen },
-                    });
-                  }}
-                  className="font-light tracking-tight text-sm"
-                >
-                  {fKey} ({state.filters[fKey].length})
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                </Button>
-                {isOpen && (
-                  <div
-                    className="
-                      absolute z-50 bg-white dark:bg-gray-800 rounded-md shadow-md
-                      max-h-56 w-64 overflow-auto p-2
-                      custom-scrollbar
-                    "
-                  >
-                    <DesktopFilterSearch
-                      filterType={fKey}
-                      filterValues={filterValues}
-                      state={state}
-                      dispatch={dispatch}
-                    />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Mobile filter button */}
-        <Button
-          variant="outline"
-          className="sm:hidden flex items-center font-light tracking-tight"
-          onClick={() => setMobileFiltersOpen(true)}
-        >
-          <Filter className="mr-2 h-4 w-4" />
-          Filters
-        </Button>
+            </Popover>
+          );
+        })}
       </div>
 
-      {/* aggregator row */}
+      {/* Mobile filters button */}
+      <button
+        className="mb-6 inline-flex items-center gap-2 rounded-md border border-rule bg-paper px-3 py-2 text-sm tracking-tight text-pencil hover:border-ballpoint hover:text-ink sm:hidden"
+        onClick={() => setMobileFiltersOpen(true)}
+      >
+        <Filter className="h-4 w-4" />
+        Filters
+      </button>
+
       {hasData ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-light tracking-tight text-gray-600 dark:text-gray-400">
-                  Average Accuracy
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-light">
-                  {state.avgAccuracy.toFixed(2)}%
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-light tracking-tight text-gray-600 dark:text-gray-400">
-                  Reattempt Accuracy
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-light">
-                  {state.avgReattempt.toFixed(2)}%
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-light tracking-tight text-gray-600 dark:text-gray-400">
-                  Total Correct
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-light">
-                  {state.totalCorrect}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-light tracking-tight text-gray-600 dark:text-gray-400">
-                  Total Attempts
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-light">
-                  {state.totalAttempts}
-                </p>
-              </CardContent>
-            </Card>
+          {/* Scoreboard */}
+          <div
+            className="paper-sheet grid grid-cols-2 gap-px overflow-hidden sm:grid-cols-4"
+            style={{ backgroundColor: "var(--rule)" }}
+          >
+            <StatCard
+              icon={<Target className="h-5 w-5" />}
+              value={`${state.avgAccuracy.toFixed(1)}%`}
+              label="Average accuracy"
+            />
+            <StatCard
+              icon={<Refresh className="h-5 w-5" />}
+              value={`${state.avgReattempt.toFixed(1)}%`}
+              label="Reattempt accuracy"
+            />
+            <StatCard
+              icon={<Check className="h-5 w-5" />}
+              value={state.totalCorrect.toLocaleString("en-IN")}
+              label="Total correct"
+            />
+            <StatCard
+              icon={<Layers className="h-5 w-5" />}
+              value={state.totalAttempts.toLocaleString("en-IN")}
+              label="Total attempts"
+            />
           </div>
 
-          {/* Stacked bar => correct vs. incorrect */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base font-light tracking-tight">
-                Correct vs. Incorrect (Stacked)
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={barData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="index" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="correct" fill="#16a34a" stackId="a" name="Correct" />
-                    <Bar dataKey="incorrect" fill="#dc2626" stackId="a" name="Incorrect" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
+          <ChartCard title="Correct vs. incorrect">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={barData} margin={{ top: 12, right: 8, left: -10, bottom: 0 }} barGap={4}>
+                <defs>
+                  <linearGradient id="gCorrect" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={C.green} stopOpacity={0.95} />
+                    <stop offset="100%" stopColor={C.green} stopOpacity={0.6} />
+                  </linearGradient>
+                  <linearGradient id="gIncorrect" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={C.red} stopOpacity={0.95} />
+                    <stop offset="100%" stopColor={C.red} stopOpacity={0.6} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="2 6" stroke={C.rule} vertical={false} />
+                <XAxis dataKey="index" tick={{ fill: C.pencil, fontSize: 12 }} tickLine={false} axisLine={{ stroke: C.rule }} />
+                <YAxis tick={{ fill: C.pencil, fontSize: 12 }} tickLine={false} axisLine={false} width={32} allowDecimals={false} />
+                <Tooltip {...tooltipProps} />
+                <Legend wrapperStyle={{ fontSize: 12, paddingTop: 8 }} iconType="circle" iconSize={9} />
+                <Bar dataKey="correct" fill="url(#gCorrect)" stackId="a" name="Correct" maxBarSize={40} />
+                <Bar dataKey="incorrect" fill="url(#gIncorrect)" stackId="a" name="Incorrect" maxBarSize={40} radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-          {/* Another chart => line for accuracy */}
-          <Card className="mt-6">
-            <CardHeader>
-              <CardTitle className="text-base font-light tracking-tight">
-                Accuracy Trend
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={barData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="index" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line dataKey="accuracy" stroke="#2563eb" name="Accuracy (%)" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
+          <ChartCard title="Accuracy trend">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={barData} margin={{ top: 12, right: 8, left: -10, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="gAccuracy" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={C.ballpoint} stopOpacity={0.32} />
+                    <stop offset="100%" stopColor={C.ballpoint} stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="2 6" stroke={C.rule} vertical={false} />
+                <XAxis dataKey="index" tick={{ fill: C.pencil, fontSize: 12 }} tickLine={false} axisLine={{ stroke: C.rule }} />
+                <YAxis domain={[0, 100]} tick={{ fill: C.pencil, fontSize: 12 }} tickLine={false} axisLine={false} width={32} />
+                <Tooltip {...tooltipProps} />
+                <Area
+                  type="monotone"
+                  dataKey="accuracy"
+                  stroke={C.ballpoint}
+                  strokeWidth={2.5}
+                  fill="url(#gAccuracy)"
+                  name="Accuracy (%)"
+                  dot={{ r: 3, fill: "#ffffff", stroke: C.ballpoint, strokeWidth: 2 }}
+                  activeDot={{ r: 5, strokeWidth: 0, fill: C.ballpoint }}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ChartCard>
 
-          {/* Topic Performance bar (if we have topicPerfData) */}
           {state.topicPerfData.length > 0 && (
-            <Card className="mt-6">
-              <CardHeader>
-                <CardTitle className="text-base font-light tracking-tight">
-                  Topic Performance
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={topicBarData}>
-                      <CartesianGrid strokeDasharray="3 3"/>
-                      <XAxis dataKey="topic" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend />
-                      <Bar dataKey="correctRatio" fill="#14b8a6" name="Correct %" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
+            <ChartCard title="Topic performance">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={topicBarData} margin={{ top: 12, right: 8, left: -10, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="gTopic" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor={C.ballpoint} stopOpacity={0.9} />
+                      <stop offset="100%" stopColor={C.ballpoint} stopOpacity={0.5} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="2 6" stroke={C.rule} vertical={false} />
+                  <XAxis dataKey="topic" tick={{ fill: C.pencil, fontSize: 11 }} tickLine={false} axisLine={{ stroke: C.rule }} />
+                  <YAxis domain={[0, 100]} tick={{ fill: C.pencil, fontSize: 12 }} tickLine={false} axisLine={false} width={32} />
+                  <Tooltip {...tooltipProps} />
+                  <Bar dataKey="correctRatio" fill="url(#gTopic)" name="Correct %" radius={[6, 6, 0, 0]} maxBarSize={48} />
+                </BarChart>
+              </ResponsiveContainer>
+            </ChartCard>
           )}
         </>
       ) : (
-        <p className="text-gray-500 dark:text-gray-400 mt-6 font-light">
-          No performance data found with these filters.
-        </p>
+        <div className="paper-sheet flex flex-col items-center gap-3 px-4 py-16 text-center">
+          <span className="grid h-14 w-14 place-items-center rounded-full bg-secondary text-pencil">
+            <Chart className="h-7 w-7" />
+          </span>
+          <p className="type-display text-lg text-ink">No performance data yet</p>
+          <p className="type-data max-w-xs text-sm text-pencil">
+            Answer questions in the Question Bank — your accuracy, trend, and topic breakdown will
+            appear here.
+          </p>
+        </div>
       )}
 
       {/* Mobile filters */}
@@ -863,15 +907,15 @@ function DesktopFilterSearch({
   }
 
   return (
-    <div className="custom-scrollbar">
+    <>
       <Input
         type="text"
-        placeholder={`Search ${filterType}...`}
+        placeholder={`Search ${filterType.toLowerCase()}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-2 text-sm font-light"
+        className="mb-2 bg-paper"
       />
-      <motion.div className="flex flex-col gap-1" layout transition={transitionProps}>
+      <motion.div className="flex flex-col gap-2" layout transition={transitionProps}>
         {displayedValues.map((val) => {
           const isSelected = state.filters[filterType].includes(val);
           return (
@@ -880,47 +924,56 @@ function DesktopFilterSearch({
               layout
               initial={false}
               onClick={() => toggleItem(val)}
-              animate={{
-                backgroundColor: isSelected ? "#EBF8FF" : "transparent",
-              }}
-              whileHover={{
-                backgroundColor: isSelected ? "#CCEAFD" : "#F9FAFB",
-              }}
-              whileTap={{
-                backgroundColor: isSelected ? "#BCE0FD" : "#F3F4F6",
-              }}
-              transition={{
-                ...transitionProps,
-                backgroundColor: { duration: 0.1 },
-              }}
+              transition={transitionProps}
               className={`
-                flex items-center px-3 py-1.5 rounded-md text-sm font-light 
-                whitespace-nowrap overflow-hidden 
-                border border-transparent
-                transition-colors tracking-tight
+                inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+                whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+                transition-colors
                 ${
                   isSelected
-                    ? "text-blue-700"
-                    : "text-gray-700 dark:text-gray-300"
+                    ? "text-ballpoint ring-ballpoint bg-secondary"
+                    : "text-pencil ring-rule bg-transparent hover:bg-secondary"
                 }
               `}
             >
-              {transformFilterItem(val)}
-              {isSelected && (
-                <div className="ml-auto text-blue-500">
-                  <Check className="w-4 h-4" strokeWidth={3} />
-                </div>
-              )}
+              <motion.div
+                className="relative flex items-center"
+                animate={{
+                  width: isSelected ? "auto" : "100%",
+                  paddingRight: isSelected ? "1.25rem" : "0",
+                }}
+                transition={{
+                  ease: [0.175, 0.885, 0.32, 1.275],
+                  duration: 0.3,
+                }}
+              >
+                <span>{transformFilterItem(val)}</span>
+                <AnimatePresence>
+                  {isSelected && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={transitionProps}
+                      className="absolute right-0"
+                    >
+                      <div className="w-3.5 h-3.5 rounded-full bg-ballpoint flex items-center justify-center">
+                        <Check className="w-2.5 h-2.5 text-paper" strokeWidth={2} />
+                      </div>
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             </motion.button>
           );
         })}
       </motion.div>
-    </div>
+    </>
   );
 }
 
 /* ------------------------------------------------------------------
-   8) Mobile Filters 
+   8) Mobile Filters — same UI & behaviour as the Question Bank
    ------------------------------------------------------------------ */
 function MobileFiltersDialog({
   open,
@@ -933,6 +986,60 @@ function MobileFiltersDialog({
   state: StatsState;
   dispatch: React.Dispatch<StatsAction>;
 }) {
+  const [searches, setSearches] = useState<Record<FilterKey, string>>({
+    exams: "",
+    subjects: "",
+    topics: "",
+    subtopics: "",
+    difficulties: "",
+    years: "",
+    types: "",
+  });
+
+  const handleSearchChange = (category: FilterKey, value: string) => {
+    setSearches((prev) => ({ ...prev, [category]: value }));
+  };
+
+  // filter & sort selected to top
+  const filterAndSort = (items: string[], cat: FilterKey) => {
+    let arr = [...items];
+    const st = searches[cat]?.toLowerCase() || "";
+    if (st) {
+      arr = arr.filter((it) => it.toLowerCase().includes(st));
+    }
+    arr = arr.sort((a, b) => {
+      const aSel = state.filters[cat].includes(a);
+      const bSel = state.filters[cat].includes(b);
+      if (aSel && !bSel) return -1;
+      if (!aSel && bSel) return 1;
+      return 0;
+    });
+    return arr;
+  };
+
+  const toggleItem = (category: FilterKey, item: string) => {
+    const oldArr = state.filters[category];
+    const isSel = oldArr.includes(item);
+    const newArr = isSel ? oldArr.filter((i) => i !== item) : [...oldArr, item];
+    dispatch({
+      type: "SET_FILTERS",
+      payload: { ...state.filters, [category]: newArr },
+    });
+  };
+
+  function mobileStatusStyle(selected: boolean) {
+    return `
+      inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+      whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+      transition-all duration-200 ease-in-out
+      ${
+        selected
+          ? "bg-secondary text-ballpoint ring-ballpoint"
+          : "bg-transparent text-pencil ring-rule hover:bg-secondary"
+      }
+    `;
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
@@ -940,55 +1047,64 @@ function MobileFiltersDialog({
           fixed top-0 left-0 w-screen h-screen
           sm:w-[500px] sm:h-auto sm:max-h-[90vh]
           sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-md
-          bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
-          pt-8
+          bg-paper text-ink
+          flex flex-col custom-scrollbar
+          pt-10
         "
+        style={{ overflowY: "auto" }}
       >
-        <div className="flex items-center justify-between px-4 pb-3 border-b dark:border-gray-700">
-          <h2 className="text-2xl font-light tracking-tight text-gray-800 dark:text-gray-100">
-            Filters
-          </h2>
-          <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
+        {/* top bar */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-rule">
+          <h2 className="type-display text-2xl">Filters</h2>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => onOpenChange(false)}
+            className="text-pencil hover:text-ink transition-all"
+          >
             ✕
           </Button>
         </div>
-        <ScrollArea className="px-4 py-4 flex-1 custom-scrollbar">
-          {/* Status row */}
-          <div className="mb-6">
-            <p className="text-lg font-light text-gray-700 dark:text-gray-300 mb-2 tracking-tight">
-              Status
-            </p>
-            <div className="flex gap-2">
-              {["all","complete","review","incomplete"].map((st) => {
-                const selected = state.filters.status === st;
-                return (
-                  <Button
-                    key={st}
-                    variant={selected ? "default" : "outline"}
-                    size="sm"
-                    className="font-light tracking-tight"
-                    onClick={() => dispatch({
-                      type: "SET_FILTERS",
-                      payload: { ...state.filters, status: st },
-                    })}
-                  >
-                    {st.charAt(0).toUpperCase() + st.slice(1)}
-                  </Button>
-                );
-              })}
-            </div>
-          </div>
 
-          {/* The rest of the filters */}
-          {(Object.keys(state.filterOptions) as FilterKey[]).map((fKey) => (
-            <MobileFilterSection
-              key={fKey}
-              title={fKey}
-              filterType={fKey}
-              state={state}
-              dispatch={dispatch}
-            />
-          ))}
+        <ScrollArea className="px-4 py-4 flex-1 custom-scrollbar">
+          <div className="max-w-3xl mx-auto space-y-10">
+            {/* Status row */}
+            <div>
+              <p className="type-display text-2xl mb-2">Status</p>
+              <div className="flex flex-wrap gap-2">
+                {["all", "complete", "review", "incomplete"].map((st) => {
+                  const selected = state.filters.status === st;
+                  return (
+                    <button
+                      key={st}
+                      className={mobileStatusStyle(selected)}
+                      onClick={() =>
+                        dispatch({
+                          type: "SET_FILTERS",
+                          payload: { ...state.filters, status: st },
+                        })
+                      }
+                    >
+                      {st.charAt(0).toUpperCase() + st.slice(1)}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Each filter category */}
+            {(Object.keys(state.filterOptions) as FilterKey[]).map((fKey) => (
+              <MobileFilterSection
+                key={fKey}
+                title={fKey}
+                items={filterAndSort(state.filterOptions[fKey], fKey)}
+                searchValue={searches[fKey]}
+                onSearchChange={(val) => handleSearchChange(fKey, val)}
+                selectedItems={state.filters[fKey]}
+                toggleItem={(item) => toggleItem(fKey, item)}
+              />
+            ))}
+          </div>
         </ScrollArea>
       </DialogContent>
     </Dialog>
@@ -996,77 +1112,66 @@ function MobileFiltersDialog({
 }
 
 /* ------------------------------------------------------------------
-   9) Single mobile filter group 
+   9) Single mobile filter group — same UI as the Question Bank
    ------------------------------------------------------------------ */
 function MobileFilterSection({
   title,
-  filterType,
-  state,
-  dispatch,
+  items,
+  searchValue,
+  onSearchChange,
+  selectedItems,
+  toggleItem,
 }: {
   title: string;
-  filterType: FilterKey;
-  state: StatsState;
-  dispatch: React.Dispatch<StatsAction>;
+  items: string[];
+  searchValue: string;
+  onSearchChange: (value: string) => void;
+  selectedItems: string[];
+  toggleItem: (item: string) => void;
 }) {
-  const [search, setSearch] = useState("");
-  const filterValues = state.filterOptions[filterType] || [];
-
-  const displayedValues = useMemo(() => {
-    let arr = [...filterValues];
-    if (search) {
-      const lower = search.toLowerCase();
-      arr = arr.filter((v) => v.toLowerCase().includes(lower));
-    }
-    // sort selected to top
-    arr.sort((a, b) => {
-      const aSel = state.filters[filterType].includes(a);
-      const bSel = state.filters[filterType].includes(b);
-      if (aSel && !bSel) return -1;
-      if (!aSel && bSel) return 1;
-      return 0;
-    });
-    return arr;
-  }, [filterValues, search, filterType, state.filters]);
-
-  function toggleItem(val: string) {
-    const isSelected = state.filters[filterType].includes(val);
-    let newArr: string[];
-    if (isSelected) {
-      newArr = state.filters[filterType].filter((x) => x !== val);
-    } else {
-      newArr = [...state.filters[filterType], val];
-    }
-    dispatch({
-      type: "SET_FILTERS",
-      payload: { ...state.filters, [filterType]: newArr },
-    });
+  function mobileItemStyle(selected: boolean) {
+    return `
+      inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
+      whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
+      transition-all duration-200 ease-in-out
+      ${
+        selected
+          ? "bg-secondary text-ballpoint ring-ballpoint"
+          : "bg-transparent text-pencil ring-rule hover:bg-secondary"
+      }
+    `;
   }
 
   return (
-    <div className="mb-8">
-      <p className="text-lg font-light text-gray-700 dark:text-gray-300 mb-2 tracking-tight">
-        {transformFilterItem(title)}
-      </p>
-      <Input
-        placeholder={`Search ${title}...`}
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mb-3 font-light tracking-tight text-sm"
-      />
-      <div className="flex flex-wrap gap-2">
-        {displayedValues.map((val) => {
-          const selected = state.filters[filterType].includes(val);
+    <div className="space-y-4">
+      <h3 className="type-display text-2xl">{transformFilterItem(title)}</h3>
+      <div className="relative">
+        <Input
+          placeholder={`Search ${title.toLowerCase()}...`}
+          value={searchValue}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className="bg-paper pl-10 py-2"
+        />
+        <Search className="absolute left-3 top-3 h-5 w-5 text-pencil" />
+      </div>
+      <div className="flex flex-col gap-2">
+        {items.map((item) => {
+          const isSelected = selectedItems.includes(item);
           return (
-            <Button
-              key={val}
-              variant={selected ? "default" : "outline"}
-              size="sm"
-              className="font-light tracking-tight"
-              onClick={() => toggleItem(val)}
+            <button
+              key={item}
+              onClick={() => toggleItem(item)}
+              className={mobileItemStyle(isSelected)}
             >
-              {transformFilterItem(val)}
-            </Button>
+              <span className="mr-1.5">{transformFilterItem(item)}</span>
+              {isSelected && (
+                <span className="flex-shrink-0">
+                  <div className="w-3.5 h-3.5 rounded-full bg-ballpoint flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 text-paper" strokeWidth={3} />
+                  </div>
+                </span>
+              )}
+            </button>
           );
         })}
       </div>

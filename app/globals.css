@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
+@import "./desk.css";
 
 /* Tailwind v4 is CSS-first; bridge to the existing JS config (theme, plugins,
    darkMode: 'class', content) instead of porting it all into @theme. */
@@ -180,8 +181,11 @@ html {
       @apply border-border;
     }
     body {
-      @apply bg-background text-foreground;
+      @apply bg-background text-foreground antialiased;
+      font-family: var(--font-inter), system-ui, sans-serif;
       font-feature-settings: "rlig" 1, "calt" 1;
+      text-rendering: optimizeLegibility;
+      letter-spacing: -0.006em;
     }
   }
 

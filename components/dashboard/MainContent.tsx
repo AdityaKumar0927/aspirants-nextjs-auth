@@ -169,9 +169,8 @@ export default function MainContent() {
             // Pagination-like props (unused)
             totalQuestions={questions.length}
             currentQuestionIndex={index}
-            handleQuestionChange={(newIndex) => {
-              console.log(`Navigating to question ${newIndex}`);
-            }}
+            // Static landing preview — pagination is intentionally a no-op.
+            handleQuestionChange={() => {}}
           />
         ))}
       </div>

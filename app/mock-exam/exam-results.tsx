@@ -1,35 +1,21 @@
+/* ------------------------------------------------------------------
+   exam-results.tsx — THE MARKSHEET, in the desk design system.
+   Presentational only; grading/data shape comes from mock-exam.tsx.
+-------------------------------------------------------------------*/
 "use client"
 
 import React, { useState, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { isImageSrc } from "@/lib/is-image-src"
+import { motion } from "framer-motion"
 import html2pdf from "html2pdf.js"
 import "chart.js/auto"
 
-import {
-  ArrowLeft,
-  ArrowRight,
-  Award,
-  Check,
-  CheckCircle,
-  Download,
-  PieChart,
-  TrendingUp,
-  AlertCircle,
-  XCircle,
-} from "lucide-react"
+import { ArrowLeft, ArrowRight, Download } from "lucide-react"
 import { Pie, Bar } from "react-chartjs-2"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import {
   Accordion,
   AccordionTrigger,
@@ -38,6 +24,7 @@ import {
 } from "@/components/ui/accordion"
 
 import MathRenderer from "@/components/layout/MathRenderer"
+import { OmrBubble, MarksChip, PaperEyebrow } from "@/components/desk"
 import {
   displayCorrectAnswer,
   displayUserAnswer,
@@ -59,70 +46,18 @@ function formatTime(seconds: number) {
   return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
 }
 
-/** 
- * Renders small "meta tags" for a question: subject, difficulty, year, type, exam.
- * Similar to how Question.tsx does it, but read-only. 
+/**
+ * Printed-paper meta line for a question: exam · year · subject · difficulty
+ * · type, in the mono eyebrow voice.
  */
 function renderQuestionMeta(q: QuestionType) {
-  const badges: React.ReactNode[] = []
-
-  if (q.subject) {
-    badges.push(
-      <span
-        key="subject"
-        className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs"
-      >
-        {q.subject}
-      </span>
-    )
-  }
-  if (q.difficulty) {
-    badges.push(
-      <span
-        key="difficulty"
-        className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs"
-      >
-        {q.difficulty}
-      </span>
-    )
-  }
-  if (typeof q.year === "number") {
-    badges.push(
-      <span
-        key="year"
-        className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs"
-      >
-        {q.year}
-      </span>
-    )
-  }
-  if (q.type) {
-    badges.push(
-      <span
-        key="type"
-        className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs"
-      >
-        {q.type}
-      </span>
-    )
-  }
-  if (q.exam) {
-    badges.push(
-      <span
-        key="exam"
-        className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs"
-      >
-        {q.exam}
-      </span>
-    )
-  }
-
-  if (!badges.length) return null
+  const parts = [q.exam, q.year, q.subject, q.difficulty, q.type].filter(Boolean)
+  if (!parts.length) return null
 
   return (
-    <div className="flex flex-wrap gap-2 mt-2">
-      {badges.map((b) => b)}
-    </div>
+    <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+      {parts.join(" · ")}
+    </p>
   )
 }
 
@@ -141,8 +76,9 @@ function renderDiagram(diagramUrl?: string) {
 }
 
 /**
- * Returns a "read-only" display of the question’s options, highlighting
- * correct vs. user’s incorrect choice for MCQ. 
+ * Read-only display of the question's options in OMR language:
+ * the user's mark is graded green/red; the correct bubble is revealed
+ * with a ring when the user missed it.
  */
 function renderOptions(q: QuestionType, userAnswer: string | null) {
   if (!q.options) return null
@@ -156,47 +92,46 @@ function renderOptions(q: QuestionType, userAnswer: string | null) {
       : []
 
   return (
-    <div className="space-y-2 mt-4">
+    <div className="mt-4 flex flex-col space-y-1">
       {Object.entries(q.options).map(([optionKey, optionText]) => {
-        // Was this a correct option?
         const isCorrectOption = correct.has(optionKey)
-        // Did user choose this?
         const isUserOption = userLetters.includes(optionKey)
 
-        // Decide color
-        // If user got it right => highlight that single one in green
-        // If user got it wrong => highlight correct in green, user’s in red
-        // If user didn’t answer => only highlight correct in green
-        let extraClass = "border-gray-300 hover:bg-gray-50"
-        if (userAnswer === null && isCorrectOption) {
-          extraClass = "border-green-400 bg-green-50 text-green-800"
-        } else if (isCorrectOption && isUserOption) {
-          // user answered & was correct
-          extraClass = "border-green-400 bg-green-50 text-green-800"
-        } else if (isCorrectOption) {
-          extraClass = "border-green-300 bg-green-50 text-green-700"
-        } else if (isUserOption && !isCorrectOption) {
-          extraClass = "border-red-300 bg-red-50 text-red-700"
-        }
+        // The grader's pen: user's correct pick → green; user's wrong pick →
+        // red with a strike; a missed correct option → reveal ring only.
+        const verdict =
+          isCorrectOption && isUserOption
+            ? ("correct" as const)
+            : isUserOption
+            ? ("wrong" as const)
+            : undefined
+        const bubbleVerdict =
+          verdict ?? (isCorrectOption ? ("reveal" as const) : undefined)
 
         return (
           <div
             key={optionKey}
-            className={`
-              text-left border rounded p-3 transition-colors 
-              bg-white
-              ${extraClass}
-            `}
+            className="omr-option"
+            data-state={isUserOption ? "selected" : undefined}
+            data-verdict={verdict}
           >
-            <strong className="mr-2">{optionKey}.</strong>
-            {optionText.startsWith("http") ? (
+            <OmrBubble filled={isUserOption} verdict={bubbleVerdict} className="mt-0.5">
+              {optionKey}
+            </OmrBubble>
+            {isImageSrc(optionText) ? (
               <img
                 src={optionText}
                 alt={`Option ${optionKey}`}
                 className="rounded-md w-full h-auto object-contain mt-2"
               />
             ) : (
-              <MathRenderer text={optionText} />
+              <span
+                className={`latex-font text-base leading-7 ${
+                  verdict === "wrong" ? "ink-strike text-pencil" : ""
+                }`}
+              >
+                <MathRenderer text={optionText} />
+              </span>
             )}
           </div>
         )
@@ -206,7 +141,7 @@ function renderOptions(q: QuestionType, userAnswer: string | null) {
 }
 
 /**
- * Renders the question detail (diagram, text, meta tags, options) in read-only form,
+ * Renders the question detail (diagram, text, meta, options) in read-only form,
  * highlighting correct vs user answer for MCQ, or showing numeric answer, etc.
  */
 function QuestionReviewBlock({
@@ -221,22 +156,13 @@ function QuestionReviewBlock({
   const correctAnswer = displayCorrectAnswer(question)
 
   return (
-    <div className="border rounded p-4 mt-3 bg-white">
-      {/* Title + meta tags */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3">
-        <h4 className="font-medium text-lg">
-          {question.subject
-            ? `${question.subject} - Question`
-            : "Question"}{" "}
-          {question.id || ""}
-        </h4>
-        {renderQuestionMeta(question)}
-      </div>
+    <div className="mt-3">
+      {renderQuestionMeta(question)}
 
-      {renderDiagram(question.diagramUrl)}
+      <div className="mt-3">{renderDiagram(question.diagramUrl)}</div>
 
       {question.text && (
-        <div className="text-base sm:text-lg md:text-xl leading-7 mb-4 text-gray-700">
+        <div className="latex-font mb-4 max-w-[70ch] text-base leading-7 sm:text-lg">
           <MathRenderer text={question.text} />
         </div>
       )}
@@ -245,38 +171,38 @@ function QuestionReviewBlock({
         <>
           {renderOptions(question, userAnswer)}
           {question.type === "Multiple Correct" && (
-            <p className="mt-2 text-sm text-gray-700">
-              <strong>Correct option(s):</strong> {correctAnswer}
+            <p className="type-data mt-2 text-xs text-pencil">
+              Correct options: <span className="text-ink">{correctAnswer}</span>
             </p>
           )}
         </>
       ) : question.type === "Subjective" ? (
-        <div className="mt-4 space-y-2 text-sm text-gray-700">
+        <div className="mt-4 space-y-3 text-sm">
           <div>
-            <strong>Your Answer:</strong>
-            <div className="mt-1 whitespace-pre-wrap rounded border bg-gray-50 p-2">
+            <PaperEyebrow>Your answer</PaperEyebrow>
+            <div className="latex-font mt-1 whitespace-pre-wrap rounded-md border border-rule bg-secondary p-3">
               {userAnswer ? <MathRenderer text={userAnswer} /> : "Not answered"}
             </div>
           </div>
           <div>
-            <strong>Model Answer:</strong>
-            <div className="mt-1 whitespace-pre-wrap rounded border bg-green-50 p-2">
+            <PaperEyebrow>Model answer</PaperEyebrow>
+            <div className="latex-font mt-1 whitespace-pre-wrap rounded-md border border-rule p-3">
               <MathRenderer text={correctAnswer} />
             </div>
           </div>
-          <p className="text-xs italic text-gray-500">
+          <p className="text-xs text-pencil">
             Subjective answers are not auto-scored — compare against the model answer.
           </p>
         </div>
       ) : (
         // Integer / Numerical
-        <div className="mt-4 text-sm text-gray-700">
+        <div className="type-data mt-4 space-y-1 text-sm text-pencil">
           <p>
-            <strong>Your Answer:</strong>{" "}
-            {displayUserAnswer(question, userAnswer)}
+            Your answer:{" "}
+            <span className="text-ink">{displayUserAnswer(question, userAnswer)}</span>
           </p>
           <p>
-            <strong>Correct Answer:</strong> {correctAnswer}
+            Correct answer: <span className="text-ink">{correctAnswer}</span>
           </p>
         </div>
       )}
@@ -284,7 +210,7 @@ function QuestionReviewBlock({
   )
 }
 
-/** The main default export: advanced exam results page with multi-tab layout. */
+/** The main default export: the post-exam marksheet. */
 export default function AdvancedExamResults({
   examResults,
   onStartNewExam,
@@ -294,10 +220,6 @@ export default function AdvancedExamResults({
   onStartNewExam: () => void
   onExit: () => void
 }) {
-  // In this example, we use a local "theme = 'light'" for the motion buttons.
-  // If you have a real theming system (e.g. next-themes), feel free to replace.
-  const theme = "light"
-
   const [difficultyFilter, setDifficultyFilter] =
     useState<"All" | "Easy" | "Medium" | "Hard">("All")
 
@@ -353,17 +275,157 @@ export default function AdvancedExamResults({
     html2pdf().from(content).set(options).save()
   }
 
-  // Small chart example
-  const TopicPerformance = () => (
-    <Card>
-      <CardHeader className="border-b">
-        <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-          <PieChart className="w-6 h-6 mr-2 text-primary" />
-          Topic Performance (A→Z)
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  // Marksheet header data (derived from the paper itself, render-only)
+  const firstQuestion = examResults.questions[0]
+  const paperTitle =
+    [firstQuestion?.exam, firstQuestion?.year].filter(Boolean).join(" · ") ||
+    "Mock exam"
+  const totalTimeSeconds = examResults.timeSpentPerQuestion.reduce(
+    (a, b) => a + b,
+    0
+  )
+  const attemptDate = new Date().toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  })
+
+  // The main return
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      className="mx-auto w-full max-w-5xl space-y-8 px-4 py-8 sm:px-6 lg:px-8"
+    >
+      {/* ---------- THE MARKSHEET ---------- */}
+      <div className="paper-sheet ruled-margin p-6 pl-14 sm:p-8 sm:pl-16">
+        {/* header */}
+        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <div>
+            <PaperEyebrow>Scorecard</PaperEyebrow>
+            <h1 className="type-display mt-1 text-3xl sm:text-4xl">{paperTitle}</h1>
+            <p className="type-data mt-1 text-xs text-pencil">
+              Attempted {attemptDate}
+            </p>
+          </div>
+          <Button variant="outline" className="min-h-11" onClick={handleDownloadPdf}>
+            <Download className="mr-2 h-4 w-4" />
+            Download PDF
+          </Button>
+        </div>
+
+        {/* the total */}
+        <div className="mt-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="type-display text-5xl sm:text-6xl">
+              {examResults.score.toFixed(1)}
+              <span className="ml-1 align-baseline text-2xl text-pencil">%</span>
+            </p>
+            <p className="type-data mt-2 text-sm text-pencil">
+              {examResults.correctAnswersCount}/{examResults.gradedQuestions} correct
+              <MarksChip
+                className="ml-3 text-sm"
+                positive={examResults.correctAnswersCount}
+                negative={examResults.incorrectAnswers}
+              />
+            </p>
+          </div>
+          <div className="type-data text-sm text-pencil sm:text-right">
+            <p>
+              Time taken{" "}
+              <span className="text-ink">{formatTime(totalTimeSeconds)}</span>
+            </p>
+            <p className="mt-1">
+              Avg per question{" "}
+              <span className="text-ink">
+                {formatTime(Math.round(examResults.averageTimePerQuestion))}
+              </span>
+            </p>
+          </div>
+        </div>
+        <Progress value={examResults.score} className="mt-4 h-1 w-full bg-rule" />
+        {examResults.ungradedQuestions > 0 && (
+          <p className="type-data mt-2 text-xs text-pencil">
+            {examResults.ungradedQuestions} subjective{" "}
+            {examResults.ungradedQuestions === 1 ? "answer" : "answers"} not
+            auto-graded — score is out of {examResults.gradedQuestions} graded
+            questions.
+          </p>
+        )}
+
+        {/* counterfoil: marks by topic, ledger rows */}
+        <div className="counterfoil mt-8 pt-5">
+          <PaperEyebrow className="mb-1">Marks by topic</PaperEyebrow>
+          {sortedTopicPerformance.map(([topic, performance]) => {
+            const percent = (performance.correct / performance.total) * 100
+            return (
+              <div key={topic} className="ledger-row">
+                <span className="min-w-0 flex-1 truncate text-sm">{topic}</span>
+                <Progress
+                  value={percent}
+                  className="hidden h-1 w-28 flex-none bg-rule sm:block"
+                />
+                <span className="type-data w-12 flex-none text-right text-sm">
+                  {percent.toFixed(0)}%
+                </span>
+                <MarksChip
+                  className="w-20 flex-none text-right"
+                  positive={performance.correct}
+                  negative={performance.total - performance.correct}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* ---------- strengths & revision list ---------- */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="paper-sheet p-6">
+          <PaperEyebrow>Strong topics</PaperEyebrow>
+          <div className="mt-2">
+            {examResults.topStrengths.map(([topic, performance]) => (
+              <div key={topic} className="ledger-row">
+                <span className="min-w-0 flex-1 truncate text-sm">{topic}</span>
+                <span className="type-data flex-none text-sm">
+                  {((performance.correct / performance.total) * 100).toFixed(0)}%
+                </span>
+                <MarksChip
+                  className="flex-none"
+                  positive={performance.correct}
+                  negative={performance.total - performance.correct}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="paper-sheet p-6">
+          <PaperEyebrow>Revise these</PaperEyebrow>
+          <div className="mt-2">
+            {examResults.topWeaknesses.map(([topic, performance]) => (
+              <div key={topic} className="ledger-row">
+                <span className="min-w-0 flex-1 truncate text-sm">{topic}</span>
+                <span className="type-data flex-none text-sm">
+                  {((performance.correct / performance.total) * 100).toFixed(0)}%
+                </span>
+                <MarksChip
+                  className="flex-none"
+                  positive={performance.correct}
+                  negative={performance.total - performance.correct}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ---------- charts, on plain paper ---------- */}
+      <div className="paper-sheet p-6">
+        <PaperEyebrow>Topic performance</PaperEyebrow>
+        <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <Pie
               data={{
@@ -385,486 +447,176 @@ export default function AdvancedExamResults({
                 responsive: true,
                 plugins: {
                   legend: { position: "bottom" },
-                  title: { display: true, text: "Correct Answers by Topic" },
+                  title: { display: true, text: "Correct answers by topic" },
                 },
               }}
             />
           </div>
-          <ScrollArea className="h-[300px] pr-4">
-            <div className="space-y-6">
+          <ScrollArea className="h-75 pr-4">
+            <div className="space-y-5">
               {sortedTopicPerformance.map(([topic, performance]) => {
                 const percent = (performance.correct / performance.total) * 100
                 return (
                   <div key={topic}>
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="font-medium">{topic}</span>
-                      <span className="font-bold">{percent.toFixed(2)}%</span>
+                    <div className="mb-2 flex justify-between text-sm">
+                      <span className="min-w-0 flex-1 truncate">{topic}</span>
+                      <span className="type-data flex-none">
+                        {percent.toFixed(0)}%
+                      </span>
                     </div>
-                    <Progress value={percent} className="h-2" />
+                    <Progress value={percent} className="h-1 bg-rule" />
                   </div>
                 )
               })}
             </div>
           </ScrollArea>
         </div>
-      </CardContent>
-    </Card>
-  )
-
-  // The main return
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
-      className="container mx-auto py-8 space-y-8 px-4 sm:px-6 lg:px-8"
-    >
-      {/* Title + subtitle */}
-      <div className="text-center space-y-2">
-        <motion.h1
-          className="text-3xl font-normal tracking-tight text-center mb-2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          Exam Results
-        </motion.h1>
-        <motion.p
-          className="text-xl font-normal tracking-tight text-center text-muted-foreground mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          Your performance at a glance
-        </motion.p>
       </div>
 
-      {/* Example: PDF + Score */}
-      <div className="sticky top-0 bg-background z-10 p-4 mb-8 border-b flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <span className="text-2xl font-semibold">
-          Score: {examResults.score.toFixed(2)}%
-        </span>
-        <Button variant="outline" size="sm" onClick={handleDownloadPdf}>
-          <Download className="w-4 h-4 mr-2" />
-          Download Results PDF
-        </Button>
-        <Progress value={examResults.score} className="mt-2 sm:mt-0 w-full sm:w-1/3" />
+      <div className="paper-sheet p-6">
+        <PaperEyebrow>Wrong answers by topic</PaperEyebrow>
+        <div className="mt-4">
+          <Bar
+            data={{
+              labels: sortedTopicWiseIncorrect.map(([topic]) => topic),
+              datasets: [
+                {
+                  label: "Wrong answers",
+                  data: sortedTopicWiseIncorrect.map(([_, val]) => val),
+                  backgroundColor: "rgba(255, 99, 132, 0.8)",
+                },
+              ],
+            }}
+            options={{
+              responsive: true,
+              plugins: {
+                legend: { position: "top" as const },
+                title: {
+                  display: true,
+                  text: "Wrong answers by topic (A→Z)",
+                },
+              },
+            }}
+          />
+        </div>
       </div>
 
-      {/* TABS -> summary / performance / review */}
-      <Tabs defaultValue="summary" className="w-full">
-        <TabsList className="w-full justify-start mb-8 space-x-2 overflow-x-auto">
-          <TabsTrigger value="summary" className="font-normal">
-            Summary
-          </TabsTrigger>
-          <TabsTrigger value="performance" className="font-normal">
-            Performance
-          </TabsTrigger>
-          <TabsTrigger value="review" className="font-normal">
-            Review
-          </TabsTrigger>
-        </TabsList>
+      {/* ---------- answer review ---------- */}
+      <div className="paper-sheet p-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <PaperEyebrow>Answer review</PaperEyebrow>
+            <h2 className="type-display mt-1 text-2xl">Question by question</h2>
+          </div>
 
-        <motion.div
-          key="results-content"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
-        >
-          {/* 1) SUMMARY TAB */}
-          <TabsContent value="summary" className="space-y-8">
-            {/* Example Summary Card */}
-            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 overflow-hidden">
-              <CardHeader className="border-b border-primary/10">
-                <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-primary">
-                  <Award className="w-6 h-6 mr-2" />
-                  Exam Performance Summary
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium">
-                      Total Questions:{" "}
-                      <span className="font-bold text-primary">
-                        {examResults.totalQuestions}
-                      </span>
-                    </p>
-                    <p className="text-sm font-medium">
-                      Correct Answers:{" "}
-                      <span className="font-bold text-green-600">
-                        {examResults.correctAnswersCount}
-                      </span>
-                    </p>
-                    <p className="text-sm font-medium">
-                      Incorrect Answers:{" "}
-                      <span className="font-bold text-red-600">
-                        {examResults.incorrectAnswers}
-                      </span>
-                    </p>
-                    {examResults.ungradedQuestions > 0 && (
-                      <p className="text-sm font-medium">
-                        Not auto-graded (subjective):{" "}
-                        <span className="font-bold text-gray-500">
-                          {examResults.ungradedQuestions}
-                        </span>
-                      </p>
-                    )}
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium">
-                      Score:{" "}
-                      <span className="font-bold text-primary">
-                        {examResults.score.toFixed(2)}%
-                      </span>
-                      {examResults.ungradedQuestions > 0 && (
-                        <span className="ml-1 text-xs font-normal text-gray-500">
-                          (of {examResults.gradedQuestions} auto-graded)
+          {/* difficulty filter */}
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by difficulty">
+            {(["All", "Easy", "Medium", "Hard"] as const).map((diff) => {
+              const isSelected = difficultyFilter === diff
+              return (
+                <button
+                  key={diff}
+                  type="button"
+                  onClick={() => setDifficultyFilter(diff)}
+                  aria-pressed={isSelected}
+                  className={`min-h-11 rounded-md border px-4 text-sm transition-colors ${
+                    isSelected
+                      ? "border-ink bg-paper font-medium text-ink"
+                      : "border-rule bg-transparent text-pencil hover:border-pencil"
+                  }`}
+                >
+                  {diff}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        <ScrollArea className="mt-4 h-100">
+          <Accordion type="single" collapsible className="w-full">
+            {filteredQuestions.map((question, index) => {
+              // userAnswers / timeSpentPerQuestion are indexed by the
+              // ORIGINAL question order, so map back through the
+              // unfiltered list (the difficulty filter reorders these).
+              const originalIndex = examResults.questions.indexOf(question)
+              const userA = examResults.userAnswers[originalIndex] || null
+              const grade = gradeAnswer(question, userA)
+              const timeSpent = examResults.timeSpentPerQuestion[originalIndex]
+
+              return (
+                <AccordionItem
+                  value={`question-${index}`}
+                  key={question.id || `q-${index}`}
+                >
+                  <AccordionTrigger className="min-h-11">
+                    <div className="flex flex-1 items-center gap-3 text-left">
+                      <OmrBubble
+                        filled={grade !== null}
+                        verdict={
+                          grade === null ? undefined : grade ? "correct" : "wrong"
+                        }
+                        status={grade === null ? "notvisited" : undefined}
+                      >
+                        {index + 1}
+                      </OmrBubble>
+                      <span className="text-sm">Question {index + 1}</span>
+                      {question.difficulty && (
+                        <span className="type-data text-xs text-pencil">
+                          {question.difficulty}
                         </span>
                       )}
-                    </p>
-                    <p className="text-sm font-medium">
-                      Avg Time per Q:{" "}
-                      <span className="font-bold">
-                        {formatTime(Math.round(examResults.averageTimePerQuestion))}
+                      {question.topic && (
+                        <span className="hidden truncate text-xs text-pencil sm:inline">
+                          {question.topic}
+                        </span>
+                      )}
+                      <span
+                        className={`type-data ml-auto mr-2 flex-none text-xs ${
+                          grade === false ? "text-redpen" : "text-pencil"
+                        }`}
+                      >
+                        {grade === null ? "Not graded" : grade ? "Correct" : "Wrong"}
                       </span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <QuestionReviewBlock question={question} userAnswer={userA} />
+
+                    <p className="type-data mt-3 text-xs text-pencil">
+                      Time spent {formatTime(timeSpent)}
                     </p>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <Progress value={examResults.score} className="h-2 w-full" />
-                  <p className="text-xs text-muted-foreground mt-2 text-center">
-                    Your performance
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Strengths & Weaknesses (example) */}
-            <div className="grid gap-6 md:grid-cols-2">
-              {/* Strengths */}
-              <Card className="bg-gradient-to-br from-green-100 to-green-50">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-green-800">
-                    <Award className="w-6 h-6 mr-2" />
-                    Top Strengths
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <ul className="space-y-4">
-                    {examResults.topStrengths.map(([topic, performance], idx) => (
-                      <li key={topic} className="flex items-center">
-                        <span className="w-8 h-8 rounded-full bg-green-200 flex items-center justify-center mr-3 text-green-800 font-bold">
-                          {idx + 1}
-                        </span>
-                        <div>
-                          <p className="font-semibold">{topic}</p>
-                          <p className="text-sm text-green-600">
-                            {((performance.correct / performance.total) * 100).toFixed(2)}% correct
-                          </p>
+                    {question.explanation && (
+                      <div className="counterfoil mt-3 pt-3 text-sm">
+                        <PaperEyebrow className="mb-1">Explanation</PaperEyebrow>
+                        <div className="latex-font">
+                          {typeof question.explanation === "string" ? (
+                            <MathRenderer text={question.explanation} />
+                          ) : (
+                            JSON.stringify(question.explanation)
+                          )}
                         </div>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                      </div>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              )
+            })}
+          </Accordion>
+        </ScrollArea>
+      </div>
 
-              {/* Weaknesses */}
-              <Card className="bg-gradient-to-br from-yellow-100 to-yellow-50">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-yellow-800">
-                    <TrendingUp className="w-6 h-6 mr-2" />
-                    Areas for Improvement
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <ul className="space-y-4">
-                    {examResults.topWeaknesses.map(([topic, performance], idx) => (
-                      <li key={topic} className="flex items-center">
-                        <span className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center mr-3 text-yellow-800 font-bold">
-                          {idx + 1}
-                        </span>
-                        <div>
-                          <p className="font-semibold">{topic}</p>
-                          <p className="text-sm text-yellow-600">
-                            {((performance.correct / performance.total) * 100).toFixed(2)}% correct
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          {/* 2) PERFORMANCE TAB */}
-          <TabsContent value="performance" className="space-y-8">
-            <TopicPerformance />
-            <Card className="bg-gradient-to-br from-red-100 to-red-50">
-              <CardHeader>
-                <CardTitle className="text-2xl font-semibold tracking-tight flex items-center text-red-800">
-                  <AlertCircle className="w-6 h-6 mr-2" />
-                  Topics with Most Incorrect Answers
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-6">
-                <Bar
-                  data={{
-                    labels: sortedTopicWiseIncorrect.map(([topic]) => topic),
-                    datasets: [
-                      {
-                        label: "Incorrect Answers",
-                        data: sortedTopicWiseIncorrect.map(([_, val]) => val),
-                        backgroundColor: "rgba(255, 99, 132, 0.8)",
-                      },
-                    ],
-                  }}
-                  options={{
-                    responsive: true,
-                    plugins: {
-                      legend: { position: "top" as const },
-                      title: {
-                        display: true,
-                        text: "Incorrect Answers by Topic (A→Z)",
-                      },
-                    },
-                  }}
-                />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* 3) REVIEW TAB */}
-          <TabsContent value="review">
-            <Card>
-              <CardHeader className="border-b">
-                <CardTitle className="text-2xl font-semibold tracking-tight flex items-center">
-                  <CheckCircle className="w-6 h-6 mr-2 text-primary" />
-                  Answer Review
-                </CardTitle>
-                <CardDescription>
-                  Filter by difficulty:
-                  {/* Animated difficulty buttons */}
-                  <div className="flex space-x-2 mt-2">
-                    {(["All", "Easy", "Medium", "Hard"] as const).map((diff) => {
-                      const isSelected = difficultyFilter === diff
-
-                      return (
-                        <motion.button
-                          key={diff}
-                          onClick={() => setDifficultyFilter(diff)}
-                          layout
-                          initial={false}
-                          animate={{
-                            backgroundColor: isSelected
-                              ? theme === "light"
-                                ? "#e6f7ff"
-                                : "#2a1711"
-                              : theme === "light"
-                              ? "rgba(229, 231, 235, 0.5)"
-                              : "rgba(39, 39, 42, 0.5)",
-                          }}
-                          whileHover={{
-                            backgroundColor: isSelected
-                              ? theme === "light"
-                                ? "#cceeff"
-                                : "#2a1711"
-                              : theme === "light"
-                              ? "rgba(229, 231, 235, 0.8)"
-                              : "rgba(39, 39, 42, 0.8)",
-                          }}
-                          whileTap={{
-                            backgroundColor: isSelected
-                              ? theme === "light"
-                                ? "#b3e6ff"
-                                : "#1f1209"
-                              : theme === "light"
-                              ? "rgba(229, 231, 235, 0.9)"
-                              : "rgba(39, 39, 42, 0.9)",
-                          }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 500,
-                            damping: 30,
-                            backgroundColor: { duration: 0.1 },
-                          }}
-                          className={`
-                            inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium
-                            whitespace-nowrap overflow-hidden ring-1 ring-inset tracking-tight
-                            ${
-                              isSelected
-                                ? theme === "light"
-                                  ? "text-blue-600 ring-blue-200"
-                                  : "text-[#ff9066] ring-[hsla(0,0%,100%,0.12)]"
-                                : theme === "light"
-                                  ? "text-gray-600 ring-gray-200"
-                                  : "text-zinc-400 ring-[hsla(0,0%,100%,0.06)]"
-                            }
-                          `}
-                        >
-                          <motion.div
-                            className="relative flex items-center"
-                            animate={{
-                              width: isSelected ? "auto" : "100%",
-                              paddingRight: isSelected ? "1.25rem" : "0",
-                            }}
-                            transition={{
-                              ease: [0.175, 0.885, 0.32, 1.275],
-                              duration: 0.3,
-                            }}
-                          >
-                            <span>{diff}</span>
-                            <AnimatePresence>
-                              {isSelected && (
-                                <motion.span
-                                  initial={{ scale: 0, opacity: 0 }}
-                                  animate={{ scale: 1, opacity: 1 }}
-                                  exit={{ scale: 0, opacity: 0 }}
-                                  transition={{
-                                    type: "spring",
-                                    stiffness: 500,
-                                    damping: 30,
-                                  }}
-                                  className="absolute right-0"
-                                >
-                                  <div
-                                    className={`w-3.5 h-3.5 rounded-full ${
-                                      theme === "light" ? "bg-blue-500" : "bg-[#ff9066]"
-                                    } flex items-center justify-center`}
-                                  >
-                                    <Check
-                                      className={`w-2.5 h-2.5 ${
-                                        theme === "light"
-                                          ? "text-white"
-                                          : "text-[#2a1711]"
-                                      }`}
-                                      strokeWidth={2}
-                                    />
-                                  </div>
-                                </motion.span>
-                              )}
-                            </AnimatePresence>
-                          </motion.div>
-                        </motion.button>
-                      )
-                    })}
-                  </div>
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="p-6">
-                <ScrollArea className="h-[400px]">
-                  <Accordion type="single" collapsible className="w-full">
-                    {filteredQuestions.map((question, index) => {
-                      // userAnswers / timeSpentPerQuestion are indexed by the
-                      // ORIGINAL question order, so map back through the
-                      // unfiltered list (the difficulty filter reorders these).
-                      const originalIndex = examResults.questions.indexOf(question)
-                      const userA = examResults.userAnswers[originalIndex] || null
-                      const grade = gradeAnswer(question, userA)
-                      const timeSpent = examResults.timeSpentPerQuestion[originalIndex]
-
-                      return (
-                        <AccordionItem
-                          value={`question-${index}`}
-                          key={question.id || `q-${index}`}
-                        >
-                          <AccordionTrigger>
-                            <div className="flex items-center">
-                              <span
-                                className={`
-                                  w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white
-                                  ${grade === null ? "bg-gray-400" : grade ? "bg-green-500" : "bg-red-500"}
-                                `}
-                                title={
-                                  grade === null
-                                    ? "Not auto-graded"
-                                    : grade
-                                    ? "Correct"
-                                    : "Incorrect"
-                                }
-                              >
-                                {grade === null ? (
-                                  <AlertCircle className="w-4 h-4" />
-                                ) : grade ? (
-                                  <Check className="w-4 h-4" />
-                                ) : (
-                                  <XCircle className="w-4 h-4" />
-                                )}
-                              </span>
-                              <span className="mr-2">Question {index + 1}</span>
-                              {/* If we want to display difficulty or topic as a small pill: */}
-                              {question.difficulty && (
-                                <span className="text-xs border px-2 py-0.5 ml-2 rounded-full">
-                                  {question.difficulty}
-                                </span>
-                              )}
-                              {question.topic && (
-                                <span className="text-xs border px-2 py-0.5 ml-2 rounded-full">
-                                  {question.topic}
-                                </span>
-                              )}
-                            </div>
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="space-y-2">
-                              {/* The new read-only question block: */}
-                              <QuestionReviewBlock
-                                question={question}
-                                userAnswer={userA}
-                              />
-
-                              <p className="text-sm text-gray-700 mt-3">
-                                <strong>Time Spent:</strong>{" "}
-                                {formatTime(timeSpent)}
-                              </p>
-
-                              {/* Additional explanation if you like */}
-                              {question.explanation && (
-                                <div className="text-sm mt-2 text-muted-foreground">
-                                  <strong>Explanation:</strong>{" "}
-                                  {typeof question.explanation === "string" ? (
-                                    <MathRenderer text={question.explanation} />
-                                  ) : (
-                                    JSON.stringify(question.explanation)
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      )
-                    })}
-                  </Accordion>
-                </ScrollArea>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </motion.div>
-      </Tabs>
-
-      {/* Bottom CTA => exit / new exam */}
-      <motion.div
-        className="flex flex-col sm:flex-row gap-4 justify-between mt-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-      >
-        <Button variant="outline" className="flex items-center gap-2" onClick={onExit}>
-          <ArrowLeft className="w-4 h-4" />
-          Exit to Mock Exam
+      {/* ---------- bottom CTAs ---------- */}
+      <div className="flex flex-col justify-between gap-4 sm:flex-row">
+        <Button variant="outline" className="min-h-11" onClick={onExit}>
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back to paper
         </Button>
-        <Button
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white"
-          onClick={onStartNewExam}
-        >
-          Start New Exam
-          <ArrowRight className="w-4 h-4" />
+        <Button className="min-h-11" onClick={onStartNewExam}>
+          Start new exam
+          <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
-      </motion.div>
+      </div>
     </motion.div>
   )
 }

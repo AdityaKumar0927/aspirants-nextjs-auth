@@ -17,7 +17,11 @@ export const metadata: Metadata = {
 export default function Settings() {
   return (
     <form method="post" className="mx-auto max-w-4xl">
-      <Heading>Settings</Heading>
+      <div className="space-y-1">
+        <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Workspace</p>
+        <Heading>Settings</Heading>
+        <p className="text-sm text-pencil">Manage your organization profile and preferences.</p>
+      </div>
       <Divider className="my-10 mt-6" />
 
       <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -26,7 +30,7 @@ export default function Settings() {
           <Text>This will be displayed on your public profile.</Text>
         </div>
         <div>
-          <Input aria-label="Organization Name" name="name" defaultValue="aspirants" />
+          <Input aria-label="Organization Name" name="name" defaultValue="Penwise" />
         </div>
       </section>
 

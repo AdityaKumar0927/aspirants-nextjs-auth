@@ -24,18 +24,21 @@ import {
 
 const HOUR_IN_SECONDS = 3600
 
-/** A simple skeleton UI for when the exam is loading after Start Exam is clicked. */
+/** Skeleton sheet shown while the paper is being fetched after "Start exam". */
 function ExamLoadingSkeleton() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-3xl space-y-4">
+    <div className="flex min-h-screen flex-col items-center justify-center p-4">
+      <div className="paper-sheet w-full max-w-3xl space-y-4 p-6">
+        <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+          Printing question paper
+        </p>
         <Skeleton height={30} width={"60%"} />
         <Skeleton height={20} count={2} />
         <Skeleton height={200} />
         <Skeleton height={40} />
       </div>
 
-      <div className="w-full max-w-3xl space-y-2 mt-10">
+      <div className="paper-sheet mt-6 w-full max-w-3xl space-y-2 p-6">
         <Skeleton height={30} width={"50%"} />
         <Skeleton height={40} />
         <Skeleton height={40} />
@@ -164,8 +167,8 @@ export default function MockExam() {
 
       if (!questions.length) {
         toast({
-          title: "No Questions Found",
-          description: "No matches. Try different filters.",
+          title: "No questions found",
+          description: "No matches — try a different exam, year, or filters.",
           variant: "destructive",
         })
         return
@@ -441,7 +444,7 @@ export default function MockExam() {
   // 5) Exiting or new exam
   // ----------------------------------------------------------------
   function exitExam() {
-    if (window.confirm("Are you sure you want to exit? Progress will be lost.")) {
+    if (window.confirm("Exit the exam? This attempt won't be saved.")) {
       setIsExamStarted(false)
       setIsExamFinished(false)
       setExamResults(null)
@@ -494,7 +497,7 @@ export default function MockExam() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="fixed inset-0 z-50 bg-white overflow-y-auto custom-scrollbar"
+          className="fixed inset-0 z-50 overflow-y-auto bg-desk custom-scrollbar"
         >
           <ExamLoadingSkeleton />
         </motion.div>
@@ -508,7 +511,7 @@ export default function MockExam() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className="fixed inset-0 z-50 overflow-y-auto custom-scrollbar"
+          className="fixed inset-0 z-50 overflow-y-auto bg-desk custom-scrollbar"
         >
           <Exam
             currentQuestion={currentQuestion}
@@ -524,7 +527,7 @@ export default function MockExam() {
             onReviewAndNext={handleReviewAndNext}
             onSaveAndNext={handleSaveAndNext}
             onSubmit={() => {
-              if (window.confirm("Are you sure you want to submit?")) {
+              if (window.confirm("Submit the paper? You can't change answers after this.")) {
                 handleSubmit()
               }
             }}

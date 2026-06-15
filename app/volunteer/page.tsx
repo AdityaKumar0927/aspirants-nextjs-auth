@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
+import T from "@/components/i18n/T"
 
 export default function Component() {
   const values = [
@@ -68,7 +69,7 @@ export default function Component() {
     <div className="container mx-auto px-4 py-16 space-y-16">
       {/* Values Section */}
       <section className="space-y-8">
-        <h2 className="text-4xl font-serif text-center">Our values</h2>
+        <h2 className="text-4xl font-serif text-center"><T k="auto.volunteerPage.ourValues" /></h2>
         <div className="grid md:grid-cols-3 gap-6">
           {values.map((value, index) => (
             <Card key={index} className="text-center">
@@ -84,12 +85,12 @@ export default function Component() {
 
       {/* Careers Section */}
       <section className="space-y-8">
-        <h2 className="text-4xl font-serif text-center">Ready to shape the future of education?</h2>
+        <h2 className="text-4xl font-serif text-center"><T k="auto.volunteerPage.readyToShapeTheFuture" /></h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {positions.map((position, index) => (
             <Link
               key={index}
-              href="#"
+              href="/apply"
               className="block group"
             >
               <Card className="h-full transition-shadow hover:shadow-lg">
@@ -104,11 +105,11 @@ export default function Component() {
             </Link>
           ))}
           
-          <Link href="#" className="block group">
+          <Link href="/contact" className="block group">
             <Card className="h-full transition-shadow hover:shadow-lg">
               <CardContent className="p-6 space-y-2">
-                <h3 className="font-semibold">Got another idea?</h3>
-                <p className="text-gray-600 underline">Contact us</p>
+                <h3 className="font-semibold"><T k="auto.volunteerPage.gotAnotherIdea" /></h3>
+                <p className="text-gray-600 underline"><T k="auto.volunteerPage.contactUs" /></p>
               </CardContent>
             </Card>
           </Link>

@@ -85,6 +85,20 @@ const config: Config = {
           secondary: '#533483',
           accent: '#e94560',
         },
+        // "Desk" design system (see app/desk.css — values flip in dark mode)
+        paper: 'var(--paper)',
+        desk: 'var(--desk)',
+        ink: 'var(--ink)',
+        ballpoint: 'var(--ballpoint)',
+        redpen: 'var(--redpen)',
+        marker: 'var(--marker)',
+        pencil: 'var(--pencil)',
+        rule: 'var(--rule)',
+        st: {
+          answered: 'var(--st-answered)',
+          review: 'var(--st-review)',
+          notvisited: 'var(--st-notvisited)',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -94,6 +108,10 @@ const config: Config = {
       fontFamily: {
         display: ['var(--font-sf)', 'system-ui', 'sans-serif'],
         default: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        // "Desk" design system roles
+        archivo: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
+        question: ['var(--font-stix)', '"Times New Roman"', 'serif'],
+        data: ['var(--font-plex-mono)', 'ui-monospace', 'monospace'],
       },
       animation: {
         scroll: 'scroll var(--animation-duration, 40s) linear infinite',

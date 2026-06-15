@@ -12,8 +12,6 @@ import ShimmerButton from '@/components/magicui/shimmer-button';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
-import Ripple from '@/components/landing/magicui/ripple';
-import DemoNoteComponent from '@/components/question-bank/demo-note';
 import { FAQ } from '@/components/shared/FAQ';
 import QuestionStatistics from '@/components/dashboard/question-statistics';
 import QuestionStatisticsLoading from '@/components/dashboard/question-statistics-loading';
@@ -71,7 +69,6 @@ export default function Page() {
     <div className="z-10 w-full px-5 xl:px-0">
       <div className="text-center px-4">
         <div className="flex flex-col items-center gap-6 pb-8 text-center">
-          <Ripple className="hidden sm:block -z-50 bottom-20" />
           <AnimatedGradientText className="bg-white dark:bg-gray-500 dark:text-white text-black font-light flex items-center space-x-2">
             <span>40k questions</span>
           </AnimatedGradientText>
@@ -79,7 +76,7 @@ export default function Page() {
             <div className="mx-auto max-w-2xl text-center">
               <div className="container w-full mx-auto">
                 <h1 className="text-3xl font-light sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.04em] drop-shadow-sm leading-tight sm:leading-[1.2] md:leading-[1.1] lg:leading-[1.1] text-center">
-                  Study Smart with Aspirants
+                  Study Smart with Penwise
                 </h1>
               </div>
               <p
@@ -113,7 +110,6 @@ export default function Page() {
         </div>
       </div>
 
-
       <div className="relative w-11/12 h-[800px] border-4 border-gray-200 dark:border-gray-700 rounded-2xl overflow-hidden flex items-center justify-center my-8 mx-auto">
         <div className="absolute inset-0 hidden sm:block">
           <Image
@@ -142,22 +138,6 @@ export default function Page() {
           <ContainerScroll titleComponent={<></>}>
             <Dashboard />
           </ContainerScroll>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 mt-10">
-        <h4 className="text-center font-light lg:text-5xl tracking-[-0.02em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-          Never Forget Anything
-        </h4>
-
-        <p className="text-sm lg:text-base mt-5 max-w-2xl mx-auto text-gray-600 dark:text-gray-300 text-center font-normal">
-          View your notes at a glance and save yourself from endless flipping of your notebooks running out of pages to fill.
-        </p>
-
-        <div className="flex justify-center">
-          <div className="relative z-20 p-4 w-full max-w-4xl">
-            <DemoNoteComponent />
-          </div>
         </div>
       </div>
 

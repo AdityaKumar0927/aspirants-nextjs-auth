@@ -234,6 +234,7 @@ model Question {
   permalink            String?
   subjectGroup         String?
   topicName            String?
+  archetypeId          String?        // ML-derived recurring-question cluster (see QuestionArchetype)
 
   // Relations
   Feedback        Feedback[]
@@ -246,12 +247,14 @@ model Question {
   UserPerformance UserPerformance[]
   UserProgress    UserProgress[]
   ImportJob       ImportJob?     @relation(fields: [importJobId], references: [id], onDelete: SetNull)
+  Archetype       QuestionArchetype? @relation(fields: [archetypeId], references: [id], onDelete: SetNull)
 
   // If you have solutions
   solutions Solution[]
 
   @@index([importJobId])
   @@index([parentQuestionId])
+  @@index([archetypeId])
   // Indexes for the question-bank filter/cascade query (status is filtered on
   // every read; exam/subject/topic/year are the primary facets).
   @@index([status])
@@ -326,6 +329,13 @@ model User {
   verifiedTeacher                Boolean               @default(false)
   likedSolutionIds               String[]              @default([]) // solutions this user has liked (prevents like-spam)
 
+  // --- DPDP (India) compliance ---
+  dateOfBirth                    DateTime?             // self-declared at onboarding
+  isMinor                        Boolean?              // derived from dateOfBirth (< 18); null = not yet captured
+  onboardingComplete             Boolean               @default(false) // DOB + consent notice accepted
+  analyticsConsent               Boolean               @default(false) // server-side mirror of cookie/analytics consent
+  deletionRequestedAt            DateTime?             // erasure-in-progress marker
+
   Account                        Account[]
   AiUsageLog                     AiUsageLog[]
   ImportJob                      ImportJob[]
@@ -349,6 +359,19 @@ model User {
   // If a user can author solutions
   solutionsAuthored Solution[]     @relation("UserToSolutionsAuthored")
   solutionLikes     SolutionLike[]
+
+  // DPDP relations
+  ConsentRecord     ConsentRecord[]
+  ParentalConsent   ParentalConsent?
+  DataRequest       DataRequest[]
+
+  // Feature requests (public roadmap board)
+  FeatureRequest        FeatureRequest[]
+  FeatureRequestVote    FeatureRequestVote[]
+  FeatureRequestComment FeatureRequestComment[]
+
+  // Study planner (server-synced)
+  StudyPlan StudyPlan?
 }
 
 model UserAnswer {
@@ -567,4 +590,194 @@ model SolutionLike {
 
   @@unique([userId, solutionId])
   @@index([solutionId])
+}
+
+// ===========================================================================
+// DPDP (India) compliance models
+// ===========================================================================
+
+// Append-only, versioned, withdrawable purpose consent. The CURRENT consent
+// state for a (userId, purpose) is the most recent row — withdrawal is a new
+// row with granted=false, so the full history is preserved for audit.
+model ConsentRecord {
+  id             String        @id @default(uuid())
+  userId         String
+  purpose        ConsentPurpose
+  consentVersion String // notice version in force when consent was given (see CONSENT_VERSION)
+  granted        Boolean
+  source         String // "onboarding" | "cookie-banner" | "privacy-dashboard" | "parental"
+  ipAddress      String?
+  userAgent      String?
+  createdAt      DateTime      @default(now())
+  User           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, purpose])
+}
+
+// Verifiable parental consent for under-18 users (one active record per minor).
+// Only the SHA-256 hash of the emailed token is stored, never the raw token.
+model ParentalConsent {
+  id          String                @id @default(uuid())
+  userId      String                @unique
+  parentEmail String
+  parentName  String?
+  tokenHash   String
+  status      ParentalConsentStatus @default(PENDING)
+  requestedAt DateTime              @default(now())
+  verifiedAt  DateTime?
+  expiresAt   DateTime
+  User        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tokenHash])
+}
+
+// Data-principal rights workflow (DSAR / grievance). dueAt = createdAt + 90 days.
+model DataRequest {
+  id         String            @id @default(uuid())
+  userId     String
+  type       DataRequestType
+  status     DataRequestStatus @default(OPEN)
+  message    String?
+  response   String?
+  dueAt      DateTime
+  createdAt  DateTime          @default(now())
+  resolvedAt DateTime?
+  resolvedBy String?
+  User       User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}
+
+// Reasonable-security audit log (DPDP Rule 6). `userId` is a plain column with
+// NO foreign-key relation, so audit entries SURVIVE account erasure — we must
+// be able to prove a deletion happened after the user row is gone. Retained for
+// one year (see /api/admin/audit/purge).
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  action    String
+  metadata  Json?
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+enum ConsentPurpose {
+  ESSENTIAL
+  ANALYTICS
+  PROFILING
+  MARKETING
+  AI_PROCESSING
+}
+
+enum ParentalConsentStatus {
+  PENDING
+  VERIFIED
+  EXPIRED
+  REVOKED
+}
+
+enum DataRequestType {
+  ACCESS
+  CORRECTION
+  ERASURE
+  GRIEVANCE
+  WITHDRAW_CONSENT
+}
+
+enum DataRequestStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  REJECTED
+}
+
+// A cluster of near-identical past-paper questions — a recurring "archetype"
+// (e.g. the same projectile-motion template asked across years). Produced
+// offline by the embeddings + clustering enrichment job (scripts/) and surfaced
+// in the Exam Blueprint. Also the seed layer for the concept knowledge graph.
+model QuestionArchetype {
+  id                       String   @id @default(uuid())
+  exam                     String
+  subject                  String?
+  chapter                  String?
+  label                    String   // representative (medoid) question text, truncated
+  size                     Int      // number of questions in the cluster
+  distinctYears            Int      // how many distinct years it appears in
+  years                    Int[]    // the years it appears in
+  firstYear                Int?
+  lastYear                 Int?
+  representativeQuestionId String?
+  createdAt                DateTime @default(now())
+
+  Question Question[]
+
+  @@index([exam])
+  @@index([exam, distinctYears])
+}
+
+enum FeatureRequestStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+model FeatureRequest {
+  id          String               @id @default(uuid())
+  title       String
+  description String
+  status      FeatureRequestStatus @default(PENDING)
+  category    String
+  tags        String[]             @default([])
+  createdById String
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  createdBy User                    @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  votes     FeatureRequestVote[]
+  comments  FeatureRequestComment[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model FeatureRequestVote {
+  id               String   @id @default(uuid())
+  featureRequestId String
+  userId           String
+  createdAt        DateTime @default(now())
+
+  featureRequest FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([featureRequestId, userId])
+  @@index([featureRequestId])
+}
+
+model FeatureRequestComment {
+  id               String   @id @default(uuid())
+  featureRequestId String
+  authorId         String
+  content          String
+  createdAt        DateTime @default(now())
+
+  featureRequest FeatureRequest @relation(fields: [featureRequestId], references: [id], onDelete: Cascade)
+  author         User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([featureRequestId])
+}
+
+// One per user — holds the study-planner state ({ subjects, studySessions }) as
+// JSON so it syncs across devices. Guests fall back to localStorage client-side.
+model StudyPlan {
+  userId    String   @id
+  data      Json
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

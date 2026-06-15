@@ -35,6 +35,13 @@ yarn-error.log*
 # user/AI-generated uploads
 /public/uploads/
 
+# traced question images — served via jsDelivr CDN repo, NOT bundled in the app
+/public/q-img/
+
+# image pipeline working files (manifest, download cache, venv, backups)
+/scripts/img/out/
+/scripts/img/.venv/
+
 # vercel
 .vercel
 
@@ -44,3 +51,6 @@ next-env.d.ts
 
 # misc
 .vscode
+
+# cygwin/msys crash dumps
+*.stackdump

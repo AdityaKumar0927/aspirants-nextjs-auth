@@ -26,7 +26,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Badge } from "@/components/ui/badge"
 import { Calendar } from "@/components/ui/calendar"
 import {
   Popover,
@@ -39,8 +38,9 @@ import { useToast } from "@/components/ui/use-toast"
 import { Skeleton } from "@/components/ui/skeleton"
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
-import { Search, HelpCircle, ChevronDown, Plus, RefreshCw, CalendarIcon, MoreHorizontal, Filter } from 'lucide-react'
+import { Search, HelpCircle, RefreshCw, CalendarIcon, MoreHorizontal, Filter } from 'lucide-react'
 import FeedbackPopover from "@/components/question-bank/FeedbackPopover"
+import T from "@/components/i18n/T"
 
 export type IssueArea = "CONTENT" | "UI" | "BUG" | "FEATURE" | "OTHER"
 export type IssueStatus = "OPEN" | "IN_PROGRESS" | "RESOLVED" | "CLOSED"
@@ -64,18 +64,19 @@ export interface Issue {
 
 type Role = 'member' | 'volunteer' | 'moderator' | 'administrator'
 
-const statusColors = {
-  OPEN: "bg-yellow-500/20 text-yellow-700",
-  IN_PROGRESS: "bg-blue-500/20 text-blue-700",
-  RESOLVED: "bg-green-500/20 text-green-700",
-  CLOSED: "bg-gray-500/20 text-gray-700",
+// Desk status marks — small dots in the CBT legend, never colored pills.
+const statusDots = {
+  OPEN: "bg-st-notvisited",
+  IN_PROGRESS: "bg-st-review",
+  RESOLVED: "bg-st-answered",
+  CLOSED: "bg-pencil",
 }
 
-const priorityColors = {
-  LOW: "bg-gray-500/20 text-gray-700",
-  MEDIUM: "bg-orange-500/20 text-orange-700",
-  HIGH: "bg-red-500/20 text-red-700",
-  CRITICAL: "bg-purple-500/20 text-purple-700",
+const priorityDots = {
+  LOW: "bg-st-notvisited",
+  MEDIUM: "bg-pencil",
+  HIGH: "bg-ink",
+  CRITICAL: "bg-redpen",
 }
 
 export default function IssuesPageContent() {
@@ -285,41 +286,47 @@ export default function IssuesPageContent() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-7xl">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
         <div className="mb-4 sm:mb-0">
-          <h1 className="text-2xl sm:text-3xl font-medium mb-2">Report Issues</h1>
-          <p className="text-gray-500 text-sm sm:text-base">
-            Create and view support cases for your projects.
+          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+            <T k="auto.issuesIssuespagecontent.supportCaseRegister" />
+          </p>
+          <h1 className="type-display mb-2 mt-1 text-2xl sm:text-3xl">
+            <T k="auto.issuesIssuespagecontent.report" /> <span className="highlight-sweep"><T k="auto.issuesIssuespagecontent.issues" /></span>
+          </h1>
+          <p className="text-pencil text-sm sm:text-base">
+            <T k="auto.issuesIssuespagecontent.raiseACaseTrackIts" />
           </p>
         </div>
         {canCreateIssue && (
-          <Button className="bg-black text-white hover:bg-gray-800 w-full sm:w-auto" onClick={() => setIsCreateIssueDialogOpen(true)}>
-            Create Case
+          <Button className="min-h-11 w-full sm:w-auto" onClick={() => setIsCreateIssueDialogOpen(true)}>
+            <T k="auto.issuesIssuespagecontent.createCase" />
           </Button>
         )}
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pencil h-4 w-4" />
           <Input
-            placeholder="Search..."
-            className="pl-10 w-full"
+            placeholder="Search cases"
+            className="pl-10 w-full bg-paper"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           
         </div>
         <div className="flex gap-2 sm:gap-4 items-center">
-          <Button variant="outline" size="icon" onClick={() => setIsFilterDialogOpen(true)} className="sm:hidden">
+          <Button variant="outline" size="icon" onClick={() => setIsFilterDialogOpen(true)} className="min-h-11 min-w-11 sm:hidden">
             <Filter className="h-4 w-4" />
+            <span className="sr-only"><T k="auto.issuesIssuespagecontent.filterCases" /></span>
           </Button>
           <div className="hidden sm:block">
             <Tabs value={statusFilter} onValueChange={setStatusFilter} className="w-full md:w-auto">
               <TabsList>
-                <TabsTrigger value="all">All</TabsTrigger>
-                <TabsTrigger value="open">Open</TabsTrigger>
-                <TabsTrigger value="in_progress">In Progress</TabsTrigger>
-                <TabsTrigger value="resolved">Resolved</TabsTrigger>
-                <TabsTrigger value="closed">Closed</TabsTrigger>
+                <TabsTrigger value="all"><T k="auto.issuesIssuespagecontent.all" /></TabsTrigger>
+                <TabsTrigger value="open"><T k="auto.issuesIssuespagecontent.open" /></TabsTrigger>
+                <TabsTrigger value="in_progress"><T k="auto.issuesIssuespagecontent.inProgress" /></TabsTrigger>
+                <TabsTrigger value="resolved"><T k="auto.issuesIssuespagecontent.resolved" /></TabsTrigger>
+                <TabsTrigger value="closed"><T k="auto.issuesIssuespagecontent.closed" /></TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
@@ -334,13 +341,14 @@ export default function IssuesPageContent() {
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="updatedAt-desc">Last Updated</SelectItem>
-              <SelectItem value="createdAt-desc">Created Date</SelectItem>
-              <SelectItem value="priority-desc">Priority</SelectItem>
+              <SelectItem value="updatedAt-desc"><T k="auto.issuesIssuespagecontent.lastUpdated" /></SelectItem>
+              <SelectItem value="createdAt-desc"><T k="auto.issuesIssuespagecontent.createdDate" /></SelectItem>
+              <SelectItem value="priority-desc"><T k="auto.issuesIssuespagecontent.priority" /></SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" size="icon" onClick={handleRefresh}>
+          <Button variant="outline" size="icon" onClick={handleRefresh} className="min-h-11 min-w-11">
             <RefreshCw className="h-4 w-4" />
+            <span className="sr-only"><T k="auto.issuesIssuespagecontent.refreshCases" /></span>
           </Button>
         </div>
       </div>
@@ -352,11 +360,11 @@ export default function IssuesPageContent() {
               <SelectValue placeholder="All Priorities" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Priorities</SelectItem>
-              <SelectItem value="low">Low</SelectItem>
-              <SelectItem value="medium">Medium</SelectItem>
-              <SelectItem value="high">High</SelectItem>
-              <SelectItem value="critical">Critical</SelectItem>
+              <SelectItem value="all"><T k="auto.issuesIssuespagecontent.allPriorities" /></SelectItem>
+              <SelectItem value="low"><T k="auto.issuesIssuespagecontent.low" /></SelectItem>
+              <SelectItem value="medium"><T k="auto.issuesIssuespagecontent.medium" /></SelectItem>
+              <SelectItem value="high"><T k="auto.issuesIssuespagecontent.high" /></SelectItem>
+              <SelectItem value="critical"><T k="auto.issuesIssuespagecontent.critical" /></SelectItem>
             </SelectContent>
           </Select>
           <Select value={areaFilter} onValueChange={setAreaFilter}>
@@ -364,12 +372,12 @@ export default function IssuesPageContent() {
               <SelectValue placeholder="All Areas" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All Areas</SelectItem>
-              <SelectItem value="content">Content</SelectItem>
-              <SelectItem value="ui">UI</SelectItem>
-              <SelectItem value="bug">Bug</SelectItem>
-              <SelectItem value="feature">Feature</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
+              <SelectItem value="all"><T k="auto.issuesIssuespagecontent.allAreas" /></SelectItem>
+              <SelectItem value="content"><T k="auto.issuesIssuespagecontent.content" /></SelectItem>
+              <SelectItem value="ui"><T k="auto.issuesIssuespagecontent.ui" /></SelectItem>
+              <SelectItem value="bug"><T k="auto.issuesIssuespagecontent.bug" /></SelectItem>
+              <SelectItem value="feature"><T k="auto.issuesIssuespagecontent.feature" /></SelectItem>
+              <SelectItem value="other"><T k="auto.issuesIssuespagecontent.other" /></SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -401,9 +409,9 @@ export default function IssuesPageContent() {
               setFilteredIssues(viewAllIssues ? userIssues : issues)
             }} 
             variant="outline"
-            className="w-full sm:w-auto"
+            className="min-h-11 w-full sm:w-auto"
           >
-            {viewAllIssues ? "My Issues" : "All Issues"}
+            {viewAllIssues ? "My cases" : "All cases"}
           </Button>
         </div>
       </div>
@@ -411,7 +419,7 @@ export default function IssuesPageContent() {
       {loading ? (
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="flex items-center space-x-4 bg-gray-50 p-4 rounded-md">
+            <div key={i} className="paper-sheet flex items-center space-x-4 p-4">
               <Skeleton className="h-12 w-12 rounded-full" />
               <div className="space-y-2 flex-1">
                 <Skeleton className="h-4 w-[200px]" />
@@ -421,90 +429,96 @@ export default function IssuesPageContent() {
           ))}
         </div>
       ) : error ? (
-        <div className="flex flex-col items-center justify-center py-20 border rounded-lg bg-gray-50">
-          <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
-            <HelpCircle className="h-6 w-6 text-red-500" />
+        <div className="paper-sheet flex flex-col items-center justify-center py-20">
+          <div className="h-12 w-12 rounded-full border border-rule flex items-center justify-center mb-4">
+            <HelpCircle className="h-6 w-6 text-redpen" />
           </div>
-          <h2 className="text-xl font-medium mb-2">Error</h2>
-          <p className="text-gray-500 mb-6">{error}</p>
-          <Button onClick={handleRefresh}>
+          <h2 className="type-display text-xl mb-2"><T k="auto.issuesIssuespagecontent.somethingWentWrong" /></h2>
+          <p className="text-pencil mb-6">{error}</p>
+          <Button onClick={handleRefresh} className="min-h-11">
             <RefreshCw className="mr-2 h-4 w-4" />
-            Retry
+            <T k="auto.issuesIssuespagecontent.retry" />
           </Button>
         </div>
       ) : paginatedIssues.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 border rounded-lg bg-gray-50">
-          <div className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-            <HelpCircle className="h-6 w-6 text-gray-400" />
+        <div className="paper-sheet flex flex-col items-center justify-center py-20">
+          <div className="h-12 w-12 rounded-full border border-rule flex items-center justify-center mb-4">
+            <HelpCircle className="h-6 w-6 text-pencil" />
           </div>
-          <h2 className="text-xl font-medium mb-2">No cases yet</h2>
-          <p className="text-gray-500 mb-6">Create a new case to get started</p>
+          <h2 className="type-display text-xl mb-2"><T k="auto.issuesIssuespagecontent.noCasesOnTheRegister" /></h2>
+          <p className="text-pencil mb-6"><T k="auto.issuesIssuespagecontent.createACaseToGet" /></p>
           {canCreateIssue && (
-            <Button onClick={() => setIsCreateIssueDialogOpen(true)}>Create Case</Button>
+            <Button onClick={() => setIsCreateIssueDialogOpen(true)} className="min-h-11"><T k="auto.issuesIssuespagecontent.createCase" /></Button>
           )}
           <FeedbackPopover questionId="example-question-id" />
         </div>
-        
+
       ) : (
-        <div className="space-y-4">
+        <div className="paper-sheet px-4 sm:px-6">
           {paginatedIssues.map((issue) => (
-            <div key={issue.id} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 bg-white border rounded-lg hover:bg-gray-50">
+            <div key={issue.id} className="ledger-row flex-col items-start gap-2 py-4 last:border-b-0 sm:flex-row sm:items-center sm:gap-4">
               <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <Badge
-                    variant="secondary"
-                    className={`${statusColors[issue.status]} px-2 py-0.5 text-xs font-normal`}
-                  >
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
+                  <span className="type-data flex items-center gap-1.5 text-xs uppercase tracking-[0.08em] text-ink">
+                    <span
+                      className={`h-2 w-2 rounded-full ${statusDots[issue.status]}`}
+                      aria-hidden="true"
+                    />
                     {issue.status === "IN_PROGRESS"
                       ? "In Progress"
                       : issue.status.charAt(0) + issue.status.slice(1).toLowerCase()}
-                  </Badge>
-                  <Badge
-                    variant="secondary"
-                    className={`${priorityColors[issue.priority]} px-2 py-0.5 text-xs font-normal`}
-                  >
+                  </span>
+                  <span className="type-data flex items-center gap-1.5 text-xs uppercase tracking-[0.08em] text-pencil">
+                    <span
+                      className={`h-2 w-2 rounded-full ${priorityDots[issue.priority]}`}
+                      aria-hidden="true"
+                    />
                     {issue.priority.charAt(0) + issue.priority.slice(1).toLowerCase()}
-                  </Badge>
-                  <span className="text-sm text-gray-500">
+                  </span>
+                  <span className="type-data text-xs text-pencil">
                     {issue.id.replace('cm3oyfu850000me035l9m6hlb', '')}
                   </span>
                 </div>
-                <h2 className="text-lg font-medium mb-1">{issue.title}</h2>
-                <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500">
+                <h2 className="text-lg font-medium text-ink mb-1">{issue.title}</h2>
+                <div className="flex flex-wrap items-center gap-2 text-sm text-pencil">
                   <span>{issue.area.toLowerCase()}</span>
-                  <span>•</span>
+                  <span aria-hidden="true">·</span>
                   <span>
-                    Updated {new Date(issue.updatedAt).toLocaleString("en-US", {
-                      hour: "numeric",
-                      minute: "numeric",
-                      hour12: true,
-                      month: "short",
-                      day: "numeric",
-                    })}
+                    <T k="auto.issuesIssuespagecontent.updated" />{" "}
+                    <span className="type-data">
+                      {new Date(issue.updatedAt).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
                   </span>
-                  <span>•</span>
-                  <span>by {issue.createdBy.name ?? 'Unknown'}</span>
+                  <span aria-hidden="true">·</span>
+                  <span><T k="auto.issuesIssuespagecontent.by" /> {issue.createdBy.name ?? 'Unknown'}</span>
                 </div>
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="sm" className="min-h-11">
                     <MoreHorizontal className="h-4 w-4" />
+                    <span className="sr-only"><T k="auto.issuesIssuespagecontent.caseActions" /></span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onSelect={() => setSelectedIssue(issue)}>View Details</DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setSelectedIssue(issue)}><T k="auto.issuesIssuespagecontent.viewDetails" /></DropdownMenuItem>
                   {canResolveIssues && (
-                    <DropdownMenuItem>Resolve Issue</DropdownMenuItem>
+                    <DropdownMenuItem><T k="auto.issuesIssuespagecontent.resolveIssue" /></DropdownMenuItem>
                   )}
                   {canApproveChanges && (
-                    <DropdownMenuItem>Approve Changes</DropdownMenuItem>
+                    <DropdownMenuItem><T k="auto.issuesIssuespagecontent.approveChanges" /></DropdownMenuItem>
                   )}
                   {canViewDetailedInfo && (
                     <>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem className="text-destructive">
-                        Delete
+                        <T k="auto.issuesIssuespagecontent.delete" />
                       </DropdownMenuItem>
                     </>
                   )}
@@ -517,10 +531,10 @@ export default function IssuesPageContent() {
 
       {paginatedIssues.length > 0 && (
         <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4">
-          <p className="text-sm text-muted-foreground order-2 sm:order-1">
-            Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
-            {Math.min(currentPage * itemsPerPage, sortedIssues.length)} of{" "}
-            {sortedIssues.length} issues
+          <p className="text-sm text-pencil order-2 sm:order-1">
+            <T k="auto.issuesIssuespagecontent.showing" /> <span className="type-data text-ink">{(currentPage - 1) * itemsPerPage + 1}</span> <T k="auto.issuesIssuespagecontent.to" />{" "}
+            <span className="type-data text-ink">{Math.min(currentPage * itemsPerPage, sortedIssues.length)}</span> <T k="auto.issuesIssuespagecontent.of" />{" "}
+            <span className="type-data text-ink">{sortedIssues.length}</span> <T k="auto.issuesIssuespagecontent.cases" />
           </p>
           <div className="space-x-2 order-1 sm:order-2">
             <Button
@@ -529,7 +543,7 @@ export default function IssuesPageContent() {
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
             >
-              Previous
+              <T k="auto.issuesIssuespagecontent.previous" />
             </Button>
             <Button
               variant="outline"
@@ -537,39 +551,64 @@ export default function IssuesPageContent() {
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
             >
-              Next
+              <T k="auto.issuesIssuespagecontent.next" />
             </Button>
           </div>
         </div>
       )}
 
       <Dialog open={!!selectedIssue} onOpenChange={() => setSelectedIssue(null)}>
-        <DialogContent>
+        <DialogContent className="paper-sheet">
           <DialogHeader>
-            <DialogTitle>{selectedIssue?.title}</DialogTitle>
-            <DialogDescription>Issue Details</DialogDescription>
+            <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+              <T k="auto.issuesIssuespagecontent.caseDetails" />
+            </p>
+            <DialogTitle className="type-display">{selectedIssue?.title}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-2">
-            <p><strong>Description:</strong> {selectedIssue?.description}</p>
-            <p><strong>Status:</strong> {selectedIssue?.status}</p>
-            <p><strong>Priority:</strong> {selectedIssue?.priority}</p>
-            <p><strong>Area:</strong> {selectedIssue?.area}</p>
-            <p><strong>Created At:</strong> {selectedIssue?.createdAt}</p>
-            <p><strong>Updated At:</strong> {selectedIssue?.updatedAt}</p>
-            {selectedIssue?.questionId && <p><strong>Related Question ID:</strong> {selectedIssue.questionId}</p>}
+          <div>
+            <div className="ledger-row items-start py-2">
+              <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.description" /></span>
+              <span className="text-sm text-ink">{selectedIssue?.description}</span>
+            </div>
+            <div className="ledger-row py-2">
+              <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.status" /></span>
+              <span className="type-data text-sm text-ink">{selectedIssue?.status}</span>
+            </div>
+            <div className="ledger-row py-2">
+              <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.priority" /></span>
+              <span className="type-data text-sm text-ink">{selectedIssue?.priority}</span>
+            </div>
+            <div className="ledger-row py-2">
+              <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.area" /></span>
+              <span className="type-data text-sm text-ink">{selectedIssue?.area}</span>
+            </div>
+            <div className="ledger-row py-2">
+              <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.created" /></span>
+              <span className="type-data text-sm text-ink">{selectedIssue?.createdAt}</span>
+            </div>
+            <div className="ledger-row py-2">
+              <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.updated" /></span>
+              <span className="type-data text-sm text-ink">{selectedIssue?.updatedAt}</span>
+            </div>
+            {selectedIssue?.questionId && (
+              <div className="ledger-row border-b-0 py-2">
+                <span className="type-data w-28 flex-none text-[11px] uppercase tracking-[0.14em] text-pencil"><T k="auto.issuesIssuespagecontent.questionId" /></span>
+                <span className="type-data text-sm text-ink">{selectedIssue.questionId}</span>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
 
       <Dialog open={isCreateIssueDialogOpen} onOpenChange={setIsCreateIssueDialogOpen}>
-        <DialogContent>
+        <DialogContent className="paper-sheet">
           <DialogHeader>
-            <DialogTitle>Create New Issue</DialogTitle>
-            <DialogDescription>Fill in the details to create a new issue.</DialogDescription>
+            <DialogTitle className="type-display"><T k="auto.issuesIssuespagecontent.createACase" /></DialogTitle>
+            <DialogDescription className="text-pencil"><T k="auto.issuesIssuespagecontent.describeTheProblemSoThe" /></DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label htmlFor="title">Title</Label>
+              <Label htmlFor="title"><T k="auto.issuesIssuespagecontent.title" /></Label>
               <Input
                 id="title"
                 value={newIssue.title}
@@ -577,7 +616,7 @@ export default function IssuesPageContent() {
               />
             </div>
             <div>
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description"><T k="auto.issuesIssuespagecontent.description" /></Label>
               <Textarea
                 id="description"
                 value={newIssue.description}
@@ -585,7 +624,7 @@ export default function IssuesPageContent() {
               />
             </div>
             <div>
-              <Label htmlFor="priority">Priority</Label>
+              <Label htmlFor="priority"><T k="auto.issuesIssuespagecontent.priority" /></Label>
               <Select
                 value={newIssue.priority}
                 onValueChange={(value) => setNewIssue({ ...newIssue, priority: value as IssuePriority })}
@@ -594,15 +633,15 @@ export default function IssuesPageContent() {
                   <SelectValue placeholder="Select priority" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="LOW">Low</SelectItem>
-                  <SelectItem value="MEDIUM">Medium</SelectItem>
-                  <SelectItem value="HIGH">High</SelectItem>
-                  <SelectItem value="CRITICAL">Critical</SelectItem>
+                  <SelectItem value="LOW"><T k="auto.issuesIssuespagecontent.low" /></SelectItem>
+                  <SelectItem value="MEDIUM"><T k="auto.issuesIssuespagecontent.medium" /></SelectItem>
+                  <SelectItem value="HIGH"><T k="auto.issuesIssuespagecontent.high" /></SelectItem>
+                  <SelectItem value="CRITICAL"><T k="auto.issuesIssuespagecontent.critical" /></SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label htmlFor="area">Area</Label>
+              <Label htmlFor="area"><T k="auto.issuesIssuespagecontent.area" /></Label>
               <Select
                 value={newIssue.area}
                 onValueChange={(value) => setNewIssue({ ...newIssue, area: value as IssueArea })}
@@ -611,16 +650,16 @@ export default function IssuesPageContent() {
                   <SelectValue placeholder="Select area" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="CONTENT">Content</SelectItem>
-                  <SelectItem value="UI">UI</SelectItem>
-                  <SelectItem value="BUG">Bug</SelectItem>
-                  <SelectItem value="FEATURE">Feature</SelectItem>
-                  <SelectItem value="OTHER">Other</SelectItem>
+                  <SelectItem value="CONTENT"><T k="auto.issuesIssuespagecontent.content" /></SelectItem>
+                  <SelectItem value="UI"><T k="auto.issuesIssuespagecontent.ui" /></SelectItem>
+                  <SelectItem value="BUG"><T k="auto.issuesIssuespagecontent.bug" /></SelectItem>
+                  <SelectItem value="FEATURE"><T k="auto.issuesIssuespagecontent.feature" /></SelectItem>
+                  <SelectItem value="OTHER"><T k="auto.issuesIssuespagecontent.other" /></SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label htmlFor="questionId">Related Question ID (Optional)</Label>
+              <Label htmlFor="questionId"><T k="auto.issuesIssuespagecontent.relatedQuestionIdOptional" /></Label>
               <Input
                 id="questionId"
                 value={newIssue.questionId || ''}
@@ -630,63 +669,63 @@ export default function IssuesPageContent() {
             </div>
           </div>
           <DialogFooter>
-            <Button onClick={handleCreateIssue}>Create Issue</Button>
+            <Button onClick={handleCreateIssue} className="min-h-11"><T k="auto.issuesIssuespagecontent.createCase" /></Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
       <Dialog open={isFilterDialogOpen} onOpenChange={setIsFilterDialogOpen}>
-        <DialogContent>
+        <DialogContent className="paper-sheet">
           <DialogHeader>
-            <DialogTitle>Filter Issues</DialogTitle>
+            <DialogTitle className="type-display"><T k="auto.issuesIssuespagecontent.filterCases" /></DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label>Status</Label>
+              <Label><T k="auto.issuesIssuespagecontent.status" /></Label>
               <Tabs value={statusFilter} onValueChange={setStatusFilter} className="w-full">
                 <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="open">Open</TabsTrigger>
-                  <TabsTrigger value="in_progress">In Progress</TabsTrigger>
-                  <TabsTrigger value="resolved">Resolved</TabsTrigger>
-                  <TabsTrigger value="closed">Closed</TabsTrigger>
+                  <TabsTrigger value="all"><T k="auto.issuesIssuespagecontent.all" /></TabsTrigger>
+                  <TabsTrigger value="open"><T k="auto.issuesIssuespagecontent.open" /></TabsTrigger>
+                  <TabsTrigger value="in_progress"><T k="auto.issuesIssuespagecontent.inProgress" /></TabsTrigger>
+                  <TabsTrigger value="resolved"><T k="auto.issuesIssuespagecontent.resolved" /></TabsTrigger>
+                  <TabsTrigger value="closed"><T k="auto.issuesIssuespagecontent.closed" /></TabsTrigger>
                 </TabsList>
               </Tabs>
             </div>
             <div>
-              <Label>Priority</Label>
+              <Label><T k="auto.issuesIssuespagecontent.priority" /></Label>
               <Select value={priorityFilter} onValueChange={setPriorityFilter}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Priorities" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Priorities</SelectItem>
-                  <SelectItem value="low">Low</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="high">High</SelectItem>
-                  <SelectItem value="critical">Critical</SelectItem>
+                  <SelectItem value="all"><T k="auto.issuesIssuespagecontent.allPriorities" /></SelectItem>
+                  <SelectItem value="low"><T k="auto.issuesIssuespagecontent.low" /></SelectItem>
+                  <SelectItem value="medium"><T k="auto.issuesIssuespagecontent.medium" /></SelectItem>
+                  <SelectItem value="high"><T k="auto.issuesIssuespagecontent.high" /></SelectItem>
+                  <SelectItem value="critical"><T k="auto.issuesIssuespagecontent.critical" /></SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div>
-              <Label>Area</Label>
+              <Label><T k="auto.issuesIssuespagecontent.area" /></Label>
               <Select value={areaFilter} onValueChange={setAreaFilter}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Areas" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Areas</SelectItem>
-                  <SelectItem value="content">Content</SelectItem>
-                  <SelectItem value="ui">UI</SelectItem>
-                  <SelectItem value="bug">Bug</SelectItem>
-                  <SelectItem value="feature">Feature</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="all"><T k="auto.issuesIssuespagecontent.allAreas" /></SelectItem>
+                  <SelectItem value="content"><T k="auto.issuesIssuespagecontent.content" /></SelectItem>
+                  <SelectItem value="ui"><T k="auto.issuesIssuespagecontent.ui" /></SelectItem>
+                  <SelectItem value="bug"><T k="auto.issuesIssuespagecontent.bug" /></SelectItem>
+                  <SelectItem value="feature"><T k="auto.issuesIssuespagecontent.feature" /></SelectItem>
+                  <SelectItem value="other"><T k="auto.issuesIssuespagecontent.other" /></SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
           <DialogFooter>
-            <Button onClick={() => setIsFilterDialogOpen(false)}>Apply Filters</Button>
+            <Button onClick={() => setIsFilterDialogOpen(false)} className="min-h-11"><T k="auto.issuesIssuespagecontent.applyFilters" /></Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

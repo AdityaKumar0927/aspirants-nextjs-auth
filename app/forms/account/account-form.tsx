@@ -29,6 +29,7 @@ import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import T from "@/components/i18n/T"
 
 const languages = [
   { label: "English", value: "en" },
@@ -83,15 +84,15 @@ export function AccountForm() {
       });
       if (!response.ok) throw new Error('Failed to update settings');
       toast({
-        title: "Settings updated successfully",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
+        title: "Account updated",
+        description: "Your name and language preference have been saved.",
       });
     } catch (error: any) {
-      toast({ title: 'Failed to update settings', description: error.message });
+      toast({
+        title: "Could not save account settings",
+        description: error.message || "Check your connection and try again.",
+        variant: "destructive",
+      });
     }
   }
 
@@ -112,15 +113,16 @@ export function AccountForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.accountAccountForm.name" />
+              </FormLabel>
               <FormControl>
-                <Input placeholder="Your name" {...field} />
+                <Input placeholder="Your name" {...field} className="bg-paper" />
               </FormControl>
-              <FormDescription>
-                This is the name that will be displayed on your profile and in
-                emails.
+              <FormDescription className="text-pencil">
+                <T k="auto.accountAccountForm.thisIsTheNameThat" />
               </FormDescription>
-              <FormMessage />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
@@ -129,7 +131,9 @@ export function AccountForm() {
           name="language"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
+              <FormLabel className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.accountAccountForm.language" />
+              </FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -137,8 +141,8 @@ export function AccountForm() {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
+                        "min-h-11 w-[200px] justify-between",
+                        !field.value && "text-pencil"
                       )}
                     >
                       {field.value
@@ -152,8 +156,8 @@ export function AccountForm() {
                 </PopoverTrigger>
                 <PopoverContent className="w-[200px] p-0">
                   <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandEmpty>No language found.</CommandEmpty>
+                    <CommandInput placeholder="Search languages" />
+                    <CommandEmpty><T k="auto.accountAccountForm.noLanguageFoundTryAnother" /></CommandEmpty>
                     <CommandList>
                       <CommandGroup>
                         {languages.map((language) => (
@@ -180,14 +184,14 @@ export function AccountForm() {
                   </Command>
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
+              <FormDescription className="text-pencil">
+                <T k="auto.accountAccountForm.thisIsTheLanguageThat" />
               </FormDescription>
-              <FormMessage />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
-        <Button type="submit">Update account</Button>
+        <Button type="submit" className="min-h-11"><T k="auto.accountAccountForm.saveChanges" /></Button>
       </form>
     </Form>
   );

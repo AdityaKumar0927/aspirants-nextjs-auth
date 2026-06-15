@@ -1,0 +1,410 @@
+/* ===========================================================================
+   THE DESK — design system for inner app pages.
+   Concept: the exam, redesigned with respect. Paper sheet on a desk; blue
+   ballpoint ink; teacher's red pen; OMR bubbles; CBT status legend.
+
+   Token scoping:
+   - DOMAIN tokens (--paper, --ink, --rule, --st-*, …) are GLOBAL (:root/.dark)
+     so desk-styled components resolve everywhere, including the landing page
+     and anything that portals out of a themed subtree (modals, popovers).
+   - The shadcn HSL BRIDGE (--background/--card/--popover/--border/…) is scoped
+     to .theme-desk, so inner app pages get the desk palette while the landing
+     page keeps its original shadcn look.
+   =========================================================================== */
+
+/* DESK DOMAIN TOKENS — defined GLOBALLY (not just inside .theme-desk).
+   Components that use them (border-rule, bg-paper, text-ink/pencil, the OMR
+   bubbles, the floating bottom bar, and anything that PORTALS out of a themed
+   page — modals, popovers, dropdowns) must resolve these everywhere, including
+   the landing page. If they were scoped to .theme-desk only, off-theme usages
+   would fall back to currentColor (dark borders) and transparent backgrounds,
+   which is exactly the "styles aren't applied / dark border" bug. */
+:root {
+  --paper: #fbfbf8;          /* sheet surface */
+  --desk: #f1f2ec;           /* page backdrop */
+  --ink: #1e2749;            /* blue-black ballpoint — primary text */
+  --ballpoint: #2946c4;      /* interactive ink */
+  --redpen: #be3a28;         /* teacher's red: wrong, minus marks, destructive */
+  --marker: #f3e84a;         /* highlighter */
+  --pencil: #646b80;         /* graphite — secondary text */
+  --rule: #e3e5dc;           /* printed rule lines / borders */
+  --grid-line: rgba(30, 39, 73, 0.12);
+  --st-answered: #2e7d4f;
+  --st-review: #7b5ea7;
+  --st-notvisited: #a9adb8;
+  --gold: #c2962f;           /* merit-list medals — the one warm accent */
+  --silver: #8b91a3;
+  --bronze: #b06a39;
+}
+
+.dark {
+  /* night desk: the ink and the paper trade places */
+  --paper: #11162b;
+  --desk: #0b0f20;
+  --ink: #e8eaf2;
+  --ballpoint: #8fa5f4;
+  --redpen: #e07b66;
+  --marker: #d9ce3f;
+  --pencil: #9aa1b9;
+  --rule: #232a4a;
+  --grid-line: rgba(232, 234, 242, 0.09);
+  --st-answered: #4caf7d;
+  --st-review: #a48fd0;
+  --st-notvisited: #5a6078;
+  --gold: #d9b65a;
+  --silver: #aab0c0;
+  --bronze: #c8824f;
+}
+
+/* The shadcn HSL BRIDGE stays SCOPED to .theme-desk, so inner app pages get the
+   desk palette while the landing page keeps its original shadcn look. */
+.theme-desk {
+  /* -- shadcn bridge (HSL triplets consumed as hsl(var(--x))) ------------- */
+  --background: 60 27% 98%;
+  --foreground: 227 42% 20%;
+  --muted: 70 19% 94%;
+  --muted-foreground: 225 12% 45%;
+  --popover: 60 27% 98%;
+  --popover-foreground: 227 42% 20%;
+  --border: 73 15% 88%;
+  --input: 73 15% 88%;
+  --card: 60 27% 98%;
+  --card-foreground: 227 42% 20%;
+  --primary: 229 65% 46%;
+  --primary-foreground: 60 27% 98%;
+  --secondary: 70 19% 94%;
+  --secondary-foreground: 227 42% 20%;
+  --accent: 70 19% 94%;
+  --accent-foreground: 227 42% 20%;
+  --destructive: 7 65% 45%;
+  --destructive-foreground: 60 27% 98%;
+  --ring: 229 65% 46%;
+  --radius: 0.375rem;
+
+  color: var(--ink);
+  /* Background is intentionally NOT painted here — `.desk-grid` paints the page
+     surface. This lets `.theme-desk` be used purely as a TOKEN scope (e.g. the
+     floating bottom bar) without painting a full-width band. Font is also not
+     set: inner pages use the app's default face (same as the nav). */
+}
+
+.dark .theme-desk,
+html.dark .theme-desk {
+  /* Bridge dark values; domain tokens come from the global .dark block above. */
+  --background: 229 43% 12%;
+  --foreground: 228 28% 93%;
+  --muted: 229 38% 16%;
+  --muted-foreground: 227 18% 67%;
+  --popover: 229 43% 12%;
+  --popover-foreground: 228 28% 93%;
+  --border: 229 36% 21%;
+  --input: 229 36% 21%;
+  --card: 229 43% 12%;
+  --card-foreground: 228 28% 93%;
+  --primary: 227 82% 76%;
+  --primary-foreground: 229 43% 12%;
+  --secondary: 229 38% 16%;
+  --secondary-foreground: 228 28% 93%;
+  --accent: 229 38% 16%;
+  --accent-foreground: 228 28% 93%;
+  --destructive: 10 66% 64%;
+  --destructive-foreground: 229 43% 12%;
+  --ring: 227 82% 76%;
+}
+
+/* -- the desk itself: an OMR-style dot grid, fixed so it reads as the surface
+   the paper rests on (not scrolling wallpaper), plus a soft top light wash.
+   Never applied to .paper-sheet. ----------------------------------------- */
+.desk-grid {
+  /* !important: beat globals.css `body { @apply bg-background }` (@layer base),
+     which otherwise overrides the page surface to near-white. */
+  background-color: var(--desk) !important;
+  background-image:
+    radial-gradient(circle at center, var(--grid-line) 1.1px, transparent 1.2px),
+    radial-gradient(
+      130% 90% at 50% -10%,
+      color-mix(in srgb, var(--paper) 60%, transparent),
+      transparent 55%
+    );
+  background-size: 22px 22px, 100% 100%;
+  background-repeat: repeat, no-repeat;
+}
+
+/* Flat variant: the dotted surface WITHOUT the soft top light-wash, so the dots
+   read uniformly from the very top. Used on the long landing page (the wash only
+   reads cleanly on short, single-screen inner pages). */
+.desk-grid-flat {
+  /* !important: beat globals.css `body { @apply bg-background }` (@layer base),
+     which otherwise overrides the page surface to near-white. */
+  background-color: var(--desk) !important;
+  background-image: radial-gradient(circle at center, var(--grid-line) 1.1px, transparent 1.2px);
+  background-size: 22px 22px;
+  background-repeat: repeat;
+}
+
+/* -- paper sheet: flat (no shadow) — separated from the desk by its border --- */
+.paper-sheet {
+  background-color: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  animation: paper-rise 240ms ease-out both;
+}
+@keyframes paper-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* -- exam-booklet margin rule: vertical red line in the left margin ------ */
+.ruled-margin {
+  position: relative;
+}
+.ruled-margin::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2.25rem;
+  width: 1px;
+  background: var(--redpen);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* -- emphasis: a clean ballpoint underline (no yellow highlighter) -------- */
+.highlight-sweep {
+  background-image: linear-gradient(var(--ballpoint), var(--ballpoint));
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-bottom: 1px;
+}
+.dark .theme-desk .highlight-sweep {
+  background-size: 100% 3px;
+}
+
+/* -- the OMR bubble: the signature selection language --------------------- */
+.omr-bubble {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  border-radius: 9999px;
+  border: 1.5px solid var(--pencil);
+  font-family: var(--font-data), monospace;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--pencil);
+  background: transparent;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+.omr-bubble::after {
+  /* the ink */
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 9999px;
+  background: var(--ballpoint);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 160ms ease-out, opacity 120ms ease-out;
+}
+.omr-bubble > span {
+  position: relative;
+  z-index: 1;
+}
+.omr-bubble[data-state="filled"] {
+  border-color: var(--ballpoint);
+  color: var(--paper);
+}
+.omr-bubble[data-state="filled"]::after {
+  transform: scale(1);
+  opacity: 1;
+}
+/* graded verdicts: ink turns green/red inside the bubble only */
+.omr-bubble[data-verdict="correct"] {
+  border-color: var(--st-answered);
+}
+.omr-bubble[data-verdict="correct"]::after {
+  background: var(--st-answered);
+}
+.omr-bubble[data-verdict="wrong"] {
+  border-color: var(--redpen);
+}
+.omr-bubble[data-verdict="wrong"]::after {
+  background: var(--redpen);
+}
+/* steady ring marking the correct answer after a wrong attempt */
+.omr-bubble[data-verdict="reveal"] {
+  border-color: var(--st-answered);
+  border-width: 2px;
+  color: var(--st-answered);
+}
+
+/* status variants for the answer-sheet palette */
+.omr-bubble[data-status="answered"] {
+  border-color: var(--st-answered);
+  color: var(--paper);
+}
+.omr-bubble[data-status="answered"]::after {
+  background: var(--st-answered);
+  transform: scale(1);
+  opacity: 1;
+}
+.omr-bubble[data-status="review"] {
+  border-color: var(--st-review);
+  color: var(--paper);
+}
+.omr-bubble[data-status="review"]::after {
+  background: var(--st-review);
+  transform: scale(1);
+  opacity: 1;
+}
+.omr-bubble[data-status="notvisited"] {
+  border-color: var(--st-notvisited);
+  color: var(--st-notvisited);
+}
+.omr-bubble[data-status="unanswered"] {
+  border-color: var(--redpen);
+  color: var(--paper);
+}
+.omr-bubble[data-status="unanswered"]::after {
+  background: var(--redpen);
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* -- red-pen strike for a wrong choice (the grading moment) -------------- */
+.ink-strike {
+  position: relative;
+}
+.ink-strike::after {
+  content: "";
+  position: absolute;
+  left: -0.25rem;
+  right: -0.25rem;
+  top: 50%;
+  height: 2px;
+  background: var(--redpen);
+  transform: scaleX(1);
+  transform-origin: left center;
+  animation: strike-draw 220ms ease-out both;
+}
+@keyframes strike-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* -- option row on the paper ---------------------------------------------- */
+.omr-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.625rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+.omr-option:hover {
+  border-color: var(--rule);
+  background: color-mix(in srgb, var(--paper) 60%, var(--desk));
+}
+.omr-option:focus-visible {
+  outline: 2px solid var(--ballpoint);
+  outline-offset: 2px;
+}
+.omr-option[data-state="selected"] {
+  border-color: var(--ballpoint);
+}
+.omr-option[data-verdict="correct"] {
+  border-color: var(--st-answered);
+  background: color-mix(in srgb, var(--st-answered) 7%, var(--paper));
+}
+.omr-option[data-verdict="wrong"] {
+  border-color: var(--redpen);
+  background: color-mix(in srgb, var(--redpen) 6%, var(--paper));
+}
+
+/* -- typography roles ------------------------------------------------------
+   Fonts reverted to the app default (the face used by the nav and the rest of
+   the site). These classes now only carry weight/spacing/numeral treatment, so
+   the question bank and mock exam read in the original font. `.latex-font`
+   keeps the app's existing KaTeX_Main rule from globals.css (no override here).
+   -------------------------------------------------------------------------- */
+.theme-desk .latex-font {
+  line-height: 1.6;
+}
+.type-display {
+  font-family: var(--font-sf), system-ui, sans-serif;
+  /* The SF file is a single static Medium; 600 faux-bolds it (heavier, muddier).
+     400 renders the true glyphs — visibly thinner, cleaner headings. */
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+.type-data {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+/* -- rendered question HTML (images, Match-the-column tables, sub/sup) ------ */
+.math-content :where(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+.math-content :where(table) {
+  border-collapse: collapse;
+  margin: 0.6rem 0;
+  font-size: 0.95em;
+}
+.math-content :where(td, th) {
+  border: 1px solid var(--rule);
+  padding: 6px 10px;
+  text-align: left;
+}
+.math-content :where(p) {
+  margin: 0.4rem 0;
+}
+.math-content :where(p:first-child) {
+  margin-top: 0;
+}
+
+/* -- ledger rows (marksheet): replaces card grids on results/lists -------- */
+.ledger-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.counterfoil {
+  border-top: 1px dashed var(--rule);
+}
+
+/* -- focus + reduced motion ------------------------------------------------ */
+.theme-desk :focus-visible {
+  outline: 2px solid var(--ballpoint);
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .paper-sheet {
+    animation: none;
+  }
+  .omr-bubble,
+  .omr-bubble::after,
+  .omr-option {
+    transition: none;
+  }
+  .ink-strike::after {
+    animation: none;
+  }
+}

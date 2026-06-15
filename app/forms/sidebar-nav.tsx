@@ -31,10 +31,11 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
           className={cn(
             buttonVariants({ variant: "ghost" }),
             pathname === item.href
-              ? "bg-muted hover:bg-muted"
-              : "hover:bg-transparent hover:underline",
-            "justify-start"
+              ? "bg-secondary text-ink hover:bg-secondary"
+              : "text-pencil hover:bg-transparent hover:text-ink hover:underline",
+            "min-h-11 justify-start"
           )}
+          aria-current={pathname === item.href ? "page" : undefined}
         >
           {item.title}
         </Link>

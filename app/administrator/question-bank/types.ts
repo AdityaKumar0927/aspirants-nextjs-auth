@@ -17,9 +17,12 @@ export interface Question {
   subject: string
   topic: string
   subtopic: string | null
+  chapter: string | null
   difficulty: string
   type: string
   year: number
+  marks: number | null
+  negMarks: number | null
   reviewed: boolean
   completed: boolean
   options: string[]

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { encodeMultiAnswer } from "@/lib/exam-helpers"
+import { isImageSrc } from "@/lib/is-image-src"
 import { useSwipeable } from "react-swipeable"
 import MathRenderer from "@/components/layout/MathRenderer"
 import Image from "next/image"
@@ -17,7 +18,6 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Checkbox } from "@/components/ui/checkbox"
 import {
   Select,
   SelectContent,
@@ -31,12 +31,86 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip"
-import { Badge } from "@/components/ui/badge"
-import { Flag, ChevronDown, X } from "lucide-react"
+import { Flag, X, Check, CheckCircle2, XCircle, Tag } from "@/components/desk/icons"
 import FeedbackPopover from "./FeedbackPopover"
 
 // If you have your Tiptap-based discussion
 import { QuestionSolutions } from "./QuestionSolutions"
+
+/* ------------------------------------------------------------------
+   Question metadata header helpers
+   ------------------------------------------------------------------ */
+/** Metadata chip colour by kind — distinct, on-brand, no yellow. */
+const TAG_TONE = {
+  subject: "border-ballpoint/25 bg-ballpoint/10 text-ballpoint",
+  type: "border-st-review/30 bg-st-review/10 text-st-review",
+  exam: "border-ink/20 bg-ink/[0.06] text-ink",
+  year: "border-rule bg-secondary text-pencil",
+  neutral: "border-rule bg-secondary text-pencil",
+} as const
+
+/** Difficulty colour: easy = green, medium = orange (not yellow), hard = red pen. */
+const DIFFICULTY_TONE: Record<string, string> = {
+  easy: "border-st-answered/30 bg-st-answered/10 text-st-answered",
+  medium: "border-orange-500/30 bg-orange-500/10 text-orange-600 dark:text-orange-400",
+  hard: "border-redpen/30 bg-redpen/10 text-redpen",
+}
+
+/** "jee-main" -> "JEE MAIN" (exam codes read better in caps). */
+function formatExam(exam: string): string {
+  return exam.replace(/[-_]/g, " ").toUpperCase()
+}
+
+/** A bordered metadata chip, tinted by kind. */
+function MetaTag({
+  tone = "neutral",
+  children,
+}: {
+  tone?: keyof typeof TAG_TONE
+  children: React.ReactNode
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium ${TAG_TONE[tone] ?? TAG_TONE.neutral}`}
+    >
+      {children}
+    </span>
+  )
+}
+
+/**
+ * The option marker — a rounded SQUARE letter tile (not an OMR circle). Inks
+ * to ballpoint when selected; turns green/red after grading; "reveal" rings the
+ * correct answer.
+ */
+function OptionMark({
+  letter,
+  selected = false,
+  verdict,
+}: {
+  letter: string
+  selected?: boolean
+  verdict?: "correct" | "wrong" | "reveal"
+}) {
+  const cls =
+    verdict === "correct"
+      ? "border-st-answered bg-st-answered text-paper"
+      : verdict === "wrong"
+        ? "border-redpen bg-redpen text-paper"
+        : verdict === "reveal"
+          ? "border-st-answered text-st-answered"
+          : selected
+            ? "border-ballpoint bg-ballpoint text-paper"
+            : "border-rule bg-paper text-pencil"
+  return (
+    <span
+      aria-hidden="true"
+      className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md border type-data text-sm font-medium transition-colors ${cls}`}
+    >
+      {letter}
+    </span>
+  )
+}
 
 /* ------------------------------------------------------------------
    1) Enums & Types
@@ -69,6 +143,7 @@ interface QuestionType {
   diagramUrl?: string
   exam?: string
   subject?: string
+  topic?: string
   difficulty?: string
   year?: number
   type?: QuestionTypeString
@@ -111,17 +186,12 @@ interface QuestionProps {
    2) Outline color logic
    ------------------------------------------------------------------ */
 function getBorderClass(feedback: string | undefined, isMarkedForReview: boolean): string {
-  // Thicker border, lower opacity
+  // Verdict colors live inside the OMR bubbles/options, not on the card frame;
+  // the sheet only signals "marked for review" via the CBT legend purple.
   if (isMarkedForReview) {
-    // Flag color #FFEDDB with ~70% opacity
-    return "border-[3px] border-[#FFEDDB]/70"
-  } else if (feedback === "correct") {
-    return "border-[3px] border-green-300/70"
-  } else if (feedback === "incorrect") {
-    return "border-[3px] border-red-300/70"
-  } else {
-    return "border-[3px] border-gray-300/70"
+    return "border-l-[3px] border-l-st-review"
   }
+  return ""
 }
 
 /* ------------------------------------------------------------------
@@ -270,47 +340,49 @@ function Question({
      ------------------------------ */
   async function toggleComplete(checked: boolean) {
     if (!question.questionId) return
-    await handleMarkComplete(question.questionId, checked)
+    const qid = question.questionId
+    await handleMarkComplete(qid, checked)
     if (checked) {
       toast({
-        title: "Question Completed",
-        description: `You have completed question #${displayNumber}.`,
+        title: "Marked complete",
+        description: `Question #${displayNumber} saved to your progress.`,
         variant: "success",
+        // Undo calls the setter directly with the reverted value, so it never
+        // depends on stale state captured in this closure.
         action: (
-          <ToastAction onClick={() => toggleComplete(false)} altText="Undo">
+          <ToastAction altText="Undo marking complete" onClick={() => handleMarkComplete(qid, false)}>
             Undo
           </ToastAction>
         ),
       })
     } else {
       toast({
-        title: "Unmarked Complete",
-        description: `Question #${displayNumber} is no longer marked complete.`,
-        variant: "success",
+        title: "Marked incomplete",
+        description: `Question #${displayNumber} removed from your progress.`,
       })
     }
   }
 
   async function toggleReview() {
     if (!question.questionId) return
+    const qid = question.questionId
     const newVal = !isMarkedForReview
-    await handleMarkForReview(question.questionId, newVal)
+    await handleMarkForReview(qid, newVal)
     if (newVal) {
       toast({
-        title: "Question Flagged",
-        description: `Flagged question #${displayNumber} for review.`,
-        variant: "success",
+        title: "Flagged for review",
+        description: `Question #${displayNumber} added to your review list.`,
+        variant: "review",
         action: (
-          <ToastAction onClick={() => toggleReview()} altText="Undo">
+          <ToastAction altText="Remove review flag" onClick={() => handleMarkForReview(qid, false)}>
             Undo
           </ToastAction>
         ),
       })
     } else {
       toast({
-        title: "Question Unflagged",
-        description: `Removed review flag for question #${displayNumber}.`,
-        variant: "success",
+        title: "Flag removed",
+        description: `Question #${displayNumber} cleared from review.`,
       })
     }
   }
@@ -407,113 +479,110 @@ function Question({
       <div {...handlers} className="relative pb-20" id={`question-${question.questionId}`}>
         <Card
           className={`
-            w-full overflow-hidden mb-6
-            dark:bg-gray-800 dark:text-gray-100
-            rounded-md
+            paper-sheet w-full overflow-hidden mb-6
             ${getBorderClass(feedback, isMarkedForReview)}
           `}
         >
           <CardHeader className="relative">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-              {/* Title + Subject + Difficulty + etc. */}
-              <div className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-2 space-y-2 md:space-y-0">
-                <CardTitle className="font-normal text-2xl sm:text-3xl">
+              {/* Title + metadata chips */}
+              <div className="min-w-0">
+                <CardTitle className="text-xl font-semibold sm:text-2xl">
                   Question #{displayNumber}
                 </CardTitle>
 
-                {question.subject && (
-                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                    {question.subject}
-                  </div>
-                )}
-                {question.difficulty && (
-                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                    {question.difficulty}
-                  </div>
-                )}
-                {typeof question.year === "number" && (
-                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                    {question.year}
-                  </div>
-                )}
-                {question.type && (
-                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                    {question.type}
-                  </div>
-                )}
-                {question.exam && (
-                  <div className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-                    {question.exam}
-                  </div>
-                )}
-
-                {/* Custom Tags */}
-                {localCustomTags.map((tag) => (
-                  <Badge key={tag} variant="secondary" className="px-2 py-1">
-                    {tag}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="ml-1 p-0"
-                      onClick={() => handleRemoveTag(tag)}
+                <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                  {question.subject && <MetaTag tone="subject">{question.subject}</MetaTag>}
+                  {question.difficulty && (
+                    <span
+                      className={`inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-medium capitalize ${
+                        DIFFICULTY_TONE[question.difficulty.toLowerCase()] ?? TAG_TONE.neutral
+                      }`}
                     >
-                      <X className="h-3 w-3" />
-                    </Button>
-                  </Badge>
-                ))}
+                      {question.difficulty}
+                    </span>
+                  )}
+                  {typeof question.year === "number" && <MetaTag tone="year">{question.year}</MetaTag>}
+                  {question.type && <MetaTag tone="type">{question.type}</MetaTag>}
+                  {question.exam && <MetaTag tone="exam">{formatExam(question.exam)}</MetaTag>}
+
+                  {/* Custom Tags */}
+                  {localCustomTags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center gap-1 rounded-md border border-ballpoint/40 bg-ballpoint/5 px-2 py-0.5 text-xs font-medium text-ballpoint"
+                    >
+                      {tag}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveTag(tag)}
+                        aria-label={`Remove tag ${tag}`}
+                        className="rounded-sm hover:text-ink"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+
                 {/* Add new tag */}
-                <div className="flex items-center space-x-2">
-                  <Input
-                    type="text"
-                    placeholder="Add a new tag"
-                    value={newTag}
-                    onChange={(e) => setNewTag(e.target.value)}
-                    className="w-32"
-                  />
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" onClick={handleAddTag} size="sm">
-                        <ChevronDown className="mr-2 h-4 w-4 rotate-90" />
-                        Add
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Add new tag</TooltipContent>
-                  </Tooltip>
+                <div className="mt-2 flex items-center gap-2">
+                  <div className="relative">
+                    <Tag className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
+                    <Input
+                      type="text"
+                      placeholder="Add a tag"
+                      value={newTag}
+                      onChange={(e) => setNewTag(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault()
+                          handleAddTag()
+                        }
+                      }}
+                      className="h-9 w-44 bg-paper pl-8 text-sm"
+                    />
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleAddTag}
+                    disabled={!newTag.trim()}
+                  >
+                    Add
+                  </Button>
                 </div>
               </div>
 
-              {/* Mark Complete & Flag */}
-              <div className="flex items-center space-x-4">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Checkbox
-                      id={`complete-${question.questionId}`}
-                      checked={isMarkedComplete}
-                      onCheckedChange={(checked) => toggleComplete(!!checked)}
-                      className="dark:bg-gray-800 dark:border-gray-500"
-                    />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {isMarkedComplete ? "Unmark Complete" : "Mark as Complete"}
-                  </TooltipContent>
-                </Tooltip>
+              {/* Mark complete & flag — labelled toggle buttons */}
+              <div className="flex shrink-0 items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => toggleComplete(!isMarkedComplete)}
+                  aria-pressed={isMarkedComplete}
+                  className={`flex min-h-9 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                    isMarkedComplete
+                      ? "border-st-answered bg-st-answered/10 text-st-answered"
+                      : "border-rule bg-secondary text-pencil hover:border-st-answered/50 hover:text-ink"
+                  }`}
+                >
+                  <Check className="h-4 w-4" />
+                  {isMarkedComplete ? "Completed" : "Mark complete"}
+                </button>
 
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost" size="icon" onClick={toggleReview}>
-                      <Flag
-                        className={
-                          isMarkedForReview
-                            ? "fill-yellow-500 text-yellow-500"
-                            : "text-gray-500"
-                        }
-                      />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    {isMarkedForReview ? "Unflag for Review" : "Flag for Review"}
-                  </TooltipContent>
-                </Tooltip>
+                <button
+                  type="button"
+                  onClick={toggleReview}
+                  aria-pressed={isMarkedForReview}
+                  className={`flex min-h-9 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
+                    isMarkedForReview
+                      ? "border-st-review bg-st-review/10 text-st-review"
+                      : "border-rule bg-secondary text-pencil hover:border-st-review/50 hover:text-ink"
+                  }`}
+                >
+                  <Flag className={`h-4 w-4 ${isMarkedForReview ? "fill-st-review" : ""}`} />
+                  {isMarkedForReview ? "Flagged" : "Flag for review"}
+                </button>
 
                 {/* Feedback popover */}
                 {question.questionId && <FeedbackPopover questionId={question.questionId} />}
@@ -536,7 +605,7 @@ function Question({
                 </div>
               )}
               {question.text && (
-                <div className="latex-font text-base sm:text-lg md:text-xl leading-7 mb-4 text-gray-700 dark:text-gray-100">
+                <div className="latex-font mb-4 max-w-[70ch] text-base leading-7 sm:text-lg">
                   <MathRenderer text={question.text} />
                 </div>
               )}
@@ -547,44 +616,35 @@ function Question({
               question.options &&
               question.options.length > 0 && (
                 <div className="mb-4">
-                  <div className="space-y-2">
+                  <div className="space-y-1" role="group" aria-label="Answer options">
                     {question.options.map((rawOption, idx) => {
                       const letter = String.fromCharCode(65 + idx)
                       const optionText = cleanOptionText(rawOption)
                       const isPending = pendingOption === letter
                       const directSelected = localSelectedOption === letter
                       const isFeedbackActive = directSelected && feedback
+                      const verdict = isFeedbackActive
+                        ? feedback === "correct"
+                          ? ("correct" as const)
+                          : ("wrong" as const)
+                        : undefined
 
                       return (
-                        <Button
+                        <button
                           key={idx}
-                          variant="outline"
+                          type="button"
                           onClick={() => handleOptionSelect(letter)}
-                          className={`
-                            w-full
-                            text-left
-                            text-base
-                            sm:text-lg
-                            p-4
-                            leading-7
-                            flex flex-col items-start
-                            space-y-2
-                            whitespace-normal
-                            border
-                            ${
-                              isFeedbackActive
-                                ? feedback === "correct"
-                                  ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                                  : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                                : isPending
-                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                                : "border-gray-300 dark:border-gray-600"
-                            }
-                          `}
-                          style={{ height: "auto", minHeight: "1rem" }}
+                          className="omr-option min-h-11"
+                          data-state={isPending || directSelected ? "selected" : undefined}
+                          data-verdict={verdict}
+                          aria-pressed={isPending || directSelected}
                         >
-                          <span className="font-semibold">{letter}.</span>
-                          {optionText.startsWith("http") ? (
+                          <OptionMark
+                            letter={letter}
+                            selected={isPending || directSelected}
+                            verdict={verdict}
+                          />
+                          {isImageSrc(optionText) ? (
                             <div className="w-full">
                               <Image
                                 src={optionText}
@@ -595,53 +655,30 @@ function Question({
                               />
                             </div>
                           ) : (
-                            <div className="latex-font">
+                            <div
+                              className={`latex-font text-base sm:text-lg leading-7 ${
+                                verdict === "wrong" ? "ink-strike text-pencil" : ""
+                              }`}
+                            >
                               <MathRenderer text={optionText} />
                             </div>
                           )}
-                        </Button>
+                        </button>
                       )
                     })}
                   </div>
-                  <div className="mt-2 flex gap-2">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          onClick={handleMcqSubmit}
-                          disabled={!pendingOption}
-                          className="
-                            border
-                            border-blue-400
-                            bg-blue-50
-                            text-blue-800
-                            dark:border-blue-600
-                            dark:bg-slate-800
-                            dark:text-blue-200
-                            px-4 py-1
-                            hover:bg-blue-100
-                            dark:hover:bg-slate-700
-                            rounded-sm
-                          "
-                        >
-                          Submit
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Submit your MCQ answer</TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={() =>
-                            question.questionId && handleResetQuestion(question.questionId)
-                          }
-                        >
-                          Reset
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Clear answer & unmark question</TooltipContent>
-                    </Tooltip>
+                  <div className="mt-4 flex gap-2">
+                    <Button onClick={handleMcqSubmit} disabled={!pendingOption}>
+                      Check answer
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      onClick={() =>
+                        question.questionId && handleResetQuestion(question.questionId)
+                      }
+                    >
+                      Clear
+                    </Button>
                   </div>
                 </div>
               )}
@@ -653,21 +690,9 @@ function Question({
               <div className="mb-4">
                 <Input
                   type="text"
-                  className="
-                    w-full
-                    px-3 py-2
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    focus:ring-1
-                    focus:ring-blue-300
-                    rounded-sm
-                  "
-                  placeholder="Type your answer..."
+                  inputMode="decimal"
+                  className="type-data w-full max-w-xs"
+                  placeholder="Your answer"
                   value={numericalAnswer ?? ""}
                   onChange={(e) => {
                     if (question.questionId) {
@@ -676,43 +701,15 @@ function Question({
                   }}
                 />
                 <div className="mt-2 flex gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
-                        onClick={handleNumericalSubmitLocal}
-                      >
-                        Submit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Submit your numeric answer</TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() =>
-                          question.questionId && handleResetQuestion(question.questionId)
-                        }
-                      >
-                        Reset
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Clear answer & unmark question</TooltipContent>
-                  </Tooltip>
+                  <Button onClick={handleNumericalSubmitLocal}>Check answer</Button>
+                  <Button
+                    variant="ghost"
+                    onClick={() =>
+                      question.questionId && handleResetQuestion(question.questionId)
+                    }
+                  >
+                    Clear
+                  </Button>
                 </div>
               </div>
             )}
@@ -722,42 +719,26 @@ function Question({
               question.options &&
               question.options.length > 0 && (
                 <div className="mb-4">
-                  <div className="space-y-2">
+                  <p className="type-data mb-2 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                    Choose all that apply
+                  </p>
+                  <div className="space-y-1" role="group" aria-label="Answer options — choose all that apply">
                     {question.options.map((rawOption, idx) => {
                       const letter = String.fromCharCode(65 + idx)
                       const optionText = rawOption.trim()
                       const isChosen = mcqmSelections.includes(letter)
 
                       return (
-                        <Button
+                        <button
                           key={idx}
-                          variant="outline"
+                          type="button"
                           onClick={() => handleMcqmToggle(letter)}
-                          className={`
-                            w-full
-                            text-left
-                            text-base
-                            sm:text-lg
-                            p-4
-                            leading-7
-                            flex flex-col items-start
-                            whitespace-normal
-                            border
-                            ${
-                              isChosen
-                                ? "border-blue-400 bg-blue-50 text-blue-800 dark:border-blue-600 dark:bg-slate-800 dark:text-blue-200"
-                                : "border-gray-300 dark:border-gray-600"
-                            }
-                          `}
+                          className="omr-option min-h-11"
+                          data-state={isChosen ? "selected" : undefined}
+                          aria-pressed={isChosen}
                         >
-                          <div className="flex items-center gap-2">
-                            <Checkbox
-                              checked={isChosen}
-                              onCheckedChange={() => handleMcqmToggle(letter)}
-                            />
-                            <span className="font-semibold">{letter}.</span>
-                          </div>
-                          {optionText.startsWith("http") ? (
+                          <OptionMark letter={letter} selected={isChosen} />
+                          {isImageSrc(optionText) ? (
                             <div className="w-full">
                               <Image
                                 src={optionText}
@@ -768,52 +749,26 @@ function Question({
                               />
                             </div>
                           ) : (
-                            <div className="latex-font">
+                            <div className="latex-font text-base sm:text-lg leading-7">
                               <MathRenderer text={optionText} />
                             </div>
                           )}
-                        </Button>
+                        </button>
                       )
                     })}
                   </div>
-                  <div className="mt-2 flex gap-2">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          onClick={handleMcqmSubmit}
-                          className="
-                            border
-                            border-blue-400
-                            bg-blue-50
-                            text-blue-800
-                            dark:border-blue-600
-                            dark:bg-slate-800
-                            dark:text-blue-200
-                            px-4 py-1
-                            hover:bg-blue-100
-                            dark:hover:bg-slate-700
-                            rounded-sm
-                          "
-                        >
-                          Submit
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Submit your MCQM selections</TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={() =>
-                            question.questionId && handleResetQuestion(question.questionId)
-                          }
-                        >
-                          Reset
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>Clear selections & unmark question</TooltipContent>
-                    </Tooltip>
+                  <div className="mt-4 flex gap-2">
+                    <Button onClick={handleMcqmSubmit} disabled={mcqmSelections.length === 0}>
+                      Check answer
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      onClick={() =>
+                        question.questionId && handleResetQuestion(question.questionId)
+                      }
+                    >
+                      Clear
+                    </Button>
                   </div>
                 </div>
               )}
@@ -822,39 +777,41 @@ function Question({
             {(question.type === "T/f" ||
               question.type?.toLowerCase() === "t/f" ||
               question.type?.toLowerCase() === "true/false") && (
-              <div className="mb-4 flex gap-4">
-                {tfOptions.map((val) => (
-                  <Button
-                    key={val}
-                    variant="outline"
-                    onClick={() => handleTfSubmit(val)}
-                    className={`
-                      px-4 py-2
-                      ${
-                        localSelectedOption === val && feedback
-                          ? feedback === "correct"
-                            ? "bg-green-100 hover:bg-green-200 text-green-700 border-green-400"
-                            : "bg-red-100 hover:bg-red-200 text-red-700 border-red-400"
-                          : "border-gray-300 dark:border-gray-600"
-                      }
-                    `}
-                  >
-                    {val}
-                  </Button>
-                ))}
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      onClick={() =>
-                        question.questionId && handleResetQuestion(question.questionId)
-                      }
+              <div className="mb-4 flex items-center gap-2">
+                {tfOptions.map((val) => {
+                  const isActive = localSelectedOption === val && feedback
+                  const verdict = isActive
+                    ? feedback === "correct"
+                      ? ("correct" as const)
+                      : ("wrong" as const)
+                    : undefined
+                  return (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => handleTfSubmit(val)}
+                      className="omr-option min-h-11 w-auto"
+                      data-state={isActive ? "selected" : undefined}
+                      data-verdict={verdict}
+                      aria-pressed={!!isActive}
                     >
-                      Reset
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>Clear T/F answer & unmark question</TooltipContent>
-                </Tooltip>
+                      <OptionMark
+                        letter={val === "True" ? "T" : "F"}
+                        selected={!!isActive}
+                        verdict={verdict}
+                      />
+                      <span className="latex-font text-base leading-7">{val}</span>
+                    </button>
+                  )
+                })}
+                <Button
+                  variant="ghost"
+                  onClick={() =>
+                    question.questionId && handleResetQuestion(question.questionId)
+                  }
+                >
+                  Clear
+                </Button>
               </div>
             )}
 
@@ -863,49 +820,22 @@ function Question({
               <div className="mb-4">
                 <Input
                   type="text"
-                  placeholder="Fill in the blank..."
+                  placeholder="Fill in the blank"
                   value={fillBlanksInput}
                   onChange={(e) => setFillBlanksInput(e.target.value)}
-                  className="w-full mb-2"
+                  className="latex-font w-full max-w-md mb-2"
                 />
                 <div className="mt-2 flex gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
-                        onClick={handleFillBlanksSubmit}
-                      >
-                        Submit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Submit your fill-in answer</TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() =>
-                          question.questionId && handleResetQuestion(question.questionId)
-                        }
-                      >
-                        Reset
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Clear answer & unmark question</TooltipContent>
-                  </Tooltip>
+                  <Button onClick={handleFillBlanksSubmit}>Check answer</Button>
+                  <Button
+                    variant="ghost"
+                    className="text-pencil"
+                    onClick={() =>
+                      question.questionId && handleResetQuestion(question.questionId)
+                    }
+                  >
+                    Clear
+                  </Button>
                 </div>
               </div>
             )}
@@ -914,105 +844,89 @@ function Question({
             {question.type?.toLowerCase() === "subjective" && (
               <div className="mb-4">
                 <div className="mb-2">
-                  <label className="text-sm font-medium">Your Answer:</label>
+                  <label
+                    htmlFor={`subjective-${question.questionId}`}
+                    className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil"
+                  >
+                    Your answer
+                  </label>
                 </div>
                 <textarea
-                  className="
-                    w-full
-                    px-3 py-2
-                    border
-                    border-blue-400
-                    bg-blue-50
-                    text-blue-800
-                    dark:border-blue-600
-                    dark:bg-slate-800
-                    dark:text-blue-200
-                    rounded-sm
-                    focus:ring-1
-                    focus:ring-blue-300
-                  "
+                  id={`subjective-${question.questionId}`}
+                  className="latex-font w-full rounded-md border border-rule bg-paper px-3 py-2 text-base leading-7 placeholder:text-pencil"
                   rows={4}
                   value={subjectiveAnswer}
                   onChange={(e) => setSubjectiveAnswer(e.target.value)}
                 />
                 <div className="mt-2 flex gap-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        className="
-                          border
-                          border-blue-400
-                          bg-blue-50
-                          text-blue-800
-                          dark:border-blue-600
-                          dark:bg-slate-800
-                          dark:text-blue-200
-                          px-4 py-1
-                          hover:bg-blue-100
-                          dark:hover:bg-slate-700
-                          rounded-sm
-                        "
-                        onClick={handleSubjectiveSubmit}
-                      >
-                        Submit
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Submit your written answer</TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant="outline"
-                        onClick={() =>
-                          question.questionId && handleResetQuestion(question.questionId)
-                        }
-                      >
-                        Reset
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Clear answer & unmark question</TooltipContent>
-                  </Tooltip>
+                  <Button onClick={handleSubjectiveSubmit}>Save answer</Button>
+                  <Button
+                    variant="ghost"
+                    className="text-pencil"
+                    onClick={() =>
+                      question.questionId && handleResetQuestion(question.questionId)
+                    }
+                  >
+                    Clear
+                  </Button>
                 </div>
               </div>
             )}
 
-            {/* Feedback banner */}
+            {/* Verdict banner */}
             {feedback && (
               <div
-                className={`mt-4 p-2 rounded ${
-                  feedback === "correct" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                role="status"
+                className={`mt-5 flex items-start gap-3 rounded-lg border p-4 ${
+                  feedback === "correct"
+                    ? "border-st-answered/30 bg-st-answered/10"
+                    : "border-redpen/30 bg-redpen/10"
                 }`}
               >
-                {feedback === "correct" ? "Correct!" : "Incorrect, try again."}
+                <span className={feedback === "correct" ? "text-st-answered" : "text-redpen"}>
+                  {feedback === "correct" ? (
+                    <CheckCircle2 className="h-5 w-5" />
+                  ) : (
+                    <XCircle className="h-5 w-5" />
+                  )}
+                </span>
+                <div className="min-w-0">
+                  <p
+                    className={`font-medium ${
+                      feedback === "correct" ? "text-st-answered" : "text-redpen"
+                    }`}
+                  >
+                    {feedback === "correct" ? "Correct" : "Incorrect"}
+                  </p>
+                  <p className="mt-0.5 text-sm text-pencil">
+                    {feedback === "correct"
+                      ? "Nicely done — that's the right answer."
+                      : "Not quite — open the markscheme to see the working."}
+                  </p>
+                </div>
               </div>
             )}
 
             {/* Show Markscheme */}
             {markschemeEnabled && (
               <div className="mt-4">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setShowMarkschemeModal(!showMarkschemeModal)
-                        if (question.questionId) {
-                          handleMarkschemeToggle(question.questionId)
-                        }
-                      }}
-                    >
-                      Show Markscheme
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>View the markscheme / explanation</TooltipContent>
-                </Tooltip>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setShowMarkschemeModal(!showMarkschemeModal)
+                    if (question.questionId) {
+                      handleMarkschemeToggle(question.questionId)
+                    }
+                  }}
+                >
+                  {showMarkschemeModal ? "Hide markscheme" : "Show markscheme"}
+                </Button>
               </div>
             )}
 
             {/* Difficulty dropdown */}
             <div className="flex items-center space-x-2 mt-4">
-              <label className="text-sm text-gray-600 dark:text-gray-300">Difficulty:</label>
+              <label className="text-sm text-pencil">My difficulty</label>
               <Select
                 value={
                   localDifficultyRating === 1
@@ -1058,16 +972,14 @@ function Question({
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="border-t border-gray-300 dark:border-gray-700 p-4 max-h-[400px] overflow-y-auto">
-                  <p className="mb-2 text-sm font-semibold text-gray-800 dark:text-gray-200">
-                    Comment Section
+                <div className="counterfoil max-h-100 overflow-y-auto p-4">
+                  <p className="type-data mb-2 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                    Discussion
                   </p>
                   {question.questionId ? (
                     <QuestionSolutions questionId={question.questionId} />
                   ) : (
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      No questionId found.
-                    </div>
+                    <div className="text-xs text-pencil">No questionId found.</div>
                   )}
                 </div>
               </motion.div>
@@ -1083,9 +995,9 @@ function Question({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-ink/30 p-4"
             >
-              <Card className="w-full max-w-2xl dark:bg-gray-800 dark:text-gray-100">
+              <Card className="paper-sheet w-full max-w-2xl">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle>Markscheme</CardTitle>
                   <TooltipProvider>
@@ -1104,7 +1016,7 @@ function Question({
                   <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
                     {question.explanation
                       ? typeof question.explanation === "string" &&
-                        question.explanation.startsWith("http") ? (
+                        isImageSrc(question.explanation) ? (
                           <div className="relative w-full max-w-lg mx-auto">
                             <Image
                               src={question.explanation}
@@ -1120,7 +1032,7 @@ function Question({
                           </div>
                         )
                       : question.markscheme
-                      ? question.markscheme.startsWith("http") ? (
+                      ? isImageSrc(question.markscheme) ? (
                           <div className="relative w-full max-w-lg mx-auto">
                             <Image
                               src={question.markscheme}

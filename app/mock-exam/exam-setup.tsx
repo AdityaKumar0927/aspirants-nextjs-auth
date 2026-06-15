@@ -1,15 +1,15 @@
 /* ------------------------------------------------------------------
-   exam-setup.tsx  –  light-only version
+   exam-setup.tsx — pre-exam configuration, in the desk design system.
+   A true 3-step sequence: choose exam → year & shift → confirm.
 -------------------------------------------------------------------*/
 "use client"
 
 import React, { useEffect, useState, useCallback } from "react"
-import { AnimatePresence, motion, type Transition } from "framer-motion"
-import { Play, Check, ChevronRight } from "lucide-react"
+import { motion, type Transition } from "framer-motion"
+import { Play, Check } from "lucide-react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
 
-import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
   Select,
@@ -21,6 +21,24 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { OmrBubble, PaperEyebrow } from "@/components/desk"
+
+/** Mono step numeral for the setup sequence (this IS a true sequence). */
+function StepMark({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        aria-hidden="true"
+        className="type-data flex h-6 w-6 flex-none items-center justify-center rounded-full border border-rule text-xs text-pencil"
+      >
+        {n}
+      </span>
+      <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+        {label}
+      </p>
+    </div>
+  )
+}
 
 /* ---------------------------------------------------------------
    types & helpers
@@ -280,189 +298,202 @@ export default function ExamSetup({
      render
   ============================================================= */
   return (
-    <div className="container mx-auto p-16 font-light tracking-tight">
-      <h1 className="text-3xl font-medium mb-6">Past Papers</h1>
+    <div className="mx-auto w-full max-w-6xl p-4 sm:p-8">
+      <PaperEyebrow>Past papers</PaperEyebrow>
+      <h1 className="type-display mb-6 mt-1 text-3xl sm:text-4xl">Mock exams</h1>
 
-      <div className="grid gap-6 md:grid-cols-[350px,1fr]">
-        {/* LEFT CARD ------------------------------------------------ */}
-        <Card className="p-6 space-y-5 border-gray-200">
+      <div className="grid gap-6 md:grid-cols-[360px_1fr]">
+        {/* LEFT SHEET — the setup sequence ---------------------------- */}
+        <div className="paper-sheet space-y-6 p-6">
           {errorMsg && (
-            <div className="p-2 bg-red-50 border border-red-200 text-red-700 text-sm rounded">
+            <div
+              role="alert"
+              className="border-l-2 border-redpen py-1 pl-3 text-sm text-redpen"
+            >
               {errorMsg}
             </div>
           )}
 
-          {/* Exam ----------------------------------------------------*/}
-          <div className="space-y-2">
-            <Label className="text-sm text-gray-600">Exam (required)</Label>
-            {loadingExams ? (
-              <Skeleton height={40} />
-            ) : (
-              <Select
-                value={selectedExam}
-                onValueChange={(val) => setSelectedExam(val)}
-              >
-                <SelectTrigger className="bg-white border-gray-200">
-                  <SelectValue placeholder="Select exam" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">-- No exam selected --</SelectItem>
-                  {exams.map((ex) => (
-                    <SelectItem key={ex} value={ex}>
-                      {ex}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-          </div>
-
-          {/* Year ----------------------------------------------------*/}
-          <div className="space-y-2">
-            <Label className="text-sm text-gray-600">Year (required)</Label>
-            {loadingYears ? (
-              <Skeleton height={40} />
-            ) : (
-              <Select
-                value={selectedYear}
-                onValueChange={(val) => setSelectedYear(val)}
-                disabled={selectedExam === "none"}
-              >
-                <SelectTrigger className="bg-white border-gray-200 disabled:opacity-50">
-                  <SelectValue placeholder="Select year" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">-- No year selected --</SelectItem>
-                  {years.map((yr) => (
-                    <SelectItem key={yr} value={String(yr)}>
-                      {yr}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-          </div>
-
-          {/* Shift ---------------------------------------------------*/}
-          <div className="space-y-2">
-            <Label className="text-sm text-gray-600">Shift (optional)</Label>
-            {loadingShifts ? (
-              <Skeleton height={40} />
-            ) : (
-              <Select
-                value={selectedShift}
-                onValueChange={(val) => setSelectedShift(val)}
-                disabled={selectedYear === "none"}
-              >
-                <SelectTrigger className="bg-white border-gray-200 disabled:opacity-50">
-                  <SelectValue
-                    placeholder={shifts.length === 0 ? "No shift" : "Select shift"}
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  {shifts.length === 0 ? (
-                    <SelectItem value="no-shift">No shift</SelectItem>
-                  ) : (
-                    <>
-                      <SelectItem value={SHIFT_PLACEHOLDER} disabled>
-                        Select shift
-                      </SelectItem>
-                      {shifts.map((sh) => (
-                        <SelectItem key={sh} value={sh}>
-                          {sh}
-                        </SelectItem>
-                      ))}
-                    </>
-                  )}
-                </SelectContent>
-              </Select>
-            )}
-          </div>
-
-          {/* Number of questions ------------------------------------*/}
-          <div className="space-y-2">
-            <Label className="text-sm text-gray-600">Number of Questions</Label>
-            {loadingCount ? (
-              <Skeleton height={40} />
-            ) : (
-              <Input
-                type="number"
-                className="bg-white border-gray-200"
-                value={numQuestions}
-                onChange={(e) => setNumQuestions(e.target.value)}
-              />
-            )}
-          </div>
-
-          {/* Difficulty ---------------------------------------------*/}
-          <div className="space-y-2">
-            <Label className="text-sm text-gray-600">Difficulty (optional)</Label>
-            <Select value={difficulty} onValueChange={setDifficulty}>
-              <SelectTrigger className="bg-white border-gray-200">
-                <SelectValue placeholder="Any" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="any">Any</SelectItem>
-                <SelectItem value="Easy">Easy</SelectItem>
-                <SelectItem value="Medium">Medium</SelectItem>
-                <SelectItem value="Hard">Hard</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Skip completed -----------------------------------------*/}
+          {/* Step 1 — choose exam -----------------------------------*/}
           <div className="space-y-3">
-            <Label className="text-sm text-gray-600">Skip completed?</Label>
-            <div className="flex gap-4">
-              {(["yes", "no"] as const).map((val) => (
-                <div key={val} className="flex items-center space-x-2">
-                  <button
-                    type="button"
-                    onClick={() => setSkipCompleted(val)}
-                    className={`w-5 h-5 rounded-full flex items-center justify-center border-2 transition-colors ${
-                      skipCompleted === val
-                        ? "bg-blue-500 border-blue-500 text-white"
-                        : "border-gray-300 hover:border-blue-400"
-                    }`}
-                  >
-                    {skipCompleted === val && <Check className="w-3 h-3" />}
-                  </button>
-                  <Label className="text-sm capitalize">{val}</Label>
-                </div>
-              ))}
+            <StepMark n="1" label="Choose exam" />
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Exam (required)</Label>
+              {loadingExams ? (
+                <Skeleton height={40} />
+              ) : (
+                <Select
+                  value={selectedExam}
+                  onValueChange={(val) => setSelectedExam(val)}
+                >
+                  <SelectTrigger className="min-h-11 bg-paper">
+                    <SelectValue placeholder="Select exam" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">No exam selected</SelectItem>
+                    {exams.map((ex) => (
+                      <SelectItem key={ex} value={ex}>
+                        {ex}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
             </div>
           </div>
 
-          {/* Exam time ----------------------------------------------*/}
-          <div className="space-y-2">
-            <Label className="text-sm text-gray-600">Exam Time (minutes)</Label>
-            <Input
-              type="number"
-              className="bg-white border-gray-200"
-              value={examTime}
-              onChange={(e) => setExamTime(Number(e.target.value))}
-            />
+          {/* Step 2 — year & shift ----------------------------------*/}
+          <div className="space-y-3">
+            <StepMark n="2" label="Year & shift" />
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Year (required)</Label>
+              {loadingYears ? (
+                <Skeleton height={40} />
+              ) : (
+                <Select
+                  value={selectedYear}
+                  onValueChange={(val) => setSelectedYear(val)}
+                  disabled={selectedExam === "none"}
+                >
+                  <SelectTrigger className="min-h-11 bg-paper disabled:opacity-50">
+                    <SelectValue placeholder="Select year" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">No year selected</SelectItem>
+                    {years.map((yr) => (
+                      <SelectItem key={yr} value={String(yr)}>
+                        {yr}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Shift (optional)</Label>
+              {loadingShifts ? (
+                <Skeleton height={40} />
+              ) : (
+                <Select
+                  value={selectedShift}
+                  onValueChange={(val) => setSelectedShift(val)}
+                  disabled={selectedYear === "none"}
+                >
+                  <SelectTrigger className="min-h-11 bg-paper disabled:opacity-50">
+                    <SelectValue
+                      placeholder={shifts.length === 0 ? "No shift" : "Select shift"}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {shifts.length === 0 ? (
+                      <SelectItem value="no-shift">No shift</SelectItem>
+                    ) : (
+                      <>
+                        <SelectItem value={SHIFT_PLACEHOLDER} disabled>
+                          Select shift
+                        </SelectItem>
+                        {shifts.map((sh) => (
+                          <SelectItem key={sh} value={sh}>
+                            {sh}
+                          </SelectItem>
+                        ))}
+                      </>
+                    )}
+                  </SelectContent>
+                </Select>
+              )}
+            </div>
           </div>
 
-          {/* Start button -------------------------------------------*/}
-          <Button
-            className="w-full bg-blue-50 hover:bg-blue-100 text-blue-600 border-blue-200 hover:border-blue-300"
-            variant="outline"
-            onClick={handleGenerate}
-            disabled={disabled || isLoading}
-          >
-            {isLoading ? "Loading..." : "Start Exam"}
-            {!isLoading && <Play className="ml-2 h-4 w-4" />}
-          </Button>
-        </Card>
+          {/* Step 3 — attempt settings & confirm --------------------*/}
+          <div className="space-y-3">
+            <StepMark n="3" label="Confirm attempt" />
 
-        {/* RIGHT CARD – topics -------------------------------------*/}
-        <Card className="p-6 border-gray-200">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-medium text-gray-800">All Topics</h2>
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Number of questions</Label>
+              {loadingCount ? (
+                <Skeleton height={40} />
+              ) : (
+                <Input
+                  type="number"
+                  className="type-data min-h-11 bg-paper"
+                  value={numQuestions}
+                  onChange={(e) => setNumQuestions(e.target.value)}
+                />
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Difficulty (optional)</Label>
+              <Select value={difficulty} onValueChange={setDifficulty}>
+                <SelectTrigger className="min-h-11 bg-paper">
+                  <SelectValue placeholder="Any" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="any">Any</SelectItem>
+                  <SelectItem value="Easy">Easy</SelectItem>
+                  <SelectItem value="Medium">Medium</SelectItem>
+                  <SelectItem value="Hard">Hard</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Skip completed questions?</Label>
+              <div className="flex gap-2">
+                {(["yes", "no"] as const).map((val) => (
+                  <button
+                    key={val}
+                    type="button"
+                    onClick={() => setSkipCompleted(val)}
+                    className="omr-option min-h-11 w-auto"
+                    data-state={skipCompleted === val ? "selected" : undefined}
+                    aria-pressed={skipCompleted === val}
+                  >
+                    <OmrBubble filled={skipCompleted === val}>
+                      {val === "yes" ? "Y" : "N"}
+                    </OmrBubble>
+                    <span className="text-sm capitalize leading-7">{val}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm text-pencil">Exam time (minutes)</Label>
+              <Input
+                type="number"
+                className="type-data min-h-11 bg-paper"
+                value={examTime}
+                onChange={(e) => setExamTime(Number(e.target.value))}
+              />
+            </div>
+          </div>
+
+          {/* Start — the counterfoil slip at the foot of the sheet ---*/}
+          <div className="counterfoil pt-5">
+            <Button
+              className="min-h-11 w-full"
+              onClick={handleGenerate}
+              disabled={disabled || isLoading}
+            >
+              {isLoading ? "Preparing paper" : "Start exam"}
+              {!isLoading && <Play className="ml-2 h-4 w-4" />}
+            </Button>
+          </div>
+        </div>
+
+        {/* RIGHT SHEET — topics --------------------------------------*/}
+        <div className="paper-sheet p-6">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <div>
+              <PaperEyebrow>Syllabus</PaperEyebrow>
+              <h2 className="type-display mt-1 text-xl">Topics</h2>
+            </div>
             <Button
               variant="ghost"
-              className="text-sm font-light text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+              className="min-h-11 text-pencil"
               onClick={handleSelectAll}
             >
               {selectedTopics.length === topics.length ? "Deselect all" : "Select all"}
@@ -478,11 +509,11 @@ export default function ExamSetup({
                 <Skeleton height={24} />
               </>
             ) : topics.length === 0 ? (
-              <p className="text-sm text-gray-500 italic">
-                No topics found for the selected exam/year.
+              <p className="text-sm text-pencil">
+                No topics for this selection yet — choose an exam and year first.
               </p>
             ) : (
-              <ScrollArea className="max-h-[500px] pr-1">
+              <ScrollArea className="max-h-125 pr-1">
                 <div className="space-y-1">
                   {topics.map((topic) => {
                     const selected = selectedTopics.includes(topic.id)
@@ -492,30 +523,15 @@ export default function ExamSetup({
                         onClick={() => toggleTopic(topic.id)}
                         layout
                         initial={false}
-                        animate={{
-                          backgroundColor: selected ? "#e6f7ff" : "transparent",
-                        }}
-                        whileHover={{
-                          backgroundColor: selected
-                            ? "#cceeff"
-                            : "rgba(229,231,235,0.5)",
-                        }}
-                        whileTap={{
-                          backgroundColor: selected
-                            ? "#b3e6ff"
-                            : "rgba(229,231,235,0.8)",
-                        }}
-                        transition={{
-                          ...transitionProps,
-                          backgroundColor: { duration: 0.1 },
-                        }}
-                        className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium tracking-tight transition-colors ${
+                        transition={transitionProps}
+                        aria-pressed={selected}
+                        className={`flex min-h-11 w-full items-center justify-between gap-3 rounded-md border px-3 py-2 text-left text-sm transition-colors ${
                           selected
-                            ? "text-blue-600 ring-1 ring-blue-200"
-                            : "text-gray-700 hover:bg-gray-100"
+                            ? "border-ballpoint bg-secondary text-ballpoint"
+                            : "border-transparent text-ink hover:bg-secondary"
                         }`}
                       >
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center gap-2">
                           {selected && (
                             <motion.div
                               initial={{ scale: 0, opacity: 0 }}
@@ -523,19 +539,16 @@ export default function ExamSetup({
                               exit={{ scale: 0, opacity: 0 }}
                               transition={transitionProps}
                             >
-                              <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center mr-1">
-                                <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                              <div className="flex h-4 w-4 items-center justify-center rounded-full bg-ballpoint">
+                                <Check className="h-3 w-3 text-paper" strokeWidth={3} />
                               </div>
                             </motion.div>
                           )}
                           <span>{topic.name}</span>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="text-sm font-light text-gray-500">
-                            {topic.questions} questions
-                          </span>
-                          <ChevronRight className="w-4 h-4 text-gray-400" />
-                        </div>
+                        <span className="type-data flex-none text-xs text-pencil">
+                          {topic.questions} questions
+                        </span>
                       </motion.button>
                     )
                   })}
@@ -543,7 +556,7 @@ export default function ExamSetup({
               </ScrollArea>
             )}
           </motion.div>
-        </Card>
+        </div>
       </div>
     </div>
   )

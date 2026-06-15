@@ -19,6 +19,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/components/ui/use-toast";
+import T from "@/components/i18n/T"
 
 const notificationsFormSchema = z.object({
   type: z.enum(["all", "mentions", "none"], {
@@ -61,17 +62,14 @@ export function NotificationsForm() {
       }
 
       toast({
-        title: "Settings updated successfully",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
+        title: "Notifications updated",
+        description: "Your notification preferences have been saved.",
       });
     } catch (error: any) {
       toast({
-        title: "Error updating settings",
-        description: error.message,
+        title: "Could not save notification settings",
+        description: error.message || "Check your connection and try again.",
+        variant: "destructive",
       });
     }
   }
@@ -84,7 +82,9 @@ export function NotificationsForm() {
           name="type"
           render={({ field }) => (
             <FormItem className="space-y-3">
-              <FormLabel>Notify me about...</FormLabel>
+              <FormLabel className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.notificationsNotificationsForm.notifyMeAbout" />
+              </FormLabel>
               <FormControl>
                 <RadioGroup
                   onValueChange={field.onChange}
@@ -96,7 +96,7 @@ export function NotificationsForm() {
                       <RadioGroupItem value="all" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      All new messages
+                      <T k="auto.notificationsNotificationsForm.allNewMessages" />
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
@@ -104,14 +104,14 @@ export function NotificationsForm() {
                       <RadioGroupItem value="mentions" />
                     </FormControl>
                     <FormLabel className="font-normal">
-                      Direct messages and mentions
+                      <T k="auto.notificationsNotificationsForm.directMessagesAndMentions" />
                     </FormLabel>
                   </FormItem>
                   <FormItem className="flex items-center space-x-3 space-y-0">
                     <FormControl>
                       <RadioGroupItem value="none" />
                     </FormControl>
-                    <FormLabel className="font-normal">Nothing</FormLabel>
+                    <FormLabel className="font-normal"><T k="auto.notificationsNotificationsForm.nothing" /></FormLabel>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -120,19 +120,21 @@ export function NotificationsForm() {
           )}
         />
         <div>
-          <h3 className="mb-4 text-lg font-medium">Email Notifications</h3>
-          <div className="space-y-4">
+          <p className="type-data mb-1 text-[11px] uppercase tracking-[0.14em] text-pencil">
+            <T k="auto.notificationsNotificationsForm.emailNotifications" />
+          </p>
+          <div>
             <FormField
               control={form.control}
               name="communication_emails"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                   <div className="space-y-0.5">
                     <FormLabel className="text-base">
-                      Communication emails
+                      <T k="auto.notificationsNotificationsForm.communicationEmails" />
                     </FormLabel>
-                    <FormDescription>
-                      Receive emails about your account activity.
+                    <FormDescription className="text-pencil">
+                      <T k="auto.notificationsNotificationsForm.receiveEmailsAboutYourAccount" />
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -148,13 +150,13 @@ export function NotificationsForm() {
               control={form.control}
               name="marketing_emails"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                   <div className="space-y-0.5">
                     <FormLabel className="text-base">
-                      Marketing emails
+                      <T k="auto.notificationsNotificationsForm.marketingEmails" />
                     </FormLabel>
-                    <FormDescription>
-                      Receive emails about new products, features, and more.
+                    <FormDescription className="text-pencil">
+                      <T k="auto.notificationsNotificationsForm.receiveEmailsAboutNewProducts" />
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -170,11 +172,11 @@ export function NotificationsForm() {
               control={form.control}
               name="social_emails"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                   <div className="space-y-0.5">
-                    <FormLabel className="text-base">Social emails</FormLabel>
-                    <FormDescription>
-                      Receive emails for friend requests, follows, and more.
+                    <FormLabel className="text-base"><T k="auto.notificationsNotificationsForm.socialEmails" /></FormLabel>
+                    <FormDescription className="text-pencil">
+                      <T k="auto.notificationsNotificationsForm.receiveEmailsForFriendRequests" />
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -190,11 +192,11 @@ export function NotificationsForm() {
               control={form.control}
               name="security_emails"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                   <div className="space-y-0.5">
-                    <FormLabel className="text-base">Security emails</FormLabel>
-                    <FormDescription>
-                      Receive emails about your account activity and security.
+                    <FormLabel className="text-base"><T k="auto.notificationsNotificationsForm.securityEmails" /></FormLabel>
+                    <FormDescription className="text-pencil">
+                      <T k="auto.notificationsNotificationsForm.receiveEmailsAboutYourAccount2" />
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -223,17 +225,20 @@ export function NotificationsForm() {
               </FormControl>
               <div className="space-y-1 leading-none">
                 <FormLabel>
-                  Use different settings for my mobile devices
+                  <T k="auto.notificationsNotificationsForm.useDifferentSettingsForMy" />
                 </FormLabel>
-                <FormDescription>
-                  You can manage your mobile notifications in the{" "}
-                  <Link href="/forms">mobile settings</Link> page.
+                <FormDescription className="text-pencil">
+                  <T k="auto.notificationsNotificationsForm.youCanManageYourMobile" />{" "}
+                  <Link href="/forms" className="text-ballpoint underline">
+                    <T k="auto.notificationsNotificationsForm.mobileSettings" />
+                  </Link>{" "}
+                  <T k="auto.notificationsNotificationsForm.page" />
                 </FormDescription>
               </div>
             </FormItem>
           )}
         />
-        <Button type="submit">Update notifications</Button>
+        <Button type="submit" className="min-h-11"><T k="auto.notificationsNotificationsForm.saveChanges" /></Button>
       </form>
     </Form>
   );

@@ -3,8 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useFieldArray, useForm } from "react-hook-form"
 import { z } from "zod"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 import { Loader2, PlusCircle, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -26,6 +27,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import T from "@/components/i18n/T"
 
 const profileFormSchema = z.object({
   username: z
@@ -33,7 +35,9 @@ const profileFormSchema = z.object({
     .min(2, { message: "Username must be at least 2 characters." })
     .max(30, { message: "Username must not be longer than 30 characters." }),
   email: z.string().email(),
-  bio: z.string().max(160).min(4),
+  // Optional: empty is allowed (mirrors the server schema), so a user with no
+  // bio yet can still save other changes — e.g. withdraw a policy.
+  bio: z.string().max(160),
   urls: z
     .array(
       z.object({
@@ -50,6 +54,20 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
+// Each policy switch maps to a UserPolicyAgreement row (keyed by policyName),
+// persisted through the audited /api/policy/accept endpoint which timestamps
+// and logs every grant/withdrawal.
+const POLICY_FIELDS = [
+  { policyName: "terms", field: "termsAccepted" },
+  { policyName: "privacy", field: "privacyPolicyAccepted" },
+  { policyName: "cookie", field: "cookiePolicyAccepted" },
+] as const
+
+// Policies mandatory to use the service — withdrawing one revokes onboarding
+// server-side, so the client must re-gate the user (mirrors MANDATORY_POLICIES
+// in /api/policy/accept).
+const MANDATORY_POLICY_NAMES: string[] = ["terms", "privacy"]
+
 interface ProfileFormProps {
   initialData: ProfileFormValues & { id: string }
   userRole: string
@@ -62,6 +80,15 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
   const [resetting, setResetting] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
+  const { update } = useSession()
+
+  // Last-persisted acceptance state, so a save only writes (and audits) the
+  // policies that actually changed.
+  const policyBaseline = useRef({
+    termsAccepted: initialData.termsAccepted,
+    privacyPolicyAccepted: initialData.privacyPolicyAccepted,
+    cookiePolicyAccepted: initialData.cookiePolicyAccepted,
+  })
 
   const form = useForm<z.input<typeof profileFormSchema>, any, z.output<typeof profileFormSchema>>({
     resolver: zodResolver(profileFormSchema),
@@ -89,6 +116,60 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
 
       if (!response.ok) {
         throw new Error("Failed to update profile settings")
+      }
+
+      // Persist policy acceptances through the audited endpoint — only the ones
+      // that changed, so we don't write spurious audit rows or re-stamp the
+      // acceptedAt timestamp on every save.
+      const changedPolicies = POLICY_FIELDS.filter(
+        ({ field }) => data[field] !== policyBaseline.current[field]
+      )
+      let revokedMandatory = false
+      let anyPolicyFailed = false
+      if (changedPolicies.length > 0) {
+        const responses = await Promise.all(
+          changedPolicies.map(({ policyName, field }) =>
+            fetch("/api/policy/accept", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ policyName, accepted: data[field] }),
+            })
+          )
+        )
+        responses.forEach((res, i) => {
+          const { policyName, field } = changedPolicies[i]
+          if (res.ok) {
+            // Advance the baseline per successful write (even if a sibling fails),
+            // so a retry only re-sends the policies that didn't persist.
+            policyBaseline.current[field] = data[field]
+            // A committed withdrawal of a mandatory policy revokes onboarding
+            // server-side. Derive this from the request intent (not the response
+            // body), so a transport/parse hiccup can't drop the re-gate signal.
+            if (!data[field] && MANDATORY_POLICY_NAMES.includes(policyName)) {
+              revokedMandatory = true
+            }
+          } else {
+            anyPolicyFailed = true
+          }
+        })
+      }
+
+      if (revokedMandatory) {
+        // Re-gate immediately — this takes priority over reporting a sibling
+        // failure, since the server has already revoked onboarding. Refresh the
+        // JWT so middleware re-fires, then send the user to re-accept.
+        await update()
+        toast({
+          title: "Please re-accept to continue",
+          description:
+            "Withdrawing the Terms or Privacy Policy means you'll need to review and accept them again to keep using Penwise.",
+        })
+        router.push("/onboarding")
+        return
+      }
+
+      if (anyPolicyFailed) {
+        throw new Error("Failed to update policy agreements")
       }
 
       toast({
@@ -139,9 +220,9 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
   if (loading) {
     return (
       <div className="space-y-8 max-w-3xl">
-        <Skeleton className="h-12 w-1/3 bg-gray-200 dark:bg-gray-700" />
-        <Skeleton className="h-12 w-2/3 bg-gray-200 dark:bg-gray-700" />
-        <Skeleton className="h-12 w-full bg-gray-200 dark:bg-gray-700" />
+        <Skeleton className="h-12 w-1/3" />
+        <Skeleton className="h-12 w-2/3" />
+        <Skeleton className="h-12 w-full" />
       </div>
     )
   }
@@ -154,19 +235,14 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-900 dark:text-gray-100">Username</FormLabel>
+              <FormLabel><T k="auto.formsProfileForm.username" /></FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Your username"
-                  {...field}
-                  className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                />
+                <Input placeholder="Your username" {...field} className="bg-paper" />
               </FormControl>
-              <FormDescription className="text-gray-600 dark:text-gray-400">
-                This is your public display name. It can be your real name or a pseudonym. You can only change this once
-                every 30 days.
+              <FormDescription className="text-pencil">
+                <T k="auto.formsProfileForm.thisIsYourPublicDisplay" />
               </FormDescription>
-              <FormMessage className="text-red-500 dark:text-red-400" />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
@@ -176,14 +252,14 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-900 dark:text-gray-100">Email</FormLabel>
+              <FormLabel><T k="auto.formsProfileForm.email" /></FormLabel>
               <FormControl>
-                <Input {...field} disabled className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100" />
+                <Input {...field} disabled className="type-data bg-secondary" />
               </FormControl>
-              <FormDescription className="text-gray-600 dark:text-gray-400">
-                This is your verified email address. Contact support if you need to change it.
+              <FormDescription className="text-pencil">
+                <T k="auto.formsProfileForm.thisIsYourVerifiedEmail" />
               </FormDescription>
-              <FormMessage className="text-red-500 dark:text-red-400" />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
@@ -193,24 +269,26 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           name="bio"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-900 dark:text-gray-100">Bio</FormLabel>
+              <FormLabel><T k="auto.formsProfileForm.bio" /></FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Tell us a little bit about yourself"
-                  className="resize-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  className="resize-none bg-paper"
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="text-gray-600 dark:text-gray-400">
-                You can <span className="font-semibold">@mention</span> other users and organizations to link to them.
+              <FormDescription className="text-pencil">
+                <T k="auto.formsProfileForm.youCan" /> <span className="font-semibold"><T k="auto.formsProfileForm.mention" /></span> <T k="auto.formsProfileForm.otherUsersAndOrganizationsTo" />
               </FormDescription>
-              <FormMessage className="text-red-500 dark:text-red-400" />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
 
         <div>
-          <h3 className="mb-4 font-medium text-gray-900 dark:text-gray-100">URLs</h3>
+          <p className="type-data mb-4 text-[11px] uppercase tracking-[0.14em] text-pencil">
+            <T k="auto.formsProfileForm.urls" />
+          </p>
           {fields.map((field, index) => (
             <FormField
               control={form.control}
@@ -223,21 +301,21 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
                       <Input
                         {...field}
                         placeholder="https://example.com"
-                        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        className="type-data bg-paper"
                       />
                       <Button
                         type="button"
                         variant="outline"
                         size="icon"
                         onClick={() => remove(index)}
-                        className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className="min-h-11 min-w-11"
                       >
                         <X className="h-4 w-4" />
-                        <span className="sr-only">Remove URL</span>
+                        <span className="sr-only"><T k="auto.formsProfileForm.removeUrl" /></span>
                       </Button>
                     </div>
                   </FormControl>
-                  <FormMessage className="text-red-500 dark:text-red-400" />
+                  <FormMessage className="text-redpen" />
                 </FormItem>
               )}
             />
@@ -246,24 +324,27 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
             type="button"
             variant="outline"
             size="sm"
-            className="mt-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="mt-2 min-h-11"
             onClick={() => append({ value: "" })}
           >
             <PlusCircle className="h-4 w-4 mr-2" />
-            Add URL
+            <T k="auto.formsProfileForm.addUrl" />
           </Button>
         </div>
 
-        <div className="space-y-4">
+        <div>
+          <p className="type-data mb-1 text-[11px] uppercase tracking-[0.14em] text-pencil">
+            <T k="auto.formsProfileForm.policies" />
+          </p>
           <FormField
             control={form.control}
             name="termsAccepted"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+              <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                 <div className="space-y-0.5">
-                  <FormLabel className="text-base text-gray-900 dark:text-gray-100">Terms and Conditions</FormLabel>
-                  <FormDescription className="text-gray-600 dark:text-gray-400">
-                    Accept our Terms and Conditions.
+                  <FormLabel className="text-base"><T k="auto.formsProfileForm.termsAndConditions" /></FormLabel>
+                  <FormDescription className="text-pencil">
+                    <T k="auto.formsProfileForm.acceptOurTermsAndConditions" />
                   </FormDescription>
                 </div>
                 <FormControl>
@@ -276,11 +357,11 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
             control={form.control}
             name="privacyPolicyAccepted"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+              <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                 <div className="space-y-0.5">
-                  <FormLabel className="text-base text-gray-900 dark:text-gray-100">Privacy Policy</FormLabel>
-                  <FormDescription className="text-gray-600 dark:text-gray-400">
-                    Accept our Privacy Policy.
+                  <FormLabel className="text-base"><T k="auto.formsProfileForm.privacyPolicy" /></FormLabel>
+                  <FormDescription className="text-pencil">
+                    <T k="auto.formsProfileForm.acceptOurPrivacyPolicy" />
                   </FormDescription>
                 </div>
                 <FormControl>
@@ -293,11 +374,11 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
             control={form.control}
             name="cookiePolicyAccepted"
             render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+              <FormItem className="ledger-row min-h-11 flex-row justify-between space-y-0">
                 <div className="space-y-0.5">
-                  <FormLabel className="text-base text-gray-900 dark:text-gray-100">Cookie Policy</FormLabel>
-                  <FormDescription className="text-gray-600 dark:text-gray-400">
-                    Accept our Cookie Policy.
+                  <FormLabel className="text-base"><T k="auto.formsProfileForm.cookiePolicy" /></FormLabel>
+                  <FormDescription className="text-pencil">
+                    <T k="auto.formsProfileForm.acceptOurCookiePolicy" />
                   </FormDescription>
                 </div>
                 <FormControl>
@@ -313,18 +394,14 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-900 dark:text-gray-100">Full Name</FormLabel>
+              <FormLabel><T k="auto.formsProfileForm.fullName" /></FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Your full name"
-                  {...field}
-                  className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                />
+                <Input placeholder="Your full name" {...field} className="bg-paper" />
               </FormControl>
-              <FormDescription className="text-gray-600 dark:text-gray-400">
-                This is your full name as it appears on official documents.
+              <FormDescription className="text-pencil">
+                <T k="auto.formsProfileForm.thisIsYourFullName" />
               </FormDescription>
-              <FormMessage className="text-red-500 dark:text-red-400" />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
@@ -334,72 +411,62 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
           name="language"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-900 dark:text-gray-100">Preferred Language</FormLabel>
+              <FormLabel><T k="auto.formsProfileForm.preferredLanguage" /></FormLabel>
               <FormControl>
                 <Input
                   placeholder="e.g., English, Spanish, French"
                   {...field}
-                  className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                  className="bg-paper"
                 />
               </FormControl>
-              <FormDescription className="text-gray-600 dark:text-gray-400">
-                Enter your preferred language for communications and content.
+              <FormDescription className="text-pencil">
+                <T k="auto.formsProfileForm.enterYourPreferredLanguageFor" />
               </FormDescription>
-              <FormMessage className="text-red-500 dark:text-red-400" />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
 
-        <div className="flex items-center justify-between pt-6">
-          <Button
-            type="submit"
-            disabled={submitting}
-            className="bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600"
-          >
+        <div className="counterfoil flex items-center justify-between pt-6">
+          <Button type="submit" disabled={submitting} className="min-h-11">
             {submitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Updating...
+                <T k="auto.formsProfileForm.savingChanges" />
               </>
             ) : (
-              "Update profile"
+              "Save changes"
             )}
           </Button>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button
-                variant="destructive"
-                className="bg-red-600 hover:bg-red-700 text-white dark:bg-red-500 dark:hover:bg-red-600"
-              >
-                Reset Account
+              <Button variant="destructive" className="min-h-11">
+                <T k="auto.formsProfileForm.resetAccount" />
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="bg-white dark:bg-gray-800">
+            <AlertDialogContent className="paper-sheet">
               <AlertDialogHeader>
-                <AlertDialogTitle className="text-gray-900 dark:text-gray-100">
-                  Are you absolutely sure?
+                <AlertDialogTitle className="type-display">
+                  <T k="auto.formsProfileForm.resetThisAccount" />
                 </AlertDialogTitle>
-                <AlertDialogDescription className="text-gray-600 dark:text-gray-400">
-                  This action cannot be undone. This will permanently delete your account and remove your data from our
-                  servers.
+                <AlertDialogDescription className="text-pencil">
+                  <T k="auto.formsProfileForm.thisCannotBeUndoneIt" />
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel className="bg-gray-200 hover:bg-gray-300 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100">
-                  Cancel
-                </AlertDialogCancel>
+                <AlertDialogCancel className="min-h-11"><T k="auto.formsProfileForm.keepMyAccount" /></AlertDialogCancel>
                 <AlertDialogAction
                   onClick={handleReset}
                   disabled={resetting}
-                  className="bg-red-600 hover:bg-red-700 text-white dark:bg-red-500 dark:hover:bg-red-600"
+                  className="min-h-11 bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90"
                 >
                   {resetting ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Resetting...
+                      <T k="auto.formsProfileForm.resettingAccount" />
                     </>
                   ) : (
-                    "Reset Account"
+                    "Reset account"
                   )}
                 </AlertDialogAction>
               </AlertDialogFooter>

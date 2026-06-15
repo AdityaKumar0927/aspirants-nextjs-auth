@@ -1,9 +1,10 @@
 import { Separator } from "@/components/ui/separator"
-import ProfileForm from "./profile-form"
+import ProfileFormSession from "./profile-form-session"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import { redirect } from "next/navigation"
 import prisma from "@/lib/prisma"
+import T from "@/components/i18n/T"
 
 export default async function SettingsProfilePage() {
   const session = await getServerSession(authOptions)
@@ -15,9 +16,25 @@ export default async function SettingsProfilePage() {
   const userId = session.user.id
 
   try {
-    const userSettings = await prisma.userSettings.findUnique({
-      where: { userId: userId },
-    })
+    const [userSettings, agreements] = await Promise.all([
+      prisma.userSettings.findUnique({
+        where: { userId: userId },
+      }),
+      prisma.userPolicyAgreement.findMany({
+        where: { userId },
+        select: { policyName: true, accepted: true },
+      }),
+    ])
+
+    // Real acceptance state from UserPolicyAgreement (written during onboarding
+    // and editable from this form); a missing row reads as not-accepted.
+    const isAccepted = (policyName: string) =>
+      agreements.some((a) => a.policyName === policyName && a.accepted)
+    const policyState = {
+      termsAccepted: isAccepted("terms"),
+      privacyPolicyAccepted: isAccepted("privacy"),
+      cookiePolicyAccepted: isAccepted("cookie"),
+    }
 
     if (!userSettings) {
       // Create default settings if they don't exist
@@ -43,9 +60,7 @@ export default async function SettingsProfilePage() {
         urls: createdSettings.urls as { value: string }[],
         name: createdSettings.name,
         language: createdSettings.language,
-        termsAccepted: false,
-        privacyPolicyAccepted: false,
-        cookiePolicyAccepted: false,
+        ...policyState,
       }
 
       const userRole = session.user?.role || 'member'
@@ -53,15 +68,15 @@ export default async function SettingsProfilePage() {
       return (
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium">Profile</h3>
-            <p className="text-sm text-muted-foreground">
-              Manage your profile information and settings
+            <h3 className="type-display text-lg"><T k="auto.formsPage.profile" /></h3>
+            <p className="text-sm text-pencil">
+              <T k="auto.formsPage.manageYourProfileInformationAnd" />
             </p>
           </div>
           <Separator />
-          <ProfileForm 
-            initialData={initialData} 
-            userRole={userRole} 
+          <ProfileFormSession
+            initialData={initialData}
+            userRole={userRole}
             userId={userId}
           />
         </div>
@@ -76,9 +91,7 @@ export default async function SettingsProfilePage() {
       urls: userSettings.urls as { value: string }[],
       name: userSettings.name,
       language: userSettings.language,
-      termsAccepted: false, // You may want to fetch this from the database
-      privacyPolicyAccepted: false, // You may want to fetch this from the database
-      cookiePolicyAccepted: false, // You may want to fetch this from the database
+      ...policyState,
     }
 
     const userRole = session.user?.role || 'member'
@@ -86,15 +99,15 @@ export default async function SettingsProfilePage() {
     return (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium">Profile</h3>
-          <p className="text-sm text-muted-foreground">
-            Manage your profile information and settings
+          <h3 className="type-display text-lg"><T k="auto.formsPage.profile" /></h3>
+          <p className="text-sm text-pencil">
+            <T k="auto.formsPage.manageYourProfileInformationAnd" />
           </p>
         </div>
         <Separator />
-        <ProfileForm 
-          initialData={initialData} 
-          userRole={userRole} 
+        <ProfileFormSession
+          initialData={initialData}
+          userRole={userRole}
           userId={userId}
         />
       </div>
@@ -104,9 +117,9 @@ export default async function SettingsProfilePage() {
     return (
       <div className="space-y-6">
         <div>
-          <h3 className="text-lg font-medium">Error</h3>
-          <p className="text-sm text-muted-foreground">
-            An error occurred while fetching your profile information. Please try again later.
+          <h3 className="type-display text-lg text-redpen"><T k="auto.formsPage.couldnTLoadYourProfile" /></h3>
+          <p className="text-sm text-pencil">
+            <T k="auto.formsPage.somethingWentWrongWhileFetching" />
           </p>
         </div>
       </div>

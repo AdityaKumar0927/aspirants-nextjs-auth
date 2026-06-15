@@ -1,14 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Plus, Trash2, Calendar, BarChart, Clock, Book, CheckCircle, Target } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import { Plus, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Progress } from "@/components/ui/progress"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
+import T from "@/components/i18n/T"
 
 type Subject = {
   id: number
@@ -33,20 +34,73 @@ export default function ImprovedStudyPlanner() {
   const [selectedSubject, setSelectedSubject] = useState<number | null>(null)
   const [sessionDuration, setSessionDuration] = useState("")
 
+  const hydratedRef = useRef(false)
+  const canSyncRef = useRef(true) // server sync available (signed in)
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Load: prefer the server (syncs across devices); fall back to localStorage
+  // (guests, or first load before sign-in).
   useEffect(() => {
-    const savedSubjects = localStorage.getItem("subjects")
-    const savedSessions = localStorage.getItem("studySessions")
-    if (savedSubjects) setSubjects(JSON.parse(savedSubjects))
-    if (savedSessions) setStudySessions(JSON.parse(savedSessions))
+    let cancelled = false
+    const loadLocal = () => {
+      try {
+        const s = localStorage.getItem("subjects")
+        const ss = localStorage.getItem("studySessions")
+        if (s) setSubjects(JSON.parse(s))
+        if (ss) setStudySessions(JSON.parse(ss))
+      } catch {
+        /* ignore corrupt cache */
+      }
+    }
+    void (async () => {
+      try {
+        const res = await fetch("/api/study-plan", { cache: "no-store" })
+        if (res.status === 401) {
+          canSyncRef.current = false
+          loadLocal()
+          return
+        }
+        const { data } = await res.json()
+        if (!cancelled && data && (Array.isArray(data.subjects) || Array.isArray(data.studySessions))) {
+          setSubjects(data.subjects ?? [])
+          setStudySessions(data.studySessions ?? [])
+        } else {
+          loadLocal()
+        }
+      } catch {
+        loadLocal()
+      } finally {
+        if (!cancelled) hydratedRef.current = true
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
   }, [])
 
+  // Save: localStorage immediately (offline cache) + debounced server sync.
   useEffect(() => {
-    localStorage.setItem("subjects", JSON.stringify(subjects))
-  }, [subjects])
-
-  useEffect(() => {
-    localStorage.setItem("studySessions", JSON.stringify(studySessions))
-  }, [studySessions])
+    if (!hydratedRef.current) return
+    try {
+      localStorage.setItem("subjects", JSON.stringify(subjects))
+      localStorage.setItem("studySessions", JSON.stringify(studySessions))
+    } catch {
+      /* ignore */
+    }
+    if (!canSyncRef.current) return
+    if (saveTimer.current) clearTimeout(saveTimer.current)
+    saveTimer.current = setTimeout(() => {
+      fetch("/api/study-plan", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ subjects, studySessions }),
+      })
+        .then((r) => {
+          if (r.status === 401) canSyncRef.current = false
+        })
+        .catch(() => {})
+    }, 800)
+  }, [subjects, studySessions])
 
   const addSubject = () => {
     if (newSubject.trim() !== "") {
@@ -119,226 +173,200 @@ export default function ImprovedStudyPlanner() {
   }))
 
   return (
-    <Card className="w-full max-w-5xl mx-auto">
+    <Card className="paper-sheet w-full max-w-5xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-primary">Improved Study Planner</CardTitle>
-        <CardDescription>Organize your studies, track progress, and schedule sessions</CardDescription>
+        <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+          <T k="auto.studyPlannerPage.dailyStudyRegister" />
+        </p>
+        <CardTitle className="type-display text-2xl sm:text-3xl">
+          <T k="auto.studyPlannerPage.study" /> <span className="highlight-sweep"><T k="auto.studyPlannerPage.planner" /></span>
+        </CardTitle>
+        <CardDescription className="text-pencil">
+          <T k="auto.studyPlannerPage.setAGoalPerSubject" />
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
           <TabsList className="grid w-full grid-cols-3 gap-4">
-            <TabsTrigger value="subjects" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Subjects</TabsTrigger>
-            <TabsTrigger value="calendar" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Calendar</TabsTrigger>
-            <TabsTrigger value="statistics" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">Statistics</TabsTrigger>
+            <TabsTrigger value="subjects" className="min-h-9"><T k="auto.studyPlannerPage.subjects" /></TabsTrigger>
+            <TabsTrigger value="calendar" className="min-h-9"><T k="auto.studyPlannerPage.calendar" /></TabsTrigger>
+            <TabsTrigger value="statistics" className="min-h-9"><T k="auto.studyPlannerPage.statistics" /></TabsTrigger>
           </TabsList>
           <TabsContent value="subjects" className="space-y-4">
             <div className="flex space-x-2">
               <Input
                 type="text"
-                placeholder="Add a new subject"
+                placeholder="Add a subject"
                 value={newSubject}
                 onChange={(e) => setNewSubject(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && addSubject()}
-                className="flex-grow"
+                className="flex-grow bg-paper"
               />
-              <Button onClick={addSubject} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Plus className="mr-2 h-4 w-4" /> Add Subject
+              <Button onClick={addSubject} className="min-h-11">
+                <Plus className="mr-2 h-4 w-4" /> <T k="auto.studyPlannerPage.addSubject" />
               </Button>
             </div>
-            {subjects.map((subject) => (
-              <Card key={subject.id} className="bg-card text-card-foreground">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
-                    <Book className="mr-2 h-5 w-5 text-primary" />
-                    {subject.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center space-x-2">
+            {subjects.length > 0 && (
+              <div>
+                <div className="ledger-row type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+                  <span className="flex-1"><T k="auto.studyPlannerPage.subject" /></span>
+                  <span className="w-28 sm:w-32"><T k="auto.studyPlannerPage.goalH" /></span>
+                  <span className="w-28 sm:w-32"><T k="auto.studyPlannerPage.doneH" /></span>
+                  <span className="hidden w-28 sm:block"><T k="auto.studyPlannerPage.progress" /></span>
+                  <span className="w-11" aria-hidden="true" />
+                </div>
+                {subjects.map((subject) => (
+                  <div key={subject.id} className="ledger-row last:border-b-0">
+                    <span className="min-w-0 flex-1 truncate font-medium text-ink">
+                      {subject.name}
+                    </span>
                     <Input
                       type="number"
-                      placeholder="Study goal (hours)"
+                      placeholder="Goal"
                       value={subject.goal || ""}
                       onChange={(e) => updateGoal(subject.id, Number(e.target.value))}
-                      className="w-1/3"
+                      className="type-data w-28 bg-paper sm:w-32"
                     />
                     <Input
                       type="number"
-                      placeholder="Progress (hours)"
+                      placeholder="Done"
                       value={subject.progress || ""}
                       onChange={(e) => updateProgress(subject.id, Number(e.target.value))}
-                      className="w-1/3"
+                      className="type-data w-28 bg-paper sm:w-32"
                     />
                     <Progress
                       value={subject.goal > 0 ? (subject.progress / subject.goal) * 100 : 0}
-                      className="w-1/3"
+                      className="hidden h-1 w-28 bg-rule sm:block"
                     />
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button variant="destructive" onClick={() => removeSubject(subject.id)}>
-                    <Trash2 className="mr-2 h-4 w-4" /> Remove
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
-          </TabsContent>
-          <TabsContent value="calendar" className="space-y-4">
-            <Card className="bg-card text-card-foreground">
-              <CardHeader>
-                <CardTitle className="text-lg">Schedule Study Session</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="date" className="text-sm font-medium">Date</Label>
-                    <Input
-                      id="date"
-                      type="date"
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                      className="mt-1"
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="subject" className="text-sm font-medium">Subject</Label>
-                    <Select onValueChange={(value) => setSelectedSubject(Number(value))}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select a subject" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {subjects.map((subject) => (
-                          <SelectItem key={subject.id} value={subject.id.toString()}>
-                            {subject.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label htmlFor="duration" className="text-sm font-medium">Duration (hours)</Label>
-                    <Input
-                      id="duration"
-                      type="number"
-                      placeholder="Study duration"
-                      value={sessionDuration}
-                      onChange={(e) => setSessionDuration(e.target.value)}
-                      className="mt-1"
-                    />
-                  </div>
-                  <div className="flex items-end">
-                    <Button onClick={addStudySession} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                      Add Study Session
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => removeSubject(subject.id)}
+                      className="min-h-11 min-w-11 text-redpen hover:text-redpen"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      <span className="sr-only"><T k="auto.studyPlannerPage.remove" /> {subject.name}</span>
                     </Button>
                   </div>
+                ))}
+              </div>
+            )}
+          </TabsContent>
+          <TabsContent value="calendar" className="space-y-6">
+            <div>
+              <p className="type-data mb-3 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.studyPlannerPage.logAStudySession" />
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="date" className="text-sm font-medium"><T k="auto.studyPlannerPage.date" /></Label>
+                  <Input
+                    id="date"
+                    type="date"
+                    value={selectedDate}
+                    onChange={(e) => setSelectedDate(e.target.value)}
+                    className="type-data mt-1 bg-paper"
+                  />
                 </div>
-              </CardContent>
-            </Card>
-            <Card className="bg-card text-card-foreground">
-              <CardHeader>
-                <CardTitle className="text-lg">Upcoming Study Sessions</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
+                <div>
+                  <Label htmlFor="subject" className="text-sm font-medium"><T k="auto.studyPlannerPage.subject" /></Label>
+                  <Select onValueChange={(value) => setSelectedSubject(Number(value))}>
+                    <SelectTrigger className="mt-1 min-h-11">
+                      <SelectValue placeholder="Select a subject" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {subjects.map((subject) => (
+                        <SelectItem key={subject.id} value={subject.id.toString()}>
+                          {subject.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label htmlFor="duration" className="text-sm font-medium"><T k="auto.studyPlannerPage.durationHours" /></Label>
+                  <Input
+                    id="duration"
+                    type="number"
+                    placeholder="Hours studied"
+                    value={sessionDuration}
+                    onChange={(e) => setSessionDuration(e.target.value)}
+                    className="type-data mt-1 bg-paper"
+                  />
+                </div>
+                <div className="flex items-end">
+                  <Button onClick={addStudySession} className="min-h-11 w-full">
+                    <T k="auto.studyPlannerPage.logSession" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className="counterfoil pt-4">
+              <p className="type-data mb-1 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.studyPlannerPage.upcomingSessions" />
+              </p>
+              <div>
                 {studySessions
                   .filter((session) => new Date(session.date) >= new Date())
                   .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                   .map((session) => (
-                    <Card key={session.id} className="bg-accent text-accent-foreground">
-                      <CardContent className="flex items-center justify-between py-2">
-                        <div>
-                          <p className="font-medium">
-                            {subjects.find((s) => s.id === session.subjectId)?.name}
-                          </p>
-                          <p className="text-sm text-muted-foreground">{session.date}</p>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="mr-1 h-4 w-4" />
-                          <span>{session.duration} hours</span>
-                        </div>
-                      </CardContent>
-                    </Card>
+                    <div key={session.id} className="ledger-row last:border-b-0">
+                      <span className="min-w-0 flex-1 truncate font-medium text-ink">
+                        {subjects.find((s) => s.id === session.subjectId)?.name}
+                      </span>
+                      <span className="type-data text-sm text-pencil">{session.date}</span>
+                      <span className="type-data w-16 text-right text-sm text-ink">
+                        {session.duration}<span className="text-pencil"> h</span>
+                      </span>
+                    </div>
                   ))}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </TabsContent>
-          <TabsContent value="statistics" className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-card text-card-foreground col-span-full">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
-                    <Target className="mr-2 h-5 w-5 text-primary" />
-                    Overall Progress
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center space-x-4">
-                    <div className="flex-grow">
-                      <Progress value={averageProgress} className="w-full h-4" />
-                    </div>
-                    <div className="text-2xl font-bold text-primary">
-                      {averageProgress.toFixed(1)}%
-                    </div>
+          <TabsContent value="statistics" className="space-y-6">
+            <div>
+              <p className="type-data mb-2 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.studyPlannerPage.hoursRegister" />
+              </p>
+              {/* One summary line, not stat tiles */}
+              <p className="type-data text-sm text-ink">
+                {averageProgress.toFixed(1)}%{" "}
+                <span className="text-pencil"><T k="auto.studyPlannerPage.averageProgress" /></span> · {totalStudyTime}{" "}
+                <span className="text-pencil"><T k="auto.studyPlannerPage.hoursLogged" /></span>
+                {subjectWithMostTime.name && (
+                  <>
+                    {" "}· <span className="text-pencil"><T k="auto.studyPlannerPage.mostStudied" /></span>{" "}
+                    {subjectWithMostTime.name}{" "}
+                    <span className="text-pencil">({subjectWithMostTime.time} h)</span>
+                  </>
+                )}
+              </p>
+              <Progress value={averageProgress} className="mt-3 h-1 w-full bg-rule" />
+            </div>
+            <div className="counterfoil pt-4">
+              <p className="type-data mb-1 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                <T k="auto.studyPlannerPage.subjectProgress" />
+              </p>
+              <div>
+                {subjectsWithProgress.map((subject) => (
+                  <div key={subject.id} className="ledger-row flex-wrap gap-y-2 last:border-b-0">
+                    <span className="min-w-0 flex-1 truncate font-medium text-ink">
+                      {subject.name}
+                    </span>
+                    <Progress
+                      value={subject.goal > 0 ? (subject.progress / subject.goal) * 100 : 0}
+                      className="h-1 w-24 bg-rule sm:w-40"
+                    />
+                    <span className="type-data w-28 text-right text-sm text-ink">
+                      {subject.progress}
+                      <span className="text-pencil"> / {subject.goal} h</span>
+                    </span>
+                    <span className="type-data hidden w-24 text-right text-sm text-pencil sm:block">
+                      {subject.totalTime} <T k="auto.studyPlannerPage.hTotal" />
+                    </span>
                   </div>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Average progress across all subjects
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-card text-card-foreground">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
-                    <Clock className="mr-2 h-5 w-5 text-primary" />
-                    Total Study Time
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-4xl font-bold text-primary">{totalStudyTime}</div>
-                  <p className="text-sm text-muted-foreground">Total hours studied</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-card text-card-foreground">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
-                    <Book className="mr-2 h-5 w-5 text-primary" />
-                    Most Studied Subject
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-primary">{subjectWithMostTime.name}</div>
-                  <p className="text-sm text-muted-foreground">
-                    {subjectWithMostTime.time} hours studied
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-card text-card-foreground col-span-full">
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
-                    <BarChart className="mr-2 h-5 w-5 text-primary" />
-                    Subject Progress
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {subjectsWithProgress.map((subject) => (
-                      <div key={subject.id} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">{subject.name}</span>
-                          <span className="text-sm text-muted-foreground">
-                            {subject.progress} / {subject.goal} hours
-                          </span>
-                        </div>
-                        <Progress
-                          value={subject.goal > 0 ? (subject.progress / subject.goal) * 100 : 0}
-                          className="h-2"
-                        />
-                        <p className="text-xs text-muted-foreground">
-                          Total time: {subject.totalTime} hours
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
             </div>
           </TabsContent>
         </Tabs>

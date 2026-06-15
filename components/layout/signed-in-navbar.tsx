@@ -24,46 +24,32 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { signOut } from "next-auth/react"
+import { useTranslation } from "react-i18next"
 import { MultiStepLoader } from "@/components/aceternity/multi-step-loader"
 import FeedbackPopover from "../layout/feedback"
 import { ToastProvider } from "@/components/ui/toast"
 import { Toaster } from "../ui/toaster"
 
+// Labels resolve via i18n keys (nav.supportLinks.<key>.title/.desc); hrefs stay literal.
 const supportLinks = [
-  {
-    title: "Survey",
-    href: "/survey",
-    description: "Support our platform by surveying with us.",
-  },
-  {
-    title: "Donate",
-    href: "/Donate",
-    description: "Support our platform with your donations.",
-  },
-  {
-    title: "Report",
-    href: "/issues",
-    description: "Report issues or provide feedback.",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-    description: "Get in touch with us for support.",
-  },
-]
-
-const logoutSteps = [
-  { text: "Saving your progress" },
-  { text: "Clearing session data" },
-  { text: "Securing your account" },
-  { text: "Logging you out" },
-  { text: "See you soon!" },
+  { key: "survey", href: "/survey" },
+  { key: "report", href: "/issues" },
+  { key: "contact", href: "/contact" },
 ]
 
 export default function NavBar({ session }: { session: Session | null }) {
+  const { t } = useTranslation()
   const router = useRouter()
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
+
+  const logoutSteps = [
+    { text: t("nav.logoutSteps.s1") },
+    { text: t("nav.logoutSteps.s2") },
+    { text: t("nav.logoutSteps.s3") },
+    { text: t("nav.logoutSteps.s4") },
+    { text: t("nav.logoutSteps.s5") },
+  ]
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [supportOpen, setSupportOpen] = React.useState(false)
   const [showLogoutLoader, setShowLogoutLoader] = React.useState(false)
@@ -112,15 +98,15 @@ export default function NavBar({ session }: { session: Session | null }) {
       <nav
         className={cn(
           "fixed left-1/2 transform -translate-x-1/2 w-full max-w-screen-{1000px} z-30 transition-all duration-300 ease-in-out",
-          scrolled ? "backdrop-blur-md shadow-sm dark:bg-gray-800/75 dark:shadow-gray-700/30" : "dark:bg-transparent",
+          scrolled ? "bg-paper/70 backdrop-blur-md shadow-sm" : "",
         )}
       >
         <div className="mx-auto flex h-16 items-center justify-between w-11/12 md:w-10/12 lg:w-9/12">
           <Link href="/" className="flex items-center font-display text-2xl">
-            <p className="text-left font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem] dark:text-white">
-              aspirants
+            <p className="text-left font-display text-2xl tracking-[-0.07em] sm:text-3xl sm:leading-[4rem] dark:text-white">
+              penwise
             </p>
-            <Image src="/bulb.svg" alt="aspirants logo" width={30} height={30} className="ml-2" />
+            <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-2" />
             <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-800 dark:text-blue-100 px-2 py-1 rounded-full">
               BETA
             </span>
@@ -141,7 +127,7 @@ export default function NavBar({ session }: { session: Session | null }) {
                 onClick={() => setShowSignInModal(true)}
                 className="dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
               >
-                Sign In
+                {t("nav.signIn")}
               </Button>
             )}
           </div>
@@ -181,36 +167,53 @@ export default function NavBar({ session }: { session: Session | null }) {
 }
 
 function DesktopNavLinks({ session }: { session: Session | null }) {
+  const { t } = useTranslation()
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href={session ? "/question-bank" : "/question-bank/guest"} passHref legacyBehavior>
-            <NavigationMenuLink
+          <NavigationMenuLink asChild>
+            <Link
+              href={session ? "/question-bank" : "/question-bank/guest"}
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
-              Question Bank
-            </NavigationMenuLink>
-          </Link>
+              {t("nav.questionBank")}
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/mock-exam" passHref legacyBehavior>
-            <NavigationMenuLink
+          <NavigationMenuLink asChild>
+            <Link
+              href="/mock-exam"
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
-              Mock Exam
-            </NavigationMenuLink>
-          </Link>
+              {t("nav.mockExam")}
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <Link
+              href="/leaderboard"
+              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+            >
+              {t("nav.leaderboard")}
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
-            Support
+            {t("nav.support")}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px] bg-white dark:bg-gray-800">
+            <ul className="grid w-[300px] gap-1 p-2 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
               {supportLinks.map((link) => (
-                <ListItem key={link.title} title={link.title} href={link.href}>
-                  {link.description}
+                <ListItem
+                  key={link.key}
+                  title={t(`nav.supportLinks.${link.key}.title`)}
+                  href={link.href}
+                >
+                  {t(`nav.supportLinks.${link.key}.desc`)}
                 </ListItem>
               ))}
             </ul>
@@ -240,6 +243,7 @@ function MobileNavLinks({
   toggleSupport,
   handleLogout,
 }: MobileNavLinksProps) {
+  const { t } = useTranslation()
   return (
     <nav className="p-4 space-y-4">
       <Link
@@ -247,14 +251,21 @@ function MobileNavLinks({
         className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
-        Question Bank
+        {t("nav.questionBank")}
       </Link>
       <Link
         href="/mock-exam"
         className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
-        Mock Exam
+        {t("nav.mockExam")}
+      </Link>
+      <Link
+        href="/leaderboard"
+        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        {t("nav.leaderboard")}
       </Link>
       <div>
         <button
@@ -262,19 +273,19 @@ function MobileNavLinks({
           onClick={toggleSupport}
           aria-expanded={supportOpen}
         >
-          Support
+          {t("nav.support")}
           <ChevronDown size={20} className={cn("transition-transform", supportOpen && "rotate-180")} />
         </button>
         {supportOpen && (
           <ul className="mt-2 space-y-2 pl-4">
             {supportLinks.map((link) => (
-              <li key={link.title}>
+              <li key={link.key}>
                 <Link
                   href={link.href}
                   className="block text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link.title}
+                  {t(`nav.supportLinks.${link.key}.title`)}
                 </Link>
               </li>
             ))}
@@ -300,7 +311,7 @@ function MobileNavLinks({
             className="w-full mt-4 flex items-center justify-center dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
             onClick={handleLogout}
           >
-            <LogOut className="mr-2 h-4 w-4" /> Log Out
+            <LogOut className="mr-2 h-4 w-4" /> {t("nav.logOut")}
           </Button>
         </>
       ) : (
@@ -312,7 +323,7 @@ function MobileNavLinks({
             setMenuOpen(false)
           }}
         >
-          Sign In
+          {t("nav.signIn")}
         </Button>
       )}
     </nav>

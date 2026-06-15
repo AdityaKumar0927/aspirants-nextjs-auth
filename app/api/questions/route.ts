@@ -14,8 +14,14 @@ import {
   questionUpdateSchema,
   toQuestionCreateData,
 } from "@/lib/validations/question";
+import { logAudit } from "@/lib/audit";
 
 const MAX_PAGE_SIZE = 200;
+
+// Mass-deletion safeguard: the most questions a single admin may delete in a
+// rolling 24h window. Even a compromised admin account cannot wipe the bank;
+// removing more requires a second administrator (or raising this deliberately).
+const DAILY_DELETE_CAP = 50;
 
 /**
  * Utility to parse comma-separated query params:
@@ -106,6 +112,18 @@ export async function GET(request: Request) {
         .map((y) => parseInt(y, 10))
         .filter((n) => !isNaN(n));
       if (years.length) where.year = { in: years };
+    }
+
+    // Free-text search across the fields an admin/user would scan for. ANDed
+    // with the other facet filters and the status visibility above.
+    const q = searchParams.get("q")?.trim();
+    if (q) {
+      where.OR = [
+        { text: { contains: q, mode: "insensitive" } },
+        { topic: { contains: q, mode: "insensitive" } },
+        { subject: { contains: q, mode: "insensitive" } },
+        { chapter: { contains: q, mode: "insensitive" } },
+      ];
     }
 
     const [questions, totalCount] = await Promise.all([
@@ -289,8 +307,9 @@ export async function PATCH(request: Request) {
  * Body: { "questionId": "Q123" }
  */
 export async function DELETE(request: Request) {
-  const { response } = await requireAdmin();
+  const { session, response } = await requireAdmin();
   if (response) return response;
+  const adminId = session.user.id;
 
   try {
     const { questionId } = await request.json();
@@ -301,7 +320,37 @@ export async function DELETE(request: Request) {
       );
     }
 
+    // Enforce the rolling-24h deletion cap before touching the database.
+    const since = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    const recentDeletes = await prisma.auditLog.count({
+      where: {
+        userId: adminId,
+        action: "QUESTION_DELETED",
+        createdAt: { gte: since },
+      },
+    });
+    if (recentDeletes >= DAILY_DELETE_CAP) {
+      await logAudit({
+        userId: adminId,
+        action: "QUESTION_DELETE_BLOCKED",
+        metadata: { questionId, cap: DAILY_DELETE_CAP },
+        req: request,
+      });
+      return NextResponse.json(
+        {
+          error: `Daily deletion limit reached (${DAILY_DELETE_CAP}). This safeguard prevents bulk loss of questions — ask another administrator if you genuinely need to remove more today.`,
+        },
+        { status: 429 }
+      );
+    }
+
     await prisma.question.delete({ where: { questionId } });
+    await logAudit({
+      userId: adminId,
+      action: "QUESTION_DELETED",
+      metadata: { questionId },
+      req: request,
+    });
     return NextResponse.json({ message: "Question deleted successfully" });
   } catch (error) {
     console.error("Error deleting question:", error);

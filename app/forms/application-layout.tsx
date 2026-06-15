@@ -16,6 +16,10 @@ const sidebarNavItems = [
     title: "Account",
     href: "/forms/account",
   },
+  {
+    title: "Privacy & Data",
+    href: "/forms/privacy",
+  },
 ];
 
 interface SettingsLayoutProps {
@@ -29,10 +33,15 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
         {/* Mobile view can have a different layout or nothing */}
       </div>
       <div className="hidden space-y-6 p-10 pb-16 md:block">
-        <div className="space-y-0.5">
-          <h2 className="font-display text-4xl font-bold tracking-tight drop-shadow-sm sm:text-5xl sm:leading-[5rem]">Settings</h2>
-          <p className="text-muted-foreground">
-            Manage your account settings and set e-mail preferences.
+        <div className="space-y-1">
+          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+            Your desk
+          </p>
+          <h2 className="type-display text-4xl sm:text-5xl">
+            <span className="highlight-sweep">Settings</span>
+          </h2>
+          <p className="text-pencil">
+            Manage your account details and email preferences.
           </p>
         </div>
         <Separator className="my-6" />

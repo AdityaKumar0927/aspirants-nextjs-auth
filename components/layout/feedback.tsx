@@ -49,8 +49,8 @@ export default function FeedbackPopover() {
       setIsOpen(false)
       toast({
         title: "Feedback submitted",
-        description: "Thank you for your feedback! ❤️",
-        className: "bg-green-100 border-green-300 text-green-700",
+        description: "Thank you for your feedback!",
+        variant: "success",
       })
     } catch (error) {
       console.error('Error submitting feedback:', error)
@@ -68,70 +68,64 @@ export default function FeedbackPopover() {
     <>
       <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            className="w-full max-w-[120px] bg-white text-black border border-gray-200 hover:bg-gray-100"
-          >
+          {/* `theme-desk` here makes the button's shadcn tokens (border/bg/text)
+              resolve to the desk palette on EVERY page, so it looks identical on
+              the landing and inner pages. */}
+          <Button variant="outline" className="theme-desk w-full max-w-30">
             Feedback
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-80 p-0">
+        {/* `theme-desk` scopes the whole popup (it portals to <body>, which is
+            only themed on inner pages) so its content is desk-styled everywhere. */}
+        <PopoverContent className="theme-desk w-80 border-rule bg-paper p-0 text-ink">
           <AnimatePresence>
             {isOpen && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.2 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.18 }}
               >
-                <Card className="border-none shadow-none">
-                  <CardContent className="p-4 space-y-4">
-                    <div className="relative">
-                      <Textarea
-                        placeholder="Your feedback..."
-                        value={feedback}
-                        onChange={(e) => setFeedback(e.target.value)}
-                        className="min-h-[100px] resize-none pr-8"
-                      />
-                      <div className="absolute bottom-2 right-2 text-muted-foreground">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
-                          <path d="M21 3v5h-5" />
-                        </svg>
-                      </div>
+                <Card className="border-0 bg-transparent shadow-none">
+                  <CardContent className="space-y-3 p-4">
+                    <div>
+                      <p className="text-sm font-medium text-ink">Share feedback</p>
+                      <p className="text-xs text-pencil">
+                        Tell us what&rsquo;s working or what could be better.
+                      </p>
                     </div>
-                    <p className="text-sm text-muted-foreground">Markdown supported.</p>
+                    <Textarea
+                      placeholder="Your feedback"
+                      value={feedback}
+                      onChange={(e) => setFeedback(e.target.value)}
+                      className="min-h-25 resize-none bg-paper text-ink placeholder:text-pencil"
+                    />
                   </CardContent>
-                  <CardFooter className="flex justify-between items-center p-4 pt-0">
-                    <div className="flex space-x-2">
+                  <CardFooter className="flex items-center justify-between p-4 pt-0">
+                    <div className="flex gap-1">
                       {emojis.map((emoji, index) => (
-                        <Button
+                        <button
                           key={index}
-                          variant="ghost"
-                          size="sm"
-                          className={`p-0 w-8 h-8 rounded-full ${selectedEmoji === index ? 'bg-blue-200' : ''}`}
+                          type="button"
+                          aria-label={`Reaction ${index + 1}`}
+                          aria-pressed={selectedEmoji === index}
+                          className={`flex h-9 w-9 items-center justify-center rounded-full text-xl transition-colors ${
+                            selectedEmoji === index
+                              ? "bg-ballpoint/10 ring-1 ring-ballpoint"
+                              : "hover:bg-secondary"
+                          }`}
                           onClick={() => setSelectedEmoji(index)}
                         >
-                          <span className="text-xl">{emoji}</span>
-                        </Button>
+                          {emoji}
+                        </button>
                       ))}
                     </div>
                     <Button
                       onClick={handleSubmit}
-                      className="bg-black text-white hover:bg-black/90"
                       disabled={isSubmitting}
+                      className="bg-ballpoint text-paper hover:bg-ballpoint/90"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send'}
+                      {isSubmitting ? "Sending" : "Send"}
                     </Button>
                   </CardFooter>
                 </Card>

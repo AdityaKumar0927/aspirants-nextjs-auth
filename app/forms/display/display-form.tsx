@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { toast } from "@/components/ui/use-toast"
+import T from "@/components/i18n/T"
 
 const items = [
   {
@@ -65,12 +66,8 @@ export function DisplayForm() {
 
   function onSubmit(data: DisplayFormValues) {
     toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+      title: "Display updated",
+      description: "Your sidebar items have been saved.",
     })
   }
 
@@ -83,9 +80,11 @@ export function DisplayForm() {
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
-                <FormDescription>
-                  Select the items you want to display in the sidebar.
+                <FormLabel className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+                  <T k="auto.displayDisplayForm.sidebar" />
+                </FormLabel>
+                <FormDescription className="text-pencil">
+                  <T k="auto.displayDisplayForm.selectTheItemsYouWant" />
                 </FormDescription>
               </div>
               {items.map((item) => (
@@ -121,11 +120,11 @@ export function DisplayForm() {
                   }}
                 />
               ))}
-              <FormMessage />
+              <FormMessage className="text-redpen" />
             </FormItem>
           )}
         />
-        <Button type="submit">Update display</Button>
+        <Button type="submit" className="min-h-11"><T k="auto.displayDisplayForm.saveChanges" /></Button>
       </form>
     </Form>
   )

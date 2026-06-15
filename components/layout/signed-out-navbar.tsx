@@ -8,6 +8,7 @@ import { Menu, X, ChevronDown } from "lucide-react"
 import useScroll from "@/lib/hooks/use-scroll"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -21,30 +22,15 @@ import {
   NavigationMenuIndicator,
 } from "@/components/ui/navigation-menu"
 
+// Labels resolve via i18n keys (nav.supportLinks.<key>.title/.desc); hrefs stay literal.
 const supportLinks = [
-  {
-    title: "Survey",
-    href: "/survey",
-    description: "Support our platform by surveying with us.",
-  },
-  {
-    title: "Donate",
-    href: "/Donate",
-    description: "Support our platform with your donations.",
-  },
-  {
-    title: "Report",
-    href: "/issues",
-    description: "Report issues or provide feedback.",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-    description: "Get in touch with us for support.",
-  },
+  { key: "survey", href: "/survey" },
+  { key: "report", href: "/issues" },
+  { key: "contact", href: "/contact" },
 ]
 
 export default function SignedOutNavbar() {
+  const { t } = useTranslation()
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -80,7 +66,7 @@ export default function SignedOutNavbar() {
       <SignInModal />
 
       <motion.nav
-        className={cn("fixed top-0 left-0 right-0 z-30", scrolled ? "backdrop-blur-md shadow-sm" : "")}
+        className={cn("fixed top-0 left-0 right-0 z-30 transition-colors", scrolled ? "bg-paper/70 backdrop-blur-md shadow-sm" : "")}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.3 }}
@@ -88,10 +74,10 @@ export default function SignedOutNavbar() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center font-display text-2xl">
-              <p className="font-display text-2xl tracking-[-0.07em] drop-shadow-sm sm:text-3xl sm:leading-[4rem]">
-                aspirants
+              <p className="font-display text-2xl tracking-[-0.07em] sm:text-3xl sm:leading-[4rem]">
+                penwise
               </p>
-              <Image src="/bulb.svg" alt="aspirants logo" width={30} height={30} className="ml-2" />
+              <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-2" />
               <span className="ml-2 text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full">BETA</span>
             </Link>
 
@@ -102,7 +88,7 @@ export default function SignedOutNavbar() {
                 onClick={() => setShowSignInModal(true)}
                 className="hover:border-blue-400 hover:bg-blue-200 hover:text-blue-500"
               >
-                <p className="font-display tracking-[-0.02em] sm:leading-[2rem]">sign-in</p>
+                <p className="font-display tracking-[-0.02em] sm:leading-[2rem]">{t("nav.signIn")}</p>
               </Button>
             </div>
 
@@ -146,37 +132,54 @@ export default function SignedOutNavbar() {
 }
 
 function DesktopNavLinks() {
+  const { t } = useTranslation()
   return (
     <nav>
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link href="/question-bank/guest" passHref legacyBehavior>
-              <NavigationMenuLink
+            <NavigationMenuLink asChild>
+              <Link
+                href="/question-bank/guest"
                 className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
               >
-                Question Bank
-              </NavigationMenuLink>
-            </Link>
+                {t("nav.questionBank")}
+              </Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/mock-exam" passHref legacyBehavior>
-              <NavigationMenuLink
+            <NavigationMenuLink asChild>
+              <Link
+                href="/mock-exam"
                 className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
               >
-                Mock Exam
-              </NavigationMenuLink>
-            </Link>
+                {t("nav.mockExam")}
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link
+                href="/leaderboard"
+                className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+              >
+                {t("nav.leaderboard")}
+              </Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
-              Support
+              {t("nav.support")}
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-1 lg:w-[500px]">
                 {supportLinks.map((link) => (
-                  <ListItem key={link.title} title={link.title} href={link.href}>
-                    {link.description}
+                  <ListItem
+                    key={link.key}
+                    title={t(`nav.supportLinks.${link.key}.title`)}
+                    href={link.href}
+                  >
+                    {t(`nav.supportLinks.${link.key}.desc`)}
                   </ListItem>
                 ))}
               </ul>
@@ -198,6 +201,7 @@ interface MobileNavLinksProps {
 }
 
 function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSupport }: MobileNavLinksProps) {
+  const { t } = useTranslation()
   return (
     <nav className="p-4 space-y-4 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
       <Link
@@ -205,14 +209,21 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
         className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
-        Question Bank
+        {t("nav.questionBank")}
       </Link>
       <Link
         href="/mock-exam"
         className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
-        Mock Exam
+        {t("nav.mockExam")}
+      </Link>
+      <Link
+        href="/leaderboard"
+        className="block w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        {t("nav.leaderboard")}
       </Link>
       <div>
         <button
@@ -220,7 +231,7 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
           onClick={toggleSupport}
           aria-expanded={supportOpen}
         >
-          Support
+          {t("nav.support")}
           <ChevronDown size={20} className={cn("transition-transform", supportOpen && "rotate-180")} />
         </button>
         <AnimatePresence>
@@ -233,8 +244,13 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
               transition={{ duration: 0.2 }}
             >
               {supportLinks.map((link) => (
-                <ListItem key={link.title} title={link.title} href={link.href} onClick={() => setMenuOpen(false)}>
-                  {link.description}
+                <ListItem
+                  key={link.key}
+                  title={t(`nav.supportLinks.${link.key}.title`)}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t(`nav.supportLinks.${link.key}.desc`)}
                 </ListItem>
               ))}
             </motion.ul>
@@ -250,7 +266,7 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
             setShowSignInModal(true)
           }}
         >
-          sign-in
+          {t("nav.signIn")}
         </Button>
       </div>
     </nav>

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "../../auth/[...nextauth]/options"
+import { authOptions } from "../../auth/[...nextauth]/options"
 
 export async function GET(req: NextRequest) {
   try {
@@ -19,10 +19,13 @@ export async function GET(req: NextRequest) {
     }
 
     const users = await prisma.user.findMany({
+      orderBy: { createdAt: "desc" },
       select: {
         id: true,
         name: true,
         email: true,
+        image: true,
+        createdAt: true,
         UserRole: {
           select: {
             name: true,

@@ -1,0 +1,38 @@
+import { ThemeProvider } from "next-themes";
+import "../globals.css";
+import cx from "classnames";
+import { sfPro, inter, deskFontVars } from "../fonts";
+import ComplianceProviders from "@/components/compliance/ComplianceProviders";
+
+export const metadata = {
+  title: "Consent Notice — Penwise",
+  description: "What personal data we collect and why.",
+  metadataBase: new URL("https://aspirants.tech/"),
+};
+
+export default function ConsentNoticeLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://rsms.me/" />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+      </head>
+      <body
+        className={cx(sfPro.variable, inter.variable, deskFontVars,
+          "theme-desk desk-grid"
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col px-4 py-16">
+            {children}
+          </main>
+          <ComplianceProviders />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

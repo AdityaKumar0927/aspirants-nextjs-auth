@@ -3,7 +3,7 @@ import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
 import { Suspense } from "react";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
@@ -29,7 +29,7 @@ const getUserId = async () => {
 };
 
 export const metadata = {
-  title: 'aspirants',
+  title: 'penwise',
   description: '',
   metadataBase: new URL('https://aspirants.tech/'),
 };
@@ -42,34 +42,6 @@ export default async function PublicLayout({ children }: { children: React.React
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <script
-          async
-          id="MathJax-script"
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.MathJax = {
-                tex: {
-                  inlineMath: [['$', '$'], ['\$$', '\$$']],
-                  displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                },
-                options: {
-                  skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-                },
-                startup: {
-                  ready: () => {
-                    window.MathJax.startup.defaultReady();
-                    window.MathJax.startup.promise.then(() => {
-                      console.log('MathJax is loaded, configured, and ready');
-                    });
-                  },
-                },
-              };
-            `,
-          }}
-        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -77,7 +49,7 @@ export default async function PublicLayout({ children }: { children: React.React
           crossOrigin="anonymous"
         />
       </head>
-      <body className={cx(sfPro.variable, inter.variable, 'bg-white dark:bg-dark-background text-black dark:text-white')}>
+      <body className={cx(sfPro.variable, inter.variable, 'theme-desk desk-grid-flat')}>
       <ThemeProvider
   attribute="class"
   defaultTheme="light"
@@ -85,19 +57,25 @@ export default async function PublicLayout({ children }: { children: React.React
 >
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>
-              <TooltipProvider>
-                <div className="fixed inset-0 z-[-10]"></div>
-                <Suspense fallback="...">
-                  <Nav />
-                </Suspense>
-                <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-                  {children}
-                </main>
-                <Bar userId={userId} />
-                <Footer />
-                <VercelAnalytics />
-                <Toaster />
-              </TooltipProvider>
+              {/* ComplianceProviders supplies SessionProvider + ConsentProvider;
+                  it must WRAP the page tree so client components rendered in
+                  {children} (e.g. the question card's discussion panel, which
+                  calls useSession) have a session context. It also renders the
+                  cookie banner + analytics gate after its children. */}
+              <ComplianceProviders>
+                <TooltipProvider>
+                  <div className="fixed inset-0 z-[-10]"></div>
+                  <Suspense fallback="...">
+                    <Nav />
+                  </Suspense>
+                  <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+                    {children}
+                  </main>
+                  <Bar userId={userId} />
+                  <Footer />
+                  <Toaster />
+                </TooltipProvider>
+              </ComplianceProviders>
             </UserPerformanceProvider>
           </LoadingProvider>
         </ThemeProvider>

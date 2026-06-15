@@ -1,22 +1,22 @@
 /* ------------------------------------------------------------------
-   exam.tsx  -  light-only version
+   exam.tsx — the CBT hall, in the desk design system.
+   Presentational only; all state/handlers come from mock-exam.tsx.
 -------------------------------------------------------------------*/
 "use client"
 
 import React from "react"
+import { isImageSrc } from "@/lib/is-image-src"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Separator } from "@/components/ui/separator"
 import {
   User,
   Clock,
-  AlertCircle,
-  CheckCircle,
-  Flag,
   ChevronLeft,
   ChevronRight,
   LogOut,
+  Flag,
+  Check,
 } from "lucide-react"
 import {
   Tooltip,
@@ -27,6 +27,7 @@ import {
 import Image from "next/image"
 
 import MathRenderer from "@/components/layout/MathRenderer"
+import { OmrBubble, type OmrStatus } from "@/components/desk"
 import {
   QuestionType,
   encodeMultiAnswer,
@@ -36,18 +37,26 @@ import {
 /* ---------------------------------------------------------------
    helpers
 ---------------------------------------------------------------- */
-function getQuestionBorderClass(status: string) {
+/** Map the exam's internal status keys onto the CBT/OMR legend. */
+function toOmrStatus(status: string): OmrStatus {
   switch (status) {
-    case "markedForReview":
-      return "border-[3px] border-orange-300/70"
     case "answered":
-      return "border-[3px] border-green-300/70"
+      return "answered"
+    case "markedForReview":
+      return "review"
     case "notAnswered":
-      return "border-[3px] border-red-300/70"
+      return "unanswered"
     default:
-      return "border-[3px] border-gray-300/70"
+      return "notvisited"
   }
 }
+
+const STATUS_LABELS: { key: string; omr: OmrStatus; label: string }[] = [
+  { key: "answered", omr: "answered", label: "Answered" },
+  { key: "markedForReview", omr: "review", label: "Marked for review" },
+  { key: "notAnswered", omr: "unanswered", label: "Not answered" },
+  { key: "notVisited", omr: "notvisited", label: "Not visited" },
+]
 
 interface ExamProps {
   currentQuestion: number
@@ -106,17 +115,27 @@ export default function Exam({
 }: ExamProps) {
   /* ---------- timer ---------- */
   const formatTime = (sec: number) => {
-    const m = Math.floor(sec / 60)
+    const h = Math.floor(sec / 3600)
+    const m = Math.floor((sec % 3600) / 60)
     const s = sec % 60
-    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`
+    const mm = m.toString().padStart(2, "0")
+    const ss = s.toString().padStart(2, "0")
+    return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`
   }
+  // Last five minutes: the timer writes in the red pen. Colour only, no motion.
+  const timeCritical = examTimeLeft <= 5 * 60
+
+  const total = filteredQuestions.length
+  const examTitle =
+    [selectedSubject, selectedYear, selectedLevel].filter(Boolean).join(" · ") ||
+    "Mock exam"
 
   /* ---------- current question ---------- */
   const question = filteredQuestions[currentQuestion]
   if (!question) {
     return (
-      <div className="flex flex-col items-center justify-center h-full p-4">
-        <p className="text-gray-500 mb-4 text-center">
+      <div className="flex min-h-screen flex-col items-center justify-center p-4">
+        <p className="mb-4 text-center text-pencil">
           No question available. Please restart the exam.
         </p>
         <Button onClick={onExit}>Exit</Button>
@@ -124,95 +143,53 @@ export default function Exam({
     )
   }
 
-  /* ---------- meta pills ---------- */
-  function renderQuestionMeta(q: QuestionType) {
-    const pills: React.ReactNode[] = []
-
-    if (q.subject)
-      pills.push(
-        <span key="subject" className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-          {q.subject}
-        </span>
-      )
-    if (q.difficulty)
-      pills.push(
-        <span key="difficulty" className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-          {q.difficulty}
-        </span>
-      )
-    if (typeof q.year === "number")
-      pills.push(
-        <span key="year" className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-          {q.year}
-        </span>
-      )
-    if (q.type)
-      pills.push(
-        <span key="type" className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-          {q.type}
-        </span>
-      )
-    if (q.exam)
-      pills.push(
-        <span key="exam" className="bg-emerald-100 text-gray-700 px-2 py-1 rounded-md text-xs">
-          {q.exam}
-        </span>
-      )
-
-    return pills.length ? <div className="flex flex-wrap gap-2 mt-2">{pills}</div> : null
-  }
+  const currentStatus = questionStatuses[currentQuestion] || "notVisited"
 
   /* ---------- diagram ---------- */
   const renderDiagram = (url?: string) =>
     url ? (
-      <div className="relative w-full max-w-xl mx-auto mb-4">
+      <div className="relative mx-auto mb-5 w-full max-w-xl">
         <Image
           src={url}
           alt="Question diagram"
           width={800}
           height={600}
-          className="rounded-md w-full h-auto object-contain"
+          className="h-auto w-full rounded-md border border-rule object-contain"
         />
       </div>
     ) : null
 
-  /* ---------- option button (shared by MCQ & Multiple Correct) ---------- */
+  /* ---------- option row (shared by MCQ & Multiple Correct) ---------- */
   function renderOptionButton(
     key: string,
     text: string,
     isSelected: boolean,
-    onClick: () => void,
-    marker: "radio" | "checkbox"
+    onClick: () => void
   ) {
     return (
       <button
         type="button"
         key={key}
         onClick={onClick}
-        className={`flex items-start gap-3 text-left border rounded p-3 transition-colors ${
-          isSelected
-            ? "bg-blue-50 border-blue-400 text-blue-800"
-            : "bg-white border-gray-300 hover:bg-gray-50"
-        }`}
+        className="omr-option min-h-11"
+        data-state={isSelected ? "selected" : undefined}
+        aria-pressed={isSelected}
       >
-        <span
-          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center border ${
-            marker === "radio" ? "rounded-full" : "rounded"
-          } ${isSelected ? "bg-blue-600 border-blue-600 text-white" : "border-gray-400"}`}
-        >
-          {isSelected ? (marker === "radio" ? "•" : "✓") : ""}
-        </span>
-        <span className="font-semibold">{key}.</span>
-        {text?.startsWith("http") ? (
+        <OmrBubble filled={isSelected} className="mt-0.5">
+          {key}
+        </OmrBubble>
+        {isImageSrc(text) ? (
           <Image
             src={text}
             alt={`Option ${key}`}
             width={400}
             height={300}
-            className="rounded-md w-full h-auto object-contain"
+            className="h-auto w-full rounded-md object-contain"
           />
         ) : (
-          <MathRenderer text={text} />
+          <span className="latex-font text-base leading-7 sm:text-lg">
+            <MathRenderer text={text} />
+          </span>
         )}
       </button>
     )
@@ -225,15 +202,9 @@ export default function Exam({
     switch (q.type) {
       case "Multiple Choice":
         return (
-          <div className="flex flex-col space-y-2 mt-4">
+          <div className="flex flex-col space-y-1.5" role="group" aria-label="Answer options">
             {Object.entries(q.options).map(([key, text]) =>
-              renderOptionButton(
-                key,
-                text,
-                current === key,
-                () => onAnswer(key),
-                "radio"
-              )
+              renderOptionButton(key, text, current === key, () => onAnswer(key))
             )}
           </div>
         )
@@ -241,23 +212,17 @@ export default function Exam({
       case "Multiple Correct": {
         const selected = parseMultiAnswer(current)
         return (
-          <div className="flex flex-col space-y-2 mt-4">
-            <p className="text-xs text-gray-500">Select all correct options.</p>
+          <div className="flex flex-col space-y-1.5" role="group" aria-label="Answer options — choose all that apply">
             {Object.entries(q.options).map(([key, text]) => {
               const isSelected = selected.includes(key)
-              return renderOptionButton(
-                key,
-                text,
-                isSelected,
-                () =>
-                  onAnswer(
-                    encodeMultiAnswer(
-                      isSelected
-                        ? selected.filter((l) => l !== key)
-                        : [...selected, key]
-                    )
-                  ),
-                "checkbox"
+              return renderOptionButton(key, text, isSelected, () =>
+                onAnswer(
+                  encodeMultiAnswer(
+                    isSelected
+                      ? selected.filter((l) => l !== key)
+                      : [...selected, key]
+                  )
+                )
               )
             })}
           </div>
@@ -266,43 +231,39 @@ export default function Exam({
 
       case "Integer":
         return (
-          <div className="mt-4">
-            <Input
-              type="text"
-              inputMode="numeric"
-              value={current || ""}
-              onChange={(e) => onAnswer(e.target.value.replace(/[^0-9-]/g, ""))}
-              placeholder="Enter an integer..."
-              className="border-blue-400 bg-blue-50 text-blue-800"
-            />
-          </div>
+          <Input
+            type="text"
+            inputMode="numeric"
+            value={current || ""}
+            onChange={(e) => onAnswer(e.target.value.replace(/[^0-9-]/g, ""))}
+            placeholder="Your integer answer"
+            className="type-data h-12 w-full max-w-xs bg-paper text-lg"
+          />
         )
 
       case "Numerical":
         return (
-          <div className="mt-4">
-            <Input
-              type="text"
-              inputMode="decimal"
-              value={current || ""}
-              onChange={(e) => onAnswer(e.target.value)}
-              placeholder="Enter your numeric answer..."
-              className="border-blue-400 bg-blue-50 text-blue-800"
-            />
-          </div>
+          <Input
+            type="text"
+            inputMode="decimal"
+            value={current || ""}
+            onChange={(e) => onAnswer(e.target.value)}
+            placeholder="Your numeric answer"
+            className="type-data h-12 w-full max-w-xs bg-paper text-lg"
+          />
         )
 
       case "Subjective":
         return (
-          <div className="mt-4">
+          <div>
             <Textarea
               value={current || ""}
               onChange={(e) => onAnswer(e.target.value)}
-              placeholder="Write your answer..."
-              rows={5}
-              className="border-blue-400 bg-blue-50 text-blue-800"
+              placeholder="Write your answer"
+              rows={6}
+              className="latex-font bg-paper"
             />
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1.5 text-xs text-pencil">
               Subjective answers are saved for self-review and not auto-scored.
             </p>
           </div>
@@ -310,296 +271,255 @@ export default function Exam({
 
       default:
         return (
-          <p className="text-sm text-red-500 mt-4">
+          <p className="text-sm text-redpen">
             Unknown question type: <strong>{q.type}</strong>.
           </p>
         )
     }
   }
 
+  /* ---------- the question palette (shared desktop/mobile) ---------- */
+  function Palette() {
+    return (
+      <div className="grid grid-cols-6 gap-2 md:grid-cols-5">
+        {filteredQuestions.map((_, idx) => {
+          const status = questionStatuses[idx] || "notVisited"
+          const isCurrent = currentQuestion === idx
+          return (
+            <TooltipProvider key={idx}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    type="button"
+                    onClick={() => onNavigate(idx)}
+                    aria-label={`Question ${idx + 1}`}
+                    aria-current={isCurrent ? "true" : undefined}
+                    className={`flex min-h-11 items-center justify-center rounded-md transition-colors hover:bg-secondary ${
+                      isCurrent ? "ring-2 ring-ballpoint ring-offset-2 ring-offset-paper" : ""
+                    }`}
+                  >
+                    <OmrBubble status={toOmrStatus(status)} className="h-9 w-9">
+                      {idx + 1}
+                    </OmrBubble>
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  {STATUS_LABELS.find((s) => s.key === status)?.label ?? "Not visited"}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )
+        })}
+      </div>
+    )
+  }
+
+  function LegendRow() {
+    const counts: Record<string, number> = {
+      answered: questionStatusCounts.answered,
+      markedForReview: questionStatusCounts.markedForReview,
+      notAnswered: questionStatusCounts.notAnswered,
+      notVisited: questionStatusCounts.notVisited,
+    }
+    return (
+      <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+        {STATUS_LABELS.map(({ key, omr, label }) => (
+          <span key={key} className="flex items-center gap-2 text-xs text-pencil">
+            <OmrBubble status={omr} className="h-4 w-4 border">
+              {""}
+            </OmrBubble>
+            <span className="type-data text-ink">{counts[key]}</span>
+            {label}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  const submitPaper = () => {
+    if (window.confirm("Submit the paper? You can't change answers after this.")) {
+      onSubmit()
+    }
+  }
+
   /* =============================================================
-     render
+     render — fixed app frame: masthead + scrollable paper + rail
   ============================================================= */
   return (
-    <div className="min-h-screen w-full flex flex-col bg-white">
-      {/* ---------- header ---------- */}
-      <header className="sticky top-0 z-10 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          {/* user info */}
-          <div className="flex items-center space-x-4">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-              <User className="w-6 h-6 text-primary-foreground" />
+    <div className="flex h-screen w-full flex-col overflow-hidden bg-desk">
+      {/* ---------- masthead ---------- */}
+      <header className="z-10 shrink-0 border-b border-rule bg-paper">
+        <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
+          {/* candidate */}
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rule bg-secondary">
+              <User className="h-5 w-5 text-pencil" />
             </div>
-            <div>
-              <h2 className="text-sm font-medium">{userName}</h2>
-              <p className="text-xs text-gray-500">
-                {selectedSubject} ({selectedYear}) - {selectedLevel}
-              </p>
+            <div className="min-w-0">
+              <h2 className="truncate text-sm font-medium text-ink">{userName}</h2>
+              <p className="type-data truncate text-xs text-pencil">{examTitle}</p>
             </div>
           </div>
 
           {/* timer + exit */}
-          <div className="flex items-center space-x-4">
-            <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
-              <Clock className="w-4 h-4 mr-2" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="hidden text-right sm:block">
+              <p className="type-data text-[10px] uppercase tracking-[0.14em] text-pencil">
+                Time left
+              </p>
+              <p
+                role="timer"
+                aria-live={timeCritical ? "polite" : "off"}
+                className={`type-data text-lg font-medium tabular-nums ${
+                  timeCritical ? "text-redpen" : "text-ink"
+                }`}
+              >
+                {formatTime(examTimeLeft)}
+              </p>
+            </div>
+            <div
+              className={`type-data flex items-center rounded-md border px-3 py-1.5 text-sm sm:hidden ${
+                timeCritical ? "border-redpen text-redpen" : "border-rule text-ink"
+              }`}
+            >
+              <Clock className="mr-1.5 h-4 w-4" />
               {formatTime(examTimeLeft)}
             </div>
-            <Button variant="ghost" size="icon" onClick={onExit}>
-              <LogOut className="h-[1.2rem] w-[1.2rem]" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" onClick={onExit} className="h-11 w-11">
+                  <LogOut className="h-5 w-5" />
+                  <span className="sr-only">Exit exam</span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Exit exam</TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </header>
 
-      {/* ---------- main grid ---------- */}
-      <main className="flex-1 grid grid-cols-1 md:grid-cols-[1fr,auto] md:gap-6">
-        {/* ----------------------------------
-            LEFT  – question & controls
-        -----------------------------------*/}
-        <section
-          className="p-4 sm:p-6 lg:p-8 overflow-y-auto
-                     [&::-webkit-scrollbar]:w-2
-                     [&::-webkit-scrollbar-track]:rounded-full
-                     [&::-webkit-scrollbar-track]:bg-gray-100
-                     [&::-webkit-scrollbar-thumb]:rounded-full
-                     [&::-webkit-scrollbar-thumb]:bg-gray-300"
-        >
-          {/* question card */}
-          <div
-            className={`max-w-4xl mx-auto w-full mb-6 p-6 rounded-md bg-white ${getQuestionBorderClass(
-              questionStatuses[currentQuestion]
-            )}`}
-          >
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-              <h2 className="font-normal text-2xl sm:text-3xl">
-                Question {currentQuestion + 1}
-              </h2>
-              {renderQuestionMeta(question)}
-            </div>
-
-            <div className="mt-4">
-              {renderDiagram(question.diagramUrl)}
-
-              {question.text && (
-                <div className="latex-font text-base sm:text-lg md:text-xl leading-7 mb-4 text-gray-700">
-                  <MathRenderer text={question.text} />
+      {/* ---------- body ---------- */}
+      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
+        {/* LEFT — question paper (scrolls) */}
+        <section className="flex min-h-0 flex-1 flex-col">
+          <div className="custom-scrollbar flex-1 overflow-y-auto p-4 sm:p-6">
+            <div className="paper-sheet mx-auto w-full max-w-4xl p-5 sm:p-7">
+              {/* question header */}
+              <div className="flex items-center justify-between gap-3 border-b border-rule pb-4">
+                <div className="flex items-baseline gap-3">
+                  <h2 className="type-display text-2xl text-ink sm:text-3xl">
+                    Q{currentQuestion + 1}
+                  </h2>
+                  <span className="type-data text-sm text-pencil">of {total}</span>
                 </div>
-              )}
+                <div className="flex items-center gap-2">
+                  {currentStatus === "markedForReview" && (
+                    <span className="flex items-center gap-1 type-data text-xs text-st-review">
+                      <Flag className="h-3.5 w-3.5 fill-st-review" />
+                      For review
+                    </span>
+                  )}
+                  {question.type && (
+                    <span className="rounded-md border border-rule bg-secondary px-2 py-0.5 type-data text-xs text-pencil">
+                      {question.type}
+                    </span>
+                  )}
+                </div>
+              </div>
 
-              {renderAnswerUI(question)}
+              {/* question body */}
+              <div className="mt-5">
+                {renderDiagram(question.diagramUrl)}
+                {question.text && (
+                  <div className="latex-font mb-6 max-w-[70ch] text-base leading-8 text-ink sm:text-lg">
+                    <MathRenderer text={question.text} />
+                  </div>
+                )}
+                {renderAnswerUI(question)}
+              </div>
             </div>
           </div>
 
-          {/* navigation / actions */}
-          <div className="max-w-4xl mx-auto w-full">
-            <div className="flex flex-wrap gap-3 justify-between w-full mb-4">
-              <div className="flex gap-3">
+          {/* sticky action bar */}
+          <div className="shrink-0 border-t border-rule bg-paper/95 px-4 py-3 backdrop-blur-sm sm:px-6">
+            <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-between gap-2">
+              <div className="flex gap-2">
                 <Button
                   onClick={onPrevious}
                   variant="outline"
+                  size="sm"
                   disabled={currentQuestion === 0}
-                  className="flex items-center"
                 >
-                  <ChevronLeft className="w-4 h-4 mr-2" />
+                  <ChevronLeft className="mr-1 h-4 w-4" />
                   Previous
                 </Button>
                 <Button
                   onClick={onNext}
                   variant="outline"
-                  disabled={currentQuestion === filteredQuestions.length - 1}
-                  className="flex items-center"
+                  size="sm"
+                  disabled={currentQuestion === total - 1}
                 >
                   Next
-                  <ChevronRight className="w-4 h-4 ml-2" />
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+                <Button onClick={onClear} variant="ghost" size="sm" className="text-pencil">
+                  Clear
                 </Button>
               </div>
-              <div className="flex gap-3">
-                <Button onClick={onClear}          variant="outline">Clear</Button>
-                <Button onClick={onReviewAndNext} variant="outline">Mark for Review & Next</Button>
-                <Button onClick={onSaveAndNext}   variant="outline">Save & Next</Button>
+              <div className="flex gap-2">
+                <Button onClick={onReviewAndNext} variant="outline" size="sm">
+                  <Flag className="mr-1.5 h-4 w-4" />
+                  Review &amp; next
+                </Button>
+                <Button onClick={onSaveAndNext} size="sm">
+                  <Check className="mr-1.5 h-4 w-4" />
+                  Save &amp; next
+                </Button>
               </div>
-            </div>
-
-            <div className="flex justify-center">
-              <Button
-                onClick={() => {
-                  if (window.confirm("Are you sure you want to submit the exam?")) {
-                    onSubmit()
-                  }
-                }}
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 py-2 text-lg font-light"
-                variant="outline"
-              >
-                Submit Exam
-              </Button>
             </div>
           </div>
         </section>
 
-        {/* mobile separator */}
-        <Separator orientation="horizontal" className="block md:hidden" />
-
-        {/* ----------------------------------
-            RIGHT – status & navigator
-        -----------------------------------*/}
-        <aside className="md:w-[280px] bg-white p-4 space-y-6 border-l hidden md:block">
-          {/* status */}
-          <div className="border rounded p-4">
-            <h3 className="text-lg font-semibold mb-2">Question Status</h3>
-            <div className="grid grid-cols-1 gap-2">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <AlertCircle className="w-4 h-4 mr-2 text-gray-400" />
-                  Not Visited
-                </span>
-                <span className="font-medium">{questionStatusCounts.notVisited}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
-                  Not Answered
-                </span>
-                <span className="font-medium">{questionStatusCounts.notAnswered}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                  Answered
-                </span>
-                <span className="font-medium">{questionStatusCounts.answered}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <Flag className="w-4 h-4 mr-2 text-blue-500" />
-                  Marked for Review
-                </span>
-                <span className="font-medium">
-                  {questionStatusCounts.markedForReview}
-                </span>
-              </div>
-            </div>
+        {/* RIGHT — answer-sheet rail (desktop) */}
+        <aside className="hidden w-80 shrink-0 flex-col border-l border-rule bg-paper md:flex">
+          <div className="border-b border-rule p-4">
+            <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+              Answer sheet
+            </p>
+            <p className="mt-1 text-sm text-pencil">
+              <span className="type-data text-ink">{questionStatusCounts.answered}</span>{" "}
+              of <span className="type-data text-ink">{total}</span> answered
+            </p>
           </div>
-
-          {/* navigator */}
-          <div className="border rounded p-4">
-            <h3 className="text-lg font-semibold mb-2">Question Navigator</h3>
-            <div className="overflow-x-auto">
-              <div className="grid grid-cols-5 gap-2">
-                {filteredQuestions.map((_, idx) => {
-                  const status   = questionStatuses[idx] || "notVisited"
-                  const isCurrent = currentQuestion === idx
-
-                  let cls = "w-10 h-10 p-0 font-medium text-sm"
-                  if (isCurrent)                cls += " border-blue-800 bg-blue-100 text-blue-600"
-                  else if (status === "markedForReview") cls += " border-blue-600 bg-blue-100 text-blue-600"
-                  else if (status === "notAnswered")     cls += " border-yellow-600 bg-yellow-100 text-yellow-600"
-                  else if (status === "answered")        cls += " border-green-600 bg-green-100 text-green-600"
-                  else                                   cls += " border-gray-300 bg-white text-gray-600"
-
-                  return (
-                    <TooltipProvider key={idx}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className={cls}
-                            onClick={() => onNavigate(idx)}
-                          >
-                            {idx + 1}
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="top">
-                          <p>{status}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  )
-                })}
-              </div>
-            </div>
+          <div className="custom-scrollbar flex-1 overflow-y-auto p-4">
+            <Palette />
+          </div>
+          <div className="space-y-4 border-t border-rule p-4">
+            <LegendRow />
+            <Button
+              onClick={submitPaper}
+              className="w-full bg-redpen text-paper hover:bg-redpen/90"
+            >
+              Submit paper
+            </Button>
           </div>
         </aside>
 
-        {/* ---------- mobile: status + navigator underneath ---------- */}
-        <div className="block md:hidden p-4 border-t space-y-6">
-          {/* re-use same markup as desktop but smaller */}
-          {/* status */}
-          <div className="border rounded p-4">
-            <h3 className="text-lg font-semibold mb-2">Question Status</h3>
-            <div className="grid grid-cols-1 gap-2">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <AlertCircle className="w-4 h-4 mr-2 text-gray-400" />
-                  Not Visited
-                </span>
-                <span className="font-medium">{questionStatusCounts.notVisited}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <AlertCircle className="w-4 h-4 mr-2 text-yellow-500" />
-                  Not Answered
-                </span>
-                <span className="font-medium">{questionStatusCounts.notAnswered}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
-                  Answered
-                </span>
-                <span className="font-medium">{questionStatusCounts.answered}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="flex items-center text-sm">
-                  <Flag className="w-4 h-4 mr-2 text-blue-500" />
-                  Marked for Review
-                </span>
-                <span className="font-medium">
-                  {questionStatusCounts.markedForReview}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* navigator */}
-          <div className="border rounded p-4">
-            <h3 className="text-lg font-semibold mb-2">Question Navigator</h3>
-            <div className="overflow-x-auto">
-              <div className="grid grid-cols-5 gap-2">
-                {filteredQuestions.map((_, idx) => {
-                  const status   = questionStatuses[idx] || "notVisited"
-                  const isCurrent = currentQuestion === idx
-
-                  let cls = "w-10 h-10 p-0 font-medium text-sm"
-                  if (isCurrent)                cls += " border-blue-800 bg-blue-100 text-blue-600"
-                  else if (status === "markedForReview") cls += " border-blue-600 bg-blue-100 text-blue-600"
-                  else if (status === "notAnswered")     cls += " border-yellow-600 bg-yellow-100 text-yellow-600"
-                  else if (status === "answered")        cls += " border-green-600 bg-green-100 text-green-600"
-                  else                                   cls += " border-gray-300 bg-white text-gray-600"
-
-                  return (
-                    <TooltipProvider key={idx}>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            className={cls}
-                            onClick={() => onNavigate(idx)}
-                          >
-                            {idx + 1}
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="top">
-                          <p>{status}</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
+        {/* mobile: palette + legend + submit underneath */}
+        <div className="space-y-4 border-t border-rule bg-paper p-4 md:hidden">
+          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+            Answer sheet
+          </p>
+          <Palette />
+          <LegendRow />
+          <Button
+            onClick={submitPaper}
+            className="w-full bg-redpen text-paper hover:bg-redpen/90"
+          >
+            Submit paper
+          </Button>
         </div>
-      </main>
+      </div>
     </div>
   )
 }
