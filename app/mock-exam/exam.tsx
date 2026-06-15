@@ -4,7 +4,7 @@
 -------------------------------------------------------------------*/
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { isImageSrc } from "@/lib/is-image-src"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,6 +17,7 @@ import {
   LogOut,
   Flag,
   Check,
+  LayoutGrid,
 } from "lucide-react"
 import {
   Tooltip,
@@ -24,6 +25,11 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip"
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog"
 import Image from "next/image"
 
 import MathRenderer from "@/components/layout/MathRenderer"
@@ -113,6 +119,11 @@ export default function Exam({
   selectedYear,
   selectedLevel,
 }: ExamProps) {
+  // Mobile-only: the answer-sheet palette lives in a modal (the desktop rail
+  // doesn't fit a phone, and rendering all question bubbles inline crushes the
+  // question area inside the fixed-height frame).
+  const [paletteOpen, setPaletteOpen] = useState(false)
+
   /* ---------- timer ---------- */
   const formatTime = (sec: number) => {
     const h = Math.floor(sec / 3600)
@@ -279,7 +290,7 @@ export default function Exam({
   }
 
   /* ---------- the question palette (shared desktop/mobile) ---------- */
-  function Palette() {
+  function Palette({ onPick = onNavigate }: { onPick?: (index: number) => void }) {
     return (
       <div className="grid grid-cols-5 gap-2 sm:grid-cols-6 md:grid-cols-5">
         {filteredQuestions.map((_, idx) => {
@@ -291,7 +302,7 @@ export default function Exam({
                 <TooltipTrigger asChild>
                   <button
                     type="button"
-                    onClick={() => onNavigate(idx)}
+                    onClick={() => onPick(idx)}
                     aria-label={`Question ${idx + 1}`}
                     aria-current={isCurrent ? "true" : undefined}
                     className={`flex min-h-11 items-center justify-center rounded-md transition-colors hover:bg-secondary ${
@@ -336,11 +347,9 @@ export default function Exam({
     )
   }
 
-  const submitPaper = () => {
-    if (window.confirm("Submit the paper? You can't change answers after this.")) {
-      onSubmit()
-    }
-  }
+  // Confirmation lives in the container's onSubmit handler (mock-exam.tsx), so
+  // this just forwards — avoids a double confirm dialog.
+  const submitPaper = () => onSubmit()
 
   /* =============================================================
      render — fixed app frame: masthead + scrollable paper + rail
@@ -352,7 +361,7 @@ export default function Exam({
         <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
           {/* candidate */}
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rule bg-secondary">
+            <div className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rule bg-secondary sm:flex">
               <User className="h-5 w-5 text-pencil" />
             </div>
             <div className="min-w-0">
@@ -385,6 +394,18 @@ export default function Exam({
               <Clock className="mr-1.5 h-4 w-4" />
               {formatTime(examTimeLeft)}
             </div>
+            {/* mobile: open the answer-sheet palette (the desktop rail is hidden) */}
+            <button
+              type="button"
+              onClick={() => setPaletteOpen(true)}
+              className="flex min-h-11 items-center gap-1.5 rounded-md border border-rule px-3 text-ink hover:bg-secondary md:hidden"
+            >
+              <LayoutGrid className="h-4 w-4 text-pencil" />
+              <span className="type-data hidden text-sm tabular-nums min-[400px]:inline">
+                {questionStatusCounts.answered}/{total}
+              </span>
+              <span className="sr-only">Open answer sheet</span>
+            </button>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button variant="ghost" size="icon" onClick={onExit} className="h-11 w-11">
@@ -507,12 +528,27 @@ export default function Exam({
           </div>
         </aside>
 
-        {/* mobile: palette + legend + submit underneath */}
-        <div className="space-y-4 border-t border-rule bg-paper p-4 md:hidden">
-          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+      </div>
+
+      {/* mobile: the answer sheet (palette + legend + submit) in a modal, so it
+          doesn't crush the question area inside the fixed-height frame */}
+      <Dialog open={paletteOpen} onOpenChange={setPaletteOpen}>
+        <DialogContent className="flex max-h-[85vh] flex-col gap-4 md:hidden">
+          <DialogTitle className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
             Answer sheet
+          </DialogTitle>
+          <p className="-mt-2 text-sm text-pencil">
+            <span className="type-data text-ink">{questionStatusCounts.answered}</span>{" "}
+            of <span className="type-data text-ink">{total}</span> answered
           </p>
-          <Palette />
+          <div className="custom-scrollbar -mx-1 flex-1 overflow-y-auto px-1">
+            <Palette
+              onPick={(i) => {
+                onNavigate(i)
+                setPaletteOpen(false)
+              }}
+            />
+          </div>
           <LegendRow />
           <Button
             onClick={submitPaper}
@@ -520,8 +556,8 @@ export default function Exam({
           >
             Submit paper
           </Button>
-        </div>
-      </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
