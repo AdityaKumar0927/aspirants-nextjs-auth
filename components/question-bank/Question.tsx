@@ -602,6 +602,17 @@ function Question({
               )}
             </div>
 
+            {/* Guard: an option-based question imported without options can't be
+                answered — show a note instead of a confusing blank answer area. */}
+            {["multiple choice", "mcq", "t/f", "true/false", "mcqm", "multiple correct"].includes(
+              (question.type ?? "").toLowerCase()
+            ) &&
+              (!question.options || question.options.length === 0) && (
+                <p className="mb-4 rounded-md border border-rule bg-secondary/40 px-3 py-2 text-sm text-pencil">
+                  Answer options aren&rsquo;t available for this question yet.
+                </p>
+              )}
+
             {/* MCQ (and True/False, whose options are stored as "A: TRUE" / "B:
                 FALSE" — rendering them here keeps selection + grading letter-based) */}
             {(question.type === "Multiple Choice" ||
