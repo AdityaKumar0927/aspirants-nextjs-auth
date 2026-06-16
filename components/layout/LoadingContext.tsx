@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import AnimatedCircularProgressBar from '@/components/magicui/animated-circular-progress-bar';
+import { FullPageLoader } from '@/components/layout/loader';
 
 interface LoadingContextProps {
   isLoading: boolean;
@@ -16,17 +16,7 @@ export const LoadingProvider: React.FC<{ children: ReactNode }> = ({ children })
   return (
     <LoadingContext.Provider value={{ isLoading, setLoading: setIsLoading }}>
       {children}
-      {isLoading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
-          <AnimatedCircularProgressBar
-            max={100}
-            min={0}
-            value={100}
-            gaugePrimaryColor="rgb(79 70 229)"
-            gaugeSecondaryColor="rgba(0, 0, 0, 0.1)"
-          />
-        </div>
-      )}
+      {isLoading && <FullPageLoader />}
     </LoadingContext.Provider>
   );
 };

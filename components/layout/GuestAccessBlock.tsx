@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card"
 import { Icons } from "@/components/landing/icons"
 import { Lock, LogIn } from "lucide-react"
-import { LoadingSpinner } from "../shared/icons"
+import { Loader } from "@/components/layout/loader"
 
 interface GuestAccessBlockProps {
   featureName?: string
@@ -46,12 +46,19 @@ export default function GuestAccessBlock({ featureName = "this feature" }: Guest
           </div>
         </CardContent>
         <CardFooter>
-          <Button 
+          <Button
             className="w-full bg-blue-100 text-blue-800 border border-blue-300 hover:bg-blue-200 hover:text-blue-900"
             onClick={handleSignIn}
             disabled={isLoading}
           >
-            Sign In
+            {isLoading ? (
+              <>
+                <Loader size="sm" className="mr-2" />
+                Signing in…
+              </>
+            ) : (
+              "Sign In"
+            )}
           </Button>
         </CardFooter>
       </Card>
