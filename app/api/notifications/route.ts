@@ -26,6 +26,7 @@ export async function GET() {
       read: true,
       createdAt: true,
       userId: true,
+      relatedFeedbackId: true,
     },
   })
   return NextResponse.json(notifications)

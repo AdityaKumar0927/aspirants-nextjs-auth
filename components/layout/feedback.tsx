@@ -12,6 +12,7 @@ export default function FeedbackPopover() {
   const [isOpen, setIsOpen] = useState(false)
   const [feedback, setFeedback] = useState('')
   const [selectedEmoji, setSelectedEmoji] = useState<number | null>(null)
+  const [anonymous, setAnonymous] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
@@ -37,6 +38,7 @@ export default function FeedbackPopover() {
         body: JSON.stringify({
           content: feedback,
           emoji: selectedEmoji !== null ? emojis[selectedEmoji] : null,
+          anonymous,
         }),
       })
 
@@ -46,10 +48,13 @@ export default function FeedbackPopover() {
 
       setFeedback('')
       setSelectedEmoji(null)
+      setAnonymous(false)
       setIsOpen(false)
       toast({
         title: "Feedback submitted",
-        description: "Thank you for your feedback!",
+        description: anonymous
+          ? "Thanks! Your feedback was sent anonymously."
+          : "Thank you for your feedback!",
         variant: "success",
       })
     } catch (error) {
@@ -100,6 +105,21 @@ export default function FeedbackPopover() {
                       onChange={(e) => setFeedback(e.target.value)}
                       className="min-h-25 resize-none bg-paper text-ink placeholder:text-pencil"
                     />
+                    <label className="flex cursor-pointer items-start gap-2 text-xs text-pencil">
+                      <input
+                        type="checkbox"
+                        checked={anonymous}
+                        onChange={(e) => setAnonymous(e.target.checked)}
+                        className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-ballpoint"
+                      />
+                      <span>
+                        Submit anonymously
+                        <span className="block text-pencil/70">
+                          We won&rsquo;t show your name to the team. They can still reply for
+                          clarification — you&rsquo;ll see it in your notifications.
+                        </span>
+                      </span>
+                    </label>
                   </CardContent>
                   <CardFooter className="flex items-center justify-between p-4 pt-0">
                     <div className="flex gap-1">

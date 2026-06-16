@@ -75,21 +75,42 @@ model Exam {
 }
 
 model Feedback {
-  id           String       @id @default(uuid())
+  id           String            @id @default(uuid())
   content      String
   emoji        String?
-  createdAt    DateTime     @default(now())
+  createdAt    DateTime          @default(now())
   updatedAt    DateTime
   userId       String
-  feedbackType FeedbackType @default(GENERAL)
+  feedbackType FeedbackType      @default(GENERAL)
   questionId   String?
-  resolved     Boolean      @default(false)
+  resolved     Boolean           @default(false)
   resolvedBy   String?
-  Question     Question?    @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
-  User         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // The submitter asked to stay anonymous: their identity is hidden from the
+  // admin UI, but userId is retained so the clarification thread can still
+  // route admin replies back to them.
+  anonymous    Boolean           @default(false)
+  status       FeedbackStatus    @default(OPEN)
+  Question     Question?         @relation(fields: [questionId], references: [questionId], onDelete: Cascade)
+  User         User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages     FeedbackMessage[]
 
   @@index([userId])
   @@index([questionId])
+}
+
+// One turn in the admin <-> submitter conversation on a piece of feedback.
+// authorId is the userId of whoever wrote it (admin or submitter); it is a
+// plain column (no FK) so messages survive either party's account deletion.
+model FeedbackMessage {
+  id         String   @id @default(uuid())
+  feedbackId String
+  fromAdmin  Boolean  @default(false)
+  authorId   String
+  content    String
+  createdAt  DateTime @default(now())
+  Feedback   Feedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+
+  @@index([feedbackId])
 }
 
 model Issue {
@@ -456,6 +477,10 @@ model UserSettings {
   urls     Json
   name     String
   language String
+  // Merit-list (leaderboard) visibility preferences.
+  leaderboardOptOut    Boolean @default(false) // hide from the rankings entirely
+  leaderboardAnonymous Boolean @default(false) // appear, but as "Anonymous"
+  leaderboardName      String? // custom display name for the rankings
   User     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -501,6 +526,12 @@ enum ApplicationStatus {
 enum FeedbackType {
   GENERAL
   QUESTION_ISSUE
+}
+
+enum FeedbackStatus {
+  OPEN // needs admin attention (new, or the user just replied)
+  AWAITING_USER // admin asked for clarification, waiting on the submitter
+  RESOLVED
 }
 
 enum IssueArea {

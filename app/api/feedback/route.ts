@@ -10,7 +10,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { content, emoji } = await request.json()
+    const { content, emoji, anonymous } = await request.json()
     if (!content) {
       return NextResponse.json({ error: "Feedback content is required" }, { status: 400 })
     }
@@ -19,6 +19,7 @@ export async function POST(request: Request) {
       data: {
         content,
         emoji,
+        anonymous: anonymous === true,
         userId: session.user.id,
         updatedAt: new Date(),
       },

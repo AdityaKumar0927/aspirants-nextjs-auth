@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select"
 import { Search, Refresh, Trophy, Crown, X } from "@/components/desk/icons"
 import type { LeaderboardEntry } from "@/lib/leaderboard"
+import LeaderboardPrivacy from "./leaderboard-privacy"
 
 type SortKey = "solved" | "accuracy" | "attempted"
 
@@ -196,6 +197,8 @@ export default function LeaderboardClient({
           )}
         </div>
       </section>
+
+      {meId && <LeaderboardPrivacy />}
 
       {entries.length === 0 ? (
         <div className="paper-sheet mt-6 flex flex-col items-center gap-3 px-4 py-20 text-center">

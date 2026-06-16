@@ -57,6 +57,10 @@ const navGroups: NavGroup[] = [
     items: [{ href: "/administrator/question-bank", label: "Question bank", icon: IconPaper }],
   },
   {
+    heading: "Support",
+    items: [{ href: "/administrator/feedback", label: "Feedback", icon: IconChat }],
+  },
+  {
     heading: "Compliance",
     items: [{ href: "/administrator/data-requests", label: "Data requests", icon: IconShield }],
   },

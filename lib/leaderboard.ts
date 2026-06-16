@@ -30,12 +30,14 @@ export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
     // ("completed") is not populated in this app, so answers are the real signal
     // of practice. UserAnswer is unique per (user, question), so a correct count
     // == distinct questions solved.
+    // Over-fetch beyond TOP_N: some top scorers may have opted out of the
+    // rankings, so we drop them and still want a full board.
     const correctRows = await prisma.userAnswer.groupBy({
       by: ["userId"],
       where: { isCorrect: true },
       _count: { userId: true },
       orderBy: { _count: { userId: "desc" } },
-      take: TOP_N,
+      take: TOP_N + 25,
     });
 
     const ids = correctRows.map((r) => r.userId);
@@ -53,7 +55,14 @@ export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
           id: true,
           name: true,
           image: true,
-          UserSettings: { select: { username: true } },
+          UserSettings: {
+            select: {
+              username: true,
+              leaderboardOptOut: true,
+              leaderboardAnonymous: true,
+              leaderboardName: true,
+            },
+          },
         },
       }),
     ]);
@@ -61,19 +70,26 @@ export async function getLeaderboard(): Promise<LeaderboardEntry[]> {
     const attemptedBy = new Map(attemptedRows.map((r) => [r.userId, r._count._all]));
     const userBy = new Map(userRows.map((u) => [u.id, u]));
 
-    return correctRows.map((r, i) => {
+    // Apply per-user visibility, then rank what remains 1..N.
+    const ranked: LeaderboardEntry[] = [];
+    for (const r of correctRows) {
       const u = userBy.get(r.userId);
+      const s = u?.UserSettings;
+      if (s?.leaderboardOptOut) continue; // hidden from the rankings entirely
+      const anon = !!s?.leaderboardAnonymous;
       const solved = r._count.userId;
       const attempted = attemptedBy.get(r.userId) ?? solved;
-      return {
-        rank: i + 1,
+      ranked.push({
+        rank: ranked.length + 1,
         userId: r.userId,
-        name: u?.UserSettings?.username || u?.name || "Aspirant",
-        image: u?.image ?? null,
+        name: anon ? "Anonymous" : s?.leaderboardName || s?.username || u?.name || "Aspirant",
+        image: anon ? null : u?.image ?? null,
         solved,
         attempted,
         accuracy: attempted > 0 ? Math.round((solved / attempted) * 1000) / 10 : 0,
-      };
-    });
+      });
+      if (ranked.length >= TOP_N) break;
+    }
+    return ranked;
   });
 }
