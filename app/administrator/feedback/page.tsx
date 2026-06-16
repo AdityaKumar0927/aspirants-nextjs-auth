@@ -111,6 +111,18 @@ export default function AdminFeedbackPage() {
     }
   }
 
+  async function deleteFeedback() {
+    if (!thread) return;
+    if (!window.confirm("Permanently delete this feedback and its conversation? This can’t be undone.")) return;
+    setBusy(true);
+    const res = await fetch(`/api/admin/feedback/${thread.id}`, { method: "DELETE" });
+    setBusy(false);
+    if (res.ok) {
+      setItems((prev) => prev.filter((x) => x.id !== thread.id));
+      setThread(null);
+    }
+  }
+
   const who = (f: { anonymous: boolean; user: FeedbackUser | null }) =>
     f.anonymous ? "Anonymous" : f.user?.name || f.user?.email || "Unknown";
 
@@ -301,6 +313,15 @@ export default function AdminFeedbackPage() {
                           Reopen
                         </Button>
                       )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        disabled={busy}
+                        onClick={deleteFeedback}
+                        className="text-redpen hover:bg-redpen/10 hover:text-redpen"
+                      >
+                        Delete
+                      </Button>
                     </div>
                     <Button
                       size="sm"

@@ -76,3 +76,35 @@ export async function POST(
 
   return NextResponse.json({ ok: true }, { status: 201 });
 }
+
+/**
+ * DELETE /api/feedback/[id] — the submitter permanently deletes their OWN
+ * feedback, its conversation thread, and any related notifications.
+ */
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { session, response } = await requireSession();
+  if (response) return response;
+
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+
+  const { id } = await params;
+  const feedback = await prisma.feedback.findUnique({
+    where: { id },
+    select: { id: true, userId: true },
+  });
+  if (!feedback || feedback.userId !== session.user.id) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  await prisma.$transaction([
+    prisma.feedbackMessage.deleteMany({ where: { feedbackId: id } }),
+    prisma.notification.deleteMany({ where: { relatedFeedbackId: id } }),
+    prisma.feedback.delete({ where: { id } }),
+  ]);
+
+  return NextResponse.json({ ok: true });
+}

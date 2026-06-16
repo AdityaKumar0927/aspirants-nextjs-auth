@@ -74,6 +74,17 @@ export default function FeedbackHistory() {
     }
   }
 
+  async function deleteFeedback(id: string) {
+    if (!window.confirm("Permanently delete this feedback and its conversation? This can’t be undone.")) return
+    setBusy(id)
+    try {
+      const res = await fetch(`/api/feedback/${id}`, { method: "DELETE" })
+      if (res.ok) setItems((prev) => prev.filter((x) => x.id !== id))
+    } finally {
+      setBusy(null)
+    }
+  }
+
   if (loading) {
     return <div className="paper-sheet p-6 text-center text-sm text-pencil">Loading…</div>
   }
@@ -96,7 +107,17 @@ export default function FeedbackHistory() {
                 <span className={`h-2 w-2 rounded-full ${s.dot}`} aria-hidden="true" />
                 {s.label}
               </span>
-              <span className="type-data text-xs text-pencil">{when(f.createdAt)}</span>
+              <div className="flex items-center gap-3">
+                <span className="type-data text-xs text-pencil">{when(f.createdAt)}</span>
+                <button
+                  type="button"
+                  onClick={() => deleteFeedback(f.id)}
+                  disabled={busy === f.id}
+                  className="type-data text-xs text-redpen hover:underline disabled:opacity-50"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
 
             <p className="mt-2 whitespace-pre-wrap break-words text-sm text-ink">

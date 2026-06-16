@@ -144,3 +144,24 @@ export async function PATCH(
 
   return NextResponse.json({ ok: true });
 }
+
+/**
+ * DELETE /api/admin/feedback/[id] — permanently remove any feedback, its
+ * conversation thread, and related notifications.
+ */
+export async function DELETE(
+  _req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { response } = await requireAdmin();
+  if (response) return response;
+
+  const { id } = await params;
+  await prisma.$transaction([
+    prisma.feedbackMessage.deleteMany({ where: { feedbackId: id } }),
+    prisma.notification.deleteMany({ where: { relatedFeedbackId: id } }),
+    prisma.feedback.delete({ where: { id } }),
+  ]);
+
+  return NextResponse.json({ ok: true });
+}
