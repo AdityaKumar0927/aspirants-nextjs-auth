@@ -52,6 +52,7 @@ export async function GET(req: NextRequest) {
     parentalConsent,
     policyAgreements,
     notifications,
+    userBanks,
   ] = await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
@@ -98,6 +99,10 @@ export async function GET(req: NextRequest) {
     }),
     prisma.userPolicyAgreement.findMany({ where: { userId } }),
     prisma.notification.findMany({ where: { userId } }),
+    prisma.userBank.findMany({
+      where: { userId },
+      include: { questions: { orderBy: { order: "asc" } } },
+    }),
   ]);
 
   const payload = {
@@ -120,6 +125,7 @@ export async function GET(req: NextRequest) {
     parentalConsent,
     policyAgreements,
     notifications,
+    userBanks,
   };
 
   await logAudit({ userId, action: "DATA_EXPORTED", req });

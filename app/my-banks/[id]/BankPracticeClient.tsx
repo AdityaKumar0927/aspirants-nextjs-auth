@@ -67,25 +67,39 @@ export default function BankPracticeClient({
             {bank.questionCount} question{bank.questionCount === 1 ? "" : "s"}
           </p>
         </div>
-        <div className="inline-flex shrink-0 rounded-md border border-rule p-0.5">
-          <button
-            type="button"
-            onClick={() => setMode("BANK")}
-            className={`rounded px-3 py-1.5 text-sm transition-colors ${
-              mode === "BANK" ? "bg-ballpoint text-paper" : "text-pencil hover:text-ink"
-            }`}
-          >
-            Practice
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("EXAM")}
-            className={`rounded px-3 py-1.5 text-sm transition-colors ${
-              mode === "EXAM" ? "bg-ballpoint text-paper" : "text-pencil hover:text-ink"
-            }`}
-          >
-            Exam
-          </button>
+        <div className="flex shrink-0 flex-col items-end gap-2">
+          <div className="inline-flex rounded-md border border-rule p-0.5">
+            <button
+              type="button"
+              onClick={() => setMode("BANK")}
+              className={`rounded px-3 py-1.5 text-sm transition-colors ${
+                mode === "BANK" ? "bg-ballpoint text-paper" : "text-pencil hover:text-ink"
+              }`}
+            >
+              Practice
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("EXAM")}
+              className={`rounded px-3 py-1.5 text-sm transition-colors ${
+                mode === "EXAM" ? "bg-ballpoint text-paper" : "text-pencil hover:text-ink"
+              }`}
+            >
+              Exam
+            </button>
+          </div>
+          <div className="flex items-center gap-3">
+            <Link href={`/my-banks/${bank.id}/edit`} className="type-data text-xs text-ballpoint hover:underline">
+              Edit
+            </Link>
+            <a
+              href={`/api/user-banks/${bank.id}/export`}
+              download
+              className="type-data text-xs text-pencil hover:text-ink hover:underline"
+            >
+              Download
+            </a>
+          </div>
         </div>
       </div>
 

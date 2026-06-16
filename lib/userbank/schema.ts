@@ -131,7 +131,7 @@ const optionExists = (key: string, options: string[]) =>
 
 /** Per-type sanity check mirroring lib/validations/question.ts (validateAnswerShape),
  *  but returns a human-readable warning instead of throwing. null = looks fine. */
-function answerWarning(q: NormalizedBankQuestion): string | null {
+export function answerWarning(q: NormalizedBankQuestion): string | null {
   switch (q.type) {
     case "Multiple Choice":
       if (q.options.length < 2) return "Has fewer than 2 options.";
@@ -201,6 +201,28 @@ export function validateBankImport(raw: unknown): ValidatedBank {
     droppedCount,
     truncated: rawList.length > MAX_BANK_QUESTIONS,
   };
+}
+
+/** A normalized question that carries its existing id (for edit/diff-save). */
+export interface EditBankQuestion extends NormalizedBankQuestion {
+  id?: string;
+}
+
+/**
+ * Normalize a list of questions for an EDIT save, preserving each item's `id`
+ * when present so the API can diff against the stored rows (update vs insert vs
+ * delete). Items with no text are dropped, mirroring validateBankImport.
+ */
+export function normalizeEditQuestions(raw: unknown): EditBankQuestion[] {
+  const list = Array.isArray(raw) ? raw : [];
+  const out: EditBankQuestion[] = [];
+  for (const item of list.slice(0, MAX_BANK_QUESTIONS)) {
+    const q = normalizeOne(item);
+    if (!q) continue;
+    const id = item && typeof (item as { id?: unknown }).id === "string" ? (item as { id: string }).id : undefined;
+    out.push(id ? { id, ...q } : q);
+  }
+  return out;
 }
 
 /**

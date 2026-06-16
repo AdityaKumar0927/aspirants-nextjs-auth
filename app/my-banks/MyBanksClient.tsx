@@ -111,6 +111,14 @@ export default function MyBanksClient() {
                 <Button asChild size="sm" variant="outline">
                   <Link href={`/my-banks/${b.id}?mode=exam`}>Take as exam</Link>
                 </Button>
+                <Button asChild size="sm" variant="outline">
+                  <Link href={`/my-banks/${b.id}/edit`}>Edit</Link>
+                </Button>
+                <Button asChild size="sm" variant="ghost">
+                  <a href={`/api/user-banks/${b.id}/export`} download>
+                    Download
+                  </a>
+                </Button>
               </div>
             </div>
           ))}
