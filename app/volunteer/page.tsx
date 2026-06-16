@@ -105,14 +105,14 @@ export default function Component() {
             </Link>
           ))}
           
-          <Link href="/contact" className="block group">
+          <a href="mailto:aspirants.contact@gmail.com" className="block group">
             <Card className="h-full transition-shadow hover:shadow-lg">
               <CardContent className="p-6 space-y-2">
                 <h3 className="font-semibold"><T k="auto.volunteerPage.gotAnotherIdea" /></h3>
                 <p className="text-gray-600 underline"><T k="auto.volunteerPage.contactUs" /></p>
               </CardContent>
             </Card>
-          </Link>
+          </a>
         </div>
       </section>
     </div>

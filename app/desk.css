@@ -186,6 +186,16 @@ html.dark .theme-desk {
   background-size: 100% 3px;
 }
 
+/* react-loading-skeleton (question bank, mock exam, solutions): its default
+   shimmer is light gray (#ebebeb/#f5f5f5), which reads as white on the dark
+   surface. Drive its v3 CSS variables off the theme tokens so the skeleton is a
+   subtle tint of the surface in BOTH modes. --ink/--paper are global + flip on
+   .dark, so this single rule fixes every skeleton site-wide. */
+.react-loading-skeleton {
+  --base-color: color-mix(in srgb, var(--ink) 9%, var(--paper)) !important;
+  --highlight-color: color-mix(in srgb, var(--ink) 16%, var(--paper)) !important;
+}
+
 /* -- the OMR bubble: the signature selection language --------------------- */
 .omr-bubble {
   position: relative;

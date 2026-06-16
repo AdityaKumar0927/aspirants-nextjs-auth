@@ -28,3 +28,15 @@ export default function T({
   useTranslation()
   return <>{i18n.t(k, values)}</>
 }
+
+/**
+ * Hook form of <T> for client components that need a `t()` function (e.g. for
+ * attributes/titles, or many strings at once). Drop-in for
+ * `const { t } = useTranslation()` — but resolves via the configured instance,
+ * so it never returns a raw key when react-i18next isn't "ready" yet (the bug
+ * that left the navbars showing `nav.questionBank` etc.).
+ */
+export function useT(): typeof i18n.t {
+  useTranslation() // subscribe so a language switch re-renders the consumer
+  return i18n.t.bind(i18n) as typeof i18n.t
+}

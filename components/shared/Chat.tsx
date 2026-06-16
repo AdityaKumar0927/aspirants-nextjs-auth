@@ -100,7 +100,7 @@ const AssistantMessage: React.FC<{ text: string }> = ({ text }) => {
 }
 
 const TypingIndicator: React.FC = () => (
-  <div className="bg-gray-200 text-black p-2 rounded-lg mb-2 animate-pulse self-start max-w-xl">
+  <div className="bg-secondary text-ink p-2 rounded-lg mb-2 animate-pulse self-start max-w-xl">
     Typing...
   </div>
 )

@@ -20,7 +20,7 @@ export default function ApplyClientWrapper() {
   }, [status, setShowSignInModal])
 
   if (status === 'loading') {
-    return <Loader2 className="h-8 w-8 animate-spin" />
+    return <Loader2 className="mx-auto h-8 w-8 animate-spin text-ballpoint" />
   }
 
   if (error) {

@@ -643,7 +643,7 @@ export default function ImportWizard() {
       {step === "processing" && (
         <Card>
           <CardContent className="flex flex-col items-center gap-4 py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+            <Loader2 className="h-8 w-8 animate-spin text-ballpoint" />
             <p className="font-medium">{progress.label}</p>
             <Progress value={progress.percent} className="w-full max-w-md" />
             <p className="text-sm text-muted-foreground">

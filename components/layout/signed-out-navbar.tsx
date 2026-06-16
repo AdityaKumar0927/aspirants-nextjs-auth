@@ -9,7 +9,7 @@ import useScroll from "@/lib/hooks/use-scroll"
 import { Button } from "@/components/ui/button"
 import ThemeToggle from "@/components/layout/theme-toggle"
 import { motion, AnimatePresence } from "framer-motion"
-import { useTranslation } from "react-i18next"
+import { useT } from "@/components/i18n/T"
 import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
@@ -27,11 +27,10 @@ import {
 const supportLinks = [
   { key: "survey", href: "/survey" },
   { key: "report", href: "/issues" },
-  { key: "contact", href: "/contact" },
 ]
 
 export default function SignedOutNavbar() {
-  const { t } = useTranslation()
+  const t = useT()
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -135,7 +134,7 @@ export default function SignedOutNavbar() {
 }
 
 function DesktopNavLinks() {
-  const { t } = useTranslation()
+  const t = useT()
   return (
     <nav>
       <NavigationMenu>
@@ -204,7 +203,7 @@ interface MobileNavLinksProps {
 }
 
 function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSupport }: MobileNavLinksProps) {
-  const { t } = useTranslation()
+  const t = useT()
   return (
     <nav className="p-4 space-y-2 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
       <Link

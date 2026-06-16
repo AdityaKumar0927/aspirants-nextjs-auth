@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import {
   Accordion,
   AccordionContent,
@@ -72,12 +71,12 @@ export function FAQ() {
             Everything you need to know about practising on Penwise. Can&apos;t
             find your answer?
           </p>
-          <Link
-            href="/contact"
+          <a
+            href="mailto:aspirants.contact@gmail.com"
             className="mt-5 inline-flex h-11 items-center rounded-lg bg-black px-5 text-sm font-medium text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
           >
-            Contact us
-          </Link>
+            Email us
+          </a>
         </div>
 
         {/* Right — grouped questions */}

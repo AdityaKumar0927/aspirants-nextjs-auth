@@ -98,13 +98,14 @@ const nextConfig = {
         permanent: false,
       },
       // Preserve old PascalCase URLs after the kebab-case route rename.
-      // NOTE: "/Contact" is intentionally NOT redirected — it case-folds to the
-      // same string as "/contact", so Next's case-insensitive source matching
-      // turns it into an infinite /contact → /contact redirect loop.
       { source: "/QuestionBank/:path*", destination: "/question-bank/:path*", permanent: true },
       { source: "/BrowseResources", destination: "/browse-resources", permanent: true },
       // Cookie policy consolidated onto /cookie-policy (the polished, DPDP-aware page).
       { source: "/cookies", destination: "/cookie-policy", permanent: true },
+      // The general contact form was removed; send old /contact links (and the
+      // case-folded /Contact) to the grievance/support channel. Safe — different
+      // destination, so no redirect loop.
+      { source: "/contact", destination: "/grievance", permanent: true },
     ];
   },
 };

@@ -108,27 +108,6 @@ export async function sendDataRequestAck(params: {
   return sendEmail({ to, subject, html, text });
 }
 
-export async function sendContactMessage(params: {
-  name: string;
-  email: string;
-  topic: string;
-  message: string;
-}): Promise<{ sent: boolean }> {
-  const { name, email, topic, message } = params;
-  const subject = `[Contact · ${topic}] from ${name || "an aspirant"}`;
-  const text =
-    `New contact message via Penwise\n\n` +
-    `Name: ${name}\nEmail: ${email}\nTopic: ${topic}\n\n${message}`;
-  const html = `
-    <p style="margin:0 0 8px"><strong>New contact message</strong> via Penwise</p>
-    <p style="margin:0"><strong>Name:</strong> ${escapeHtml(name)}</p>
-    <p style="margin:0"><strong>Email:</strong> ${escapeHtml(email)}</p>
-    <p style="margin:0 0 10px"><strong>Topic:</strong> ${escapeHtml(topic)}</p>
-    <p style="white-space:pre-wrap;margin:0">${escapeHtml(message)}</p>`;
-  // Reply-to the sender so support can respond directly from their inbox.
-  return sendEmail({ to: GRIEVANCE_OFFICER_EMAIL, subject, html, text, replyTo: email });
-}
-
 /** Local escape (lib/sanitize escapeHtml is browser/node DOMPurify-backed; keep email dep-free). */
 function escapeHtml(text: string): string {
   return text

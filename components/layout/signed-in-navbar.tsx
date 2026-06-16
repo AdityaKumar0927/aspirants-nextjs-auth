@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { signOut } from "next-auth/react"
-import { useTranslation } from "react-i18next"
+import { useT } from "@/components/i18n/T"
 import { MultiStepLoader } from "@/components/aceternity/multi-step-loader"
 import FeedbackPopover from "../layout/feedback"
 import { ToastProvider } from "@/components/ui/toast"
@@ -35,11 +35,10 @@ import { Toaster } from "../ui/toaster"
 const supportLinks = [
   { key: "survey", href: "/survey" },
   { key: "report", href: "/issues" },
-  { key: "contact", href: "/contact" },
 ]
 
 export default function NavBar({ session }: { session: Session | null }) {
-  const { t } = useTranslation()
+  const t = useT()
   const router = useRouter()
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
@@ -170,7 +169,7 @@ export default function NavBar({ session }: { session: Session | null }) {
 }
 
 function DesktopNavLinks({ session }: { session: Session | null }) {
-  const { t } = useTranslation()
+  const t = useT()
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -246,7 +245,7 @@ function MobileNavLinks({
   toggleSupport,
   handleLogout,
 }: MobileNavLinksProps) {
-  const { t } = useTranslation()
+  const t = useT()
   return (
     <nav className="p-4 space-y-2">
       <Link
