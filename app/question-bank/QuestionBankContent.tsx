@@ -363,6 +363,21 @@ export default function QuestionBankContent() {
     [status, notifySignInToSave]
   );
 
+  // Record the actual answer so practice here counts on the Merit List + stats.
+  // The server re-grades (we never trust client correctness); guests are skipped
+  // (persistProgress already prompts them to sign in). Fire-and-forget.
+  const recordAnswer = useCallback(
+    (questionId: string, selectedOption: string) => {
+      if (status !== "authenticated" || !selectedOption) return;
+      fetch("/api/user-answers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId, selectedOption }),
+      }).catch(() => {});
+    },
+    [status]
+  );
+
   // For mobile single-question navigation
   const [mobileIndex, setMobileIndex] = useState(0);
 
@@ -554,13 +569,25 @@ export default function QuestionBankContent() {
       dispatch({ type: "SET_ACTION_LOADING", payload: true });
       try {
         const val = newVal ?? true;
-        await persistProgress({ questionId, completed: val });
+        const wasCompleted = state.questions.find((q) => q.questionId === questionId)?.completed ?? false;
+        const ok = await persistProgress({ questionId, completed: val });
         dispatch({
           type: "SET_QUESTIONS",
           payload: state.questions.map((q) =>
             q.questionId === questionId ? { ...q, completed: val } : q
           ),
         });
+        // Keep the header "answered" count live (it's otherwise fetched once and
+        // cached, so attempts didn't appear until reload).
+        if (ok && val !== wasCompleted) {
+          dispatch({
+            type: "SET_GLOBAL_STATS",
+            payload: {
+              ...state.globalStats,
+              completed: Math.max(0, state.globalStats.completed + (val ? 1 : -1)),
+            },
+          });
+        }
       } catch (err) {
         console.error("Error marking complete:", err);
         toast({
@@ -572,7 +599,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.questions, toast, persistProgress]
+    [state.questions, state.globalStats, toast, persistProgress]
   );
 
   const handleMarkForReview = useCallback(
@@ -623,8 +650,9 @@ export default function QuestionBankContent() {
           q.questionId === questionId ? { ...q, completed: true } : q
         ),
       });
+      recordAnswer(questionId, option);
     },
-    [state.feedback, state.selectedOptions, state.questions]
+    [state.feedback, state.selectedOptions, state.questions, recordAnswer]
   );
 
   const handleNumericalSubmit = useCallback(
@@ -648,6 +676,7 @@ export default function QuestionBankContent() {
         });
 
         await persistProgress({ questionId, completed: true });
+        recordAnswer(questionId, userAns);
 
         dispatch({
           type: "SET_QUESTIONS",
@@ -666,7 +695,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_ACTION_LOADING", payload: false });
       }
     },
-    [state.feedback, state.numericalAnswers, state.questions, toast, persistProgress]
+    [state.feedback, state.numericalAnswers, state.questions, toast, persistProgress, recordAnswer]
   );
 
   const handleResetQuestion = useCallback(

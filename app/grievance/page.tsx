@@ -13,7 +13,7 @@ export default function GrievancePage() {
           Your data rights
         </p>
         <h1 className="type-display mt-1 text-2xl sm:text-3xl">
-          <span className="highlight-sweep">Grievance</span> &amp; data protection
+          <span className="highlight-sweep">Grievance</span>{" "}&amp; Data Protection
         </h1>
         <p className="mt-2 text-sm text-pencil">
           We take your data-protection rights seriously. If you have a question,

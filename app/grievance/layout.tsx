@@ -3,6 +3,8 @@ import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter, deskFontVars } from "../fonts";
 import ComplianceProviders from "@/components/compliance/ComplianceProviders";
+import Nav from "@/components/layout/nav";
+import { Footer } from "@/components/layout/footer";
 
 export const metadata = {
   title: "Grievance & Data Protection — Penwise",
@@ -27,9 +29,11 @@ export default function GrievanceLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <Nav />
           <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-4 py-16">
             {children}
           </main>
+          <Footer />
           <ComplianceProviders />
         </ThemeProvider>
       </body>
