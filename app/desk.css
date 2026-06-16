@@ -196,12 +196,15 @@ html.dark .theme-desk {
   --highlight-color: color-mix(in srgb, var(--ink) 16%, var(--paper)) !important;
 }
 
-/* Question diagrams / option / markscheme images are SVGs — mostly black
-   line-art on a transparent ground, so they vanish on the dark surface.
-   Inverting them was unreliable (and hue-shifted coloured figures to blue), so
-   in dark mode we sit each one on a white card instead: the original art (black
-   OR coloured) is always legible, colours intact. Light mode is untouched. */
-.dark .diagram-darkbg {
+/* Question diagrams are traced SVGs whose ink is dark navy (#1e2749) on a
+   TRANSPARENT ground — almost the same as the dark page background, so they
+   vanish in dark mode (dark-on-dark). Inverting them was unreliable, so in dark
+   mode we sit each one on a white card instead: the dark/coloured art is always
+   legible, colours intact. Covers both the inline images rendered inside
+   question/markscheme HTML (.math-content img) and the explicit option/diagram
+   <Image> elements (.diagram-darkbg). Light mode is untouched. */
+.dark .diagram-darkbg,
+.dark .math-content :where(img) {
   background-color: #ffffff;
   padding: 0.5rem;
   border-radius: 0.5rem;
