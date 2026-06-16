@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,6 +9,8 @@ import { useToast } from "@/components/ui/use-toast";
 import T from "@/components/i18n/T"
 
 const SUPPORT_EMAIL = "aspirants.contact@gmail.com";
+// Set NEXT_PUBLIC_TURNSTILE_SITE_KEY (free, from Cloudflare) to show the CAPTCHA.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const TOPICS = [
   "General question",
@@ -33,12 +36,17 @@ export default function ContactForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // Honeypot value + Turnstile token (when present) are read straight from the
+    // form DOM — Turnstile's implicit render injects "cf-turnstile-response".
+    const fd = new FormData(e.currentTarget);
+    const company = (fd.get("company") as string) || "";
+    const turnstileToken = (fd.get("cf-turnstile-response") as string) || undefined;
     setSubmitting(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, topic, message }),
+        body: JSON.stringify({ name, email, topic, message, company, turnstileToken }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -168,6 +176,33 @@ export default function ContactForm() {
           className="mt-2 min-h-32 border-rule bg-secondary text-ink placeholder:text-pencil focus-visible:ring-ballpoint focus-visible:ring-offset-0"
         />
       </div>
+
+      {/* Honeypot: hidden from people; bots that fill it get dropped server-side. */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
+      {/* Cloudflare Turnstile (free CAPTCHA) — renders only when configured. */}
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+            strategy="afterInteractive"
+          />
+          <div
+            className="cf-turnstile mt-6"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-theme="auto"
+          />
+        </>
+      )}
 
       <Button type="submit" disabled={submitting} className="mt-6 min-h-11 px-6">
         {submitting ? "Sending…" : <T k="auto.contactContactForm.sendMessage" />}

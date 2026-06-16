@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { sendContactMessage } from "@/lib/email";
-import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { rateLimit, assertSameOrigin, clientIp } from "@/lib/rate-limit";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 // Public contact endpoint. Validates the message and emails support via
 // lib/email (which degrades gracefully — logs to the server console when
@@ -11,6 +12,10 @@ const schema = z.object({
   email: z.string().trim().email("Please enter a valid email.").max(200),
   topic: z.string().trim().min(1).max(80),
   message: z.string().trim().min(5, "Your message is too short.").max(5000),
+  // Honeypot: a hidden field real users never fill. Bots that populate it are dropped.
+  company: z.string().max(200).optional(),
+  // Cloudflare Turnstile token (only enforced when TURNSTILE_SECRET_KEY is set).
+  turnstileToken: z.string().max(4000).optional(),
 });
 
 export async function POST(req: Request) {
@@ -35,6 +40,21 @@ export async function POST(req: Request) {
     );
   }
 
-  await sendContactMessage(parsed.data);
+  // Honeypot tripped → silently accept (don't tip off the bot) but send nothing.
+  if (parsed.data.company && parsed.data.company.trim()) {
+    return NextResponse.json({ ok: true });
+  }
+
+  // CAPTCHA (gated): only enforced when Turnstile is configured.
+  const human = await verifyTurnstile(parsed.data.turnstileToken, clientIp(req));
+  if (!human) {
+    return NextResponse.json(
+      { error: "Could not verify you're human. Please try again." },
+      { status: 400 }
+    );
+  }
+
+  const { name, email, topic, message } = parsed.data;
+  await sendContactMessage({ name, email, topic, message });
   return NextResponse.json({ ok: true });
 }

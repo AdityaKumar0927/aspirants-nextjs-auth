@@ -20,15 +20,16 @@ export interface RateWindow {
   windowSec: number;
 }
 
-const hasUpstash =
-  !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
+// Accept both the native Upstash env names and the ones the Vercel Marketplace
+// Redis/KV integration provisions (KV_REST_API_*), so a free Vercel-integrated
+// Redis works with zero code changes.
+const redisUrl =
+  process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+const redisToken =
+  process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
 
-const redis = hasUpstash
-  ? new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL!,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-    })
-  : null;
+const redis =
+  redisUrl && redisToken ? new Redis({ url: redisUrl, token: redisToken }) : null;
 
 // One Ratelimit instance per (limit, window) combination.
 const upstashLimiters = new Map<string, Ratelimit>();

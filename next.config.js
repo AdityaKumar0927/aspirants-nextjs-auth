@@ -17,12 +17,12 @@ const csp = [
   "object-src 'none'",
   "frame-ancestors 'none'",
   "form-action 'self'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://*.vercel-scripts.com https://www.googletagmanager.com",
+  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://*.vercel-scripts.com https://www.googletagmanager.com https://challenges.cloudflare.com",
   "style-src 'self' 'unsafe-inline' https://rsms.me https://fonts.googleapis.com https://cdnjs.cloudflare.com",
   "font-src 'self' data: https://rsms.me https://fonts.gstatic.com https://cdnjs.cloudflare.com",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com https://www.google-analytics.com",
-  "frame-src 'self' https://accounts.google.com",
+  "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com https://www.google-analytics.com https://challenges.cloudflare.com",
+  "frame-src 'self' https://accounts.google.com https://challenges.cloudflare.com",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
   "upgrade-insecure-requests",
@@ -51,6 +51,8 @@ const securityHeaders = [
 
 const nextConfig = {
   reactStrictMode: true,
+  // Don't advertise the framework/version (reduces fingerprinting).
+  poweredByHeader: false,
   images: {
     // Self-hosted traced SVGs (public/q-img) are served via next/image; allow
     // SVG, sandboxed so the file can't execute scripts.
