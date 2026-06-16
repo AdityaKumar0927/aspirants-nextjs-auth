@@ -1083,6 +1083,17 @@ export default function QuestionBankContent() {
             Question Bank
           </h1>
 
+          <a
+            href="/my-banks/new"
+            className="mb-6 flex flex-wrap items-center justify-between gap-2 rounded-md border border-rule bg-secondary/40 px-4 py-2.5 text-sm transition-colors hover:border-ballpoint/40"
+          >
+            <span className="text-ink">
+              <strong>Bring your own material</strong>
+              <span className="text-pencil"> — build a private bank or mock exam from your notes.</span>
+            </span>
+            <span className="type-data shrink-0 text-ballpoint">Create one →</span>
+          </a>
+
           {/* Search + mobile filters + navigator */}
           <div className="mb-6 flex items-center space-x-4">
             <div className="relative flex-grow">

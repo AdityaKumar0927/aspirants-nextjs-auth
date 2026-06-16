@@ -393,6 +393,9 @@ model User {
 
   // Study planner (server-synced)
   StudyPlan StudyPlan?
+
+  // "Bring your own material" — student-generated private question banks
+  UserBank UserBank[]
 }
 
 model UserAnswer {
@@ -811,4 +814,58 @@ model StudyPlan {
   updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// "Bring your own material" — a student-generated, PRIVATE question bank built
+// from JSON they produced in their own AI tool. Practiced as a question bank or
+// taken as a timed mock exam. Owned by exactly one user (no sharing in v1).
+model UserBank {
+  id              String             @id @default(cuid())
+  userId          String
+  title           String
+  description     String?
+  sourceName      String? // the doc the student noted as the source (free text)
+  defaultMode     String             @default("BANK") // "BANK" | "EXAM"
+  examDurationMin Int? // for EXAM mode
+  questionCount   Int                @default(0)
+  lastResult      Json? // last ExamResultsType blob (size-capped at write time)
+  lastTakenAt     DateTime?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  User      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions UserBankQuestion[]
+
+  @@index([userId])
+}
+
+// A single question inside a UserBank. Mirrors the gradable fields of Question
+// so it flows straight through normalizeQuestion()/gradeAnswer(). Per-question
+// practice state (completed/flagged) lives on the row because the bank has a
+// single owner.
+model UserBankQuestion {
+  id             String   @id @default(cuid())
+  bankId         String
+  order          Int
+  text           String
+  type           String // canonical type (incl. "Fill Blanks")
+  options        String[]
+  correctOption  String?
+  correctOptions String[]
+  answerText     String?
+  answerMin      Float?
+  answerMax      Float?
+  explanation    String? // markdown/LaTeX text
+  markscheme     String?
+  subject        String?
+  topic          String?
+  difficulty     String?
+  marks          Float?
+  negMarks       Float?
+  completed      Boolean  @default(false)
+  flagged        Boolean  @default(false)
+
+  Bank UserBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+
+  @@index([bankId])
 }

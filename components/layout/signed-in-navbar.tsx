@@ -197,6 +197,16 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Link
+              href="/my-banks"
+              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+            >
+              My banks
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <Link
               href="/leaderboard"
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
@@ -272,6 +282,13 @@ function MobileNavLinks({
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.mockExam")}
+      </Link>
+      <Link
+        href="/my-banks"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        My banks
       </Link>
       <Link
         href="/leaderboard"
