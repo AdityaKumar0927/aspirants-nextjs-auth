@@ -7,6 +7,7 @@ import { sfPro, inter } from "../fonts";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { AdminLayout } from "./application-layout";
+import DeskThemeProvider from "@/components/theme/theme-provider"
 import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import { useSession, SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </head>
       <body className={cx(sfPro.variable, inter.variable, "theme-desk")}>
+        <DeskThemeProvider>
         <SessionProvider>
           <AuthorizationGuard>
             <AdminLayout>
@@ -54,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </AuthorizationGuard>
         </SessionProvider>
         <ComplianceProviders />
+        </DeskThemeProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { sfPro, inter, deskFontVars } from "../fonts";
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { Suspense } from "react";
+import DeskThemeProvider from "@/components/theme/theme-provider"
 import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, deskFontVars, "theme-desk desk-grid")}>
+        <DeskThemeProvider>
         <LoadingProvider> 
           <UserPerformanceProvider userId={userId}> 
             <TooltipProvider>
@@ -77,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Toaster />
           </UserPerformanceProvider> 
         </LoadingProvider> 
+        </DeskThemeProvider>
       </body>
     </html>
   );

@@ -39,8 +39,8 @@
 
 .dark {
   /* night desk: the ink and the paper trade places */
-  --paper: #11162b;
-  --desk: #0b0f20;
+  --paper: #16182f;          /* sheet surface — a touch above the backdrop */
+  --desk: #0f1021;           /* page backdrop (requested dark-mode color) */
   --ink: #e8eaf2;
   --ballpoint: #8fa5f4;
   --redpen: #e07b66;

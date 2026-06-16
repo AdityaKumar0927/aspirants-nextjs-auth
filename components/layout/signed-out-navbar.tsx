@@ -7,6 +7,7 @@ import { useSignInModal } from "./sign-in"
 import { Menu, X, ChevronDown } from "lucide-react"
 import useScroll from "@/lib/hooks/use-scroll"
 import { Button } from "@/components/ui/button"
+import ThemeToggle from "@/components/layout/theme-toggle"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { cn } from "@/lib/utils"
@@ -83,6 +84,7 @@ export default function SignedOutNavbar() {
 
             <div className="hidden md:flex items-center space-x-4">
               <DesktopNavLinks />
+              <ThemeToggle />
               <Button
                 variant="outline"
                 onClick={() => setShowSignInModal(true)}
@@ -92,7 +94,8 @@ export default function SignedOutNavbar() {
               </Button>
             </div>
 
-            <div className="md:hidden">
+            <div className="flex items-center gap-1 md:hidden">
+              <ThemeToggle />
               <Button
                 variant="ghost"
                 size="icon"

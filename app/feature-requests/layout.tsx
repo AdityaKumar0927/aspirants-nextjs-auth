@@ -12,6 +12,7 @@ import Bar from '@/components/layout/Bar';
 import { Toaster } from "@/components/ui/toaster";
 import { LoadingProvider } from "@/components/layout/LoadingContext";
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext";
+import DeskThemeProvider from "@/components/theme/theme-provider"
 
 config.autoAddCss = false;
 
@@ -59,7 +60,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, deskFontVars, "theme-desk desk-grid")}>
-        <LoadingProvider> 
+        <DeskThemeProvider>
+        <LoadingProvider>
           <UserPerformanceProvider userId={userId}> 
             <TooltipProvider>
               <div className="fixed inset-0 z-[-10]"></div>
@@ -76,7 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </TooltipProvider>
             <Toaster />
           </UserPerformanceProvider> 
-        </LoadingProvider> 
+        </LoadingProvider>
+        </DeskThemeProvider>
       </body>
     </html>
   );

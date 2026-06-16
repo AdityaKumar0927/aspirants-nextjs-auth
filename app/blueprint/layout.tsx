@@ -4,6 +4,7 @@ import { sfPro, inter } from "../fonts";
 import { Suspense } from "react";
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
+import DeskThemeProvider from "@/components/theme/theme-provider"
 import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 
@@ -32,6 +33,7 @@ export default function BlueprintLayout({
           "theme-desk desk-grid"
         )}
       >
+        <DeskThemeProvider>
         <TooltipProvider>
           <Suspense fallback="...">
             <Nav />
@@ -42,6 +44,7 @@ export default function BlueprintLayout({
           <Footer />
           <ComplianceProviders />
         </TooltipProvider>
+        </DeskThemeProvider>
       </body>
     </html>
   );

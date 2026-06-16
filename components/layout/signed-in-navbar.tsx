@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { useSignInModal } from "./sign-in"
 import UserDropdown from "@/components/layout/user-dropdown"
 import { Button } from "@/components/ui/button"
+import ThemeToggle from "@/components/layout/theme-toggle"
 import NotificationDropdown from "@/components/shared/NotificationDropdown"
 import type { Session } from "next-auth"
 import { Menu, X, ChevronDown, Bell, LogOut } from "lucide-react"
@@ -115,6 +116,7 @@ export default function NavBar({ session }: { session: Session | null }) {
             <DesktopNavLinks session={session} />
           </div>
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             {session ? (
               <>
                 <FeedbackPopover />
@@ -131,7 +133,8 @@ export default function NavBar({ session }: { session: Session | null }) {
               </Button>
             )}
           </div>
-          <div className="md:hidden">
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"

@@ -50,7 +50,7 @@ export default async function PublicLayout({ children }: { children: React.React
         />
       </head>
       <body className={cx(sfPro.variable, inter.variable, deskFontVars, "theme-desk desk-grid")}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>
               <TooltipProvider>
