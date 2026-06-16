@@ -28,7 +28,7 @@ export default function GrievanceLayout({
           "theme-desk desk-grid"
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={["light", "dark", "pink"]}>
           <Nav />
           <main className="mx-auto flex min-h-screen w-full max-w-2xl flex-col px-4 py-16">
             {children}

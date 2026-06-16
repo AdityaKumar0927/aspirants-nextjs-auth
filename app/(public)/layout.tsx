@@ -53,7 +53,7 @@ export default async function PublicLayout({ children }: { children: React.React
       <ThemeProvider
   attribute="class"
   defaultTheme="light"
-  enableSystem={false}
+  enableSystem={false} themes={["light", "dark", "pink"]}
 >
           <LoadingProvider>
             <UserPerformanceProvider userId={userId}>

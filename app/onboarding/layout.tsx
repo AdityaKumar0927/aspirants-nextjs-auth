@@ -31,7 +31,7 @@ export default function OnboardingLayout({
           "theme-desk desk-grid"
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={["light", "dark", "pink"]}>
           <SessionWrapper>
             <main className="flex min-h-screen w-full flex-col items-center justify-center px-4 py-16">
               {children}

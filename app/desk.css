@@ -112,6 +112,61 @@ html.dark .theme-desk {
   --ring: 227 82% 76%;
 }
 
+/* ── BABY-PINK THEME ──────────────────────────────────────────────────────
+   A soft light theme: pink paper, rose ink. Domain tokens are global (like the
+   .dark block); the shadcn HSL bridge stays scoped to .theme-desk. */
+.pink {
+  --paper: #fff5fa;          /* sheet surface — soft pink */
+  --desk: #ffe7f1;           /* page backdrop — baby pink */
+  --ink: #5a2a43;            /* deep rose-plum — primary text */
+  --ballpoint: #d6457f;      /* rose — interactive ink */
+  --redpen: #c8324a;
+  --marker: #ffe08a;
+  --pencil: #a86b85;         /* muted mauve — secondary text */
+  --rule: #f7cbdd;           /* soft pink rule lines / borders */
+  --grid-line: rgba(150, 40, 90, 0.1);
+  --st-answered: #2e9d63;
+  --st-review: #9b6fc4;
+  --st-notvisited: #cfa8b8;
+  --gold: #c2962f;
+  --silver: #8b91a3;
+  --bronze: #b06a39;
+}
+
+.pink .theme-desk,
+html.pink .theme-desk {
+  --background: 330 100% 98%;
+  --foreground: 330 37% 26%;
+  --muted: 335 100% 95%;
+  --muted-foreground: 330 22% 54%;
+  --popover: 330 100% 98%;
+  --popover-foreground: 330 37% 26%;
+  --border: 335 71% 88%;
+  --input: 335 71% 88%;
+  --card: 330 100% 98%;
+  --card-foreground: 330 37% 26%;
+  --primary: 335 64% 55%;
+  --primary-foreground: 330 100% 98%;
+  --secondary: 335 100% 95%;
+  --secondary-foreground: 330 37% 26%;
+  --accent: 335 100% 95%;
+  --accent-foreground: 330 37% 26%;
+  --destructive: 350 60% 49%;
+  --destructive-foreground: 330 100% 98%;
+  --ring: 335 64% 55%;
+}
+
+/* Theme toggle heart: outline by default, filled rose when pink is active.
+   Driven by the html.pink class so there's no hydration flash. */
+.theme-heart {
+  fill: none;
+  stroke: currentColor;
+}
+html.pink .theme-heart {
+  fill: #ec4899;
+  stroke: #ec4899;
+}
+
 /* -- the desk itself: an OMR-style dot grid, fixed so it reads as the surface
    the paper rests on (not scrolling wallpaper), plus a soft top light wash.
    Never applied to .paper-sheet. ----------------------------------------- */

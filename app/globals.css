@@ -171,11 +171,44 @@ html {
       --destructive-foreground: 210 40% 98%;
    
       --ring: 216 34% 17%;
-   
+
+      --radius: 0.5rem;
+    }
+
+    .pink {
+      --background: 330 100% 98%;
+      --foreground: 330 37% 26%;
+
+      --muted: 335 100% 95%;
+      --muted-foreground: 330 22% 54%;
+
+      --accent: 335 100% 92%;
+      --accent-foreground: 330 37% 26%;
+
+      --popover: 330 100% 98%;
+      --popover-foreground: 330 37% 26%;
+
+      --border: 335 71% 88%;
+      --input: 335 71% 88%;
+
+      --card: 330 100% 98%;
+      --card-foreground: 330 37% 26%;
+
+      --primary: 335 64% 55%;
+      --primary-foreground: 330 100% 98%;
+
+      --secondary: 335 100% 95%;
+      --secondary-foreground: 330 37% 26%;
+
+      --destructive: 350 60% 49%;
+      --destructive-foreground: 330 100% 98%;
+
+      --ring: 335 64% 55%;
+
       --radius: 0.5rem;
     }
   }
-   
+
   @layer base {
     * {
       @apply border-border;

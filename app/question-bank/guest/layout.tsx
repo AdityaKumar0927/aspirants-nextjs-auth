@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <ThemeProvider
   attribute="class"
   defaultTheme="light"
-  enableSystem={false}
+  enableSystem={false} themes={["light", "dark", "pink"]}
 >
           <LoadingProvider> 
             <UserPerformanceProvider userId={userId}> 
