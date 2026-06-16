@@ -69,7 +69,7 @@ function renderDiagram(diagramUrl?: string) {
       <img
         src={diagramUrl}
         alt="Diagram"
-        className="rounded-md w-full h-auto object-contain"
+        className="rounded-md w-full h-auto object-contain dark:invert"
       />
     </div>
   )

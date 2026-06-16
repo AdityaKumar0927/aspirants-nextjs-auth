@@ -165,7 +165,7 @@ export default function Exam({
           alt="Question diagram"
           width={800}
           height={600}
-          className="h-auto w-full rounded-md border border-rule object-contain"
+          className="h-auto w-full rounded-md border border-rule object-contain dark:invert"
         />
       </div>
     ) : null

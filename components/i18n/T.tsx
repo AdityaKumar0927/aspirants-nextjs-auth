@@ -1,6 +1,11 @@
 "use client"
 
 import { useTranslation } from "react-i18next"
+// Importing the configured instance runs its one-time init (registers
+// initReactI18next + bundles English), so <T> never renders without an i18n
+// instance — even during static prerender, where relying on a provider's import
+// left "NO_I18NEXT_INSTANCE" and raw keys (e.g. footer.*, auto.missionPage.*).
+import i18n from "./i18n"
 
 /**
  * Translation island: renders a single translated string by key. Lets SERVER
@@ -16,6 +21,10 @@ export default function T({
   k: string
   values?: Record<string, unknown>
 }) {
-  const { t } = useTranslation()
-  return <>{t(k, values)}</>
+  // Subscribe to language changes (re-render on switch) via the hook — the
+  // instance now always exists thanks to the import above — and resolve through
+  // the instance's synchronous store lookup so the bundled English catalog
+  // renders immediately on SSR/prerender, never a raw key.
+  useTranslation()
+  return <>{i18n.t(k, values)}</>
 }

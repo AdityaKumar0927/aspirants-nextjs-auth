@@ -1,15 +1,20 @@
 "use client";
 
+import { useId } from "react";
 import { useTheme } from "next-themes";
 
 /**
- * Sitewide light/dark toggle. In light mode it shows a full, cratered moon with
- * a subtle glow (tap to go dark); in dark mode a sun (tap to go light). The two
- * cross-fade via CSS keyed off the html.dark class, so there's no hydration
- * mismatch and it works the moment it mounts.
+ * Sitewide light/dark toggle. Light mode shows a warm sun (tap to go dark);
+ * dark mode shows a white, shiny, cratered crescent moon with a soft glow (tap
+ * to go light). The two cross-fade/rotate via CSS keyed off the html.dark class.
  */
 export default function ThemeToggle({ className = "" }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
+  // Unique SVG ids — the toggle renders twice per page (desktop + mobile nav),
+  // so shared gradient/mask ids would collide.
+  const uid = useId().replace(/:/g, "");
+  const shineId = `moon-shine-${uid}`;
+  const cutId = `moon-cut-${uid}`;
 
   return (
     <button
@@ -19,25 +24,12 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
       title="Toggle dark mode"
       className={`relative inline-flex h-9 w-9 items-center justify-center rounded-md text-pencil transition-colors hover:bg-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40 ${className}`}
     >
-      {/* Moon — full, cratered, faint glow. Shown in light mode. */}
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        className="absolute h-[18px] w-[18px] scale-100 rotate-0 text-[#7b83b8] transition-all duration-500 [filter:drop-shadow(0_0_4px_rgba(123,131,184,0.55))] dark:scale-0 dark:-rotate-90"
-      >
-        <circle cx="12" cy="12" r="8.5" fill="currentColor" />
-        <circle cx="9.2" cy="9.4" r="1.7" className="fill-black/20" />
-        <circle cx="14.6" cy="13.9" r="2.2" className="fill-black/20" />
-        <circle cx="10.4" cy="15.4" r="1.05" className="fill-black/15" />
-        <circle cx="15.3" cy="8.5" r="0.85" className="fill-black/15" />
-      </svg>
-
-      {/* Sun — rays + core, warm glow. Shown in dark mode. */}
+      {/* Sun — shown in light mode (tap to go dark) */}
       <svg
         viewBox="0 0 24 24"
         fill="none"
         aria-hidden="true"
-        className="absolute h-[19px] w-[19px] scale-0 rotate-90 text-amber-400 transition-all duration-500 [filter:drop-shadow(0_0_4px_rgba(251,191,36,0.45))] dark:scale-100 dark:rotate-0"
+        className="absolute h-[19px] w-[19px] scale-100 rotate-0 text-amber-400 transition-all duration-500 [filter:drop-shadow(0_0_4px_rgba(251,191,36,0.45))] dark:scale-0 dark:rotate-90"
       >
         <circle cx="12" cy="12" r="4.2" fill="currentColor" />
         <g stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
@@ -49,6 +41,32 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
           <line x1="16.8" y1="16.8" x2="18.5" y2="18.5" />
           <line x1="5.5" y1="18.5" x2="7.2" y2="16.8" />
           <line x1="16.8" y1="7.2" x2="18.5" y2="5.5" />
+        </g>
+      </svg>
+
+      {/* Moon — shown in dark mode: white, shiny crescent with subtle craters + glow */}
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="absolute h-5 w-5 scale-0 -rotate-90 transition-all duration-500 [filter:drop-shadow(0_0_5px_rgba(226,232,255,0.6))] dark:scale-100 dark:rotate-0"
+      >
+        <defs>
+          <radialGradient id={shineId} cx="34%" cy="30%" r="82%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="62%" stopColor="#eef1fb" />
+            <stop offset="100%" stopColor="#c9d0e8" />
+          </radialGradient>
+          <mask id={cutId}>
+            <rect width="24" height="24" fill="black" />
+            <circle cx="12" cy="12" r="9" fill="white" />
+            <circle cx="15.5" cy="9.5" r="8" fill="black" />
+          </mask>
+        </defs>
+        <g mask={`url(#${cutId})`}>
+          <circle cx="12" cy="12" r="9" fill={`url(#${shineId})`} />
+          <circle cx="7.5" cy="12.2" r="1.05" fill="#9aa6c8" opacity="0.5" />
+          <circle cx="8.7" cy="14.8" r="0.7" fill="#9aa6c8" opacity="0.45" />
+          <circle cx="6.7" cy="9.6" r="0.6" fill="#9aa6c8" opacity="0.4" />
         </g>
       </svg>
 

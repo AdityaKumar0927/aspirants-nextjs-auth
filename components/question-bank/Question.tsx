@@ -600,7 +600,9 @@ function Question({
                     alt={`Diagram for question #${displayNumber}`}
                     width={800}
                     height={600}
-                    className="rounded-md w-full h-auto object-contain"
+                    // Diagrams are black line-art on transparent bg; invert to
+                    // white so they're visible on the dark surface.
+                    className="rounded-md w-full h-auto object-contain dark:invert"
                   />
                 </div>
               )}
