@@ -24,16 +24,16 @@ export default function Modal2({
   if (isMobile) {
     return (
       <Drawer.Root open={showModal} onOpenChange={setShowModal}>
-        <Drawer.Overlay className="fixed inset-0 z-40 bg-gray-100" />
+        <Drawer.Overlay className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" />
         <Drawer.Portal>
           <Drawer.Content
             className={cn(
-              "fixed bottom-0 left-0 right-0 z-50 mt-24 rounded-t-[10px] border-t border-gray-200 bg-white",
+              "theme-desk fixed bottom-0 left-0 right-0 z-50 mt-24 rounded-t-[10px] border-t border-rule bg-paper text-ink",
               className
             )}
           >
             <div className="sticky top-0 z-20 flex w-full items-center justify-center rounded-t-[10px] bg-inherit">
-              <div className="my-3 h-1 w-12 rounded-full bg-gray-300" />
+              <div className="my-3 h-1 w-12 rounded-full bg-pencil/40" />
             </div>
             {children}
           </Drawer.Content>
@@ -47,13 +47,13 @@ export default function Modal2({
       <Dialog.Portal>
         <Dialog.Overlay
           id="modal-backdrop"
-          className="fixed inset-0 z-40 bg-gray-100"
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
         />
         <Dialog.Content
           onOpenAutoFocus={(e) => e.preventDefault()}
           onCloseAutoFocus={(e) => e.preventDefault()}
           className={cn(
-            "fixed inset-0 z-50 flex flex-col bg-white p-4",
+            "theme-desk fixed inset-0 z-50 flex flex-col bg-paper p-4 text-ink",
             className
           )}
         >

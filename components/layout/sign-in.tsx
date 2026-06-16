@@ -188,7 +188,7 @@ function SignInModalComponent({
       >
         <div className="relative h-full w-full">
           <button
-            className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 focus:outline-none"
+            className="absolute top-4 right-4 text-pencil hover:text-ink focus:outline-none"
             onClick={() => setShowSignInModal(false)}
             aria-label="Close"
           >
@@ -210,7 +210,7 @@ function SignInModalComponent({
                 )}
                 {loading ? 'Signing in...' : 'Sign in with Google'}
               </Button>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-pencil">
                 By signing in, you agree to our{' '}
                 <a href="/terms-of-service" className="underline">
                   Terms of Service
