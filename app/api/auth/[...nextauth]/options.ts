@@ -4,6 +4,7 @@ import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "@/lib/prisma"
+import { logAudit } from "@/lib/audit"
 
 /**
  * Dev-only sign-in for local machines without Google OAuth credentials.
@@ -54,11 +55,21 @@ export const authOptions: NextAuthOptions = {
   // Connect Prisma + NextAuth
   adapter: PrismaAdapter(prisma),
 
+  // Explicit (NextAuth also reads NEXTAUTH_SECRET): signs/encrypts the JWT.
+  // Must be set in production — NextAuth refuses to start without it.
+  secret: process.env.NEXTAUTH_SECRET,
+
   // OAuth Provider(s) — plus the gated dev login when enabled (see above).
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      // Safe here: Google is our only OAuth provider and it verifies email
+      // ownership, so an attacker can't obtain a Google account for a victim's
+      // address to hijack the link. It is also REQUIRED by our flow — the
+      // signIn() callback creates the User row, so the adapter must be allowed
+      // to link the Google account to that existing email. Do not remove
+      // without first moving user creation into the adapter's createUser.
       allowDangerousEmailAccountLinking: true,
     }),
     ...(devLoginEnabled ? [devLoginProvider] : []),
@@ -182,6 +193,26 @@ export const authOptions: NextAuthOptions = {
         session.user.parentalConsentOk = token.parentalConsentOk ?? false
       }
       return session
+    },
+  },
+
+  // Auth-event audit trail for security monitoring (sign-in / sign-out / account
+  // creation). Best-effort: logAudit swallows its own errors, so logging can
+  // never break authentication.
+  events: {
+    async signIn({ user, account, isNewUser }) {
+      await logAudit({
+        userId: user.id,
+        action: "SIGNED_IN",
+        metadata: { provider: account?.provider, isNewUser: !!isNewUser },
+      })
+    },
+    async signOut(message) {
+      const userId = "token" in message ? (message.token?.id as string | undefined) : undefined
+      await logAudit({ userId: userId ?? null, action: "SIGNED_OUT" })
+    },
+    async createUser({ user }) {
+      await logAudit({ userId: user.id, action: "USER_CREATED" })
     },
   },
 

@@ -14,6 +14,10 @@ import prisma from "@/lib/prisma";
  * posture as the rest of the codebase).
  */
 export type AuditAction =
+  // Authentication events
+  | "SIGNED_IN"
+  | "SIGNED_OUT"
+  | "USER_CREATED"
   | "ONBOARDING_COMPLETED"
   | "ONBOARDING_REVOKED"
   | "CONSENT_GRANTED"
