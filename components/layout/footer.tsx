@@ -10,7 +10,6 @@ const footerNavs = [
     items: [
       { href: "/blueprint", key: "footer.items.examBlueprints" },
       { href: "/question-bank", key: "footer.items.questionBank" },
-      { href: "/mission", key: "footer.items.mission" },
     ],
   },
   {

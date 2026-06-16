@@ -45,6 +45,18 @@ export async function POST(request: NextRequest) {
     }
     const fromRole = target.UserRole?.name ?? "member";
 
+    // Moderators are promoted FROM volunteers only — a member can't jump
+    // straight to moderator. (Allow re-assigning to an existing moderator.)
+    if (role.name === "moderator" && fromRole !== "volunteer" && fromRole !== "moderator") {
+      return NextResponse.json(
+        {
+          error:
+            "Only volunteers can be promoted to moderators. Assign the volunteer role first.",
+        },
+        { status: 409 }
+      );
+    }
+
     // Last-administrator protection.
     if (fromRole === "administrator" && role.name !== "administrator") {
       const adminCount = await prisma.user.count({

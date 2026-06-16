@@ -44,15 +44,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Motivation must be between 50 and 1000 characters" }, { status: 400 })
     }
 
-    // Validate and convert role to enum
-    let applicationRole: ApplicationRole
-    if (role.toUpperCase() === "VOLUNTEER") {
-      applicationRole = ApplicationRole.VOLUNTEER
-    } else if (role.toUpperCase() === "MODERATOR") {
-      applicationRole = ApplicationRole.MODERATOR
-    } else {
-      return NextResponse.json({ error: "Invalid role" }, { status: 400 })
+    // Public applications are for VOLUNTEERS only. Moderators are promoted from
+    // active volunteers by an admin (see /api/user/role), so reject anything else.
+    if (role && String(role).toUpperCase() === "MODERATOR") {
+      return NextResponse.json(
+        { error: "Moderator applications aren't open — moderators are chosen from active volunteers." },
+        { status: 400 }
+      )
     }
+    const applicationRole: ApplicationRole = ApplicationRole.VOLUNTEER
 
     // Create new application
     const newApplication = await prisma.application.create({

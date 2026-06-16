@@ -264,6 +264,17 @@ export default function Exam({
           />
         )
 
+      case "Fill Blanks":
+        return (
+          <Input
+            type="text"
+            value={current || ""}
+            onChange={(e) => onAnswer(e.target.value)}
+            placeholder="Fill in the blank"
+            className="latex-font h-12 w-full max-w-md bg-paper text-lg"
+          />
+        )
+
       case "Subjective":
         return (
           <div>
