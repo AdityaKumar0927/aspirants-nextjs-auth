@@ -31,9 +31,9 @@ ToastViewport.displayName = ToastPrimitives.Viewport.displayName
 //
 
 const toastVariants = cva(
-  // Plain white card, light-gray border, soft shadow. No icon — the title colour
-  // (set by the Toaster) signals the type (red error / green done / purple flagged).
-  "group pointer-events-auto relative w-full overflow-hidden rounded-xl border border-gray-200 bg-white text-ink " +
+  // Desk-surface card (bg-paper/border-rule flip with light/dark), soft shadow.
+  // No icon — the title colour (set by the Toaster) signals the type.
+  "group pointer-events-auto relative w-full overflow-hidden rounded-xl border border-rule bg-paper text-ink " +
     "shadow-[0_6px_22px_-8px_rgba(30,39,73,0.16),0_1px_3px_rgba(30,39,73,0.05)] transition-all " +
     "data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] " +
     "data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none " +

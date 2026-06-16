@@ -35,6 +35,7 @@ import { Toaster } from "../ui/toaster"
 const supportLinks = [
   { key: "report", href: "/issues" },
   { key: "featureRequests", href: "/feature-requests" },
+  { key: "volunteer", href: "/apply" },
 ]
 
 export default function NavBar({ session }: { session: Session | null }) {
