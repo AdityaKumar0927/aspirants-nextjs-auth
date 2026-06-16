@@ -234,8 +234,17 @@ export async function PATCH(request: Request) {
   try {
     const body = await request.json();
 
-    // ---------- Member: per-user study state ----------
-    if (!isAdmin(session)) {
+    // ---------- Per-user study state (everyone, incl. admins) ----------
+    // Marking complete / flagging / community tags is a per-user action. Route
+    // by PAYLOAD SHAPE, not role — otherwise an admin's mark-complete fell into
+    // the global question-edit path below and never wrote UserProgress.
+    const STUDY_KEYS = new Set(["questionId", "completed", "reviewed", "customTags"]);
+    const isStudyStateUpdate =
+      !!body &&
+      typeof body === "object" &&
+      Object.keys(body).every((k) => STUDY_KEYS.has(k));
+
+    if (isStudyStateUpdate) {
       const parsed = memberQuestionPatchSchema.safeParse(body);
       if (!parsed.success) return validationError(parsed.error);
       const { questionId, completed, reviewed, customTags } = parsed.data;
@@ -272,6 +281,10 @@ export async function PATCH(request: Request) {
     }
 
     // ---------- Admin: full update of global content ----------
+    // Any payload with non-study fields edits the shared question row — admins only.
+    if (!isAdmin(session)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
     const parsed = questionUpdateSchema.safeParse(body);
     if (!parsed.success) return validationError(parsed.error);
 
