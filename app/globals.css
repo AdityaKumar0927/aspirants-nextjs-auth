@@ -225,6 +225,14 @@ html {
   overflow: hidden;
 }
 
+/* Don't show the heavy Ventura wallpaper on phones — it's decorative framing for
+   the desktop performance preview and just adds weight/awkward cropping on mobile. */
+@media (max-width: 767px) {
+  .bg-background-image {
+    background-image: none;
+  }
+}
+
 .bg-background-image2 {
   background-image: url('/imac.jpg');
   background-size: cover;

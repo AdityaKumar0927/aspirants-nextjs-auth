@@ -5,7 +5,8 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ContainerScroll } from '@/components/ui/container-scroll-animation';
-import Dashboard from '@/components/dashboard/DashboardContent';
+import StatsWithSession from '@/components/layout/StatsWithSession';
+import { PERFORMANCE_DEMO } from '@/components/dashboard/performance-demo-data';
 import MainContent from '@/components/dashboard/MainContent';
 import ShinyButton from '@/components/magicui/shiny-button';
 import ShimmerButton from '@/components/magicui/shimmer-button';
@@ -133,10 +134,12 @@ export default function Page() {
         Understand your strengths and weaknesses questions by exam, topic, sub-topic, year, difficulty, completed, or marked for review to save time.
       </p>
 
-      <div className="flex justify-center items-center min-h-screen bg-background-image bg-border bg-cover bg-center">
+      <div className="flex justify-center items-center min-h-screen bg-background-image bg-border bg-cover bg-center px-2 py-10 sm:px-4">
         <div className="w-full max-w-7xl">
           <ContainerScroll titleComponent={<></>}>
-            <Dashboard />
+            <div className="theme-desk h-full w-full overflow-auto rounded-xl bg-paper">
+              <StatsWithSession demo={PERFORMANCE_DEMO} />
+            </div>
           </ContainerScroll>
         </div>
       </div>

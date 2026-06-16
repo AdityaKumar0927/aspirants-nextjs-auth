@@ -34,6 +34,7 @@
     "mockExam": "Mock Exam",
     "leaderboard": "Leaderboard",
     "support": "Support",
+    "features": "Features",
     "blueprint": "Exam Blueprints",
     "mission": "Our Mission",
     "contact": "Contact",
@@ -41,6 +42,24 @@
     "signOut": "Sign out",
     "logOut": "Log Out",
     "dashboard": "Dashboard",
+    "featureLinks": {
+      "studyPlanner": {
+        "title": "Study Planner",
+        "desc": "Plan your prep with a smart, adaptive schedule."
+      },
+      "blueprint": {
+        "title": "Exam Blueprints",
+        "desc": "See exactly what each exam tests, topic by topic."
+      },
+      "browseResources": {
+        "title": "Browse Resources",
+        "desc": "Curated notes, sheets and references in one place."
+      },
+      "featureRequests": {
+        "title": "Feature Requests",
+        "desc": "Suggest and vote on what we build next."
+      }
+    },
     "supportLinks": {
       "survey": {
         "title": "Survey",

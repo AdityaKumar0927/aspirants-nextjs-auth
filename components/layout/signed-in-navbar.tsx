@@ -33,8 +33,16 @@ import { Toaster } from "../ui/toaster"
 
 // Labels resolve via i18n keys (nav.supportLinks.<key>.title/.desc); hrefs stay literal.
 const supportLinks = [
-  { key: "survey", href: "/survey" },
   { key: "report", href: "/issues" },
+]
+
+// The other features/products we've built, grouped into a dropdown.
+// Labels resolve via i18n keys (nav.featureLinks.<key>.title/.desc).
+const featureLinks = [
+  { key: "studyPlanner", href: "/study-planner" },
+  { key: "blueprint", href: "/blueprint" },
+  { key: "browseResources", href: "/browse-resources" },
+  { key: "featureRequests", href: "/feature-requests" },
 ]
 
 export default function NavBar({ session }: { session: Session | null }) {
@@ -205,6 +213,24 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
+            {t("nav.features")}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[300px] gap-1 p-2 md:w-[400px] md:grid-cols-2 lg:w-[500px]">
+              {featureLinks.map((link) => (
+                <ListItem
+                  key={link.key}
+                  title={t(`nav.featureLinks.${link.key}.title`)}
+                  href={link.href}
+                >
+                  {t(`nav.featureLinks.${link.key}.desc`)}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
             {t("nav.support")}
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -246,6 +272,7 @@ function MobileNavLinks({
   handleLogout,
 }: MobileNavLinksProps) {
   const t = useT()
+  const [featuresOpen, setFeaturesOpen] = React.useState(false)
   return (
     <nav className="p-4 space-y-2">
       <Link
@@ -269,6 +296,31 @@ function MobileNavLinks({
       >
         {t("nav.leaderboard")}
       </Link>
+      <div>
+        <button
+          className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          onClick={() => setFeaturesOpen((o) => !o)}
+          aria-expanded={featuresOpen}
+        >
+          {t("nav.features")}
+          <ChevronDown size={20} className={cn("transition-transform", featuresOpen && "rotate-180")} />
+        </button>
+        {featuresOpen && (
+          <ul className="mt-1 space-y-1 pl-4">
+            {featureLinks.map((link) => (
+              <li key={link.key}>
+                <Link
+                  href={link.href}
+                  className="flex min-h-11 items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t(`nav.featureLinks.${link.key}.title`)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <div>
         <button
           className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"

@@ -120,6 +120,19 @@ interface UserAnswer {
   isCorrect: boolean;
 }
 
+/**
+ * Seed data for rendering <Stats> as a populated DEMO (e.g. the home-page
+ * preview) without hitting the API. When provided, the component skips all
+ * fetches and uses these arrays so the charts look full for signed-out visitors.
+ */
+export interface StatsDemoData {
+  userName?: string;
+  performance: UserPerformance[];
+  progress: UserProgress[];
+  answers: UserAnswer[];
+  filterOptions: FilterOptionsType;
+}
+
 /* 
    Main Stats state with filter logic
 */
@@ -370,9 +383,9 @@ function ChartCard({ title, children }: { title: string; children: React.ReactNo
 /* ------------------------------------------------------------------
    6) Stats component
    ------------------------------------------------------------------ */
-export default function Stats() {
-  const { data: session } = useSession(); 
-  const userName = session?.user?.name || "Guest";
+export default function Stats({ demo }: { demo?: StatsDemoData } = {}) {
+  const { data: session } = useSession();
+  const userName = demo?.userName || session?.user?.name || "Guest";
 
   const { toast } = useToast();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -390,6 +403,10 @@ export default function Stats() {
   const fetchFilterOptions = useCallback(async () => {
     dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: true });
     try {
+      if (demo) {
+        dispatch({ type: "SET_FILTER_OPTIONS", payload: demo.filterOptions });
+        return; // finally still clears the loading flag
+      }
       const res = await fetch("/api/filters", { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to fetch filter fields.");
       const raw = await res.json();
@@ -413,7 +430,7 @@ export default function Stats() {
     } finally {
       dispatch({ type: "SET_FILTER_OPTIONS_LOADING", payload: false });
     }
-  }, [toast]);
+  }, [toast, demo]);
 
   /* 
     6(B) fetch the data for userPerformance, userProgress, userAnswers 
@@ -431,6 +448,12 @@ export default function Stats() {
   const fetchAllData = useCallback(async () => {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
+      if (demo) {
+        setRawPerf(demo.performance);
+        setRawProg(demo.progress);
+        setRawAns(demo.answers);
+        return; // finally still clears the loading flag
+      }
       const [perfRes, progRes, ansRes] = await Promise.all([
         fetch("/api/user-performance/get", { cache: "no-store" }),
         fetch("/api/user-progress", { cache: "no-store" }),
@@ -461,7 +484,7 @@ export default function Stats() {
     } finally {
       dispatch({ type: "SET_LOADING", payload: false });
     }
-  }, [toast]);
+  }, [toast, demo]);
 
   // On mount => fetch filter fields + main data
   useEffect(() => {
