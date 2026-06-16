@@ -86,7 +86,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
           onClick={() => setTheme(theme === "pink" ? "light" : "pink")}
           aria-label="Make pink"
           aria-pressed={theme === "pink"}
-          className={`${btn} hover:text-[#2596be]`}
+          className={`${btn} hover:text-[#ec4899]`}
         >
           <svg
             viewBox="0 0 24 24"
@@ -104,10 +104,10 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
         {/* Tooltip — only on the heart */}
         <span
           role="tooltip"
-          className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-[#2596be] px-2.5 py-1 text-xs font-semibold text-white opacity-0 shadow-lg shadow-[#2596be]/40 transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100"
+          className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 translate-y-1 whitespace-nowrap rounded-md bg-[#ec4899] px-2.5 py-1 text-xs font-semibold text-white opacity-0 shadow-lg shadow-pink-500/40 transition-all duration-150 group-hover:translate-y-0 group-hover:opacity-100"
         >
           Make pink
-          <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-[#2596be]" />
+          <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 bg-[#ec4899]" />
         </span>
       </div>
     </div>
