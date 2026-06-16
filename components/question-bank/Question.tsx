@@ -589,9 +589,9 @@ function Question({
                     alt={`Diagram for question #${displayNumber}`}
                     width={800}
                     height={600}
-                    // Diagrams are black line-art on transparent bg; invert to
-                    // white so they're visible on the dark surface.
-                    className="rounded-md w-full h-auto object-contain dark:invert"
+                    // Dark mode: invert brightness but keep hue (see .diagram-invert)
+                    // so black line-art shows white and coloured figures stay true.
+                    className="rounded-md w-full h-auto object-contain diagram-invert"
                   />
                 </div>
               )}
@@ -646,7 +646,7 @@ function Question({
                                 alt={`Option ${letter}`}
                                 width={800}
                                 height={600}
-                                className="rounded-md w-full h-auto object-contain"
+                                className="rounded-md w-full h-auto object-contain diagram-invert"
                               />
                             </div>
                           ) : (
@@ -740,7 +740,7 @@ function Question({
                                 alt={`Option ${letter}`}
                                 width={800}
                                 height={600}
-                                className="rounded-md w-full h-auto object-contain"
+                                className="rounded-md w-full h-auto object-contain diagram-invert"
                               />
                             </div>
                           ) : (
@@ -977,7 +977,7 @@ function Question({
                               alt="Explanation image"
                               width={800}
                               height={600}
-                              className="rounded-md w-full h-auto object-contain"
+                              className="rounded-md w-full h-auto object-contain diagram-invert"
                             />
                           </div>
                         ) : (
@@ -993,7 +993,7 @@ function Question({
                               alt="Markscheme image"
                               width={800}
                               height={600}
-                              className="rounded-md w-full h-auto object-contain"
+                              className="rounded-md w-full h-auto object-contain diagram-invert"
                             />
                           </div>
                         ) : (

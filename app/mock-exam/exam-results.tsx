@@ -69,7 +69,7 @@ function renderDiagram(diagramUrl?: string) {
       <img
         src={diagramUrl}
         alt="Diagram"
-        className="rounded-md w-full h-auto object-contain dark:invert"
+        className="rounded-md w-full h-auto object-contain diagram-invert"
       />
     </div>
   )
@@ -122,7 +122,7 @@ function renderOptions(q: QuestionType, userAnswer: string | null) {
               <img
                 src={optionText}
                 alt={`Option ${optionKey}`}
-                className="rounded-md w-full h-auto object-contain mt-2"
+                className="rounded-md w-full h-auto object-contain mt-2 diagram-invert"
               />
             ) : (
               <span

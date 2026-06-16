@@ -165,7 +165,7 @@ export default function Exam({
           alt="Question diagram"
           width={800}
           height={600}
-          className="h-auto w-full rounded-md border border-rule object-contain dark:invert"
+          className="h-auto w-full rounded-md border border-rule object-contain diagram-invert"
         />
       </div>
     ) : null
@@ -195,7 +195,7 @@ export default function Exam({
             alt={`Option ${key}`}
             width={400}
             height={300}
-            className="h-auto w-full rounded-md object-contain"
+            className="h-auto w-full rounded-md object-contain diagram-invert"
           />
         ) : (
           <span className="latex-font text-base leading-7 sm:text-lg">
