@@ -297,16 +297,22 @@ export default function FeatureRequestPage() {
         </div>
         <div className="flex w-full flex-wrap items-center gap-2 md:w-auto">
           <Button
-            variant="outline"
+            variant={sortBy === "votes" ? "default" : "outline"}
             size="sm"
-            onClick={() => setSortBy(sortBy === "votes" ? "date" : "votes")}
+            aria-pressed={sortBy === "votes"}
+            onClick={() => setSortBy("votes")}
           >
-            {sortBy === "votes" ? (
-              <ThumbsUp className="mr-2 h-4 w-4" />
-            ) : (
-              <Calendar className="mr-2 h-4 w-4" />
-            )}
-            <T k="auto.featureRequestsPage.sortBy" /> {sortBy === "votes" ? "Votes" : "Date"}
+            <ThumbsUp className="mr-2 h-4 w-4" />
+            Most voted
+          </Button>
+          <Button
+            variant={sortBy === "date" ? "default" : "outline"}
+            size="sm"
+            aria-pressed={sortBy === "date"}
+            onClick={() => setSortBy("date")}
+          >
+            <Calendar className="mr-2 h-4 w-4" />
+            Newest
           </Button>
           <Button
             variant="outline"
@@ -327,7 +333,7 @@ export default function FeatureRequestPage() {
                 <T k="auto.featureRequestsPage.newFeatureRequest" />
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="theme-desk sm:max-w-[425px] bg-paper text-ink border-rule">
               <DialogHeader>
                 <DialogTitle>
                   <T k="auto.featureRequestsPage.submitANewFeatureRequest" />

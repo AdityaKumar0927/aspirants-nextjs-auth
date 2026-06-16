@@ -14,6 +14,7 @@ export const EXAM_QUESTION_TYPES = [
   "Multiple Correct",
   "Integer",
   "Numerical",
+  "Fill Blanks",
   "Subjective",
 ] as const;
 
@@ -72,6 +73,7 @@ export function canonicalType(raw: unknown, hasOptions: boolean): ExamQuestionTy
   if (s === "multiple choice" || s === "mcq" || s.includes("choice")) return "Multiple Choice";
   if (s.includes("integer") || s === "int") return "Integer";
   if (s.includes("numeric") || s === "num") return "Numerical";
+  if (s.includes("fill")) return "Fill Blanks"; // "fill-blanks", "fill blanks"
   if (s.includes("subjective") || s.includes("descriptive") || s.includes("essay"))
     return "Subjective";
   return hasOptions ? "Multiple Choice" : "Numerical";
@@ -112,15 +114,16 @@ export function normalizeQuestion(raw: any): QuestionType {
     return Number.isFinite(n) ? n : null;
   };
 
-  // Integer/Numerical answers live in `correctOption` (e.g. "58"); the toLetter()
-  // call above nulls it for option-less questions. Recover it as the model
-  // answer so the grader (which reads answerText/min/max) can score them.
-  const isNumeric = type === "Integer" || type === "Numerical";
+  // Integer/Numerical/Fill-Blanks answers live in `correctOption` (e.g. "58" or
+  // "4.7 to 4.9"); the toLetter() call above nulls it for option-less questions.
+  // Recover it as the model answer so the grader can score them.
+  const answerInCorrectOption =
+    type === "Integer" || type === "Numerical" || type === "Fill Blanks";
   const rawCorrect = raw?.correctOption != null ? String(raw.correctOption).trim() : "";
   const numericAnswerText =
     raw?.answerText != null && String(raw.answerText).trim() !== ""
       ? raw.answerText
-      : isNumeric && rawCorrect !== ""
+      : answerInCorrectOption && rawCorrect !== ""
       ? rawCorrect
       : null;
 
@@ -161,12 +164,22 @@ export function isAutoGradable(q: QuestionType): boolean {
   if (q.type === "Multiple Choice" || q.type === "Multiple Correct") {
     return correctLetterSet(q).size > 0;
   }
-  // Integer / Numerical
+  // Integer / Numerical / Fill Blanks (answer recorded as text/range/number)
   return (
     (q.answerText != null && q.answerText !== "") ||
     q.answerMin != null ||
     q.answerMax != null
   );
+}
+
+/** Normalize a free-text answer for lenient comparison (Fill Blanks). */
+function normalizeText(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/\$+/g, "")
+    .replace(/\\[,;]/g, "")
+    .replace(/\s+/g, "")
+    .replace(/[.,;]+$/g, "");
 }
 
 /** Parses a Multiple-Correct answer encoding ("A,C") into letters. */
@@ -215,6 +228,27 @@ export function gradeAnswer(q: QuestionType, answer: string | null): boolean | n
       }
       return false;
     }
+    case "Fill Blanks": {
+      const correct = (q.answerText ?? "").trim();
+      if (!correct) return null;
+      // Numeric range, e.g. "4.7 to 4.9".
+      const range = correct.match(/^(-?\d+(?:\.\d+)?)\s*(?:to|–|-)\s*(-?\d+(?:\.\d+)?)$/i);
+      const num = Number(selected.replace(/\s+/g, ""));
+      if (range && !Number.isNaN(num)) {
+        return num >= Number(range[1]) && num <= Number(range[2]);
+      }
+      // Comma-separated answers compared as an order-independent set; otherwise
+      // a normalized exact match (case/space/LaTeX-`$`-insensitive).
+      const correctParts = correct.split(",").map(normalizeText).filter(Boolean).sort();
+      const answerParts = selected.split(",").map(normalizeText).filter(Boolean).sort();
+      if (correctParts.length > 1) {
+        return (
+          correctParts.length === answerParts.length &&
+          correctParts.every((c, i) => c === answerParts[i])
+        );
+      }
+      return normalizeText(selected) === normalizeText(correct);
+    }
     default:
       return null;
   }
@@ -231,6 +265,7 @@ export function displayCorrectAnswer(q: QuestionType): string {
     }
     case "Integer":
     case "Numerical":
+    case "Fill Blanks":
       if (q.answerText) return q.answerText;
       if (q.answerMin != null || q.answerMax != null)
         return `${q.answerMin ?? "−∞"} to ${q.answerMax ?? "∞"}`;

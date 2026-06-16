@@ -8,7 +8,6 @@ import { ContainerScroll } from '@/components/ui/container-scroll-animation';
 import StatsWithSession from '@/components/layout/StatsWithSession';
 import { PERFORMANCE_DEMO } from '@/components/dashboard/performance-demo-data';
 import MainContent from '@/components/dashboard/MainContent';
-import ShinyButton from '@/components/magicui/shiny-button';
 import ShimmerButton from '@/components/magicui/shimmer-button';
 import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
@@ -101,9 +100,6 @@ export default function Page() {
                       Try Now
                     </span>
                   </ShimmerButton>
-                </Link>
-                <Link className="items-center justify-center space-x-2 hidden" href="BrowseResources">
-                  <ShinyButton text="Browse Resources" />
                 </Link>
               </div>
             </div>

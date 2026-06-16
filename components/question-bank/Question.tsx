@@ -431,17 +431,6 @@ function Question({
   }
 
   /* ------------------------------
-     T/f logic
-     ------------------------------ */
-  const tfOptions = ["True", "False"]
-  async function handleTfSubmit(answer: string) {
-    if (!question.questionId) return
-    await handleMarkComplete(question.questionId, true)
-    handleOptionClick(question.questionId, answer, question.correctOption ?? "")
-    setLocalSelectedOption(answer)
-  }
-
-  /* ------------------------------
      Fill Blanks
      ------------------------------ */
   async function handleFillBlanksSubmit() {
@@ -613,8 +602,12 @@ function Question({
               )}
             </div>
 
-            {/* MCQ */}
-            {(question.type === "Multiple Choice" || question.type?.toLowerCase() === "mcq") &&
+            {/* MCQ (and True/False, whose options are stored as "A: TRUE" / "B:
+                FALSE" — rendering them here keeps selection + grading letter-based) */}
+            {(question.type === "Multiple Choice" ||
+              question.type?.toLowerCase() === "mcq" ||
+              question.type?.toLowerCase() === "t/f" ||
+              question.type?.toLowerCase() === "true/false") &&
               question.options &&
               question.options.length > 0 && (
                 <div className="mb-4">
@@ -775,50 +768,9 @@ function Question({
                 </div>
               )}
 
-            {/* T/f */}
-            {(question.type === "T/f" ||
-              question.type?.toLowerCase() === "t/f" ||
-              question.type?.toLowerCase() === "true/false") && (
-              <div className="mb-4 flex items-center gap-2">
-                {tfOptions.map((val) => {
-                  const isActive = localSelectedOption === val && feedback
-                  const verdict = isActive
-                    ? feedback === "correct"
-                      ? ("correct" as const)
-                      : ("wrong" as const)
-                    : undefined
-                  return (
-                    <button
-                      key={val}
-                      type="button"
-                      onClick={() => handleTfSubmit(val)}
-                      className="omr-option min-h-11 w-auto"
-                      data-state={isActive ? "selected" : undefined}
-                      data-verdict={verdict}
-                      aria-pressed={!!isActive}
-                    >
-                      <OptionMark
-                        letter={val === "True" ? "T" : "F"}
-                        selected={!!isActive}
-                        verdict={verdict}
-                      />
-                      <span className="latex-font text-base leading-7">{val}</span>
-                    </button>
-                  )
-                })}
-                <Button
-                  variant="ghost"
-                  onClick={() =>
-                    question.questionId && handleResetQuestion(question.questionId)
-                  }
-                >
-                  Clear
-                </Button>
-              </div>
-            )}
-
             {/* Fill Blanks */}
-            {question.type?.toLowerCase() === "fill blanks" && (
+            {(question.type?.toLowerCase() === "fill blanks" ||
+              question.type?.toLowerCase() === "fill-blanks") && (
               <div className="mb-4">
                 <Input
                   type="text"

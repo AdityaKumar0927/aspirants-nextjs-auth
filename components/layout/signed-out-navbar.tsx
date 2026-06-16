@@ -26,14 +26,6 @@ import {
 // Labels resolve via i18n keys (nav.supportLinks.<key>.title/.desc); hrefs stay literal.
 const supportLinks = [
   { key: "report", href: "/issues" },
-]
-
-// The other features/products we've built, grouped into a dropdown.
-// Labels resolve via i18n keys (nav.featureLinks.<key>.title/.desc).
-const featureLinks = [
-  { key: "studyPlanner", href: "/study-planner" },
-  { key: "blueprint", href: "/blueprint" },
-  { key: "browseResources", href: "/browse-resources" },
   { key: "featureRequests", href: "/feature-requests" },
 ]
 
@@ -178,22 +170,14 @@ function DesktopNavLinks() {
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
-              {t("nav.features")}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-2 lg:w-[500px]">
-                {featureLinks.map((link) => (
-                  <ListItem
-                    key={link.key}
-                    title={t(`nav.featureLinks.${link.key}.title`)}
-                    href={link.href}
-                  >
-                    {t(`nav.featureLinks.${link.key}.desc`)}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
+            <NavigationMenuLink asChild>
+              <Link
+                href="/blueprint"
+                className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+              >
+                {t("nav.blueprint")}
+              </Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
@@ -230,7 +214,6 @@ interface MobileNavLinksProps {
 
 function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSupport }: MobileNavLinksProps) {
   const t = useT()
-  const [featuresOpen, setFeaturesOpen] = React.useState(false)
   return (
     <nav className="p-4 space-y-2 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
       <Link
@@ -254,38 +237,13 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
       >
         {t("nav.leaderboard")}
       </Link>
-      <div>
-        <button
-          className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-          onClick={() => setFeaturesOpen((o) => !o)}
-          aria-expanded={featuresOpen}
-        >
-          {t("nav.features")}
-          <ChevronDown size={20} className={cn("transition-transform", featuresOpen && "rotate-180")} />
-        </button>
-        <AnimatePresence>
-          {featuresOpen && (
-            <motion.ul
-              className="mt-2 space-y-2 pl-4"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {featureLinks.map((link) => (
-                <ListItem
-                  key={link.key}
-                  title={t(`nav.featureLinks.${link.key}.title`)}
-                  href={link.href}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {t(`nav.featureLinks.${link.key}.desc`)}
-                </ListItem>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </div>
+      <Link
+        href="/blueprint"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        {t("nav.blueprint")}
+      </Link>
       <div>
         <button
           className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
