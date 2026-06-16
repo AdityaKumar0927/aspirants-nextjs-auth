@@ -2,16 +2,23 @@ import { NextResponse } from "next/server"
 import { ApplicationRole } from "@prisma/client"
 import prisma from "@/lib/prisma"
 import { getServerSession } from "next-auth/next"
-import authOptions from "../auth/[...nextauth]/options"
+import authOptions from "../auth/[...nextauth]/options"
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
 
 export const dynamic = "force-dynamic"
 
 export async function POST(request: Request) {
   try {
+    const csrf = assertSameOrigin(request)
+    if (csrf) return csrf
+
     const session = await getServerSession(authOptions)
     if (!session || !session.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
+
+    const limited = await rateLimit(request, "application", { limit: 3, windowSec: 600 }, session.user.id)
+    if (limited) return limited
 
     const body = await request.json()
     const { name, email, role, experience, motivation, honeypot } = body

@@ -1,23 +1,15 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "../../auth/[...nextauth]/options"
+import { requireAdmin } from "@/lib/auth";
 
-export async function GET(req: NextRequest) {
+// Admin-only: list all users for the role-management console. Uses the shared
+// requireAdmin() guard (session role, kept in sync via the jwt callback) rather
+// than a bespoke DB role lookup, so it can't drift from the canonical check.
+export async function GET() {
+  const { response } = await requireAdmin();
+  if (response) return response;
+
   try {
-    const session = await getServerSession(authOptions)
-    if (!session || !session.user || !session.user.email) {
-      return NextResponse.json({ error: "Unauthorized access" }, { status: 401 })
-    }
-
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-      include: { UserRole: true },
-    })
-    if (!user || user.UserRole?.name !== "administrator") {
-      return NextResponse.json({ error: "Unauthorized access" }, { status: 401 })
-    }
-
     const users = await prisma.user.findMany({
       orderBy: { createdAt: "desc" },
       select: {
@@ -32,11 +24,11 @@ export async function GET(req: NextRequest) {
           },
         },
       },
-    })
+    });
 
-    return NextResponse.json(users)
+    return NextResponse.json(users);
   } catch (error) {
-    console.error("Error fetching users:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    console.error("Error fetching users:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

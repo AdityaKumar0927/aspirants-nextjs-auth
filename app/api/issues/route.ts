@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 const MAX_ISSUES = 500;
 
@@ -43,6 +44,11 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+  const limited = await rateLimit(req, "issue", { limit: 8, windowSec: 600 }, session.user.id);
+  if (limited) return limited;
 
   try {
     const parsed = createSchema.safeParse(await req.json());

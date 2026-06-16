@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { getCurrentSession, requireSession } from "@/lib/auth";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 export const CATEGORIES = [
   "UI/UX",
@@ -53,6 +54,11 @@ const createSchema = z.object({
 export async function POST(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+  const limited = await rateLimit(req, "feature-request", { limit: 5, windowSec: 600 }, session.user.id);
+  if (limited) return limited;
 
   let body: unknown;
   try {

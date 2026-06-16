@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { sendContactMessage } from "@/lib/email";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 // Public contact endpoint. Validates the message and emails support via
 // lib/email (which degrades gracefully — logs to the server console when
@@ -13,6 +14,12 @@ const schema = z.object({
 });
 
 export async function POST(req: Request) {
+  // Public endpoint — guard against bots/spam and cross-origin abuse.
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+  const limited = await rateLimit(req, "contact", { limit: 4, windowSec: 600 });
+  if (limited) return limited;
+
   let json: unknown;
   try {
     json = await req.json();

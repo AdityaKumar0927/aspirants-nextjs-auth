@@ -1,19 +1,52 @@
 /** @type {import('next').NextConfig} */
 
+const isProd = process.env.NODE_ENV === "production";
+
+// Content-Security-Policy. Scoped to the origins the app actually loads from:
+//  - fonts: rsms.me (Inter), fonts.googleapis/gstatic (Dancing Script), cdnjs (FontAwesome)
+//  - analytics: Vercel (same-origin /_vercel + vitals) and optional GA
+//  - images: self + data/blob + any https host (avatars, question CDNs via next/image proxy)
+// 'unsafe-inline' is required for scripts (next-themes' anti-FOUC inline script
+// + Next's hydration bootstrap) and styles (Tailwind / next-font / inline
+// style props). Nonce-based 'strict-dynamic' is the stronger next step but is
+// impractical here — there is no single root layout to thread a nonce through.
+// Enforced in production only so dev HMR/websockets/eval keep working.
+const csp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://*.vercel-scripts.com https://www.googletagmanager.com",
+  "style-src 'self' 'unsafe-inline' https://rsms.me https://fonts.googleapis.com https://cdnjs.cloudflare.com",
+  "font-src 'self' data: https://rsms.me https://fonts.gstatic.com https://cdnjs.cloudflare.com",
+  "img-src 'self' data: blob: https:",
+  "connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com https://www.google-analytics.com",
+  "frame-src 'self' https://accounts.google.com",
+  "worker-src 'self' blob:",
+  "manifest-src 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 // Baseline security headers applied to every response.
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-DNS-Prefetch-Control", value: "on" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   {
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=()",
+    value:
+      "camera=(), microphone=(), geolocation=(), browsing-topics=(), interest-cohort=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=()",
   },
+  // CSP enforced in production only (see note above).
+  ...(isProd ? [{ key: "Content-Security-Policy", value: csp }] : []),
 ];
 
 const nextConfig = {
