@@ -544,12 +544,12 @@ function Question({
               </div>
 
               {/* Mark complete & flag — labelled toggle buttons */}
-              <div className="mt-3 flex flex-wrap shrink-0 items-center gap-2 md:mt-0">
+              <div className="mt-3 flex w-full flex-wrap shrink-0 items-center gap-2 md:mt-0 md:w-auto">
                 <button
                   type="button"
                   onClick={() => toggleComplete(!isMarkedComplete)}
                   aria-pressed={isMarkedComplete}
-                  className={`flex min-h-11 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors sm:min-h-9 ${
+                  className={`flex flex-1 justify-center min-h-11 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors sm:min-h-9 md:flex-none md:justify-start ${
                     isMarkedComplete
                       ? "border-st-answered bg-st-answered/10 text-st-answered"
                       : "border-rule bg-secondary text-pencil hover:border-st-answered/50 hover:text-ink"
@@ -563,7 +563,7 @@ function Question({
                   type="button"
                   onClick={toggleReview}
                   aria-pressed={isMarkedForReview}
-                  className={`flex min-h-11 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors sm:min-h-9 ${
+                  className={`flex flex-1 justify-center min-h-11 items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors sm:min-h-9 md:flex-none md:justify-start ${
                     isMarkedForReview
                       ? "border-st-review bg-st-review/10 text-st-review"
                       : "border-rule bg-secondary text-pencil hover:border-st-review/50 hover:text-ink"
@@ -589,9 +589,9 @@ function Question({
                     alt={`Diagram for question #${displayNumber}`}
                     width={800}
                     height={600}
-                    // Dark mode: invert brightness but keep hue (see .diagram-invert)
-                    // so black line-art shows white and coloured figures stay true.
-                    className="rounded-md w-full h-auto object-contain diagram-invert"
+                    // Dark mode: sit SVG diagrams on a white card (see .diagram-darkbg)
+                    // so black/coloured line-art stays legible on the dark surface.
+                    className="rounded-md w-full h-auto object-contain diagram-darkbg"
                   />
                 </div>
               )}
@@ -646,7 +646,7 @@ function Question({
                                 alt={`Option ${letter}`}
                                 width={800}
                                 height={600}
-                                className="rounded-md w-full h-auto object-contain diagram-invert"
+                                className="rounded-md w-full h-auto object-contain diagram-darkbg"
                               />
                             </div>
                           ) : (
@@ -740,7 +740,7 @@ function Question({
                                 alt={`Option ${letter}`}
                                 width={800}
                                 height={600}
-                                className="rounded-md w-full h-auto object-contain diagram-invert"
+                                className="rounded-md w-full h-auto object-contain diagram-darkbg"
                               />
                             </div>
                           ) : (
@@ -977,7 +977,7 @@ function Question({
                               alt="Explanation image"
                               width={800}
                               height={600}
-                              className="rounded-md w-full h-auto object-contain diagram-invert"
+                              className="rounded-md w-full h-auto object-contain diagram-darkbg"
                             />
                           </div>
                         ) : (
@@ -993,7 +993,7 @@ function Question({
                               alt="Markscheme image"
                               width={800}
                               height={600}
-                              className="rounded-md w-full h-auto object-contain diagram-invert"
+                              className="rounded-md w-full h-auto object-contain diagram-darkbg"
                             />
                           </div>
                         ) : (

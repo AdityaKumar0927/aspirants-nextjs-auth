@@ -18,26 +18,26 @@ export default function UserDropdown({ session }: { session: Session }) {
     <div className="relative inline-block text-left">
       <Popover
         content={
-          <div className="w-full rounded-md bg-white p-2 sm:w-56">
+          <div className="theme-desk w-full rounded-md border border-rule bg-paper p-2 text-ink sm:w-56">
             <div className="p-2">
               {session?.user?.name && (
-                <p className="truncate text-sm font-medium text-gray-900">
+                <p className="truncate text-sm font-medium text-ink">
                   {session?.user?.name}
                 </p>
               )}
-              <p className="truncate text-sm text-gray-500">
+              <p className="truncate text-sm text-pencil">
                 {session?.user?.email}
               </p>
             </div>
             <Link  href="/forms"><button
-              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm text-ink transition-all duration-75 hover:bg-secondary"
           
             >
               <SettingsIcon className="h-4 w-4" />
               <p className="text-sm">Settings</p>
             </button> </Link>
             <button
-              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100"
+              className="relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm text-ink transition-all duration-75 hover:bg-secondary"
               onClick={() => signOut()}
             >
               <LogOut className="h-4 w-4" />
@@ -51,7 +51,7 @@ export default function UserDropdown({ session }: { session: Session }) {
       >
         <button
           onClick={() => setOpenPopover(!openPopover)}
-          className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-gray-300 transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
+          className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-rule transition-all duration-75 focus:outline-none active:scale-95 sm:h-9 sm:w-9"
         >
           <Image
             alt={email}

@@ -196,13 +196,15 @@ html.dark .theme-desk {
   --highlight-color: color-mix(in srgb, var(--ink) 16%, var(--paper)) !important;
 }
 
-/* Question diagrams / option / markscheme images in dark mode. These are
-   traced SVGs (mostly black on transparent). A plain invert() flips hue too —
-   so colored diagrams (orange/red figures) turned BLUE/cyan. invert(1) +
-   hue-rotate(180deg) swaps brightness (black -> white, so line art shows on the
-   dark surface) WHILE keeping hues true, so coloured figures stay their colour. */
-.dark .diagram-invert {
-  filter: invert(1) hue-rotate(180deg);
+/* Question diagrams / option / markscheme images are SVGs — mostly black
+   line-art on a transparent ground, so they vanish on the dark surface.
+   Inverting them was unreliable (and hue-shifted coloured figures to blue), so
+   in dark mode we sit each one on a white card instead: the original art (black
+   OR coloured) is always legible, colours intact. Light mode is untouched. */
+.dark .diagram-darkbg {
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 /* -- the OMR bubble: the signature selection language --------------------- */
