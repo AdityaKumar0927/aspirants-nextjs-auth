@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 export const metadata = {
   title: "Parental approval — Penwise",
   description: "Approve your child's Penwise account.",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 };
 
 /** Public layout for the parental-consent verification landing page. */

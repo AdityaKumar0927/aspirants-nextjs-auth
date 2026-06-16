@@ -13,8 +13,8 @@ import { GRIEVANCE_OFFICER_EMAIL } from "@/lib/constants";
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
 function fromAddress(): string {
-  // e.g. "Aspirants <no-reply@aspirants.tech>"
-  return process.env.EMAIL_FROM ?? `Aspirants <${GRIEVANCE_OFFICER_EMAIL}>`;
+  // e.g. "Penwise <onboarding@resend.dev>"
+  return process.env.EMAIL_FROM ?? `Penwise <${GRIEVANCE_OFFICER_EMAIL}>`;
 }
 
 async function sendEmail(opts: {
@@ -117,10 +117,10 @@ export async function sendContactMessage(params: {
   const { name, email, topic, message } = params;
   const subject = `[Contact · ${topic}] from ${name || "an aspirant"}`;
   const text =
-    `New contact message via aspirants.tech\n\n` +
+    `New contact message via Penwise\n\n` +
     `Name: ${name}\nEmail: ${email}\nTopic: ${topic}\n\n${message}`;
   const html = `
-    <p style="margin:0 0 8px"><strong>New contact message</strong> via aspirants.tech</p>
+    <p style="margin:0 0 8px"><strong>New contact message</strong> via Penwise</p>
     <p style="margin:0"><strong>Name:</strong> ${escapeHtml(name)}</p>
     <p style="margin:0"><strong>Email:</strong> ${escapeHtml(email)}</p>
     <p style="margin:0 0 10px"><strong>Topic:</strong> ${escapeHtml(topic)}</p>

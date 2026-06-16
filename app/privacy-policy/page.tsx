@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
           <CardContent className="p-6">
             <p className="text-sm font-light tracking-tight text-muted-foreground dark:text-gray-300">
               Penwise (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), operating the website
-              aspirants.tech, is the Data Fiduciary for your personal data and is committed to
+              penwise-git-main-aditya-kumar-s-projects.vercel.app, is the Data Fiduciary for your personal data and is committed to
               protecting it in accordance with India&rsquo;s Digital Personal Data Protection Act,
               2023 and the DPDP Rules, 2025. This policy explains what we collect, why, how long we
               keep it, how we keep it secure, and the rights you have over it.

@@ -7,7 +7,7 @@ import SessionWrapper from "@/components/compliance/SessionWrapper";
 export const metadata = {
   title: "Account suspended — Penwise",
   description: "Your account access is currently restricted.",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 };
 
 export default function SuspendedLayout({

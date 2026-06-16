@@ -16,7 +16,7 @@ config.autoAddCss = false
 export const metadata = {
   title: "penwise",
   description: "",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 }
 
 const getUserId = () => {

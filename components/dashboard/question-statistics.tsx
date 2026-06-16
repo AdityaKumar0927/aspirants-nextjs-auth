@@ -17,7 +17,7 @@ interface Statistics {
 
 async function getStatistics(): Promise<Statistics> {
   try {
-    const res = await fetch("https://aspirants.tech/api/statistics", { cache: "no-store" })
+    const res = await fetch("/api/statistics", { cache: "no-store" })
     if (!res.ok) {
       throw new Error("Failed to fetch statistics")
     }

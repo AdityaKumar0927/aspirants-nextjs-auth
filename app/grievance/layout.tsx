@@ -7,7 +7,7 @@ import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 export const metadata = {
   title: "Grievance & Data Protection — Penwise",
   description: "Raise a data-protection grievance or contact our Grievance Officer.",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 };
 
 export default function GrievanceLayout({

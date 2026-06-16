@@ -7,7 +7,7 @@ import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 export const metadata = {
   title: "Consent Notice — Penwise",
   description: "What personal data we collect and why.",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 };
 
 export default function ConsentNoticeLayout({

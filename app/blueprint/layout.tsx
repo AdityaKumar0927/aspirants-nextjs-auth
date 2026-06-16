@@ -11,7 +11,7 @@ export const metadata = {
   title: "Exam blueprints — decode any exam from its past papers | Penwise",
   description:
     "Chapter-wise weightage, recurring concepts and year-over-year trends mined from years of past papers. See exactly what each exam tests.",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 };
 
 export default function BlueprintLayout({

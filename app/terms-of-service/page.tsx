@@ -12,7 +12,7 @@ export default function TermsAndConditions() {
         <Card className="mb-8 bg-paper border-rule">
           <CardContent className="p-6">
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400">
-              These Terms and Conditions of Use apply to the Penwise website located at www.aspirants.tech. BY USING
+              These Terms and Conditions of Use apply to the Penwise website located at penwise-git-main-aditya-kumar-s-projects.vercel.app. BY USING
               THE SITE, YOU AGREE TO THESE TERMS OF USE; IF YOU DO NOT AGREE, DO NOT USE THE SITE.
             </p>
           </CardContent>

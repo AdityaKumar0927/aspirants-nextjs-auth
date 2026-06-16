@@ -47,7 +47,7 @@ export default function ComponentGrid() {
           />
         </button>
       </Popover>
-      <Tooltip content="aspirants.tech provides a variety of study tools to enhance your learning experience.">
+      <Tooltip content="Penwise provides a variety of study tools to enhance your learning experience.">
         <div className="flex w-36 cursor-default items-center justify-center rounded-md border border-gray-300 px-3 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100">
           <p className="text-gray-600">Tooltip</p>
         </div>

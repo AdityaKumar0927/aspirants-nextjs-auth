@@ -8,7 +8,7 @@ import SessionWrapper from "@/components/compliance/SessionWrapper";
 export const metadata = {
   title: "Welcome to Penwise",
   description: "A few details before you start.",
-  metadataBase: new URL("https://aspirants.tech/"),
+  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
 };
 
 /**
