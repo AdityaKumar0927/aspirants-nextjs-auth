@@ -773,7 +773,11 @@ export default function QuestionBankContent() {
   /* ------------------------------
      11) Loading Skeleton
      ------------------------------ */
-  if (state.loading || state.actionLoading) {
+  // Only the INITIAL load blanks to the skeleton. Per-question actions
+  // (checking an answer, marking complete, flagging) update state in place —
+  // gating the skeleton on actionLoading made the whole bank "reload" on every
+  // attempt, which users found jarring.
+  if (state.loading) {
     return (
       <div className="w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">

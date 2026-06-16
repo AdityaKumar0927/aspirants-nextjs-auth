@@ -112,6 +112,18 @@ export function normalizeQuestion(raw: any): QuestionType {
     return Number.isFinite(n) ? n : null;
   };
 
+  // Integer/Numerical answers live in `correctOption` (e.g. "58"); the toLetter()
+  // call above nulls it for option-less questions. Recover it as the model
+  // answer so the grader (which reads answerText/min/max) can score them.
+  const isNumeric = type === "Integer" || type === "Numerical";
+  const rawCorrect = raw?.correctOption != null ? String(raw.correctOption).trim() : "";
+  const numericAnswerText =
+    raw?.answerText != null && String(raw.answerText).trim() !== ""
+      ? raw.answerText
+      : isNumeric && rawCorrect !== ""
+      ? rawCorrect
+      : null;
+
   return {
     id: String(raw?.id ?? raw?.questionId ?? ""),
     questionId: raw?.questionId ? String(raw.questionId) : undefined,
@@ -119,7 +131,7 @@ export function normalizeQuestion(raw: any): QuestionType {
     options,
     correctOption,
     correctOptions,
-    answerText: raw?.answerText ?? null,
+    answerText: numericAnswerText,
     answerMin: toNum(raw?.answerMin),
     answerMax: toNum(raw?.answerMax),
     exam: raw?.exam ?? "",

@@ -39,6 +39,11 @@ export function gradeAnswer(
     if (question.answerText != null && question.answerText.trim() !== "") {
       return Number(question.answerText.trim()) === value;
     }
+    // Integer/Numerical answers are commonly stored in `correctOption` (e.g. "58").
+    if (question.correctOption != null && question.correctOption.trim() !== "") {
+      const target = Number(question.correctOption.trim());
+      if (!Number.isNaN(target)) return target === value;
+    }
     return null;
   }
 
