@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import T from "@/components/i18n/T"
+import LeaderboardPrivacy from "@/app/leaderboard/leaderboard-privacy"
 
 interface Props {
   isMinor: boolean;
@@ -146,6 +147,16 @@ export default function PrivacyDashboard({
         <Button onClick={downloadData} className="mt-3 min-h-11">
           <T k="auto.privacyPrivacyDashboard.downloadMyDataJson" />
         </Button>
+      </section>
+
+      {/* Leaderboard visibility */}
+      <section>
+        <h4 className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
+          Leaderboard visibility
+        </h4>
+        <div className="mt-3">
+          <LeaderboardPrivacy embedded />
+        </div>
       </section>
 
       {/* Consents */}

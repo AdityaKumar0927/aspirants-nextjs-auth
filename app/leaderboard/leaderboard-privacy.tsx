@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react"
 
 /**
- * Self-contained "Your ranking visibility" panel shown to signed-in aspirants on
- * the Merit List. Lets them opt out, appear anonymously, or set a custom display
- * name. Loads + saves via /api/leaderboard/privacy.
+ * "Your ranking visibility" controls — opt out, appear anonymously, or set a
+ * custom display name. Loads + saves via /api/leaderboard/privacy.
+ *
+ * Default: a collapsible panel for the Merit List page. `embedded`: renders the
+ * controls inline + always-open, for the Settings → Privacy area.
  */
-export default function LeaderboardPrivacy() {
+export default function LeaderboardPrivacy({ embedded = false }: { embedded?: boolean }) {
   const [open, setOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [optOut, setOptOut] = useState(false)
@@ -48,20 +50,8 @@ export default function LeaderboardPrivacy() {
     }
   }
 
-  return (
-    <section className="paper-sheet mt-4 overflow-hidden">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-expanded={open}
-        className="flex w-full items-center justify-between px-5 py-3.5 text-left transition-colors hover:bg-secondary/40"
-      >
-        <span className="type-display text-sm text-ink">Your ranking visibility</span>
-        <span className="type-data text-xs text-pencil">{open ? "Hide" : "Manage"}</span>
-      </button>
-
-      {open && (
-        <div className="space-y-4 border-t border-rule px-5 py-4">
+  const controls = (
+    <div className="space-y-4">
           <label className="flex cursor-pointer items-start gap-2.5 text-sm text-ink">
             <input
               type="checkbox"
@@ -131,8 +121,32 @@ export default function LeaderboardPrivacy() {
               </span>
             )}
           </div>
-        </div>
-      )}
+    </div>
+  )
+
+  // Settings → Privacy: render the controls inline, always open.
+  if (embedded) {
+    return (
+      <div className="space-y-3">
+        <p className="text-sm text-pencil">Choose how you appear on the public Merit List.</p>
+        {controls}
+      </div>
+    )
+  }
+
+  // Merit List page: a collapsible panel.
+  return (
+    <section className="paper-sheet mt-4 overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between px-5 py-3.5 text-left transition-colors hover:bg-secondary/40"
+      >
+        <span className="type-display text-sm text-ink">Your ranking visibility</span>
+        <span className="type-data text-xs text-pencil">{open ? "Hide" : "Manage"}</span>
+      </button>
+      {open && <div className="border-t border-rule px-5 py-4">{controls}</div>}
     </section>
   )
 }

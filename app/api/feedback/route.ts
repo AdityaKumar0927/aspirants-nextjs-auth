@@ -4,6 +4,36 @@ import prisma from "@/lib/prisma"
 import authOptions from "../auth/[...nextauth]/options"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
 
+/** GET /api/feedback — the signed-in user's own feedback history + threads. */
+export async function GET() {
+  const session = await getServerSession(authOptions)
+  if (!session?.user?.id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+
+  const items = await prisma.feedback.findMany({
+    where: { userId: session.user.id },
+    orderBy: { createdAt: "desc" },
+    take: 50,
+    select: {
+      id: true,
+      content: true,
+      emoji: true,
+      status: true,
+      anonymous: true,
+      createdAt: true,
+      messages: {
+        orderBy: { createdAt: "asc" },
+        select: { id: true, fromAdmin: true, content: true, createdAt: true },
+      },
+    },
+  })
+
+  const res = NextResponse.json(items)
+  res.headers.set("Cache-Control", "private, no-store")
+  return res
+}
+
 export async function POST(request: Request) {
   try {
     const csrf = assertSameOrigin(request)

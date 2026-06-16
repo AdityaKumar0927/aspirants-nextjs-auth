@@ -20,6 +20,10 @@ const sidebarNavItems = [
     title: "Privacy & Data",
     href: "/forms/privacy",
   },
+  {
+    title: "Feedback",
+    href: "/forms/feedback",
+  },
 ];
 
 interface SettingsLayoutProps {
