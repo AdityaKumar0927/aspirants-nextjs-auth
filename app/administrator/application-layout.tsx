@@ -58,7 +58,10 @@ const navGroups: NavGroup[] = [
   },
   {
     heading: "Support",
-    items: [{ href: "/administrator/feedback", label: "Feedback", icon: IconChat }],
+    items: [
+      { href: "/administrator/feedback", label: "Feedback", icon: IconChat },
+      { href: "/administrator/feature-requests", label: "Feature requests", icon: IconChecklist },
+    ],
   },
   {
     heading: "Compliance",

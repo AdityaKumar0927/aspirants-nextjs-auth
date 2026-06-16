@@ -15,6 +15,7 @@ import {
   User,
   Calendar,
   Send,
+  Trash2,
 } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
@@ -67,6 +68,7 @@ interface FeatureRequest {
   submittedBy: string;
   submittedDate: string;
   hasVoted: boolean;
+  mine: boolean;
 }
 
 interface Comment {
@@ -111,6 +113,7 @@ export default function FeatureRequestPage() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentText, setCommentText] = useState("");
   const [posting, setPosting] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedStatus, setSelectedStatus] = useState<string>("all");
@@ -224,6 +227,23 @@ export default function FeatureRequestPage() {
       toast.error("Couldn’t post your comment.");
     } finally {
       setPosting(false);
+    }
+  };
+
+  const deleteOwnRequest = async () => {
+    if (!selectedFeature) return;
+    if (!window.confirm("Permanently delete your feature request? This can’t be undone.")) return;
+    setDeleting(true);
+    try {
+      const res = await fetch(`/api/feature-requests/${selectedFeature.id}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Delete failed");
+      setFeatureRequests((prev) => prev.filter((f) => f.id !== selectedFeature.id));
+      setSelectedFeature(null);
+      toast.success("Your feature request was deleted.");
+    } catch {
+      toast.error("Couldn’t delete your request. Please try again.");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -501,6 +521,20 @@ export default function FeatureRequestPage() {
                     {STATUS_META[selectedFeature.status].label}
                   </Badge>
                 </div>
+                {selectedFeature.mine && (
+                  <div className="flex justify-end">
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={deleteOwnRequest}
+                      disabled={deleting}
+                      className="text-redpen hover:bg-redpen/10 hover:text-redpen"
+                    >
+                      <Trash2 className="mr-1.5 h-4 w-4" />
+                      {deleting ? "Deleting…" : "Delete my request"}
+                    </Button>
+                  </div>
+                )}
                 <Separator />
                 <h3 className="type-display text-lg text-ink">
                   <T k="auto.featureRequestsPage.comments" /> ({comments.length})

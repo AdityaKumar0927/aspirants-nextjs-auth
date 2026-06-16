@@ -39,6 +39,7 @@ export async function GET() {
     submittedBy: r.createdBy?.UserSettings?.username || r.createdBy?.name || "Aspirant",
     submittedDate: r.createdAt.toISOString(),
     hasVoted: Array.isArray(r.votes) ? r.votes.length > 0 : false,
+    mine: !!myId && r.createdById === myId,
   }));
 
   return NextResponse.json(data);
