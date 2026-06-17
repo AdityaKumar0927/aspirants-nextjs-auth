@@ -85,9 +85,11 @@ function QuestionCard({
 export default function RevisionPlayer({
   bank,
   onRestart,
+  onMastered,
 }: {
   bank: KRevisionBank;
   onRestart: () => void;
+  onMastered?: () => void;
 }) {
   const [mastery, setMastery] = useState<Record<string, number>>({});
   const [calibration, setCalibration] = useState<{ predicted: number; outcome: number }[]>([]);
@@ -138,6 +140,7 @@ export default function RevisionPlayer({
     setCalibration(nextCal);
     setLastAnswered(qid);
     persist(nextMastery, nextCal);
+    if (bank.questions.every((q) => (nextMastery[q.id] ?? -1) === 2)) onMastered?.();
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
   }
 

@@ -6,7 +6,7 @@
  * can close the tab and resume. (A future phase can sync this to the DB for
  * cross-device spaced return.) Everything here is SSR-safe — no-ops on the server.
  */
-import type { KLesson } from "@/lib/keystone/schema";
+import type { KLesson, KRevisionBank } from "@/lib/keystone/schema";
 import type { KeystoneAnswers } from "@/lib/keystone/questionnaire";
 
 const ANSWERS_KEY = "keystone.answers.v1";
@@ -106,4 +106,65 @@ export function saveRevisionState(st: KRevisionState): void {
 }
 export function clearRevisionState(): void {
   remove(REVISION_KEY);
+}
+
+/* ------------------------------ The shelf -------------------------------- */
+/* A library of saved lessons + revision sets, with an expanding spaced-return
+ * schedule tracked across sessions (on-device). */
+
+const LIBRARY_KEY = "keystone.library.v1";
+const DAY = 24 * 60 * 60 * 1000;
+/** Expanding review gaps: 1d, 3d, 1w, 2w, 1mo. Indexed by reviewCount. */
+const GAPS = [DAY, 3 * DAY, 7 * DAY, 14 * DAY, 30 * DAY];
+
+export interface KLibraryItem {
+  id: string;
+  mode: "learning" | "revision";
+  title: string;
+  subject: string | null;
+  createdAt: number;
+  lastStudiedAt: number | null;
+  /** When this item next becomes due for review (ms epoch); null = never studied. */
+  dueAt: number | null;
+  reviewCount: number;
+  data: KLesson | KRevisionBank;
+  progress: KProgress | null;
+}
+
+export function newId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  return "k" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+export function listLibrary(): KLibraryItem[] {
+  const arr = read<KLibraryItem[]>(LIBRARY_KEY);
+  return Array.isArray(arr) ? arr : [];
+}
+export function getLibraryItem(id: string): KLibraryItem | null {
+  return listLibrary().find((x) => x.id === id) ?? null;
+}
+export function upsertLibraryItem(item: KLibraryItem): void {
+  const list = listLibrary();
+  const i = list.findIndex((x) => x.id === item.id);
+  if (i >= 0) list[i] = item;
+  else list.unshift(item);
+  write(LIBRARY_KEY, list.slice(0, 50));
+}
+export function removeLibraryItem(id: string): void {
+  write(LIBRARY_KEY, listLibrary().filter((x) => x.id !== id));
+}
+/** Record a study session: stamp lastStudied and push out the next due date. */
+export function markStudied(id: string): void {
+  const list = listLibrary();
+  const it = list.find((x) => x.id === id);
+  if (!it) return;
+  const now = Date.now();
+  it.lastStudiedAt = now;
+  it.dueAt = now + GAPS[Math.min(it.reviewCount, GAPS.length - 1)];
+  it.reviewCount += 1;
+  write(LIBRARY_KEY, list);
+}
+/** True if the item is due for review now (or never studied). */
+export function isDue(it: KLibraryItem): boolean {
+  return it.dueAt === null || it.dueAt <= Date.now();
 }
