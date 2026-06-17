@@ -18,7 +18,28 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, '1 m'),
 })
 
+// Per-instance, best-effort conversation memory. Bounded in two ways so a
+// long-lived edge instance can't grow it without limit (OOM): a hard key cap
+// (FIFO-evict the oldest session) and a TTL dropped lazily on access.
 const chatHistory: { [sessionId: string]: ModelMessage[] } = {}
+const chatHistoryMeta = new Map<string, number>() // historyKey -> last-touched ms
+const MAX_HISTORY_KEYS = 1000
+const HISTORY_TTL_MS = 60 * 60 * 1000 // 1h
+
+// Cap untrusted, LLM-bound free text so a caller can't blow the prompt /
+// token budget (or the in-memory history) with a multi-megabyte field.
+const MAX_FIELD_LEN = 8000
+
+function touchHistory(key: string) {
+  chatHistoryMeta.set(key, Date.now())
+  // Evict the oldest session once over the cap (insertion order = LRU-ish here).
+  while (chatHistoryMeta.size > MAX_HISTORY_KEYS) {
+    const oldest = chatHistoryMeta.keys().next().value
+    if (oldest === undefined) break
+    chatHistoryMeta.delete(oldest)
+    delete chatHistory[oldest]
+  }
+}
 
 const systemPrompt: ModelMessage = {
   role: 'system',
@@ -115,9 +136,28 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Reject oversized untrusted input before it reaches the prompt or history.
+    const contextStr = typeof context === 'string' ? context : JSON.stringify(context)
+    if (
+      String(question).length > MAX_FIELD_LEN ||
+      contextStr.length > MAX_FIELD_LEN ||
+      String(sessionId).length > MAX_FIELD_LEN
+    ) {
+      return NextResponse.json(
+        { error: 'Bad Request', details: `Each field must be at most ${MAX_FIELD_LEN} characters.` },
+        { status: 400 }
+      )
+    }
+
     // Scope history to the authenticated user so one user can never read
     // (or poison) another user's conversation by guessing a sessionId.
     const historyKey = `${token.sub}:${sessionId}`
+    // Drop this session's history if it's gone stale, then mark it touched.
+    const lastTouched = chatHistoryMeta.get(historyKey)
+    if (lastTouched !== undefined && Date.now() - lastTouched > HISTORY_TTL_MS) {
+      delete chatHistory[historyKey]
+    }
+    touchHistory(historyKey)
     if (!chatHistory[historyKey]) {
       chatHistory[historyKey] = [
         systemPrompt,
