@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity";
 
 // Public read of a request's comments.
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -57,6 +58,10 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       { error: parsed.error.issues[0]?.message ?? "Invalid comment." },
       { status: 400 }
     );
+  }
+
+  if (containsProfanity(parsed.data.content)) {
+    return NextResponse.json({ error: PROFANITY_ERROR }, { status: 400 });
   }
 
   const created = await prisma.featureRequestComment.create({

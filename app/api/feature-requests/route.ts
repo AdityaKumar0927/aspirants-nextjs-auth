@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { getCurrentSession, requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity";
 
 export const CATEGORIES = [
   "UI/UX",
@@ -73,6 +74,10 @@ export async function POST(req: NextRequest) {
       { error: parsed.error.issues[0]?.message ?? "Please check the form." },
       { status: 400 }
     );
+  }
+
+  if (containsProfanity(parsed.data.title, parsed.data.description)) {
+    return NextResponse.json({ error: PROFANITY_ERROR }, { status: 400 });
   }
 
   const fr = await prisma.featureRequest.create({

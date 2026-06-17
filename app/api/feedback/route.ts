@@ -4,6 +4,7 @@ import { z } from "zod"
 import prisma from "@/lib/prisma"
 import authOptions from "../auth/[...nextauth]/options"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
+import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity"
 
 const feedbackSchema = z.object({
   content: z.string().trim().min(1).max(10000),
@@ -59,6 +60,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Validation failed", issues: parsed.error.flatten() }, { status: 400 })
     }
     const { content, emoji, anonymous } = parsed.data
+
+    if (containsProfanity(content)) {
+      return NextResponse.json({ error: PROFANITY_ERROR }, { status: 400 })
+    }
 
     const feedback = await prisma.feedback.create({
       data: {

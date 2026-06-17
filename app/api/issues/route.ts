@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity";
 
 const MAX_ISSUES = 500;
 
@@ -59,6 +60,10 @@ export async function POST(req: NextRequest) {
       );
     }
     const { title, description, priority, area } = parsed.data;
+
+    if (containsProfanity(title, description)) {
+      return NextResponse.json({ error: PROFANITY_ERROR }, { status: 400 });
+    }
 
     const newIssue = await prisma.issue.create({
       data: {
