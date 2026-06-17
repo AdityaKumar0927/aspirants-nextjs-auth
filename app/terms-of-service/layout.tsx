@@ -13,14 +13,13 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import Bar from '@/components/layout/Bar';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from "../api/auth/[...nextauth]/options";
+import { auth } from "@/auth";
 
 config.autoAddCss = false;
 
 const getUserId = async () => {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     return session?.user?.id ?? null;
   } catch (error) {
     console.error('Error fetching user ID:', error);

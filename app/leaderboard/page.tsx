@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth/next";
-import authOptions from "@/app/api/auth/[...nextauth]/options";
+import { auth } from "@/auth";
 import { getLeaderboard } from "@/lib/leaderboard";
 import LeaderboardClient from "./leaderboard-client";
 
@@ -10,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function LeaderboardPage() {
   const [entries, session] = await Promise.all([
     getLeaderboard(),
-    getServerSession(authOptions),
+    auth(),
   ]);
 
   const asOf = new Intl.DateTimeFormat("en-IN", {

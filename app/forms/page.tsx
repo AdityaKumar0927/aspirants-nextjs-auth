@@ -1,13 +1,12 @@
 import { Separator } from "@/components/ui/separator"
 import ProfileFormSession from "./profile-form-session"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/app/api/auth/[...nextauth]/options"
+import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import prisma from "@/lib/prisma"
 import T from "@/components/i18n/T"
 
 export default async function SettingsProfilePage() {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   if (!session) {
     redirect('/')

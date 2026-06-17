@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/options";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
 import { GRIEVANCE_OFFICER_EMAIL, GRIEVANCE_OFFICER_NAME } from "@/lib/constants";
@@ -11,7 +10,7 @@ import PrivacyDashboard from "./privacy-dashboard";
  * correction/erasure/grievance requests.
  */
 export default async function PrivacySettingsPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user?.id) redirect("/");
 
   return (

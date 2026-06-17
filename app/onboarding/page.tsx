@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../api/auth/[...nextauth]/options";
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { GRIEVANCE_OFFICER_EMAIL, GRIEVANCE_OFFICER_NAME } from "@/lib/constants";
 import OnboardingFlow from "./onboarding-flow";
@@ -11,7 +10,7 @@ import OnboardingFlow from "./onboarding-flow";
  * Fully-onboarded users are bounced home; signed-out users to sign-in.
  */
 export default async function OnboardingPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session?.user?.id) redirect("/api/auth/signin");
 
   const user = await prisma.user.findUnique({

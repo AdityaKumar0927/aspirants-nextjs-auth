@@ -23,6 +23,12 @@
       "@/lib/*": [
         "lib/*"
       ],
+      "@/auth": [
+        "auth.ts"
+      ],
+      "@/auth.config": [
+        "auth.config.ts"
+      ],
       "@/styles/*": [
         "styles/*"
       ]
