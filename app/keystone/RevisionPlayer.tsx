@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Md, SectionHead, AttemptBox, Calibrate, SelfScore } from "./primitives";
 import type { KRevisionBank, KRevisionQuestion } from "@/lib/keystone/schema";
@@ -84,27 +84,37 @@ function QuestionCard({
 
 export default function RevisionPlayer({
   bank,
+  itemId,
   onRestart,
   onMastered,
 }: {
   bank: KRevisionBank;
+  /** Library item id — scopes mastery per shelf item. */
+  itemId: string;
   onRestart: () => void;
   onMastered?: () => void;
 }) {
   const [mastery, setMastery] = useState<Record<string, number>>({});
-  const [calibration, setCalibration] = useState<{ predicted: number; outcome: number }[]>([]);
+  const [calibration, setCalibration] = useState<Record<string, { predicted: number; outcome: number }>>({});
   const [lastAnswered, setLastAnswered] = useState<string | null>(null);
+  // Bumped every answer so the QuestionCard REMOUNTS (clean state) even when the
+  // same item is re-presented — otherwise a sub-"got it" final item freezes.
+  const [round, setRound] = useState(0);
   const [hydrated, setHydrated] = useState(false);
+  // onMastered fires once per transition into fully-mastered (reset on re-practice).
+  const firedMastered = useRef(false);
 
-  // Resume mastery for this bank.
   useEffect(() => {
-    const st = loadRevisionState(bank.title);
+    const st = loadRevisionState(itemId);
     if (st) {
       setMastery(st.mastery);
       setCalibration(st.calibration);
+      if (Object.keys(st.mastery).length && bank.questions.every((q) => (st.mastery[q.id] ?? -1) === 2)) {
+        firedMastered.current = true; // already fully mastered on resume
+      }
     }
     setHydrated(true);
-  }, [bank.title]);
+  }, [itemId, bank.questions]);
 
   // Active = not-yet-mastered, weakest first, lightly interleaved by topic.
   const ordered = useMemo(() => {
@@ -129,23 +139,36 @@ export default function RevisionPlayer({
   const pct = Math.round((masteredCount / Math.max(1, total)) * 100);
 
   function persist(nextMastery: Record<string, number>, nextCal: typeof calibration) {
-    const st: KRevisionState = { bankTitle: bank.title, mastery: nextMastery, calibration: nextCal, updatedAt: Date.now() };
+    const st: KRevisionState = { itemId, mastery: nextMastery, calibration: nextCal, updatedAt: Date.now() };
     saveRevisionState(st);
   }
 
   function onComplete(qid: string, score: 0 | 1 | 2, predicted: number | null) {
     const nextMastery = { ...mastery, [qid]: score };
-    const nextCal = predicted !== null ? [...calibration, { predicted, outcome: score }] : calibration;
+    const nextCal = predicted !== null ? { ...calibration, [qid]: { predicted, outcome: score } } : calibration;
     setMastery(nextMastery);
     setCalibration(nextCal);
     setLastAnswered(qid);
+    setRound((r) => r + 1);
     persist(nextMastery, nextCal);
-    if (bank.questions.every((q) => (nextMastery[q.id] ?? -1) === 2)) onMastered?.();
+    const allMastered = bank.questions.every((q) => (nextMastery[q.id] ?? -1) === 2);
+    if (allMastered && !firedMastered.current) {
+      firedMastered.current = true;
+      onMastered?.();
+    }
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  const avgGap = calibration.length
-    ? calibration.reduce((acc, r) => acc + Math.abs(r.predicted / 5 - r.outcome / 2), 0) / calibration.length
+  function practiceAgain() {
+    setMastery({});
+    setLastAnswered(null);
+    firedMastered.current = false;
+    persist({}, calibration);
+  }
+
+  const calVals = Object.values(calibration);
+  const avgGap = calVals.length
+    ? calVals.reduce((acc, r) => acc + Math.abs(r.predicted / 5 - r.outcome / 2), 0) / calVals.length
     : 0;
   const calPct = Math.round((1 - avgGap) * 100);
 
@@ -159,7 +182,7 @@ export default function RevisionPlayer({
             <h1 className="type-display text-2xl text-ink">{bank.title}</h1>
             {bank.subject && <p className="type-data text-xs text-pencil">{bank.subject} · revision</p>}
           </div>
-          <Button variant="ghost" size="sm" onClick={() => { clearRevisionState(); onRestart(); }} className="text-pencil">
+          <Button variant="ghost" size="sm" onClick={() => { clearRevisionState(itemId); onRestart(); }} className="text-pencil">
             Start over
           </Button>
         </div>
@@ -167,7 +190,7 @@ export default function RevisionPlayer({
           <div className="h-full rounded-full bg-st-answered transition-all" style={{ width: `${pct}%` }} />
         </div>
         <p className="type-data text-[11px] text-pencil">
-          {masteredCount}/{total} mastered{calibration.length > 0 ? ` · calibration ${calPct}% aligned` : ""}
+          {masteredCount}/{total} mastered{calVals.length > 0 ? ` · calibration ${calPct}% aligned` : ""}
         </p>
       </div>
 
@@ -177,7 +200,7 @@ export default function RevisionPlayer({
           <p className="type-data text-[11px] text-pencil">
             Weak and overconfident items come back more often, and anything you miss returns until it sticks.
           </p>
-          <QuestionCard key={current.id} q={current} onComplete={(score, predicted) => onComplete(current.id, score, predicted)} />
+          <QuestionCard key={`${current.id}:${round}`} q={current} onComplete={(score, predicted) => onComplete(current.id, score, predicted)} />
         </>
       ) : (
         <div className="paper-sheet space-y-4 p-5">
@@ -186,20 +209,20 @@ export default function RevisionPlayer({
             Every question reached “got it”. Come back tomorrow and a day or two after that — spaced return is what makes
             it survive to the exam.
           </p>
-          {calibration.length > 0 && (
+          {calVals.length > 0 && (
             <div className="rounded-md border border-rule bg-secondary/20 p-3">
               <p className="type-data text-[11px] text-pencil">Calibration — how well your confidence matched your results</p>
-              <p className="text-sm text-ink">{calPct}% aligned across {calibration.length} checks.</p>
+              <p className="text-sm text-ink">{calPct}% aligned across {calVals.length} checks.</p>
             </div>
           )}
           <p className="type-data text-[11px] text-pencil">
             Want more questions? Re-run the revision prompt through your AI on more of the material and paste a new set.
           </p>
           <div className="flex justify-end gap-2">
-            <Button variant="ghost" size="sm" onClick={() => { setMastery({}); persist({}, calibration); }} className="text-pencil">
+            <Button variant="ghost" size="sm" onClick={practiceAgain} className="text-pencil">
               Practice again from scratch
             </Button>
-            <Button onClick={() => { clearRevisionState(); onRestart(); }} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
+            <Button onClick={() => { clearRevisionState(itemId); onRestart(); }} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
               New set
             </Button>
           </div>

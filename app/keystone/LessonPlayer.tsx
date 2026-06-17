@@ -409,7 +409,7 @@ function ConceptView({
             {concept.checks.length === 0 && !concept.calibration && (
               <p className="text-sm text-pencil">No checks were generated for this concept.</p>
             )}
-            {concept.calibration && predicted === null && (
+            {concept.calibration && concept.checks.length > 0 && predicted === null && (
               <div className="rounded-md border border-rule bg-secondary/20 p-3">
                 <Calibrate value={predicted} onChange={setPredicted} />
               </div>

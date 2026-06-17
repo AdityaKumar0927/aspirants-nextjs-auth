@@ -26,6 +26,7 @@ const itemSchema = z.object({
   reviewCount: z.coerce.number().int().min(0).max(100_000).default(0),
   lastStudiedAt: z.number().nullish(),
   dueAt: z.number().nullish(),
+  updatedAt: z.number().nullish(),
 });
 
 type Row = {
@@ -39,6 +40,7 @@ type Row = {
   lastStudiedAt: Date | null;
   dueAt: Date | null;
   createdAt: Date;
+  updatedAt: Date;
 };
 
 function toClient(it: Row) {
@@ -53,6 +55,7 @@ function toClient(it: Row) {
     createdAt: it.createdAt.getTime(),
     lastStudiedAt: it.lastStudiedAt ? it.lastStudiedAt.getTime() : null,
     dueAt: it.dueAt ? it.dueAt.getTime() : null,
+    updatedAt: it.updatedAt.getTime(),
   };
 }
 
@@ -78,7 +81,18 @@ export async function POST(req: NextRequest) {
   const limited = await rateLimit(req, "keystone-sync", { limit: 120, windowSec: 60 }, session.user.id);
   if (limited) return limited;
 
-  const parsed = itemSchema.safeParse(await req.json().catch(() => null));
+  // Cap the raw body BEFORE deserializing (the per-field refines run after).
+  let body: unknown;
+  try {
+    const text = await req.text();
+    if (text.length > 1_200_000) {
+      return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+    }
+    body = JSON.parse(text);
+  } catch {
+    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
+  const parsed = itemSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: "Validation failed", issues: parsed.error.flatten() }, { status: 400 });
   }
@@ -100,6 +114,7 @@ export async function POST(req: NextRequest) {
     reviewCount: d.reviewCount,
     lastStudiedAt: d.lastStudiedAt ? new Date(d.lastStudiedAt) : null,
     dueAt: d.dueAt ? new Date(d.dueAt) : null,
+    updatedAt: d.updatedAt ? new Date(d.updatedAt) : new Date(),
   };
 
   await prisma.keystoneItem.upsert({

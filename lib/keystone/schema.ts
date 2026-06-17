@@ -97,6 +97,9 @@ const MAX = 200_000; // overall sanity cap is enforced by JSON.parse size; per-f
 
 const s = (v: unknown, max = 20_000): string => {
   if (v === null || v === undefined) return "";
+  // Drop non-scalars (objects/arrays) instead of rendering the literal
+  // "[object Object]" to the student when the LLM mis-types a field.
+  if (typeof v === "object") return "";
   return String(v).trim().slice(0, max);
 };
 const sOrNull = (v: unknown, max = 20_000): string | null => {
@@ -117,7 +120,14 @@ const idFrom = (v: unknown, name: string): string => {
   const t = s(v, 80);
   if (t) return t;
   const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-  return slug || `c${++autoId}`;
+  if (slug) return slug;
+  // No id and a non-alphanumeric name: derive a STABLE id from the name so the
+  // same concept gets the same id in conceptMap and concepts (the counter is
+  // used only for a truly empty name).
+  if (!name) return `c${++autoId}`;
+  let h = 7;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  return `c-${h.toString(36)}`;
 };
 
 function normConcept(raw: unknown): KLessonConcept | null {
@@ -260,6 +270,34 @@ export function validateLesson(raw: unknown): KLessonValidation {
   return { ok: concepts.length > 0, lesson, warnings, missing };
 }
 
+/** The first balanced {...} or [...] block, respecting JSON string contents so
+ *  brackets inside strings or trailing prose don't break extraction. */
+function firstBalanced(src: string): string | null {
+  const start = src.search(/[[{]/);
+  if (start < 0) return null;
+  const open = src[start];
+  const close = open === "{" ? "}" : "]";
+  let depth = 0;
+  let inStr = false;
+  let esc = false;
+  for (let i = start; i < src.length; i++) {
+    const ch = src[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (ch === "\\") esc = true;
+      else if (ch === '"') inStr = false;
+      continue;
+    }
+    if (ch === '"') inStr = true;
+    else if (ch === open) depth++;
+    else if (ch === close) {
+      depth--;
+      if (depth === 0) return src.slice(start, i + 1);
+    }
+  }
+  return null;
+}
+
 /**
  * Extract a JSON value from pasted text — tolerates ```json fences and leading
  * prose by grabbing the first balanced {...} block. Mirrors lib/userbank/schema.
@@ -273,10 +311,10 @@ export function parseLessonText(
 
   const fence = str.match(/```(?:json)?\s*([\s\S]*?)```/i);
   if (fence) str = fence[1].trim();
-  if (!/^[[{]/.test(str)) {
-    const m = str.match(/[[{][\s\S]*[\]}]/);
-    if (m) str = m[0];
-  }
+  // Trim prose before/after the JSON via a balanced-delimiter scan (handles a
+  // stray bracket in trailing prose, which the old greedy regex over-captured).
+  const block = firstBalanced(str);
+  if (block) str = block;
 
   try {
     return { ok: true, data: JSON.parse(str) };
@@ -318,10 +356,16 @@ const DIFF = new Set(["easy", "medium", "hard"]);
 
 export function validateRevision(raw: unknown): KRevisionValidation {
   autoId = 0;
-  if (!isObj(raw)) return { ok: false, bank: null, warnings: [], missing: ["the whole bank object"] };
+  // Accept either { questions: [...] } or a bare top-level [...] of questions.
+  const list: unknown[] | null = Array.isArray(raw)
+    ? raw
+    : isObj(raw) && Array.isArray(raw.questions)
+    ? (raw.questions as unknown[])
+    : null;
+  if (!list) return { ok: false, bank: null, warnings: [], missing: ["the questions array"] };
+  const obj: Record<string, unknown> = isObj(raw) ? raw : {};
 
-  const list = Array.isArray(raw.questions) ? raw.questions : Array.isArray(raw) ? (raw as unknown[]) : [];
-  const questions: KRevisionQuestion[] = (list as unknown[])
+  const questions: KRevisionQuestion[] = list
     .map((q) => {
       if (!isObj(q)) return null;
       const question = s(q.question ?? q.prompt, 10_000);
@@ -349,7 +393,7 @@ export function validateRevision(raw: unknown): KRevisionValidation {
 
   return {
     ok: questions.length > 0,
-    bank: { title: s(raw.title, 300) || "Revision set", subject: sOrNull(raw.subject, 200), questions },
+    bank: { title: s(obj.title, 300) || "Revision set", subject: sOrNull(obj.subject, 200), questions },
     warnings,
     missing,
   };

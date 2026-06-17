@@ -28,6 +28,7 @@ import {
   getLibraryItem,
   upsertLibraryItem,
   removeLibraryItem,
+  mergeRemoteItems,
   markStudied,
   isDue,
   newId,
@@ -87,10 +88,9 @@ export default function KeystoneClient() {
       const remote = await fetchRemoteItems();
       if (!remote.signedIn) return;
       setSignedIn(true);
-      const local = listLibrary();
-      const remoteIds = new Set(remote.items.map((i) => i.id));
-      remote.items.forEach(upsertLibraryItem); // pull cloud → device
-      local.filter((i) => !remoteIds.has(i.id)).forEach(pushRemoteItem); // push device-only → cloud
+      // Last-writer-wins merge; push only the items whose local copy is newer.
+      const toPush = mergeRemoteItems(remote.items);
+      toPush.forEach((id) => { const it = getLibraryItem(id); if (it) pushRemoteItem(it); });
       setLibrary(listLibrary());
     })();
   }, []);
@@ -150,6 +150,7 @@ export default function KeystoneClient() {
       reviewCount: 0,
       data,
       progress: prog,
+      updatedAt: Date.now(),
     };
     upsertLibraryItem(item);
     if (signedIn) pushRemoteItem(item);
@@ -276,7 +277,7 @@ export default function KeystoneClient() {
       return <LessonPlayer lesson={lesson} progress={progress} onProgress={onLessonProgress} onRestart={exitToShelf} />;
     }
     if (mode === "revision" && bank) {
-      return <RevisionPlayer bank={bank} onRestart={exitToShelf} onMastered={onRevisionMastered} />;
+      return <RevisionPlayer bank={bank} itemId={activeId ?? ""} onRestart={exitToShelf} onMastered={onRevisionMastered} />;
     }
     if (mode === "doubt" && doubt) {
       return <DoubtPlayer doubt={doubt} confusion={doubtConfusion} onRestart={exitToShelf} />;

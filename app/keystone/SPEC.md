@@ -36,7 +36,7 @@ The full product brief the user supplied (the "Understanding Engine — Master B
   | `5fd3fd1` | Phase 2 — Revision + Doubt modes |
   | `cefbc93` | Phase 3 — the shelf (library + spaced-return) |
   | `6e47299` | Phase 4 — optional DB cross-device sync |
-- **In flight:** an adversarial multi-agent **code review** of the whole feature was launched (4 dimensions: players / orchestrator+sync / contracts / API). Fold its **confirmed** findings in before merge. (If the run was lost, just re-run `/code-review high` on the branch diff.)
+- **Reviewed + hardened:** an adversarial multi-agent code review (4 dimensions) found **15 confirmed bugs — all fixed** (the commit after `c49a562`): RevisionPlayer dead-end on the last weak item, per-shelf-item revision mastery (was one global slot that wiped other banks), spaced-schedule double-fire, last-writer-wins cloud merge (device-clock round-trip), API request-body size cap, plus validator/contract robustness (bare-array bank, balanced-block parse, stable ids, non-scalar coercion, DELETE rate-limit). tsc + build re-verified.
 - **To activate DB sync:** run **`npm run db:push`** (adds the `KeystoneItem` table). Until then the feature **degrades gracefully** to on-device (localStorage) mode — the sync client treats any non-200 as "guest".
 
 ---
@@ -110,7 +110,7 @@ Validator contract: `{ ok, lesson|bank|doubt, warnings[], missing[] }` — `ok=f
 
 ## 7. Backlog / next phases
 
-**Fold in first:** the in-flight review's confirmed findings (players empty-data edge cases, the sync merge race, contract field-name matches, API IDOR/Json-null). Re-run `/code-review high` on the branch if needed.
+**Already done:** the adversarial review's 15 confirmed findings are all fixed (see Status). Re-run `/code-review high` on the branch before merge if you want a fresh pass on top of the fixes.
 
 **Phase 5 candidates (ranked):**
 1. **Revision bank persistence in the shelf** — currently the bank is shelved but RevisionPlayer keeps mastery in a single `keystone.revision.v1` keyed by bank *title*; unify so each shelf item carries its own mastery (and syncs).

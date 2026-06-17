@@ -417,7 +417,9 @@ model KeystoneItem {
   lastStudiedAt DateTime?
   dueAt         DateTime?
   createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  // Stores the CLIENT's device clock (not server time) so cross-device merge
+  // compares the same clock; set explicitly on every upsert.
+  updatedAt     DateTime  @default(now())
 
   @@index([userId])
 }

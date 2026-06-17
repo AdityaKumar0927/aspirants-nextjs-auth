@@ -86,26 +86,27 @@ export function clearAll(): void {
 
 /* --------------------------- Revision Mode state -------------------------- */
 
-const REVISION_KEY = "keystone.revision.v1";
+const REVISION_PREFIX = "keystone.revision.";
 
-/** Per-question mastery (0 missed / 1 partial / 2 got it) so weak items stay
- *  prioritized across refreshes, keyed by bank title. */
+/** Per-question mastery (0 missed / 1 partial / 2 got it) + calibration, kept
+ *  PER shelf item (keyed by item id) so two revision sets don't clobber each
+ *  other. Calibration is keyed by question id (one row per question, latest
+ *  attempt wins) so re-answers don't inflate the alignment stat. */
 export interface KRevisionState {
-  bankTitle: string;
+  itemId: string;
   mastery: Record<string, number>;
-  calibration: { predicted: number; outcome: number }[];
+  calibration: Record<string, { predicted: number; outcome: number }>;
   updatedAt: number;
 }
 
-export function loadRevisionState(bankTitle: string): KRevisionState | null {
-  const st = read<KRevisionState>(REVISION_KEY);
-  return st && st.bankTitle === bankTitle ? st : null;
+export function loadRevisionState(itemId: string): KRevisionState | null {
+  return read<KRevisionState>(REVISION_PREFIX + itemId);
 }
 export function saveRevisionState(st: KRevisionState): void {
-  write(REVISION_KEY, { ...st, updatedAt: Date.now() });
+  write(REVISION_PREFIX + st.itemId, { ...st, updatedAt: Date.now() });
 }
-export function clearRevisionState(): void {
-  remove(REVISION_KEY);
+export function clearRevisionState(itemId: string): void {
+  remove(REVISION_PREFIX + itemId);
 }
 
 /* ------------------------------ The shelf -------------------------------- */
@@ -129,6 +130,8 @@ export interface KLibraryItem {
   reviewCount: number;
   data: KLesson | KRevisionBank;
   progress: KProgress | null;
+  /** Device clock of the last local change — drives last-writer-wins cloud merge. */
+  updatedAt: number;
 }
 
 export function newId(): string {
@@ -145,13 +148,36 @@ export function getLibraryItem(id: string): KLibraryItem | null {
 }
 export function upsertLibraryItem(item: KLibraryItem): void {
   const list = listLibrary();
-  const i = list.findIndex((x) => x.id === item.id);
-  if (i >= 0) list[i] = item;
-  else list.unshift(item);
+  const stamped = { ...item, updatedAt: Date.now() };
+  const i = list.findIndex((x) => x.id === stamped.id);
+  if (i >= 0) list[i] = stamped;
+  else list.unshift(stamped);
   write(LIBRARY_KEY, list.slice(0, 50));
 }
 export function removeLibraryItem(id: string): void {
   write(LIBRARY_KEY, listLibrary().filter((x) => x.id !== id));
+}
+/**
+ * Merge cloud items into the local shelf, LAST-WRITER-WINS by updatedAt (a single
+ * deterministic write — keeps the 50 most-recent). Returns the ids whose local
+ * copy is newer (or cloud-absent), so the caller can push exactly those up.
+ */
+export function mergeRemoteItems(remote: KLibraryItem[]): string[] {
+  const local = listLibrary();
+  const byId = new Map<string, KLibraryItem>(local.map((x) => [x.id, x]));
+  const toPush: string[] = [];
+  const remoteIds = new Set(remote.map((r) => r.id));
+  for (const r of remote) {
+    const l = byId.get(r.id);
+    if (!l || (r.updatedAt ?? 0) >= (l.updatedAt ?? 0)) byId.set(r.id, r); // cloud newer/new → take
+    else toPush.push(r.id); // local newer → keep local, push it
+  }
+  for (const l of local) if (!remoteIds.has(l.id)) toPush.push(l.id); // local-only → push
+  const merged = Array.from(byId.values())
+    .sort((a, b) => (b.updatedAt ?? 0) - (a.updatedAt ?? 0))
+    .slice(0, 50);
+  write(LIBRARY_KEY, merged);
+  return toPush;
 }
 /** Record a study session: stamp lastStudied and push out the next due date. */
 export function markStudied(id: string): void {
@@ -162,6 +188,7 @@ export function markStudied(id: string): void {
   it.lastStudiedAt = now;
   it.dueAt = now + GAPS[Math.min(it.reviewCount, GAPS.length - 1)];
   it.reviewCount += 1;
+  it.updatedAt = now;
   write(LIBRARY_KEY, list);
 }
 /** True if the item is due for review now (or never studied). */
