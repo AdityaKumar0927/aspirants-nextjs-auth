@@ -206,15 +206,24 @@ export default function KeystoneClient() {
   }
 
   function resumeItem(it: KLibraryItem) {
+    // Re-validate on load: shelf items (especially ones pulled from the cloud,
+    // where `data` is stored as opaque JSON) are normalized through the SAME
+    // validator as a fresh paste before they drive the player — a malformed or
+    // crafted blob can't break it. Validation is idempotent on already-normalized
+    // data, so a healthy item round-trips unchanged. Only commit the navigation
+    // state once it validates.
+    if (it.mode === "learning") {
+      const v = validateLesson(it.data);
+      if (!v.lesson) return; // not even an object — leave it on the shelf
+      setLesson(v.lesson);
+      setProgress(it.progress ?? emptyProgress(v.lesson.title));
+    } else {
+      const v = validateRevision(it.data);
+      if (!v.bank) return;
+      setBank(v.bank);
+    }
     setActiveId(it.id);
     setMode(it.mode);
-    if (it.mode === "learning") {
-      const l = it.data as KLesson;
-      setLesson(l);
-      setProgress(it.progress ?? emptyProgress(l.title));
-    } else {
-      setBank(it.data as KRevisionBank);
-    }
     setStep("play");
   }
 
@@ -232,7 +241,8 @@ export default function KeystoneClient() {
     if (!it) return;
     upsertLibraryItem({ ...it, progress: p });
     const lessonData = it.data as KLesson;
-    const complete = lessonData.concepts.length > 0 && p.doneConceptIds.length >= lessonData.concepts.length;
+    const total = Array.isArray(lessonData.concepts) ? lessonData.concepts.length : 0;
+    const complete = total > 0 && p.doneConceptIds.length >= total;
     if (complete && it.dueAt === null) markStudied(activeId);
     if (signedIn) {
       const updated = getLibraryItem(activeId);
@@ -323,8 +333,14 @@ export default function KeystoneClient() {
               <div className="space-y-2">
                 {library.map((it) => {
                   const d = dueLabel(it);
+                  // Defensive reads: a malformed/crafted shelf item must not throw
+                  // here, or it would white-screen the whole shelf (this runs for
+                  // every item). Falls back to 0 when `concepts` isn't an array.
+                  const concepts = (it.data as KLesson).concepts;
+                  const conceptTotal = Array.isArray(concepts) ? concepts.length : 0;
+                  const doneCount = Array.isArray(it.progress?.doneConceptIds) ? it.progress.doneConceptIds.length : 0;
                   const done = it.mode === "learning" && it.progress
-                    ? `${it.progress.doneConceptIds.length}/${(it.data as KLesson).concepts.length} concepts`
+                    ? `${doneCount}/${conceptTotal} concepts`
                     : it.mode === "revision"
                     ? "revision set"
                     : "";

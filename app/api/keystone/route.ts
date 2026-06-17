@@ -14,6 +14,12 @@ import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 const MAX_JSON = 400_000; // ~400KB serialized cap per blob
 
+// Cap how many shelf items one account can accumulate server-side. The client
+// keeps at most 50; 100 leaves headroom for multi-device merges. Without this an
+// authenticated user could create unbounded rows (rate-limited only to 120/min) —
+// GET caps DISPLAY at 100, but stored rows would otherwise grow forever.
+const MAX_ITEMS_PER_USER = 100;
+
 const sizeOk = (v: unknown) => JSON.stringify(v ?? null).length <= MAX_JSON;
 
 const itemSchema = z.object({
@@ -103,6 +109,17 @@ export async function POST(req: NextRequest) {
   const existing = await prisma.keystoneItem.findUnique({ where: { id: d.id }, select: { userId: true } });
   if (existing && existing.userId !== userId) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  // Storage guard: bound items per account. Checked only on CREATE — updating an
+  // existing item is always allowed, so a full shelf can still sync progress.
+  // (count→upsert isn't transactional; the rate limit bounds any TOCTOU overshoot,
+  // and this is a soft storage cap, not a security invariant.)
+  if (!existing) {
+    const count = await prisma.keystoneItem.count({ where: { userId } });
+    if (count >= MAX_ITEMS_PER_USER) {
+      return NextResponse.json({ error: "Shelf is full (item limit reached)" }, { status: 409 });
+    }
   }
 
   const common = {
