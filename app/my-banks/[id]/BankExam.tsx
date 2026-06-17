@@ -1,244 +1,132 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import MathRenderer from "@/components/layout/MathRenderer";
-import {
-  normalizeQuestion,
-  gradeAnswer,
-  displayCorrectAnswer,
-  displayUserAnswer,
-  type QuestionType,
-} from "@/lib/exam-helpers";
-import AnswerInput from "./AnswerInput";
+import { normalizeQuestion, type QuestionType, type ExamResultsType } from "@/lib/exam-helpers";
+import ExamRunner from "@/app/mock-exam/ExamRunner";
 import type { Bank, BankExamResult } from "./types";
 
-type Phase = "intro" | "running" | "results";
-
-function fmt(sec: number) {
-  const s = Math.max(0, sec);
-  const m = Math.floor(s / 60);
-  const r = s % 60;
-  return `${String(m).padStart(2, "0")}:${String(r).padStart(2, "0")}`;
+function toBankResult(r: ExamResultsType): BankExamResult {
+  return {
+    takenAt: new Date().toISOString(),
+    total: r.totalQuestions,
+    graded: r.gradedQuestions,
+    correct: r.correctAnswersCount,
+    incorrect: r.incorrectAnswers,
+    ungraded: r.ungradedQuestions,
+    score: Math.round(r.score),
+    byTopic: r.topicPerformance,
+  };
 }
 
-export default function BankExam({ bank }: { bank: Bank }) {
-  const normalized = useMemo<QuestionType[]>(
-    () => bank.questions.map((q) => normalizeQuestion(q)),
-    [bank.questions]
+export default function BankExam({ bank, userName }: { bank: Bank; userName: string }) {
+  const totalAvailable = bank.questions.length;
+  const [durationMin, setDurationMin] = useState(
+    bank.examDurationMin && bank.examDurationMin > 0 ? bank.examDurationMin : 60
   );
+  const [shuffle, setShuffle] = useState(false);
+  const [count, setCount] = useState(totalAvailable);
+  const [attempt, setAttempt] = useState(0);
+  const [questions, setQuestions] = useState<QuestionType[] | null>(null);
 
-  const [phase, setPhase] = useState<Phase>("intro");
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const durationSec = (bank.examDurationMin && bank.examDurationMin > 0 ? bank.examDurationMin : 60) * 60;
-  const [remaining, setRemaining] = useState(durationSec);
-  const [result, setResult] = useState<BankExamResult | null>(null);
-  const submittedRef = useRef(false);
-
-  const compute = useCallback((): BankExamResult => {
-    let correct = 0;
-    let graded = 0;
-    let incorrect = 0;
-    const byTopic: Record<string, { correct: number; total: number }> = {};
-
-    normalized.forEach((q, i) => {
-      const verdict = gradeAnswer(q, answers[i] ?? null);
-      if (verdict === null) return; // not auto-gradable
-      graded++;
-      const topic = bank.questions[i].topic || "Untagged";
-      byTopic[topic] ??= { correct: 0, total: 0 };
-      byTopic[topic].total++;
-      if (verdict) {
-        correct++;
-        byTopic[topic].correct++;
-      } else {
-        incorrect++;
+  function start() {
+    let qs: QuestionType[] = bank.questions.map(normalizeQuestion);
+    if (shuffle) {
+      for (let i = qs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [qs[i], qs[j]] = [qs[j], qs[i]];
       }
-    });
+    }
+    const n = Math.max(1, Math.min(count || totalAvailable, qs.length));
+    if (n < qs.length) qs = qs.slice(0, n);
+    setQuestions(qs);
+    setAttempt((a) => a + 1);
+  }
 
-    return {
-      takenAt: new Date().toISOString(),
-      total: normalized.length,
-      graded,
-      correct,
-      incorrect,
-      ungraded: normalized.length - graded,
-      score: graded ? Math.round((correct / graded) * 100) : 0,
-      byTopic,
-    };
-  }, [answers, normalized, bank.questions]);
+  function backToSetup() {
+    setQuestions(null);
+  }
 
-  const submit = useCallback(() => {
-    if (submittedRef.current) return;
-    submittedRef.current = true;
-    const r = compute();
-    setResult(r);
-    setPhase("results");
-    fetch(`/api/user-banks/${bank.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ result: r }),
-    }).catch(() => {});
-  }, [compute, bank.id]);
+  // In-exam "Exit" mid-attempt — confirm first (matches the global Mock Exam).
+  function exitDuringExam() {
+    if (window.confirm("Exit the exam? This attempt won't be saved.")) setQuestions(null);
+  }
 
-  // Countdown while running.
-  useEffect(() => {
-    if (phase !== "running") return;
-    const t = setInterval(() => setRemaining((r) => r - 1), 1000);
-    return () => clearInterval(t);
-  }, [phase]);
+  async function saveResult(r: ExamResultsType) {
+    try {
+      await fetch(`/api/user-banks/${bank.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ result: toBankResult(r) }),
+      });
+    } catch {
+      /* best-effort */
+    }
+  }
 
-  // Auto-submit when time runs out.
-  useEffect(() => {
-    if (phase === "running" && remaining <= 0) submit();
-  }, [phase, remaining, submit]);
-
-  /* ------------------------------- intro ------------------------------- */
-  if (phase === "intro") {
+  if (questions) {
     return (
-      <div className="paper-sheet space-y-4 p-6 text-center">
-        <h2 className="type-display text-lg text-ink">Ready to start?</h2>
-        <p className="text-sm text-pencil">
-          {normalized.length} question{normalized.length === 1 ? "" : "s"} · {Math.round(durationSec / 60)} minutes.
-          The timer starts when you begin and submits automatically when it runs out.
-        </p>
-        <Button
-          onClick={() => {
-            submittedRef.current = false;
-            setRemaining(durationSec);
-            setAnswers({});
-            setPhase("running");
-          }}
-          className="bg-ballpoint text-paper hover:bg-ballpoint/90"
-        >
-          Start exam
-        </Button>
-      </div>
+      <ExamRunner
+        key={attempt}
+        questions={questions}
+        examTimeMinutes={durationMin}
+        userName={userName}
+        subject={bank.title}
+        paperTitle={bank.title}
+        onExit={exitDuringExam}
+        onStartNewExam={backToSetup}
+        onSaveResult={saveResult}
+      />
     );
   }
 
-  /* ------------------------------ results ------------------------------ */
-  if (phase === "results" && result) {
-    return (
-      <div className="space-y-4">
-        <div className="paper-sheet space-y-3 p-6 text-center">
-          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Your score</p>
-          <p className="type-display text-4xl text-ink">{result.score}%</p>
-          <p className="text-sm text-pencil">
-            {result.correct} correct · {result.incorrect} incorrect · {result.ungraded} not auto-graded · {result.total}{" "}
-            total
-          </p>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              setResult(null);
-              setPhase("intro");
-            }}
-          >
-            Retake
-          </Button>
-        </div>
-
-        {Object.keys(result.byTopic).length > 0 && (
-          <div className="paper-sheet p-4">
-            <p className="type-data mb-2 text-[11px] uppercase tracking-wide text-pencil">By topic</p>
-            <ul className="space-y-1 text-sm">
-              {Object.entries(result.byTopic).map(([topic, t]) => (
-                <li key={topic} className="flex justify-between text-ink">
-                  <span>{topic}</span>
-                  <span className="text-pencil">
-                    {t.correct}/{t.total}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Per-question review */}
-        <div className="space-y-3">
-          {normalized.map((q, i) => {
-            const verdict = gradeAnswer(q, answers[i] ?? null);
-            return (
-              <div key={bank.questions[i].id} className="paper-sheet p-4">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="type-data text-xs text-pencil">Q{i + 1}</span>
-                  {verdict !== null && (
-                    <span
-                      className={`type-data rounded px-2 py-0.5 text-xs ${
-                        verdict ? "bg-st-answered/15 text-st-answered" : "bg-redpen/10 text-redpen"
-                      }`}
-                    >
-                      {verdict ? "Correct" : "Incorrect"}
-                    </span>
-                  )}
-                </div>
-                <div className="mb-2 text-sm text-ink">
-                  <MathRenderer text={bank.questions[i].text} />
-                </div>
-                <p className="text-sm text-pencil">
-                  <span className="type-data text-xs">Your answer: </span>
-                  {displayUserAnswer(q, answers[i] ?? null)}
-                </p>
-                {q.type !== "Subjective" && (
-                  <p className="text-sm text-st-answered">
-                    <span className="type-data text-xs text-pencil">Correct answer: </span>
-                    {displayCorrectAnswer(q)}
-                  </p>
-                )}
-                {bank.questions[i].explanation && (
-                  <div className="mt-2 text-sm text-pencil">
-                    <p className="type-data mb-0.5 text-[11px] uppercase tracking-wide">Explanation</p>
-                    <MathRenderer text={bank.questions[i].explanation!} />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
-  /* ------------------------------ running ------------------------------ */
   return (
-    <div className="space-y-3">
-      <div className="paper-sheet sticky top-20 z-10 flex items-center justify-between p-3">
-        <span
-          className={`type-data text-lg tabular-nums ${remaining <= 60 ? "text-redpen" : "text-ink"}`}
-          aria-label="Time remaining"
-        >
-          {fmt(remaining)}
-        </span>
-        <Button size="sm" onClick={submit} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-          Submit exam
-        </Button>
-      </div>
-
-      {bank.questions.map((q, i) => (
-        <div key={q.id} className="paper-sheet p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <span className="type-data text-xs text-pencil">Q{i + 1}</span>
-            <span className="type-data rounded border border-st-review/30 bg-st-review/10 px-1.5 py-0.5 text-[11px] text-st-review">
-              {q.type}
-            </span>
-          </div>
-          <div className="mb-3 text-sm text-ink">
-            <MathRenderer text={q.text} />
-          </div>
-          <AnswerInput
-            type={q.type}
-            options={q.options}
-            value={answers[i] ?? ""}
-            onChange={(v) => setAnswers((a) => ({ ...a, [i]: v }))}
-          />
+    <div className="mx-auto mt-6 w-full max-w-xl">
+      <div className="paper-sheet space-y-5 p-6">
+        <div className="space-y-1">
+          <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Mock exam</p>
+          <h1 className="type-display text-2xl text-ink">{bank.title}</h1>
+          <p className="text-sm text-pencil">
+            {totalAvailable} question{totalAvailable === 1 ? "" : "s"} available. Set it up and start when ready —
+            the timer submits automatically when it runs out.
+          </p>
         </div>
-      ))}
 
-      <div className="flex justify-end pb-6">
-        <Button onClick={submit} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-          Submit exam
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-end gap-4">
+            <label className="type-data text-xs text-pencil">
+              Duration (min)
+              <input
+                type="number"
+                min={1}
+                max={600}
+                value={durationMin}
+                onChange={(e) => setDurationMin(Math.max(1, Math.min(600, Number(e.target.value) || 1)))}
+                className="mt-1 block w-24 rounded-md border border-rule bg-paper px-3 py-2 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40"
+              />
+            </label>
+            <label className="type-data text-xs text-pencil">
+              Questions
+              <input
+                type="number"
+                min={1}
+                max={totalAvailable}
+                value={count}
+                onChange={(e) =>
+                  setCount(Math.max(1, Math.min(totalAvailable, Number(e.target.value) || 1)))
+                }
+                className="mt-1 block w-24 rounded-md border border-rule bg-paper px-3 py-2 text-sm text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40"
+              />
+            </label>
+          </div>
+          <label className="flex items-center gap-2 text-sm text-ink">
+            <input type="checkbox" checked={shuffle} onChange={(e) => setShuffle(e.target.checked)} />
+            Shuffle question order
+          </label>
+        </div>
+
+        <Button onClick={start} className="w-full bg-ballpoint text-paper hover:bg-ballpoint/90">
+          Start exam
         </Button>
       </div>
     </div>

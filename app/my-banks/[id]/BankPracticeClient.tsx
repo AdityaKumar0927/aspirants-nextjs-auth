@@ -10,9 +10,11 @@ import BankExam from "./BankExam";
 export default function BankPracticeClient({
   bankId,
   initialMode,
+  userName,
 }: {
   bankId: string;
   initialMode: "BANK" | "EXAM" | null;
+  userName: string;
 }) {
   const [bank, setBank] = useState<Bank | null>(null);
   const [loading, setLoading] = useState(true);
@@ -56,18 +58,13 @@ export default function BankPracticeClient({
   }
 
   return (
-    <div className="w-full max-w-3xl space-y-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div className="min-w-0 space-y-1">
-          <Link href="/my-banks" className="type-data text-xs text-pencil hover:text-ink">
-            ← My banks
-          </Link>
-          <h1 className="type-display truncate text-2xl text-ink">{bank.title}</h1>
-          <p className="type-data text-xs text-pencil">
-            {bank.questionCount} question{bank.questionCount === 1 ? "" : "s"}
-          </p>
-        </div>
-        <div className="flex shrink-0 flex-col items-end gap-2">
+    <div className="w-full">
+      {/* Bank control bar — aligned to the Question Bank's max width */}
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 sm:px-8">
+        <Link href="/my-banks" className="type-data text-xs text-pencil hover:text-ink">
+          ← My banks
+        </Link>
+        <div className="flex items-center gap-3">
           <div className="inline-flex rounded-md border border-rule p-0.5">
             <button
               type="button"
@@ -88,22 +85,24 @@ export default function BankPracticeClient({
               Exam
             </button>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href={`/my-banks/${bank.id}/edit`} className="type-data text-xs text-ballpoint hover:underline">
-              Edit
-            </Link>
-            <a
-              href={`/api/user-banks/${bank.id}/export`}
-              download
-              className="type-data text-xs text-pencil hover:text-ink hover:underline"
-            >
-              Download
-            </a>
-          </div>
+          <Link href={`/my-banks/${bank.id}/edit`} className="type-data text-xs text-ballpoint hover:underline">
+            Edit
+          </Link>
+          <a
+            href={`/api/user-banks/${bank.id}/export`}
+            download
+            className="type-data text-xs text-pencil hover:text-ink hover:underline"
+          >
+            Download
+          </a>
         </div>
       </div>
 
-      {mode === "BANK" ? <BankPractice bank={bank} /> : <BankExam bank={bank} />}
+      {mode === "BANK" ? (
+        <BankPractice bank={bank} />
+      ) : (
+        <BankExam bank={bank} userName={userName} />
+      )}
     </div>
   );
 }

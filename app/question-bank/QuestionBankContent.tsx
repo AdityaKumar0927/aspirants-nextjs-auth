@@ -46,7 +46,7 @@ enum ViewMode {
 
 type QuestionTypeString = "Multiple Choice" | "Numerical" | string;
 
-interface QuestionType {
+export interface QuestionType {
   id: number;
   questionId: string;
   text: string;
@@ -60,6 +60,14 @@ interface QuestionType {
   completed?: boolean;
   options?: string[];
   correctOption?: string;
+  // Answer-key fields read at runtime by normalizeQuestion()/gradeAnswer().
+  // Global questions carry these too (the API returns them); declaring them
+  // optional lets an injected source supply them without excess-property errors.
+  correctOptions?: string[];
+  answerText?: string | null;
+  answerMin?: number | null;
+  answerMax?: number | null;
+  markscheme?: string;
   // We keep `explanation` as the DB field for markschemes
   explanation?: string;
   notes?: string;
@@ -318,8 +326,94 @@ function Pagination({
 
 /* ------------------------------------------------------------------
    7) Main Component: QuestionBankContent
+
+   Reusable across the global Question Bank and a private "my-bank": data,
+   persistence and a handful of global-only features are injected. EVERY prop
+   defaults to the global behavior, so the live Question Bank (which renders
+   <QuestionBankContent /> with no props) is unchanged.
    ------------------------------------------------------------------ */
-export default function QuestionBankContent() {
+export interface QuestionSource {
+  loadQuestions: (
+    filters: FiltersType,
+    page: number,
+    pageSize: number
+  ) =>
+    | Promise<{ data: QuestionType[]; totalCount: number }>
+    | { data: QuestionType[]; totalCount: number };
+  loadFilterOptions: () => Promise<FilterOptionsType> | FilterOptionsType;
+  loadStats: (filters: FiltersType) => Promise<GlobalStats> | GlobalStats;
+}
+
+export interface QuestionPersistence {
+  saveProgress: (body: {
+    questionId: string;
+    completed?: boolean;
+    reviewed?: boolean;
+  }) => Promise<boolean>;
+  recordAnswer?: (questionId: string, answer: string) => void;
+}
+
+export interface QuestionBankFeatures {
+  examYearFilters: boolean; // exam/year/subtopic facets
+  customTags: boolean;
+  community: boolean; // report-issue + discussion on the card
+  difficultyRating: boolean;
+  pagination: boolean;
+  signInGate: boolean;
+  meritRecording: boolean;
+}
+
+const DEFAULT_FEATURES: QuestionBankFeatures = {
+  examYearFilters: true,
+  customTags: true,
+  community: true,
+  difficultyRating: true,
+  pagination: true,
+  signInGate: true,
+  meritRecording: true,
+};
+
+const ALL_FACETS: FilterKey[] = [
+  "exams",
+  "subjects",
+  "topics",
+  "subtopics",
+  "difficulties",
+  "years",
+  "types",
+  "customTags",
+];
+
+interface QuestionBankContentProps {
+  /** Inject a non-global data source (e.g. a private bank). Default = /api/* fetches. */
+  source?: QuestionSource;
+  /** Inject persistence. Default = /api/questions PATCH + /api/user-answers. */
+  persistence?: QuestionPersistence;
+  /** Toggle global-only features off (banks). Default = all on. */
+  features?: Partial<QuestionBankFeatures>;
+  title?: string;
+  eyebrow?: string;
+}
+
+export default function QuestionBankContent(props: QuestionBankContentProps = {}) {
+  const { source, persistence } = props;
+  const features = useMemo<QuestionBankFeatures>(
+    () => ({ ...DEFAULT_FEATURES, ...props.features }),
+    [props.features]
+  );
+  const visibleFacets = useMemo<FilterKey[]>(
+    () =>
+      ALL_FACETS.filter((f) => {
+        if ((f === "exams" || f === "years" || f === "subtopics") && !features.examYearFilters)
+          return false;
+        if (f === "customTags" && !features.customTags) return false;
+        return true;
+      }),
+    [features.examYearFilters, features.customTags]
+  );
+  const headerTitle = props.title ?? "Question Bank";
+  const headerEyebrow = props.eyebrow ?? "Previous year questions";
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const { toast } = useToast();
   const { status } = useSession();
@@ -343,7 +437,9 @@ export default function QuestionBankContent() {
   }, [toast]);
 
   const persistProgress = useCallback(
-    async (body: Record<string, unknown>): Promise<boolean> => {
+    async (body: { questionId: string; completed?: boolean; reviewed?: boolean }): Promise<boolean> => {
+      // Injected persistence (e.g. a private bank) takes over entirely.
+      if (persistence) return persistence.saveProgress(body);
       if (status === "unauthenticated") {
         notifySignInToSave();
         return false;
@@ -360,7 +456,7 @@ export default function QuestionBankContent() {
       if (!res.ok) throw new Error(`Failed to save progress (${res.status})`);
       return true;
     },
-    [status, notifySignInToSave]
+    [status, notifySignInToSave, persistence]
   );
 
   // Record the actual answer so practice here counts on the Merit List + stats.
@@ -368,6 +464,11 @@ export default function QuestionBankContent() {
   // (persistProgress already prompts them to sign in). Fire-and-forget.
   const recordAnswer = useCallback(
     (questionId: string, selectedOption: string) => {
+      if (!features.meritRecording) return; // banks don't feed the global Merit List
+      if (persistence?.recordAnswer) {
+        persistence.recordAnswer(questionId, selectedOption);
+        return;
+      }
       if (status !== "authenticated" || !selectedOption) return;
       fetch("/api/user-answers", {
         method: "POST",
@@ -375,7 +476,7 @@ export default function QuestionBankContent() {
         body: JSON.stringify({ questionId, selectedOption }),
       }).catch(() => {});
     },
-    [status]
+    [status, features.meritRecording, persistence]
   );
 
   // For mobile single-question navigation
@@ -399,20 +500,25 @@ export default function QuestionBankContent() {
      ------------------------------ */
   const fetchFilterOptions = useCallback(async () => {
     try {
-      const res = await fetch("/api/filters", { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to fetch distinct filter fields.");
-      const raw = await res.json();
-      // We now expect `raw.customTags` for custom tag suggestions if you have them
-      const data: FilterOptionsType = {
-        exams: raw.exams ?? [],
-        subjects: raw.subjects ?? [],
-        topics: raw.topics ?? [],
-        subtopics: raw.subtopics ?? [],
-        difficulties: raw.difficulties ?? [],
-        years: raw.years ?? [],
-        types: raw.types ?? [],
-        customTags: raw.customTags ?? [], // <--- new
-      };
+      let data: FilterOptionsType;
+      if (source) {
+        data = await source.loadFilterOptions();
+      } else {
+        const res = await fetch("/api/filters", { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch distinct filter fields.");
+        const raw = await res.json();
+        // We now expect `raw.customTags` for custom tag suggestions if you have them
+        data = {
+          exams: raw.exams ?? [],
+          subjects: raw.subjects ?? [],
+          topics: raw.topics ?? [],
+          subtopics: raw.subtopics ?? [],
+          difficulties: raw.difficulties ?? [],
+          years: raw.years ?? [],
+          types: raw.types ?? [],
+          customTags: raw.customTags ?? [], // <--- new
+        };
+      }
       dispatch({ type: "SET_FILTER_OPTIONS", payload: data });
     } catch (err) {
       console.error("Error fetching filter options:", err);
@@ -423,49 +529,54 @@ export default function QuestionBankContent() {
         variant: "destructive", // triggers a red-themed toast
       });
     }
-  }, [toast]);
+  }, [toast, source]);
 
   /* ------------------------------
      (B) Fetch global stats
      ------------------------------ */
   const fetchGlobalStats = useCallback(async () => {
     try {
-      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
-        state.filters;
-      const arrToComma = (arr: string[]) => arr.join(",");
-      const params = new URLSearchParams();
-      if (exams.length) params.set("exam", arrToComma(exams));
-      if (subjects.length) params.set("subject", arrToComma(subjects));
-      if (topics.length) params.set("topic", arrToComma(topics));
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
-      if (years.length) params.set("year", arrToComma(years));
-      if (types.length) params.set("type", arrToComma(types));
+      let stats: GlobalStats;
+      if (source) {
+        stats = await source.loadStats(state.filters);
+      } else {
+        const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
+          state.filters;
+        const arrToComma = (arr: string[]) => arr.join(",");
+        const params = new URLSearchParams();
+        if (exams.length) params.set("exam", arrToComma(exams));
+        if (subjects.length) params.set("subject", arrToComma(subjects));
+        if (topics.length) params.set("topic", arrToComma(topics));
+        if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
+        if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
+        if (years.length) params.set("year", arrToComma(years));
+        if (types.length) params.set("type", arrToComma(types));
 
-      // NEW: customTags
-      if (customTags.length) {
-        params.set("customTags", arrToComma(customTags));
-      }
+        // NEW: customTags
+        if (customTags.length) {
+          params.set("customTags", arrToComma(customTags));
+        }
 
-      const statsUrl = `/api/questions/stats?${params.toString()}`;
-      const resp = await fetch(statsUrl, { cache: "no-store" });
-      if (!resp.ok) {
-        const txt = await resp.text();
-        throw new Error(`Failed to fetch stats: ${txt}`);
+        const statsUrl = `/api/questions/stats?${params.toString()}`;
+        const resp = await fetch(statsUrl, { cache: "no-store" });
+        if (!resp.ok) {
+          const txt = await resp.text();
+          throw new Error(`Failed to fetch stats: ${txt}`);
+        }
+        const raw = await resp.json();
+        stats = {
+          total: raw.total || raw.totalQuestions || 0,
+          completed: raw.completed || 0,
+          reviewed: raw.reviewed || 0,
+          notAnswered: raw.notAnswered || 0,
+        };
       }
-      const raw = await resp.json();
-      const stats: GlobalStats = {
-        total: raw.total || raw.totalQuestions || 0,
-        completed: raw.completed || 0,
-        reviewed: raw.reviewed || 0,
-        notAnswered: raw.notAnswered || 0,
-      };
       dispatch({ type: "SET_GLOBAL_STATS", payload: stats });
     } catch (err) {
       console.error("Error fetching global stats:", err);
       // We won't toast every stats error, but you could.
     }
-  }, [state.filters]);
+  }, [state.filters, source]);
 
   /* ------------------------------
      (C) Fetch questions
@@ -477,56 +588,68 @@ export default function QuestionBankContent() {
     dispatch({ type: "SET_LOADING", payload: true });
     try {
       const { currentPage, pageSize, filters } = state;
-      const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
-        filters;
-
-      const arrToComma = (arr: string[]) => arr.join(",");
-
-      const params = new URLSearchParams();
-      if (exams.length) params.set("exam", arrToComma(exams));
-      if (subjects.length) params.set("subject", arrToComma(subjects));
-      if (topics.length) params.set("topic", arrToComma(topics));
-      if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
-      if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
-      if (years.length) params.set("year", arrToComma(years));
-      if (types.length) params.set("type", arrToComma(types));
-
-      // NEW: customTags
-      if (customTags.length) {
-        params.set("customTags", arrToComma(customTags));
-      }
-
-      params.set("page", String(currentPage));
-      params.set("pageSize", String(pageSize));
-
-      const url = `/api/questions?${params.toString()}`;
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) {
-        const txt = await res.text();
-        throw new Error(`Failed to fetch questions. ${txt}`);
-      }
-      const result = await res.json();
-      if (seq !== fetchSeqRef.current) return; // superseded by a newer request
-
       let data: QuestionType[] = [];
       let totalCount = 0;
 
-      if (Array.isArray(result)) {
-        // If the API returns a plain array
-        data = result;
-        totalCount = data.length;
-      } else if (result.data) {
-        // If the API returns { data, totalCount }
+      if (source) {
+        const result = await source.loadQuestions(filters, currentPage, pageSize);
+        if (seq !== fetchSeqRef.current) return; // superseded by a newer request
         data = result.data;
         totalCount = result.totalCount;
+      } else {
+        const { exams, subjects, topics, subtopics, difficulties, years, types, customTags } =
+          filters;
+
+        const arrToComma = (arr: string[]) => arr.join(",");
+
+        const params = new URLSearchParams();
+        if (exams.length) params.set("exam", arrToComma(exams));
+        if (subjects.length) params.set("subject", arrToComma(subjects));
+        if (topics.length) params.set("topic", arrToComma(topics));
+        if (subtopics.length) params.set("subtopic", arrToComma(subtopics));
+        if (difficulties.length) params.set("difficulty", arrToComma(difficulties));
+        if (years.length) params.set("year", arrToComma(years));
+        if (types.length) params.set("type", arrToComma(types));
+
+        // NEW: customTags
+        if (customTags.length) {
+          params.set("customTags", arrToComma(customTags));
+        }
+
+        params.set("page", String(currentPage));
+        params.set("pageSize", String(pageSize));
+
+        const url = `/api/questions?${params.toString()}`;
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) {
+          const txt = await res.text();
+          throw new Error(`Failed to fetch questions. ${txt}`);
+        }
+        const result = await res.json();
+        if (seq !== fetchSeqRef.current) return; // superseded by a newer request
+
+        if (Array.isArray(result)) {
+          // If the API returns a plain array
+          data = result;
+          totalCount = data.length;
+        } else if (result.data) {
+          // If the API returns { data, totalCount }
+          data = result.data;
+          totalCount = result.totalCount;
+        }
       }
 
-      // Sort by numeric portion of questionId
-      data = data.sort((a, b) => {
-        const aId = a.questionId?.match(/\d+/)?.[0] || "0";
-        const bId = b.questionId?.match(/\d+/)?.[0] || "0";
-        return parseInt(aId, 10) - parseInt(bId, 10);
-      });
+      // Sort by numeric portion of questionId — global bank only (its ids look
+      // like "Q123"). An injected source already returns rows in authored order
+      // (the bank API uses orderBy: { order: "asc" }); re-sorting by a CUID's
+      // arbitrary digit run would scramble it.
+      if (!source) {
+        data = data.sort((a, b) => {
+          const aId = a.questionId?.match(/\d+/)?.[0] || "0";
+          const bId = b.questionId?.match(/\d+/)?.[0] || "0";
+          return parseInt(aId, 10) - parseInt(bId, 10);
+        });
+      }
 
       dispatch({ type: "SET_QUESTIONS", payload: data });
       dispatch({ type: "SET_TOTAL_COUNT", payload: totalCount });
@@ -544,7 +667,7 @@ export default function QuestionBankContent() {
         dispatch({ type: "SET_LOADING", payload: false });
       }
     }
-  }, [state.filters, state.currentPage, state.pageSize, toast]);
+  }, [state.filters, state.currentPage, state.pageSize, toast, source]);
 
   // Initial load of filter options (stats handled by the filters effect below)
   useEffect(() => {
@@ -810,7 +933,7 @@ export default function QuestionBankContent() {
     return (
       <div className="w-full h-full p-4 sm:p-8 min-h-screen flex justify-center">
         <div className="max-w-6xl w-full">
-          <h1 className="mb-2 text-left text-3xl sm:text-4xl">Question Bank</h1>
+          <h1 className="mb-2 text-left text-3xl sm:text-4xl">{headerTitle}</h1>
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6">
             <Skeleton height={40} width={120} />
             <Skeleton height={40} width={120} />
@@ -870,6 +993,7 @@ export default function QuestionBankContent() {
                     onOpenChange={setFiltersOpenMobile}
                     state={state}
                     dispatch={dispatch}
+                    visibleFacets={visibleFacets}
                   />
                 </DialogContent>
               </Dialog>
@@ -931,6 +1055,7 @@ export default function QuestionBankContent() {
                     onOpenChange={setFiltersOpenMobile}
                     state={state}
                     dispatch={dispatch}
+                    visibleFacets={visibleFacets}
                   />
                 </DialogContent>
               </Dialog>
@@ -1028,6 +1153,10 @@ export default function QuestionBankContent() {
             totalQuestions={total}
             currentQuestionIndex={mobileIndex}
             handleQuestionChange={() => {}}
+            showCustomTags={features.customTags}
+            showReportIssue={features.community}
+            showDiscussion={features.community}
+            showDifficultyRating={features.difficultyRating}
           />
 
           {/* Next/Prev on mobile */}
@@ -1077,22 +1206,24 @@ export default function QuestionBankContent() {
           </div>
 
           <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">
-            Previous year questions
+            {headerEyebrow}
           </p>
           <h1 className="type-display mb-2 mt-1 text-left text-3xl sm:text-4xl">
-            Question Bank
+            {headerTitle}
           </h1>
 
-          <a
-            href="/my-banks/new"
-            className="mb-6 flex flex-wrap items-center justify-between gap-2 rounded-md border border-rule bg-secondary/40 px-4 py-2.5 text-sm transition-colors hover:border-ballpoint/40"
-          >
-            <span className="text-ink">
-              <strong>Bring your own material</strong>
-              <span className="text-pencil"> — build a private bank or mock exam from your notes.</span>
-            </span>
-            <span className="type-data shrink-0 text-ballpoint">Create one →</span>
-          </a>
+          {!source && (
+            <a
+              href="/my-banks/new"
+              className="mb-6 flex flex-wrap items-center justify-between gap-2 rounded-md border border-rule bg-secondary/40 px-4 py-2.5 text-sm transition-colors hover:border-ballpoint/40"
+            >
+              <span className="text-ink">
+                <strong>Bring your own material</strong>
+                <span className="text-pencil"> — build a private bank or mock exam from your notes.</span>
+              </span>
+              <span className="type-data shrink-0 text-ballpoint">Create one →</span>
+            </a>
+          )}
 
           {/* Search + mobile filters + navigator */}
           <div className="mb-6 flex items-center space-x-4">
@@ -1129,6 +1260,7 @@ export default function QuestionBankContent() {
                   onOpenChange={setFiltersOpenMobile}
                   state={state}
                   dispatch={dispatch}
+                  visibleFacets={visibleFacets}
                 />
               </DialogContent>
             </Dialog>
@@ -1246,20 +1378,9 @@ export default function QuestionBankContent() {
             })}
           </div>
 
-          {/* Desktop Filter Popovers, including new "customTags" */}
+          {/* Desktop Filter Popovers (facets gated by features) */}
           <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
-            {(
-              [
-                "exams",
-                "subjects",
-                "topics",
-                "subtopics",
-                "difficulties",
-                "years",
-                "types",
-                "customTags", // <--- new
-              ] as FilterKey[]
-            ).map((filterType) => {
+            {visibleFacets.map((filterType) => {
               const filterValues = state.filterOptions[filterType] || [];
               const isOpen = state.dropdowns[filterType];
               return (
@@ -1354,17 +1475,23 @@ export default function QuestionBankContent() {
                     totalQuestions={state.totalCount}
                     currentQuestionIndex={displayNum - 1}
                     handleQuestionChange={() => {}}
+                    showCustomTags={features.customTags}
+                    showReportIssue={features.community}
+                    showDiscussion={features.community}
+                    showDifficultyRating={features.difficultyRating}
                   />
                 );
               })}
-              <Pagination
-                currentPage={state.currentPage}
-                totalCount={state.totalCount}
-                pageSize={state.pageSize}
-                onPageChange={(p) => {
-                  dispatch({ type: "SET_CURRENT_PAGE", payload: p });
-                }}
-              />
+              {features.pagination && (
+                <Pagination
+                  currentPage={state.currentPage}
+                  totalCount={state.totalCount}
+                  pageSize={state.pageSize}
+                  onPageChange={(p) => {
+                    dispatch({ type: "SET_CURRENT_PAGE", payload: p });
+                  }}
+                />
+              )}
             </>
           ) : (
             <div className="paper-sheet mt-2 p-6 text-center sm:p-10">
@@ -1506,11 +1633,13 @@ function FiltersDialogMobile({
   onOpenChange,
   state,
   dispatch,
+  visibleFacets = ALL_FACETS,
 }: {
   open: boolean;
   onOpenChange: (val: boolean) => void;
   state: StateType;
   dispatch: React.Dispatch<ActionType>;
+  visibleFacets?: FilterKey[];
 }) {
   return (
     <FiltersDialog
@@ -1518,6 +1647,7 @@ function FiltersDialogMobile({
       onOpenChange={onOpenChange}
       state={state}
       dispatch={dispatch}
+      visibleFacets={visibleFacets}
     />
   );
 }
@@ -1530,9 +1660,16 @@ interface CustomFiltersDialogProps {
   onOpenChange: (open: boolean) => void;
   state: StateType;
   dispatch: React.Dispatch<ActionType>;
+  visibleFacets?: FilterKey[];
 }
 
-function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDialogProps) {
+function FiltersDialog({
+  open,
+  onOpenChange,
+  state,
+  dispatch,
+  visibleFacets = ALL_FACETS,
+}: CustomFiltersDialogProps) {
   const [searches, setSearches] = useState<Record<FilterKey, string>>({
     exams: "",
     subjects: "",
@@ -1649,73 +1786,18 @@ function FiltersDialog({ open, onOpenChange, state, dispatch }: CustomFiltersDia
               </div>
             </div>
 
-            {/* Each filter category, including customTags */}
-            <MobileFilterSection
-              title="exams"
-              items={filterAndSort(state.filterOptions.exams, "exams")}
-              searchValue={searches.exams}
-              onSearchChange={(val) => handleSearchChange("exams", val)}
-              selectedItems={state.filters.exams}
-              toggleItem={(item) => toggleItem("exams", item)}
-            />
-            <MobileFilterSection
-              title="subjects"
-              items={filterAndSort(state.filterOptions.subjects, "subjects")}
-              searchValue={searches.subjects}
-              onSearchChange={(val) => handleSearchChange("subjects", val)}
-              selectedItems={state.filters.subjects}
-              toggleItem={(item) => toggleItem("subjects", item)}
-            />
-            <MobileFilterSection
-              title="topics"
-              items={filterAndSort(state.filterOptions.topics, "topics")}
-              searchValue={searches.topics}
-              onSearchChange={(val) => handleSearchChange("topics", val)}
-              selectedItems={state.filters.topics}
-              toggleItem={(item) => toggleItem("topics", item)}
-            />
-            <MobileFilterSection
-              title="subtopics"
-              items={filterAndSort(state.filterOptions.subtopics, "subtopics")}
-              searchValue={searches.subtopics}
-              onSearchChange={(val) => handleSearchChange("subtopics", val)}
-              selectedItems={state.filters.subtopics}
-              toggleItem={(item) => toggleItem("subtopics", item)}
-            />
-            <MobileFilterSection
-              title="difficulties"
-              items={filterAndSort(state.filterOptions.difficulties, "difficulties")}
-              searchValue={searches.difficulties}
-              onSearchChange={(val) => handleSearchChange("difficulties", val)}
-              selectedItems={state.filters.difficulties}
-              toggleItem={(item) => toggleItem("difficulties", item)}
-            />
-            <MobileFilterSection
-              title="years"
-              items={filterAndSort(state.filterOptions.years, "years")}
-              searchValue={searches.years}
-              onSearchChange={(val) => handleSearchChange("years", val)}
-              selectedItems={state.filters.years}
-              toggleItem={(item) => toggleItem("years", item)}
-            />
-            <MobileFilterSection
-              title="types"
-              items={filterAndSort(state.filterOptions.types, "types")}
-              searchValue={searches.types}
-              onSearchChange={(val) => handleSearchChange("types", val)}
-              selectedItems={state.filters.types}
-              toggleItem={(item) => toggleItem("types", item)}
-            />
-
-            {/* NEW: customTags */}
-            <MobileFilterSection
-              title="customTags"
-              items={filterAndSort(state.filterOptions.customTags, "customTags")}
-              searchValue={searches.customTags}
-              onSearchChange={(val) => handleSearchChange("customTags", val)}
-              selectedItems={state.filters.customTags}
-              toggleItem={(item) => toggleItem("customTags", item)}
-            />
+            {/* One section per visible facet (banks hide exam/year/subtopic/tags) */}
+            {visibleFacets.map((facet) => (
+              <MobileFilterSection
+                key={facet}
+                title={facet}
+                items={filterAndSort(state.filterOptions[facet], facet)}
+                searchValue={searches[facet]}
+                onSearchChange={(val) => handleSearchChange(facet, val)}
+                selectedItems={state.filters[facet]}
+                toggleItem={(item) => toggleItem(facet, item)}
+              />
+            ))}
           </div>
         </ScrollArea>
       </DialogContent>

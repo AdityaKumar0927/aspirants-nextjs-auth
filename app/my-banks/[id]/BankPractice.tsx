@@ -1,156 +1,125 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Flag, Check } from "@/components/desk/icons";
-import MathRenderer from "@/components/layout/MathRenderer";
-import { normalizeQuestion, gradeAnswer, displayCorrectAnswer } from "@/lib/exam-helpers";
-import AnswerInput from "./AnswerInput";
+import { useMemo } from "react";
+import { SessionProvider } from "next-auth/react";
+import QuestionBankContent, {
+  type QuestionSource,
+  type QuestionPersistence,
+  type QuestionBankFeatures,
+  type QuestionType as QbQuestion,
+} from "@/app/question-bank/QuestionBankContent";
 import type { Bank, BankQuestion } from "./types";
 
-function patchQuestion(bankId: string, questionId: string, body: Record<string, unknown>) {
-  // Fire-and-forget; the UI updates optimistically.
-  fetch(`/api/user-banks/${bankId}`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ questionId, ...body }),
-  }).catch(() => {});
+const distinct = (vals: (string | null | undefined)[]) =>
+  Array.from(new Set(vals.filter((v): v is string => !!v)));
+
+/** Bank row → the Question Bank's runtime question shape. The card renders by
+ *  type string and only knows "Mcqm" for multiple-correct, so translate that;
+ *  grading stays correct because normalizeQuestion canonicalizes it back. */
+function toQbQuestion(row: BankQuestion, index: number): QbQuestion {
+  return {
+    id: index,
+    questionId: row.id,
+    text: row.text,
+    type: row.type === "Multiple Correct" ? "Mcqm" : row.type,
+    options: row.options,
+    correctOption: row.correctOption ?? undefined,
+    correctOptions: row.correctOptions,
+    answerText: row.answerText,
+    answerMin: row.answerMin,
+    answerMax: row.answerMax,
+    explanation: row.explanation ?? undefined,
+    markscheme: row.markscheme ?? undefined,
+    subject: row.subject ?? undefined,
+    topic: row.topic ?? undefined,
+    difficulty: row.difficulty ?? undefined,
+    completed: row.completed,
+    reviewed: row.flagged,
+    customTags: [],
+  };
 }
 
-function BankQuestionCard({ bankId, q, num }: { bankId: string; q: BankQuestion; num: number }) {
-  const normalized = useMemo(() => normalizeQuestion(q), [q]);
-  const [value, setValue] = useState("");
-  const [revealed, setRevealed] = useState(false);
-  const [completed, setCompleted] = useState(q.completed);
-  const [flagged, setFlagged] = useState(q.flagged);
+type Facets = { subjects: string[]; topics: string[]; difficulties: string[]; types: string[] };
 
-  const isSubjective = q.type === "Subjective";
-  const verdict = revealed && !isSubjective ? gradeAnswer(normalized, value) : null;
-
-  function toggleComplete() {
-    const next = !completed;
-    setCompleted(next);
-    patchQuestion(bankId, q.id, { completed: next });
-  }
-  function toggleFlag() {
-    const next = !flagged;
-    setFlagged(next);
-    patchQuestion(bankId, q.id, { flagged: next });
-  }
-
-  return (
-    <div className={`paper-sheet p-4 ${flagged ? "border-l-[3px] border-l-st-review" : ""}`}>
-      <div className="mb-2 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <span className="type-data text-xs text-pencil">Q{num}</span>
-          <span className="type-data rounded border border-st-review/30 bg-st-review/10 px-1.5 py-0.5 text-[11px] text-st-review">
-            {q.type}
-          </span>
-          {q.topic && <span className="type-data text-[11px] text-pencil">{q.topic}</span>}
-        </div>
-        <div className="flex items-center gap-1">
-          <button
-            type="button"
-            onClick={toggleFlag}
-            title={flagged ? "Unflag" : "Flag for review"}
-            className={`rounded-md p-1.5 transition-colors ${flagged ? "text-st-review" : "text-pencil hover:text-ink"}`}
-          >
-            <Flag className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={toggleComplete}
-            title={completed ? "Mark not done" : "Mark complete"}
-            className={`rounded-md p-1.5 transition-colors ${completed ? "text-st-answered" : "text-pencil hover:text-ink"}`}
-          >
-            <Check className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      <div className="mb-3 text-sm text-ink">
-        <MathRenderer text={q.text} />
-      </div>
-
-      <AnswerInput
-        type={q.type}
-        options={q.options}
-        value={value}
-        onChange={setValue}
-        disabled={revealed}
-      />
-
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        {!revealed ? (
-          <button
-            type="button"
-            onClick={() => setRevealed(true)}
-            className="rounded-md bg-ballpoint px-3 py-1.5 text-sm text-paper transition-colors hover:bg-ballpoint/90"
-          >
-            {isSubjective ? "Show model answer" : "Check answer"}
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={() => {
-              setRevealed(false);
-              setValue("");
-            }}
-            className="type-data text-xs text-pencil hover:text-ink"
-          >
-            Try again
-          </button>
-        )}
-
-        {revealed && !isSubjective && (
-          <span
-            className={`type-data rounded px-2 py-0.5 text-xs ${
-              verdict === true
-                ? "bg-st-answered/15 text-st-answered"
-                : verdict === false
-                  ? "bg-redpen/10 text-redpen"
-                  : "bg-secondary text-pencil"
-            }`}
-          >
-            {verdict === true ? "Correct" : verdict === false ? "Incorrect" : "Not auto-graded"}
-          </span>
-        )}
-      </div>
-
-      {revealed && (
-        <div className="mt-3 space-y-2 border-t border-rule pt-3 text-sm">
-          {!isSubjective && (
-            <p className="text-ink">
-              <span className="type-data text-xs text-pencil">Correct answer: </span>
-              <span className="text-st-answered">{displayCorrectAnswer(normalized)}</span>
-            </p>
-          )}
-          {q.explanation && (
-            <div className="text-pencil">
-              <p className="type-data mb-0.5 text-[11px] uppercase tracking-wide text-pencil">Explanation</p>
-              <MathRenderer text={q.explanation} />
-            </div>
-          )}
-          {q.markscheme && (
-            <div className="text-pencil">
-              <p className="type-data mb-0.5 text-[11px] uppercase tracking-wide text-pencil">Mark scheme</p>
-              <MathRenderer text={q.markscheme} />
-            </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
+function applyFacets(rows: BankQuestion[], f: Facets): BankQuestion[] {
+  return rows.filter((r) => {
+    if (f.subjects.length && !(r.subject && f.subjects.includes(r.subject))) return false;
+    if (f.topics.length && !(r.topic && f.topics.includes(r.topic))) return false;
+    if (f.difficulties.length && !(r.difficulty && f.difficulties.includes(r.difficulty))) return false;
+    if (f.types.length && !(r.type && f.types.includes(r.type))) return false;
+    return true;
+  });
 }
 
 export default function BankPractice({ bank }: { bank: Bank }) {
-  if (bank.questions.length === 0) {
-    return <div className="paper-sheet p-8 text-center text-sm text-pencil">This bank has no questions.</div>;
-  }
+  const rows = bank.questions;
+
+  const source = useMemo<QuestionSource>(
+    () => ({
+      loadQuestions: (filters) => {
+        const filtered = applyFacets(rows, filters);
+        return { data: filtered.map(toQbQuestion), totalCount: filtered.length };
+      },
+      loadFilterOptions: () => ({
+        exams: [],
+        years: [],
+        subtopics: [],
+        customTags: [],
+        subjects: distinct(rows.map((r) => r.subject)),
+        topics: distinct(rows.map((r) => r.topic)),
+        difficulties: distinct(rows.map((r) => r.difficulty)),
+        types: distinct(rows.map((r) => r.type)),
+      }),
+      loadStats: (filters) => {
+        const filtered = applyFacets(rows, filters);
+        const completed = filtered.filter((r) => r.completed).length;
+        const reviewed = filtered.filter((r) => r.flagged).length;
+        return { total: filtered.length, completed, reviewed, notAnswered: filtered.length - completed };
+      },
+    }),
+    [rows]
+  );
+
+  const persistence = useMemo<QuestionPersistence>(
+    () => ({
+      saveProgress: async ({ questionId, completed, reviewed }) => {
+        const payload: Record<string, unknown> = { questionId };
+        if (completed !== undefined) payload.completed = completed;
+        if (reviewed !== undefined) payload.flagged = reviewed; // bank field is "flagged"
+        const res = await fetch(`/api/user-banks/${bank.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        return res.ok;
+      },
+      // recordAnswer intentionally omitted — private banks don't feed the Merit List.
+    }),
+    [bank.id]
+  );
+
+  const features = useMemo<Partial<QuestionBankFeatures>>(
+    () => ({
+      examYearFilters: false,
+      customTags: false,
+      community: false,
+      difficultyRating: false,
+      pagination: false,
+      signInGate: false,
+      meritRecording: false,
+    }),
+    []
+  );
+
   return (
-    <div className="space-y-3">
-      {bank.questions.map((q, i) => (
-        <BankQuestionCard key={q.id} bankId={bank.id} q={q} num={i + 1} />
-      ))}
-    </div>
+    <SessionProvider>
+      <QuestionBankContent
+        source={source}
+        persistence={persistence}
+        features={features}
+        title={bank.title}
+        eyebrow="Your question bank"
+      />
+    </SessionProvider>
   );
 }

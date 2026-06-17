@@ -16,5 +16,7 @@ export default async function BankPage({
   const { mode } = await searchParams;
   const initialMode = mode === "exam" ? "EXAM" : mode === "bank" ? "BANK" : null;
 
-  return <BankPracticeClient bankId={id} initialMode={initialMode} />;
+  return (
+    <BankPracticeClient bankId={id} initialMode={initialMode} userName={session.user.name ?? "Student"} />
+  );
 }

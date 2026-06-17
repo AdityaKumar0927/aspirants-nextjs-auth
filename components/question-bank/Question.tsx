@@ -180,6 +180,13 @@ interface QuestionProps {
   handleQuestionChange: (index: number) => void
   onNextQuestion?: () => void
   onPreviousQuestion?: () => void
+
+  // Feature flags — all default true so the global Question Bank is unchanged.
+  // Private banks pass false to hide global-only affordances.
+  showCustomTags?: boolean      // personal tags persisted to /api/questions
+  showReportIssue?: boolean     // FeedbackPopover → /api/issues (report to admins)
+  showDiscussion?: boolean      // community Solutions/Discussion thread
+  showDifficultyRating?: boolean
 }
 
 /* ------------------------------------------------------------------
@@ -218,6 +225,10 @@ function Question({
   handleQuestionChange,
   onNextQuestion,
   onPreviousQuestion,
+  showCustomTags = true,
+  showReportIssue = true,
+  showDiscussion = true,
+  showDifficultyRating = true,
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
 
@@ -254,7 +265,7 @@ function Question({
   })
 
   // Expandable discussion
-  const [showDiscussion, setShowDiscussion] = useState(false)
+  const [discussionOpen, setDiscussionOpen] = useState(false)
 
   // Keep localSelectedOption in sync
   useEffect(() => {
@@ -496,51 +507,54 @@ function Question({
                   {question.exam && <MetaTag tone="exam">{formatExam(question.exam)}</MetaTag>}
 
                   {/* Custom Tags */}
-                  {localCustomTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center gap-1 rounded-md border border-ballpoint/40 bg-ballpoint/5 px-2 py-0.5 text-xs font-medium text-ballpoint"
-                    >
-                      {tag}
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveTag(tag)}
-                        aria-label={`Remove tag ${tag}`}
-                        className="rounded-sm hover:text-ink"
+                  {showCustomTags &&
+                    localCustomTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center gap-1 rounded-md border border-ballpoint/40 bg-ballpoint/5 px-2 py-0.5 text-xs font-medium text-ballpoint"
                       >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </span>
-                  ))}
+                        {tag}
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveTag(tag)}
+                          aria-label={`Remove tag ${tag}`}
+                          className="rounded-sm hover:text-ink"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </span>
+                    ))}
                 </div>
 
                 {/* Add new tag */}
-                <div className="mt-2 flex items-center gap-2">
-                  <div className="relative flex-1 sm:flex-none">
-                    <Tag className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
-                    <Input
-                      type="text"
-                      placeholder="Add a tag"
-                      value={newTag}
-                      onChange={(e) => setNewTag(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault()
-                          handleAddTag()
-                        }
-                      }}
-                      className="h-9 w-full bg-paper pl-8 text-sm sm:w-44"
-                    />
+                {showCustomTags && (
+                  <div className="mt-2 flex items-center gap-2">
+                    <div className="relative flex-1 sm:flex-none">
+                      <Tag className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
+                      <Input
+                        type="text"
+                        placeholder="Add a tag"
+                        value={newTag}
+                        onChange={(e) => setNewTag(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault()
+                            handleAddTag()
+                          }
+                        }}
+                        className="h-9 w-full bg-paper pl-8 text-sm sm:w-44"
+                      />
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleAddTag}
+                      disabled={!newTag.trim()}
+                    >
+                      Add
+                    </Button>
                   </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleAddTag}
-                    disabled={!newTag.trim()}
-                  >
-                    Add
-                  </Button>
-                </div>
+                )}
               </div>
 
               {/* Mark complete & flag — labelled toggle buttons */}
@@ -574,7 +588,7 @@ function Question({
                 </button>
 
                 {/* Feedback popover */}
-                {question.questionId && <FeedbackPopover questionId={question.questionId} />}
+                {showReportIssue && question.questionId && <FeedbackPopover questionId={question.questionId} />}
               </div>
             </div>
           </CardHeader>
@@ -890,6 +904,7 @@ function Question({
             )}
 
             {/* Difficulty dropdown */}
+            {showDifficultyRating && (
             <div className="flex items-center space-x-2 mt-4">
               <label className="text-sm text-pencil">My difficulty</label>
               <Select
@@ -919,37 +934,42 @@ function Question({
                 </SelectContent>
               </Select>
             </div>
+            )}
           </CardContent>
 
           {/* CardFooter with Discussion Toggle */}
-          <CardFooter className="flex items-center justify-end">
-            <Button variant="outline" onClick={() => setShowDiscussion(!showDiscussion)}>
-              {showDiscussion ? "Hide" : "Discussion"}
-            </Button>
-          </CardFooter>
+          {showDiscussion && (
+            <CardFooter className="flex items-center justify-end">
+              <Button variant="outline" onClick={() => setDiscussionOpen(!discussionOpen)}>
+                {discussionOpen ? "Hide" : "Discussion"}
+              </Button>
+            </CardFooter>
+          )}
 
           {/* Expandable Discussion Section */}
-          <AnimatePresence>
-            {showDiscussion && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="counterfoil max-h-100 overflow-y-auto p-4">
-                  <p className="type-data mb-2 text-[11px] uppercase tracking-[0.14em] text-pencil">
-                    Discussion
-                  </p>
-                  {question.questionId ? (
-                    <QuestionSolutions questionId={question.questionId} />
-                  ) : (
-                    <div className="text-xs text-pencil">No questionId found.</div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {showDiscussion && (
+            <AnimatePresence>
+              {discussionOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="counterfoil max-h-100 overflow-y-auto p-4">
+                    <p className="type-data mb-2 text-[11px] uppercase tracking-[0.14em] text-pencil">
+                      Discussion
+                    </p>
+                    {question.questionId ? (
+                      <QuestionSolutions questionId={question.questionId} />
+                    ) : (
+                      <div className="text-xs text-pencil">No questionId found.</div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
         </Card>
 
         {/* Markscheme (Explanation) Modal */}

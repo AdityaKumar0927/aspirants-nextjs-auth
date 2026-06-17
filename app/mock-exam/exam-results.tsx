@@ -215,10 +215,13 @@ export default function AdvancedExamResults({
   examResults,
   onStartNewExam,
   onExit,
+  paperTitle: paperTitleProp,
 }: {
   examResults: ExamResultsType
   onStartNewExam: () => void
   onExit: () => void
+  /** Override the derived title (e.g. a private bank's name). */
+  paperTitle?: string
 }) {
   const [difficultyFilter, setDifficultyFilter] =
     useState<"All" | "Easy" | "Medium" | "Hard">("All")
@@ -278,6 +281,7 @@ export default function AdvancedExamResults({
   // Marksheet header data (derived from the paper itself, render-only)
   const firstQuestion = examResults.questions[0]
   const paperTitle =
+    paperTitleProp ||
     [firstQuestion?.exam, firstQuestion?.year].filter(Boolean).join(" · ") ||
     "Mock exam"
   const totalTimeSeconds = examResults.timeSpentPerQuestion.reduce(
