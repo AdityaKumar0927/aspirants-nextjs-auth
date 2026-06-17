@@ -8,6 +8,7 @@ import LessonPlayer from "./LessonPlayer";
 import { buildLearningPrompt } from "@/lib/keystone/prompt";
 import type { KeystoneAnswers } from "@/lib/keystone/questionnaire";
 import { parseLessonText, validateLesson, type KLesson } from "@/lib/keystone/schema";
+import { SAMPLE_LESSON_JSON } from "@/lib/keystone/sample";
 import {
   loadAnswers,
   saveAnswers,
@@ -301,10 +302,19 @@ export default function KeystoneClient() {
             </ul>
           )}
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <label className="type-data cursor-pointer text-xs text-ballpoint hover:underline">
-              Upload a file
-              <input type="file" accept=".json,.txt,.md,application/json,text/plain" onChange={onFile} className="hidden" />
-            </label>
+            <div className="flex items-center gap-4">
+              <label className="type-data cursor-pointer text-xs text-ballpoint hover:underline">
+                Upload a file
+                <input type="file" accept=".json,.txt,.md,application/json,text/plain" onChange={onFile} className="hidden" />
+              </label>
+              <button
+                type="button"
+                onClick={() => { setRaw(SAMPLE_LESSON_JSON); setParseError(null); setMissing([]); setWarnings([]); }}
+                className="type-data text-xs text-pencil hover:text-ink hover:underline"
+              >
+                Try a sample lesson
+              </button>
+            </div>
             <div className="flex gap-2">
               <Button variant="ghost" size="sm" onClick={() => setStep("prompt")}>
                 ← Back
