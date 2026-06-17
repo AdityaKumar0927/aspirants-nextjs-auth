@@ -112,13 +112,25 @@ export async function POST(req: NextRequest) {
   }
 
   // Storage guard: bound items per account. Checked only on CREATE — updating an
-  // existing item is always allowed, so a full shelf can still sync progress.
-  // (count→upsert isn't transactional; the rate limit bounds any TOCTOU overshoot,
-  // and this is a soft storage cap, not a security invariant.)
+  // existing item is always allowed, so a full shelf still syncs progress. At the
+  // cap we EVICT the oldest rows (by updatedAt) to make room, mirroring the client
+  // shelf's own keep-most-recent-N behavior (storage.ts slice(0,50)): a legitimate
+  // new item always syncs instead of being silently rejected, while total rows stay
+  // bounded and don't grow forever. (count→evict→upsert isn't transactional; the
+  // rate limit bounds any TOCTOU overshoot, and this is a soft cap, not a security
+  // invariant.)
   if (!existing) {
     const count = await prisma.keystoneItem.count({ where: { userId } });
     if (count >= MAX_ITEMS_PER_USER) {
-      return NextResponse.json({ error: "Shelf is full (item limit reached)" }, { status: 409 });
+      const oldest = await prisma.keystoneItem.findMany({
+        where: { userId },
+        orderBy: { updatedAt: "asc" },
+        take: count - MAX_ITEMS_PER_USER + 1,
+        select: { id: true },
+      });
+      if (oldest.length) {
+        await prisma.keystoneItem.deleteMany({ where: { userId, id: { in: oldest.map((o) => o.id) } } });
+      }
     }
   }
 

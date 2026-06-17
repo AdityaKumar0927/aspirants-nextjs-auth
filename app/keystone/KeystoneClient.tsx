@@ -23,6 +23,7 @@ import {
   loadAnswers,
   saveAnswers,
   emptyProgress,
+  normalizeProgress,
   clearAll,
   listLibrary,
   getLibraryItem,
@@ -207,19 +208,22 @@ export default function KeystoneClient() {
 
   function resumeItem(it: KLibraryItem) {
     // Re-validate on load: shelf items (especially ones pulled from the cloud,
-    // where `data` is stored as opaque JSON) are normalized through the SAME
-    // validator as a fresh paste before they drive the player — a malformed or
-    // crafted blob can't break it. Validation is idempotent on already-normalized
-    // data, so a healthy item round-trips unchanged. Only commit the navigation
-    // state once it validates.
+    // where `data` and `progress` are stored as opaque JSON) are normalized
+    // through the SAME validators as a fresh paste before they drive the player —
+    // a malformed or crafted blob can't break it. Validation is idempotent on
+    // already-normalized data, so a healthy item round-trips unchanged. The `!v.ok`
+    // guard mirrors the paste path (tryBuild): a thin lesson / 0-question bank is
+    // rejected here too rather than opening into an empty / falsely-"mastered"
+    // player. Only commit the navigation state once it validates.
     if (it.mode === "learning") {
       const v = validateLesson(it.data);
-      if (!v.lesson) return; // not even an object — leave it on the shelf
+      if (!v.ok || !v.lesson) return; // unusable — leave it on the shelf
       setLesson(v.lesson);
-      setProgress(it.progress ?? emptyProgress(v.lesson.title));
+      // progress is untrusted too — coerce it so the player's array derefs are safe.
+      setProgress(normalizeProgress(it.progress, v.lesson.title));
     } else {
       const v = validateRevision(it.data);
-      if (!v.bank) return;
+      if (!v.ok || !v.bank) return;
       setBank(v.bank);
     }
     setActiveId(it.id);
@@ -335,8 +339,9 @@ export default function KeystoneClient() {
                   const d = dueLabel(it);
                   // Defensive reads: a malformed/crafted shelf item must not throw
                   // here, or it would white-screen the whole shelf (this runs for
-                  // every item). Falls back to 0 when `concepts` isn't an array.
-                  const concepts = (it.data as KLesson).concepts;
+                  // every item). Optional-chain `data` (null/non-object → undefined)
+                  // and fall back to 0 when `concepts` isn't an array.
+                  const concepts = (it.data as KLesson | null)?.concepts;
                   const conceptTotal = Array.isArray(concepts) ? concepts.length : 0;
                   const doneCount = Array.isArray(it.progress?.doneConceptIds) ? it.progress.doneConceptIds.length : 0;
                   const done = it.mode === "learning" && it.progress

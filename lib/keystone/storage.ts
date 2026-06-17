@@ -74,6 +74,32 @@ export function emptyProgress(lessonTitle: string): KProgress {
   };
 }
 
+/**
+ * Coerce a possibly-malformed progress blob into a well-formed KProgress —
+ * the progress-side counterpart to validateLesson/validateRevision. The server
+ * stores `progress` as opaque JSON, so a cloud round-trip (or corrupt/legacy
+ * localStorage) can deliver `doneConceptIds`/`calibration` as any JSON type;
+ * the player dereferences both as arrays. Never throws; mirrors emptyProgress
+ * defaults for any field that isn't the expected shape.
+ */
+export function normalizeProgress(raw: unknown, lessonTitle: string): KProgress {
+  if (!raw || typeof raw !== "object") return emptyProgress(lessonTitle);
+  const p = raw as Record<string, unknown>;
+  return {
+    lessonTitle: typeof p.lessonTitle === "string" ? p.lessonTitle : lessonTitle,
+    doneConceptIds: Array.isArray(p.doneConceptIds)
+      ? p.doneConceptIds.filter((x): x is string => typeof x === "string")
+      : [],
+    prereqsDone: p.prereqsDone === true,
+    interleaveDone: p.interleaveDone === true,
+    synthesisDone: p.synthesisDone === true,
+    calibration: Array.isArray(p.calibration)
+      ? (p.calibration.filter((c) => !!c && typeof c === "object") as KProgress["calibration"])
+      : [],
+    updatedAt: typeof p.updatedAt === "number" ? p.updatedAt : Date.now(),
+  };
+}
+
 /** Wipe a finished/abandoned run so the student can start fresh. */
 export function clearLesson(): void {
   remove(LESSON_KEY);
