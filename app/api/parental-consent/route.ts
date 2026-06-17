@@ -3,26 +3,15 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { createAndSendParentalConsent } from "@/lib/parental-consent";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 /**
  * Re-sends (or first-sends) the verifiable parental-consent email for the
- * signed-in minor. Rate-limited to stop a parent's inbox being flooded. If
- * Upstash is not configured (local dev) the limiter is skipped so the flow stays
- * testable.
+ * signed-in minor. Rate-limited via the shared limiter (lib/rate-limit), which
+ * honors every supported Redis/KV env name AND falls back to an in-memory
+ * window when Redis is unconfigured — so a misconfiguration can never silently
+ * disable the brake and let a minor mail-bomb the parent's inbox.
  */
-const limiter =
-  process.env.REDIS_URL && process.env.REDIS_TOKEN
-    ? new Ratelimit({
-        redis: new Redis({
-          url: process.env.REDIS_URL,
-          token: process.env.REDIS_TOKEN,
-        }),
-        limiter: Ratelimit.slidingWindow(3, "10 m"),
-        analytics: true,
-      })
-    : null;
 
 const bodySchema = z.object({
   parentEmail: z.string().email(),
@@ -34,12 +23,15 @@ export async function POST(req: NextRequest) {
   if (response) return response;
   const userId = session.user.id;
 
-  if (limiter) {
-    const { success } = await limiter.limit(`parental-consent:${userId}`);
-    if (!success) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-    }
-  }
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+  const limited = await rateLimit(
+    req,
+    "parental-consent",
+    { limit: 3, windowSec: 600 },
+    userId
+  );
+  if (limited) return limited;
 
   let parsed;
   try {

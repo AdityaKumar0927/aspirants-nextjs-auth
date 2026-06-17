@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { isAdmin, requireSession } from "@/lib/auth";
 import { sanitizeRichText } from "@/lib/sanitize";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 const MAX_TOP_LEVEL = 200;
 
@@ -66,6 +67,16 @@ export async function POST(
   const { session, response } = await requireSession();
   if (response) return response;
 
+  const csrf = assertSameOrigin(request);
+  if (csrf) return csrf;
+  const limited = await rateLimit(
+    request,
+    "solution-create",
+    { limit: 12, windowSec: 300 },
+    session.user.id
+  );
+  if (limited) return limited;
+
   try {
     const parsed = createSchema.safeParse(await request.json());
     if (!parsed.success) {
@@ -128,6 +139,16 @@ export async function PATCH(
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(request);
+  if (csrf) return csrf;
+  const limited = await rateLimit(
+    request,
+    "solution-update",
+    { limit: 40, windowSec: 60 },
+    session.user.id
+  );
+  if (limited) return limited;
 
   try {
     const body = await request.json();
@@ -207,6 +228,16 @@ export async function DELETE(
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(request);
+  if (csrf) return csrf;
+  const limited = await rateLimit(
+    request,
+    "solution-delete",
+    { limit: 20, windowSec: 300 },
+    session.user.id
+  );
+  if (limited) return limited;
 
   try {
     const body = await request.json();

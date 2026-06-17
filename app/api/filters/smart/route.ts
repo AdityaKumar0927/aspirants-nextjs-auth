@@ -1,13 +1,22 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { cached } from "@/lib/cache"
+import { rateLimit } from "@/lib/rate-limit"
+
+// Bound how many distinct values (and how long each) we accept per filter param.
+// This caps the cardinality of the cache key so an unauthenticated caller cannot
+// thrash the in-memory filter cache with arbitrarily many/long values.
+const MAX_VALUES_PER_PARAM = 50
+const MAX_VALUE_LENGTH = 80
 
 function parseCommaParam(value: string | null): string[] | undefined {
   if (!value) return undefined
-  return value
+  const parts = value
     .split(",")
     .map((s) => s.trim())
-    .filter((s) => s.length > 0)
+    .filter((s) => s.length > 0 && s.length <= MAX_VALUE_LENGTH)
+  if (!parts.length) return undefined
+  return parts.slice(0, MAX_VALUES_PER_PARAM)
 }
 
 /**
@@ -16,6 +25,11 @@ function parseCommaParam(value: string | null): string[] | undefined {
  */
 export async function GET(request: Request) {
   try {
+    // Public, unauthenticated endpoint — brake it by client IP so it can't be
+    // used to hammer the database / thrash the filter cache.
+    const limited = await rateLimit(request, "filters-smart", { limit: 60, windowSec: 60 })
+    if (limited) return limited
+
     const { searchParams } = new URL(request.url)
 
     const examArr = parseCommaParam(searchParams.get("exam"))
