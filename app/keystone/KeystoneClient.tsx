@@ -34,6 +34,7 @@ import {
   type KLibraryItem,
   type KProgress,
 } from "@/lib/keystone/storage";
+import { fetchRemoteItems, pushRemoteItem, deleteRemoteItem } from "@/lib/keystone/sync";
 
 type Mode = "learning" | "revision" | "doubt";
 type Step = "intro" | "questionnaire" | "doubtinput" | "prompt" | "paste" | "play";
@@ -68,6 +69,7 @@ export default function KeystoneClient() {
 
   // the shelf
   const [library, setLibrary] = useState<KLibraryItem[]>([]);
+  const [signedIn, setSignedIn] = useState(false);
 
   // paste step
   const [raw, setRaw] = useState("");
@@ -80,6 +82,17 @@ export default function KeystoneClient() {
     const a = loadAnswers();
     if (a) setAnswers(a);
     setLibrary(listLibrary());
+    // Cloud sync — signed-in only; fails soft for guests / un-migrated DB.
+    (async () => {
+      const remote = await fetchRemoteItems();
+      if (!remote.signedIn) return;
+      setSignedIn(true);
+      const local = listLibrary();
+      const remoteIds = new Set(remote.items.map((i) => i.id));
+      remote.items.forEach(upsertLibraryItem); // pull cloud → device
+      local.filter((i) => !remoteIds.has(i.id)).forEach(pushRemoteItem); // push device-only → cloud
+      setLibrary(listLibrary());
+    })();
   }, []);
 
   const prompt = useMemo(() => {
@@ -139,6 +152,7 @@ export default function KeystoneClient() {
       progress: prog,
     };
     upsertLibraryItem(item);
+    if (signedIn) pushRemoteItem(item);
     setLibrary(listLibrary());
     return id;
   }
@@ -205,6 +219,7 @@ export default function KeystoneClient() {
 
   function removeItem(id: string) {
     removeLibraryItem(id);
+    if (signedIn) deleteRemoteItem(id);
     setLibrary(listLibrary());
   }
 
@@ -218,12 +233,20 @@ export default function KeystoneClient() {
     const lessonData = it.data as KLesson;
     const complete = lessonData.concepts.length > 0 && p.doneConceptIds.length >= lessonData.concepts.length;
     if (complete && it.dueAt === null) markStudied(activeId);
+    if (signedIn) {
+      const updated = getLibraryItem(activeId);
+      if (updated) pushRemoteItem(updated);
+    }
     setLibrary(listLibrary());
   }
 
   function onRevisionMastered() {
     if (activeId) {
       markStudied(activeId);
+      if (signedIn) {
+        const updated = getLibraryItem(activeId);
+        if (updated) pushRemoteItem(updated);
+      }
       setLibrary(listLibrary());
     }
   }
@@ -440,7 +463,7 @@ export default function KeystoneClient() {
           <button onClick={() => setStep("intro")} className="type-data text-xs text-pencil hover:text-ink">Cancel</button>
         ) : (
           library.length > 0 && (
-            <button onClick={() => { clearAll(); listLibrary().forEach((it) => removeLibraryItem(it.id)); setAnswers({}); setLibrary([]); }} className="type-data text-xs text-pencil hover:text-redpen">
+            <button onClick={() => { listLibrary().forEach((it) => { removeLibraryItem(it.id); if (signedIn) deleteRemoteItem(it.id); }); clearAll(); setAnswers({}); setLibrary([]); }} className="type-data text-xs text-pencil hover:text-redpen">
               Clear shelf
             </button>
           )
