@@ -63,3 +63,27 @@ const SAMPLE = {
 };
 
 export const SAMPLE_LESSON_JSON = JSON.stringify(SAMPLE, null, 2);
+
+const SAMPLE_REVISION = {
+  title: "Newton's Laws — revision",
+  subject: "Physics",
+  questions: [
+    { id: "q1", kind: "retrieval", question: "State Newton's second law and give its equation.", modelAnswer: "The net force equals mass times acceleration: $F = ma$.", rubric: ["mentions NET force", "gives $F=ma$"], topic: "Second law", difficulty: "easy" },
+    { id: "q2", kind: "transfer", question: "A $1500\\,\\mathrm{kg}$ car brakes from $20\\,\\mathrm{m/s}$ to rest in $5\\,\\mathrm{s}$. Find the average braking force.", modelAnswer: "$a = \\Delta v/\\Delta t = -20/5 = -4\\,\\mathrm{m/s^2}$, so $F = ma = 1500 \\times 4 = 6000\\,\\mathrm{N}$.", rubric: ["finds acceleration first", "applies $F=ma$", "≈ 6000 N"], topic: "Second law", difficulty: "medium" },
+    { id: "q3", kind: "retrieval", question: "What does Newton's third law say about a book resting on a table?", modelAnswer: "The book pushes down on the table and the table pushes up on the book with an equal and opposite force.", rubric: ["equal and opposite", "identifies BOTH forces as an action–reaction pair"], topic: "Third law", difficulty: "easy" },
+    { id: "q4", kind: "transfer", question: "Why does a passenger lurch forward when a bus brakes suddenly?", modelAnswer: "Inertia (first law): the passenger continues at the bus's prior velocity until a force acts; the seatbelt/seat provides that force.", rubric: ["invokes inertia / first law", "no force = constant velocity"], topic: "First law", difficulty: "medium" },
+  ],
+};
+export const SAMPLE_REVISION_JSON = JSON.stringify(SAMPLE_REVISION, null, 2);
+
+const SAMPLE_DOUBT = {
+  concept: "Why F = ma (not F = mv)",
+  methods: [
+    { kind: "analogy", title: "Pushing a shopping trolley", content: "A force is like how hard you push a trolley. A gentle push doesn't set its *speed* — it changes how fast the speed is *building up*. Push harder and the speed climbs faster; load the trolley and the same push builds speed slower. That 'how fast speed builds' is acceleration — so force ties to $a$, not $v$." },
+    { kind: "first-principles", title: "From momentum", content: "Force is really the rate of change of momentum $p = mv$. So $F = \\frac{dp}{dt}$. For constant mass, $F = m\\frac{dv}{dt} = ma$. Velocity $v$ only enters through *how it's changing*." },
+    { kind: "edge-cases", title: "The give-away case", content: "If $F = mv$ were true, an object moving fast with NO push would still need a force just to keep moving — but a puck on frictionless ice glides forever with zero force. Constant $v$ needs zero net force; only *changing* $v$ needs force. That rules out $F=mv$." },
+    { kind: "socratic", title: "Find the gap", content: "1) If you stop pushing a sliding puck on frictionless ice, does it stop? 2) So is a force needed to *have* velocity, or to *change* it? 3) Which quantity measures the change of velocity?" },
+  ],
+  retrievalCheck: { question: "In one sentence: a force changes which quantity — position, velocity, or the rate of change of velocity?", modelAnswer: "It changes the rate of change of velocity (the acceleration)." },
+};
+export const SAMPLE_DOUBT_JSON = JSON.stringify(SAMPLE_DOUBT, null, 2);

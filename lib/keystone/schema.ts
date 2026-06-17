@@ -288,3 +288,146 @@ export function parseLessonText(
     };
   }
 }
+
+/* ====================================================================== */
+/* Revision Mode — a tagged, self-scored practice-test bank.              */
+/* ====================================================================== */
+
+export interface KRevisionQuestion {
+  id: string;
+  question: string;
+  modelAnswer: string;
+  rubric: string[];
+  kind: "retrieval" | "transfer";
+  topic: string | null;
+  difficulty: "easy" | "medium" | "hard" | null;
+}
+export interface KRevisionBank {
+  title: string;
+  subject: string | null;
+  questions: KRevisionQuestion[];
+}
+export interface KRevisionValidation {
+  ok: boolean;
+  bank: KRevisionBank | null;
+  warnings: string[];
+  missing: string[];
+}
+
+const DIFF = new Set(["easy", "medium", "hard"]);
+
+export function validateRevision(raw: unknown): KRevisionValidation {
+  autoId = 0;
+  if (!isObj(raw)) return { ok: false, bank: null, warnings: [], missing: ["the whole bank object"] };
+
+  const list = Array.isArray(raw.questions) ? raw.questions : Array.isArray(raw) ? (raw as unknown[]) : [];
+  const questions: KRevisionQuestion[] = (list as unknown[])
+    .map((q) => {
+      if (!isObj(q)) return null;
+      const question = s(q.question ?? q.prompt, 10_000);
+      if (!question) return null;
+      const diff = s(q.difficulty).toLowerCase();
+      return {
+        id: idFrom(q.id, question.slice(0, 40)),
+        question,
+        modelAnswer: s(q.modelAnswer ?? q.answer, 20_000),
+        rubric: sArr(q.rubric, 12),
+        kind: s(q.kind).toLowerCase() === "transfer" ? "transfer" : "retrieval",
+        topic: sOrNull(q.topic, 200),
+        difficulty: DIFF.has(diff) ? (diff as "easy" | "medium" | "hard") : null,
+      } as KRevisionQuestion;
+    })
+    .filter((x): x is KRevisionQuestion => !!x)
+    .slice(0, 500);
+
+  const warnings: string[] = [];
+  const missing: string[] = [];
+  if (questions.length === 0) missing.push("the questions array");
+  if (questions.length > 0 && questions.every((q) => !q.modelAnswer)) {
+    warnings.push("No model answers were provided — you won't be able to self-check.");
+  }
+
+  return {
+    ok: questions.length > 0,
+    bank: { title: s(raw.title, 300) || "Revision set", subject: sOrNull(raw.subject, 200), questions },
+    warnings,
+    missing,
+  };
+}
+
+/* ====================================================================== */
+/* Doubt Mode — one concept attacked through many explanatory methods.    */
+/* ====================================================================== */
+
+export type KDoubtMethodKind =
+  | "analogy"
+  | "first-principles"
+  | "worked-example"
+  | "edge-cases"
+  | "visual"
+  | "decomposition"
+  | "socratic"
+  | "other";
+
+const METHOD_KINDS = new Set<string>([
+  "analogy", "first-principles", "worked-example", "edge-cases", "visual", "decomposition", "socratic",
+]);
+
+export interface KDoubtMethod {
+  kind: KDoubtMethodKind;
+  title: string;
+  content: string;
+}
+export interface KDoubt {
+  concept: string;
+  methods: KDoubtMethod[];
+  retrievalCheck: { question: string; modelAnswer: string } | null;
+}
+export interface KDoubtValidation {
+  ok: boolean;
+  doubt: KDoubt | null;
+  warnings: string[];
+  missing: string[];
+}
+
+export function validateDoubt(raw: unknown): KDoubtValidation {
+  if (!isObj(raw)) return { ok: false, doubt: null, warnings: [], missing: ["the whole object"] };
+
+  const methods: KDoubtMethod[] = (Array.isArray(raw.methods) ? raw.methods : [])
+    .map((m) => {
+      if (!isObj(m)) return null;
+      const content = s(m.content ?? m.text ?? m.explanation, 20_000);
+      if (!content) return null;
+      const kindRaw = s(m.kind).toLowerCase();
+      const kind = (METHOD_KINDS.has(kindRaw) ? kindRaw : "other") as KDoubtMethodKind;
+      return { kind, title: s(m.title, 200) || kindLabel(kind), content };
+    })
+    .filter((x): x is KDoubtMethod => !!x)
+    .slice(0, 12);
+
+  const rc = isObj(raw.retrievalCheck) ? raw.retrievalCheck : null;
+  const retrievalCheck = rc && s(rc.question) ? { question: s(rc.question, 6_000), modelAnswer: s(rc.modelAnswer, 10_000) } : null;
+
+  const missing: string[] = [];
+  if (methods.length === 0) missing.push("the methods array (the explanations)");
+
+  return {
+    ok: methods.length > 0,
+    doubt: { concept: s(raw.concept, 300) || "This concept", methods, retrievalCheck },
+    warnings: methods.length < 3 && methods.length > 0 ? ["Only a couple of explanations came back — you can ask your AI for more angles."] : [],
+    missing,
+  };
+}
+
+export function kindLabel(kind: KDoubtMethodKind): string {
+  switch (kind) {
+    case "analogy": return "Analogy";
+    case "first-principles": return "From first principles";
+    case "worked-example": return "Worked example";
+    case "edge-cases": return "Edge & contrasting cases";
+    case "visual": return "Picture it";
+    case "decomposition": return "Broken into pieces";
+    case "socratic": return "Questions to find the gap";
+    default: return "Another way to see it";
+  }
+}

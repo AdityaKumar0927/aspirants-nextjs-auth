@@ -174,3 +174,115 @@ The student's material follows below.
 ---
 [PASTE YOUR CHAPTER / NOTES / PDF TEXT HERE]`;
 }
+
+/* ====================================================================== */
+/* Revision Mode — an exam-ready, self-scored, interleaved practice bank.  */
+/* ====================================================================== */
+
+export function buildRevisionPrompt(a: KeystoneAnswers): string {
+  const subject = str(a, "subject") || "the subject";
+  const topic = str(a, "topic") || "the topic";
+  const spacing = str(a, "goal") === "exam" ? (EXAM_SPACING[str(a, "examWhen")] ?? "") : "";
+
+  return `You are an expert exam coach. The student has ALREADY learned this material and now needs to make it exam-ready and durable through retrieval practice. Build a large, INTERLEAVED bank of practice questions on "${topic}" in ${subject}, based STRICTLY on the material the user provides below.
+
+The app turns this into a self-scored practice-testing session that prioritizes the student's weak and overconfident items and brings them back on a spaced schedule. So:
+- Make MANY questions (as many as the material supports — aim high; the more the better).
+- Favor RETRIEVAL (recall/produce) and TRANSFER (apply to an unseen case) questions — the highest-utility revision activity. No recognition-only / true-false trivia.
+- INTERLEAVE topics: do not group all questions on one sub-topic together; mix them, because choosing the method is the hard part of a real exam.
+- Tag every question with its topic and a difficulty, so the app can prioritize.
+- Give every question a model answer and a short self-scoring rubric.
+${spacing ? `- ${spacing}\n` : ""}
+Return a SINGLE JSON object and NOTHING else (no preamble, no text outside one \`\`\`json block):
+\`\`\`json
+{
+  "title": "Revision set title",
+  "subject": "${subject}",
+  "questions": [
+    {
+      "id": "q1",
+      "kind": "retrieval",
+      "question": "A question the student must PRODUCE an answer to (Markdown + LaTeX).",
+      "modelAnswer": "The full correct answer to self-check against.",
+      "rubric": ["Point the answer must include", "Another point"],
+      "topic": "Sub-topic this tests",
+      "difficulty": "medium"
+    }
+  ]
+}
+\`\`\`
+
+RULES:
+- "kind" is "retrieval" or "transfer". "difficulty" is "easy", "medium", or "hard".
+- Math in LaTeX ($...$ / $$...$$). Markdown for structure. NO images.
+- Before answering, verify every model answer is correct and the JSON is complete and parseable.
+- Return ONLY the JSON code block.
+
+The student's material follows below.
+---
+[PASTE YOUR CHAPTER / NOTES / PDF TEXT HERE]`;
+}
+
+/* ====================================================================== */
+/* Doubt Mode — one concept, attacked from many angles.                   */
+/* ====================================================================== */
+
+export interface DoubtInput {
+  concept: string;
+  confusion: string;
+  interests?: string;
+  level?: string;
+}
+
+export function buildDoubtPrompt(input: DoubtInput): string {
+  const { concept, confusion, interests, level } = input;
+  return `A student is STUCK on a single concept and needs it explained until it clicks. Explain "${concept}" through MANY genuinely different methods — not the same explanation reworded. ${
+    confusion ? `What specifically confuses them: "${confusion}". Target this.` : ""
+  } ${level ? `Their level: ${level}.` : ""}
+
+Produce these methods (skip one only if truly inapplicable), each as a distinct entry:
+- analogy: a plain-language analogy${interests ? `, tied to the student's interests where natural (${interests})` : ""}.
+- first-principles: build the idea up from its simplest prerequisite.
+- worked-example: a concrete worked example showing it in action.
+- edge-cases: contrasting and boundary cases that sharpen where the idea does and doesn't apply.
+- visual: describe a picture/diagram/mental image of it in words (no image links).
+- decomposition: break it into the smallest prerequisite pieces.
+- socratic: 3–5 questions that probe where the misunderstanding likely sits.
+
+Return a SINGLE JSON object and NOTHING else (no text outside one \`\`\`json block):
+\`\`\`json
+{
+  "concept": "${concept}",
+  "methods": [
+    { "kind": "analogy", "title": "Short title", "content": "The explanation (Markdown + LaTeX)." }
+  ],
+  "retrievalCheck": { "question": "A quick question to confirm it clicked", "modelAnswer": "..." }
+}
+\`\`\`
+
+RULES:
+- "kind" must be one of: analogy, first-principles, worked-example, edge-cases, visual, decomposition, socratic.
+- Math in LaTeX. Markdown for structure. NO image links.
+- Verify your own work; return ONLY the JSON code block.
+
+If any of the student's own material is relevant, it follows below (optional).
+---
+[OPTIONAL: PASTE RELEVANT NOTES HERE — or delete this line]`;
+}
+
+/** The iterative re-prompt: a DEEPER follow-up after the first round didn't land. */
+export function buildDoubtFollowupPrompt(params: {
+  concept: string;
+  confusion: string;
+  triedMethods: string[];
+  stillConfusing: string;
+}): string {
+  const { concept, confusion, triedMethods, stillConfusing } = params;
+  return `You earlier explained "${concept}" several ways and it still hasn't clicked for the student. ${
+    confusion ? `Their original confusion: "${confusion}". ` : ""
+  }These approaches did NOT land: ${triedMethods.join(", ") || "the earlier ones"}. What's STILL confusing them now: "${stillConfusing}".
+
+Go DEEPER and DIFFERENT. Diagnose the most likely root misunderstanding behind "${stillConfusing}", then explain from there with FRESH methods you didn't use before — a different analogy, a more granular decomposition, a different starting point. Be concrete and patient.
+
+Return the SAME single JSON shape as before (concept, methods[], retrievalCheck) and NOTHING else — only one \`\`\`json code block. Math in LaTeX, no image links, verify your own work.`;
+}

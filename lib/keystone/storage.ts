@@ -83,3 +83,27 @@ export function clearAll(): void {
   remove(ANSWERS_KEY);
   clearLesson();
 }
+
+/* --------------------------- Revision Mode state -------------------------- */
+
+const REVISION_KEY = "keystone.revision.v1";
+
+/** Per-question mastery (0 missed / 1 partial / 2 got it) so weak items stay
+ *  prioritized across refreshes, keyed by bank title. */
+export interface KRevisionState {
+  bankTitle: string;
+  mastery: Record<string, number>;
+  calibration: { predicted: number; outcome: number }[];
+  updatedAt: number;
+}
+
+export function loadRevisionState(bankTitle: string): KRevisionState | null {
+  const st = read<KRevisionState>(REVISION_KEY);
+  return st && st.bankTitle === bankTitle ? st : null;
+}
+export function saveRevisionState(st: KRevisionState): void {
+  write(REVISION_KEY, { ...st, updatedAt: Date.now() });
+}
+export function clearRevisionState(): void {
+  remove(REVISION_KEY);
+}
