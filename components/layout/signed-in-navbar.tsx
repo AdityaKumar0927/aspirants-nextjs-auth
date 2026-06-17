@@ -207,6 +207,16 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Link
+              href="/keystone"
+              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+            >
+              Keystone
+            </Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <Link
               href="/leaderboard"
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
@@ -289,6 +299,13 @@ function MobileNavLinks({
         onClick={() => setMenuOpen(false)}
       >
         My banks
+      </Link>
+      <Link
+        href="/keystone"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        Keystone
       </Link>
       <Link
         href="/leaderboard"
