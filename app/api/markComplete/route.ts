@@ -1,18 +1,32 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]/options';
+import { z } from 'zod';
+import { requireSession } from '@/lib/auth';
+import { rateLimit, assertSameOrigin } from '@/lib/rate-limit';
+
+const postSchema = z.object({
+  questionId: z.string().min(1),
+  completed: z.boolean(),
+});
 
 export async function POST(request: Request) {
+  const { session, response } = await requireSession();
+  if (response) return response;
+
+  const csrf = assertSameOrigin(request);
+  if (csrf) return csrf;
+  const limited = await rateLimit(request, "mark-complete", { limit: 120, windowSec: 60 }, session.user.id);
+  if (limited) return limited;
+
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const parsed = postSchema.safeParse(await request.json());
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Validation failed", issues: parsed.error.flatten() },
+        { status: 400 }
+      );
     }
-
-    const { questionId, completed } = await request.json();
-    if (!questionId || typeof questionId !== "string") return NextResponse.json({ error: "questionId is required" }, { status: 400 });
+    const { questionId, completed } = parsed.data;
 
     await prisma.userProgress.upsert({
       where: {

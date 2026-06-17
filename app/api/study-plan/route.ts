@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 // Server-synced study planner. One row per user; the planner state is stored as
 // JSON. Guests (401) fall back to localStorage on the client.
@@ -33,6 +34,8 @@ const planSchema = z.object({
 export async function PUT(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
+  const csrf = assertSameOrigin(req); if (csrf) return csrf;
+  const limited = await rateLimit(req, "study-plan", { limit: 20, windowSec: 60 }, session.user.id); if (limited) return limited;
 
   let body: unknown;
   try {

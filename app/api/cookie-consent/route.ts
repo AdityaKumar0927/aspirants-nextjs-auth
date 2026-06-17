@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { getCurrentSession } from "@/lib/auth";
+import { assertSameOrigin } from "@/lib/rate-limit";
 import { logAudit, requestMeta } from "@/lib/audit";
 import { CONSENT_VERSION } from "@/lib/constants";
 import type { ConsentPurpose } from "@prisma/client";
@@ -28,6 +29,10 @@ export async function POST(req: NextRequest) {
   }
 
   const session = await getCurrentSession();
+
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+
   const res = NextResponse.json({ ok: true });
 
   // Re-affirm the cookie server-side (defense in depth alongside the client write).

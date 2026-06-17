@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { logAudit } from "@/lib/audit";
 import { requestMeta } from "@/lib/audit";
+import { rateLimit } from "@/lib/rate-limit";
 import { hashToken } from "@/lib/parental-consent";
 import { CONSENT_VERSION } from "@/lib/constants";
 
@@ -15,6 +16,9 @@ import { CONSENT_VERSION } from "@/lib/constants";
 const bodySchema = z.object({ token: z.string().min(16) });
 
 export async function POST(req: NextRequest) {
+  const limited = await rateLimit(req, "parental-consent-verify", { limit: 10, windowSec: 600 });
+  if (limited) return limited;
+
   let parsed;
   try {
     parsed = bodySchema.parse(await req.json());

@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { logAudit, requestMeta } from "@/lib/audit";
+import { assertSameOrigin } from "@/lib/rate-limit";
 import { CONSENT_VERSION } from "@/lib/constants";
 import type { ConsentPurpose } from "@prisma/client";
 
@@ -47,6 +48,10 @@ const postSchema = z.object({
 export async function POST(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+
   const userId = session.user.id;
 
   let parsed;
@@ -61,25 +66,29 @@ export async function POST(req: NextRequest) {
     session.user.isMinor === true ? false : parsed.granted;
   const meta = requestMeta(req);
 
-  await prisma.consentRecord.create({
-    data: {
-      userId,
-      purpose: parsed.purpose,
-      consentVersion: CONSENT_VERSION,
-      granted,
-      source: "privacy-dashboard",
-      ipAddress: meta.ipAddress,
-      userAgent: meta.userAgent,
-    },
-  });
-
-  // Keep the denormalised analytics flag in step for the analytics gate.
-  if (parsed.purpose === "ANALYTICS") {
-    await prisma.user.update({
-      where: { id: userId },
-      data: { analyticsConsent: granted },
+  // Append the record and keep the denormalised analytics flag in step in one
+  // transaction so the two can't drift apart on a partial failure.
+  await prisma.$transaction(async (tx) => {
+    await tx.consentRecord.create({
+      data: {
+        userId,
+        purpose: parsed.purpose,
+        consentVersion: CONSENT_VERSION,
+        granted,
+        source: "privacy-dashboard",
+        ipAddress: meta.ipAddress,
+        userAgent: meta.userAgent,
+      },
     });
-  }
+
+    // Keep the denormalised analytics flag in step for the analytics gate.
+    if (parsed.purpose === "ANALYTICS") {
+      await tx.user.update({
+        where: { id: userId },
+        data: { analyticsConsent: granted },
+      });
+    }
+  });
 
   await logAudit({
     userId,

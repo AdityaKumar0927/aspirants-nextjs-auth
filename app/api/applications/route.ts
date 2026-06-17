@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server"
 import { ApplicationRole } from "@prisma/client"
+import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { getServerSession } from "next-auth/next"
 import authOptions from "../auth/[...nextauth]/options"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
 
 export const dynamic = "force-dynamic"
+
+const applicationSchema = z.object({
+  name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email().max(254),
+  role: z.string().trim().max(50).optional(),
+  experience: z.string().trim().min(50).max(1000),
+  motivation: z.string().trim().min(50).max(1000),
+  honeypot: z.string().optional(),
+})
 
 export async function POST(request: Request) {
   try {
@@ -20,28 +30,24 @@ export async function POST(request: Request) {
     const limited = await rateLimit(request, "application", { limit: 3, windowSec: 600 }, session.user.id)
     if (limited) return limited
 
-    const body = await request.json()
-    const { name, email, role, experience, motivation, honeypot } = body
+    const parsed = applicationSchema.safeParse(await request.json())
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Validation failed", issues: parsed.error.flatten() }, { status: 400 })
+    }
+    const { name, email, role, experience, motivation, honeypot } = parsed.data
 
     // Check honeypot field
     if (honeypot) {
       return NextResponse.json({ error: "Invalid submission" }, { status: 400 })
     }
 
-    // Validate input
-    if (!name || !email || !role || !experience || !motivation) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
-    }
-
-    // Enhanced input validation
-    if (name.length < 2 || name.length > 100) {
-      return NextResponse.json({ error: "Name must be between 2 and 100 characters" }, { status: 400 })
-    }
-    if (experience.length < 50 || experience.length > 1000) {
-      return NextResponse.json({ error: "Experience must be between 50 and 1000 characters" }, { status: 400 })
-    }
-    if (motivation.length < 50 || motivation.length > 1000) {
-      return NextResponse.json({ error: "Motivation must be between 50 and 1000 characters" }, { status: 400 })
+    // Prevent queue spam: one pending application per user at a time.
+    const pending = await prisma.application.findFirst({
+      where: { userId: session.user.id, status: "PENDING" },
+      select: { id: true },
+    })
+    if (pending) {
+      return NextResponse.json({ error: "You already have a pending application." }, { status: 409 })
     }
 
     // Public applications are for VOLUNTEERS only. Moderators are promoted from

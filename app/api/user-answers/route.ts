@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 import { gradeAnswer } from "@/lib/grade";
 
 const postSchema = z.object({
@@ -33,6 +34,11 @@ export async function GET() {
 export async function POST(request: Request) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(request);
+  if (csrf) return csrf;
+  const limited = await rateLimit(request, "user-answers", { limit: 120, windowSec: 60 }, session.user.id);
+  if (limited) return limited;
 
   try {
     const parsed = postSchema.safeParse(await request.json());

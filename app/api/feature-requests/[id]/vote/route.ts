@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 // Toggle the caller's upvote on a feature request. Returns the new count + state.
-export async function POST(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { session, response } = await requireSession();
   if (response) return response;
+  const csrf = assertSameOrigin(req); if (csrf) return csrf;
+  const limited = await rateLimit(req, "feature-request-vote", { limit: 30, windowSec: 60 }, session.user.id); if (limited) return limited;
   const { id } = await params;
 
   const exists = await prisma.featureRequest.findUnique({ where: { id }, select: { id: true } });

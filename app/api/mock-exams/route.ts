@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { requireSession } from "@/lib/auth"
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
 
 const createSchema = z.object({
   exam: z.string().trim().max(200).nullish(),
@@ -32,6 +33,7 @@ export async function GET() {
     const attempts = await prisma.userMockExam.findMany({
       where: { userId },
       orderBy: { createdAt: "desc" },
+      take: 50,
     })
 
     return NextResponse.json({ data: attempts })
@@ -56,6 +58,8 @@ export async function GET() {
 export async function POST(request: Request) {
   const { session, response } = await requireSession()
   if (response) return response
+  const csrf = assertSameOrigin(request); if (csrf) return csrf;
+  const limited = await rateLimit(request, "mock-exam-write", { limit: 30, windowSec: 60 }, session.user.id); if (limited) return limited;
   try {
     const userId = session.user.id
 

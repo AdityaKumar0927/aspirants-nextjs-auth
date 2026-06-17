@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 // UserPerformance feeds only the user's OWN analytics dashboard (the public
 // leaderboard is static), so we don't fully recompute it server-side — but we
@@ -41,6 +42,8 @@ const schema = z.object({
 export async function POST(request: Request) {
   const { session, response } = await requireSession();
   if (response) return response;
+  const csrf = assertSameOrigin(request); if (csrf) return csrf;
+  const limited = await rateLimit(request, "user-performance", { limit: 120, windowSec: 60 }, session.user.id); if (limited) return limited;
 
   try {
     const parsed = schema.safeParse(await request.json());

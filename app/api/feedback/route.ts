@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server"
 import { getServerSession } from "next-auth/next"
+import { z } from "zod"
 import prisma from "@/lib/prisma"
 import authOptions from "../auth/[...nextauth]/options"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
+
+const feedbackSchema = z.object({
+  content: z.string().trim().min(1).max(10000),
+  emoji: z.string().max(16).optional(),
+  anonymous: z.boolean().optional(),
+})
 
 /** GET /api/feedback — the signed-in user's own feedback history + threads. */
 export async function GET() {
@@ -47,10 +54,11 @@ export async function POST(request: Request) {
     const limited = await rateLimit(request, "feedback", { limit: 6, windowSec: 300 }, session.user.id)
     if (limited) return limited
 
-    const { content, emoji, anonymous } = await request.json()
-    if (!content) {
-      return NextResponse.json({ error: "Feedback content is required" }, { status: 400 })
+    const parsed = feedbackSchema.safeParse(await request.json())
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Validation failed", issues: parsed.error.flatten() }, { status: 400 })
     }
+    const { content, emoji, anonymous } = parsed.data
 
     const feedback = await prisma.feedback.create({
       data: {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
 import { logAudit } from "@/lib/audit"
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
 
 /**
  * Admin site-wide announcements (Notification rows with userId = null, shown to
@@ -25,6 +26,9 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   const { session, response } = await requireAdmin()
   if (response) return response
+
+  const csrf = assertSameOrigin(req); if (csrf) return csrf;
+  const limited = await rateLimit(req, "notification-broadcast", { limit: 20, windowSec: 60 }, session.user.id); if (limited) return limited;
 
   const body = (await req.json().catch(() => ({}))) as { title?: string; message?: string }
   const title = (body.title ?? "").trim()

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { logAudit } from "@/lib/audit";
+import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 
 /**
  * Self-service erasure (DPDP right to erasure). Hard-deletes the user; cascading
@@ -13,6 +14,11 @@ import { logAudit } from "@/lib/audit";
 export async function DELETE(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const csrf = assertSameOrigin(req);
+  if (csrf) return csrf;
+  const limited = await rateLimit(req, "account-delete", { limit: 3, windowSec: 3600 }, session.user.id);
+  if (limited) return limited;
 
   try {
     const userId = session.user.id;
@@ -25,7 +31,13 @@ export async function DELETE(req: NextRequest) {
       req,
     });
 
-    await prisma.user.delete({ where: { id: userId } });
+    // Cascade removes the user's own data, but FeedbackMessage rows the user
+    // authored on OTHER users' threads (authorId = userId, no cascade from User)
+    // would be orphaned — erase those too for right-to-erasure completeness.
+    await prisma.$transaction([
+      prisma.feedbackMessage.deleteMany({ where: { authorId: userId } }),
+      prisma.user.delete({ where: { id: userId } }),
+    ]);
 
     return NextResponse.json(
       { message: "Your account and personal data have been deleted." },

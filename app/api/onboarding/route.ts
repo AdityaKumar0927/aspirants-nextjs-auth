@@ -152,13 +152,20 @@ export async function POST(req: NextRequest) {
   });
 
   if (isMinor && parsed.parentEmail) {
-    await createAndSendParentalConsent({
-      userId,
-      childName: session.user.name ?? session.user.email ?? "Your child",
-      parentEmail: parsed.parentEmail,
-      parentName: parsed.parentName ?? null,
-      req,
-    });
+    // The onboarding transaction has already committed; a failure here (email
+    // send / consent upsert) must NOT 500 a successful onboarding. Log and
+    // continue — the parent can be re-invited later from the consent flow.
+    try {
+      await createAndSendParentalConsent({
+        userId,
+        childName: session.user.name ?? session.user.email ?? "Your child",
+        parentEmail: parsed.parentEmail,
+        parentName: parsed.parentName ?? null,
+        req,
+      });
+    } catch (error) {
+      console.error("createAndSendParentalConsent failed after onboarding commit", error);
+    }
   }
 
   await logAudit({
