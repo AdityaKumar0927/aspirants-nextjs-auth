@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { requireAdmin } from "@/lib/auth"
+import { logAudit } from "@/lib/audit"
 
 /** Edit / delete a site-wide announcement (admin only; never touches per-user rows). */
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { response } = await requireAdmin()
+  const { session, response } = await requireAdmin()
   if (response) return response
 
   const { id } = await params
@@ -23,14 +24,30 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   }
 
   const updated = await prisma.notification.update({ where: { id }, data })
+
+  await logAudit({
+    userId: session.user.id,
+    action: "NOTIFICATION_UPDATED",
+    metadata: { notificationId: id },
+    req,
+  })
+
   return NextResponse.json(updated)
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { response } = await requireAdmin()
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { session, response } = await requireAdmin()
   if (response) return response
 
   const { id } = await params
   await prisma.notification.deleteMany({ where: { id, userId: null } })
+
+  await logAudit({
+    userId: session.user.id,
+    action: "NOTIFICATION_DELETED",
+    metadata: { notificationId: id },
+    req,
+  })
+
   return NextResponse.json({ ok: true })
 }

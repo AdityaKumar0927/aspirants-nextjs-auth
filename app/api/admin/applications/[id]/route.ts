@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from "@/lib/prisma";
-import { getServerSession } from 'next-auth/next';
-import authOptions from '../../../auth/[...nextauth]/options';
+import { requireAdmin } from "@/lib/auth";
+import { logAudit } from "@/lib/audit";
 
 export const dynamic = 'force-dynamic';
 
@@ -9,14 +9,10 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    // Check if the user is authenticated and is an admin
-    const session = await getServerSession(authOptions);
-    
-    if (!session || !session.user || session.user.role !== 'administrator') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const { session, response } = await requireAdmin();
+  if (response) return response;
 
+  try {
     const { id } = await params;
     const body = await request.json();
 
@@ -30,9 +26,24 @@ export async function PATCH(
       );
     }
 
+    const existing = await prisma.application.findUnique({
+      where: { id },
+      select: { status: true },
+    });
+    if (!existing) {
+      return NextResponse.json({ error: 'Application not found' }, { status: 404 });
+    }
+
     const updatedApplication = await prisma.application.update({
       where: { id },
       data: { status },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      action: 'APPLICATION_REVIEWED',
+      metadata: { applicationId: id, from: existing.status, to: status },
+      req: request,
     });
 
     return NextResponse.json(updatedApplication);
@@ -42,24 +53,18 @@ export async function PATCH(
   }
 }
 
-// Keep the existing GET handler
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const session = await getServerSession(authOptions);
-    
-    if (!session || !session.user || session.user.role !== 'administrator') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+  const { response } = await requireAdmin();
+  if (response) return response;
 
+  try {
     const { id } = await params;
 
     const application = await prisma.application.findUnique({
-      where: {
-        id: id
-      }
+      where: { id },
     });
 
     if (!application) {

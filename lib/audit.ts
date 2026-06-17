@@ -40,7 +40,14 @@ export type AuditAction =
   | "MODERATOR_ACTION"
   | "NOTIFICATION_BROADCAST"
   | "ISSUE_UPDATED"
-  | "FEEDBACK_RESOLVED";
+  | "FEEDBACK_RESOLVED"
+  | "FEEDBACK_STATUS_CHANGED"
+  | "FEEDBACK_DELETED"
+  | "APPLICATION_REVIEWED"
+  | "FEATURE_REQUEST_STATUS_CHANGED"
+  | "FEATURE_REQUEST_DELETED"
+  | "NOTIFICATION_UPDATED"
+  | "NOTIFICATION_DELETED";
 
 /** Pulls the caller's IP and user-agent from a request's headers. */
 export function requestMeta(req: Request): {

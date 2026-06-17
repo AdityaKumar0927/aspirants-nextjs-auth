@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
+import { logAudit } from "@/lib/audit";
 import type { FeedbackStatus } from "@prisma/client";
 
 /**
@@ -142,6 +143,13 @@ export async function PATCH(
     },
   });
 
+  await logAudit({
+    userId: session.user.id,
+    action: "FEEDBACK_STATUS_CHANGED",
+    metadata: { feedbackId: id, status: parsed.status },
+    req,
+  });
+
   return NextResponse.json({ ok: true });
 }
 
@@ -150,10 +158,10 @@ export async function PATCH(
  * conversation thread, and related notifications.
  */
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { response } = await requireAdmin();
+  const { session, response } = await requireAdmin();
   if (response) return response;
 
   const { id } = await params;
@@ -162,6 +170,13 @@ export async function DELETE(
     prisma.notification.deleteMany({ where: { relatedFeedbackId: id } }),
     prisma.feedback.delete({ where: { id } }),
   ]);
+
+  await logAudit({
+    userId: session.user.id,
+    action: "FEEDBACK_DELETED",
+    metadata: { feedbackId: id },
+    req,
+  });
 
   return NextResponse.json({ ok: true });
 }

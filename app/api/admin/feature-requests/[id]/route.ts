@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
+import { logAudit } from "@/lib/audit";
 import type { FeatureRequestStatus } from "@prisma/client";
 
 /**
@@ -16,7 +17,7 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { response } = await requireAdmin();
+  const { session, response } = await requireAdmin();
   if (response) return response;
 
   const { id } = await params;
@@ -31,14 +32,22 @@ export async function PATCH(
     where: { id },
     data: { status: parsed.status as FeatureRequestStatus },
   });
+
+  await logAudit({
+    userId: session.user.id,
+    action: "FEATURE_REQUEST_STATUS_CHANGED",
+    metadata: { featureRequestId: id, status: parsed.status },
+    req,
+  });
+
   return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const { response } = await requireAdmin();
+  const { session, response } = await requireAdmin();
   if (response) return response;
 
   const { id } = await params;
@@ -47,5 +56,13 @@ export async function DELETE(
     prisma.featureRequestComment.deleteMany({ where: { featureRequestId: id } }),
     prisma.featureRequest.delete({ where: { id } }),
   ]);
+
+  await logAudit({
+    userId: session.user.id,
+    action: "FEATURE_REQUEST_DELETED",
+    metadata: { featureRequestId: id },
+    req,
+  });
+
   return NextResponse.json({ ok: true });
 }

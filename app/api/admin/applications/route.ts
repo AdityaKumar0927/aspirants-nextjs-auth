@@ -1,19 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import prisma from "@/lib/prisma";
-import { getServerSession } from 'next-auth/next';
-import authOptions from '../../auth/[...nextauth]/options';
+import { requireAdmin } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
+  const { response } = await requireAdmin();
+  if (response) return response;
+
   try {
-    // Check if the user is authenticated and is an admin
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user || session.user.role !== 'administrator') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     // Fetch all applications
     const applications = await prisma.application.findMany({
       orderBy: {
