@@ -3,7 +3,7 @@ import { streamText, type ModelMessage } from 'ai'
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
-import { getToken } from 'next-auth/jwt'
+import { auth } from '@/auth'
 import { resolveProvider } from '@/lib/ai'
 
 export const runtime = 'edge'
@@ -92,13 +92,14 @@ For normal text, provide it directly without any specific heading.
 
 export async function POST(req: NextRequest) {
   // Only signed-in users may consume the AI hint feature.
-  const token = await getToken({ req })
-  if (!token?.sub) {
+  const session = await auth()
+  const userId = session?.user?.id
+  if (!userId) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
   // Rate-limit per user (not per IP, which is shared behind NATs/proxies).
-  const { success } = await ratelimit.limit(`openai:${token.sub}`)
+  const { success } = await ratelimit.limit(`openai:${userId}`)
   if (!success) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 })
   }
@@ -151,7 +152,7 @@ export async function POST(req: NextRequest) {
 
     // Scope history to the authenticated user so one user can never read
     // (or poison) another user's conversation by guessing a sessionId.
-    const historyKey = `${token.sub}:${sessionId}`
+    const historyKey = `${userId}:${sessionId}`
     // Drop this session's history if it's gone stale, then mark it touched.
     const lastTouched = chatHistoryMeta.get(historyKey)
     if (lastTouched !== undefined && Date.now() - lastTouched > HISTORY_TTL_MS) {

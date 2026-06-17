@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/options"
+import { auth } from "@/auth"
 import prisma from "@/lib/prisma"
 import { settingsSchema } from "@/lib/validations/settings"
 
@@ -8,7 +7,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ userId: string }> }
 ) {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session || session.user.id !== (await params).userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
@@ -27,7 +26,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ userId: string }> }
 ) {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session || session.user.id !== (await params).userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }

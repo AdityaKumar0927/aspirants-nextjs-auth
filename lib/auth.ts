@@ -1,15 +1,14 @@
-import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 import type { Session } from "next-auth";
 import prisma from "@/lib/prisma";
-import authOptions from "@/app/api/auth/[...nextauth]/options";
+import { auth } from "@/auth";
 
 export const ADMIN_ROLE = "administrator";
 /** Roles allowed to triage/moderate community content (issues, etc.). */
 export const STAFF_ROLES = ["administrator", "moderator"] as const;
 
 export async function getCurrentSession(): Promise<Session | null> {
-  return getServerSession(authOptions);
+  return auth();
 }
 
 type GuardResult =
