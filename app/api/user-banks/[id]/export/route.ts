@@ -1,15 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * GET /api/user-banks/[id]/export — owner-only download of a bank as
  * import-compatible JSON (the same shape the create flow accepts), so a student
  * can back up a bank or move it elsewhere and re-import it later.
  */
-export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const limited = await rateLimit(req, "user-bank-export", { limit: 60, windowSec: 3600 }, session.user.id);
+  if (limited) return limited;
 
   const { id } = await params;
   const bank = await prisma.userBank.findUnique({

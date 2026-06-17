@@ -5,6 +5,7 @@ import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
+import { assertSameOrigin } from "@/lib/rate-limit";
 import { QUESTION_TYPES } from "@/lib/validations/question";
 import { resolveProviders, type ResolvedProvider } from "@/lib/ai";
 
@@ -309,6 +310,9 @@ async function runExtraction(
 export async function POST(request: Request) {
   const { session, response } = await requireAdmin();
   if (response) return response;
+
+  const csrf = assertSameOrigin(request);
+  if (csrf) return csrf;
 
   if (ratelimit) {
     const { success } = await ratelimit.limit(session.user.id);
