@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import prisma from "@/lib/prisma"
+import { settingsSchema } from "@/lib/validations/settings"
 
 export async function GET() {
   const session = await getServerSession(authOptions)
@@ -25,21 +26,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const data = await request.json()
+  const parsed = settingsSchema.safeParse(await request.json())
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: "Validation failed", issues: parsed.error.flatten() },
+      { status: 400 }
+    )
+  }
+  const { username, email, bio, urls } = parsed.data
+
   const settings = await prisma.userSettings.upsert({
     where: { userId: session.user.id },
+    // Partial update: only the provided fields change.
     update: {
-      username: data.username,
-      email: data.email,
-      bio: data.bio,
-      urls: data.urls,
+      username,
+      email,
+      bio,
+      urls: urls as object | undefined,
     },
     create: {
       userId: session.user.id,
-      username: data.username,
-      email: data.email,
-      bio: data.bio,
-      urls: data.urls,
+      username: username ?? "",
+      email: email ?? "",
+      bio: bio ?? "",
+      urls: (urls ?? []) as object,
       name: "",
       language: "",
       id: crypto.randomUUID(),

@@ -1,24 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
-import { z } from "zod"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import prisma from "@/lib/prisma"
-
-const settingsSchema = z.object({
-  username: z.string().trim().max(100).optional(),
-  email: z.union([z.string().trim().email().max(254), z.literal("")]).optional(),
-  bio: z.string().max(2_000).optional(),
-  name: z.string().trim().max(200).optional(),
-  language: z.string().trim().max(40).optional(),
-  // urls is a Json column; bound its serialized size.
-  urls: z
-    .unknown()
-    .optional()
-    .refine(
-      (v) => v === undefined || JSON.stringify(v).length <= 5_000,
-      "urls payload too large"
-    ),
-})
+import { settingsSchema } from "@/lib/validations/settings"
 
 export async function GET(
   req: NextRequest,

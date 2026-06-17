@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/options"
 import prisma from "@/lib/prisma"
+import { settingsSchema } from "@/lib/validations/settings"
 
 export async function GET() {
   const session = await getServerSession(authOptions)
@@ -25,14 +26,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
-  const data = await request.json()
+  const parsed = settingsSchema.safeParse(await request.json())
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: "Validation failed", issues: parsed.error.flatten() },
+      { status: 400 }
+    )
+  }
+  const { name, language } = parsed.data
+
   const settings = await prisma.userSettings.upsert({
     where: { userId: session.user.id },
-    update: { name: data.name, language: data.language },
+    update: { name, language },
     create: {
       userId: session.user.id,
-      name: data.name,
-      language: data.language,
+      name: name ?? "",
+      language: language ?? "",
       username: "",
       email: "",
       bio: "",

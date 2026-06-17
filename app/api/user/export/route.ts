@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { logAudit } from "@/lib/audit";
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * Data-principal right of access / portability (DPDP s.11): returns a complete,
@@ -11,29 +10,20 @@ import { Redis } from "@upstash/redis";
  * OAuth tokens are deliberately excluded — they are credentials, not personal
  * data the principal needs exported, and leaking them would be a risk.
  */
-const limiter =
-  process.env.REDIS_URL && process.env.REDIS_TOKEN
-    ? new Ratelimit({
-        redis: new Redis({
-          url: process.env.REDIS_URL,
-          token: process.env.REDIS_TOKEN,
-        }),
-        limiter: Ratelimit.slidingWindow(5, "10 m"),
-        analytics: true,
-      })
-    : null;
-
 export async function GET(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
   const userId = session.user.id;
 
-  if (limiter) {
-    const { success } = await limiter.limit(`export:${userId}`);
-    if (!success) {
-      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-    }
-  }
+  // Shared limiter (honors all Redis/KV env names + in-memory fallback) so a
+  // KV-only deploy can't silently run this PII dump endpoint un-throttled.
+  const limited = await rateLimit(
+    req,
+    "data-export",
+    { limit: 5, windowSec: 600 },
+    userId
+  );
+  if (limited) return limited;
 
   const [
     user,
@@ -53,6 +43,16 @@ export async function GET(req: NextRequest) {
     policyAgreements,
     notifications,
     userBanks,
+    issues,
+    authoredSolutions,
+    solutionLikes,
+    featureRequests,
+    featureRequestComments,
+    featureRequestVotes,
+    studyPlan,
+    volunteerTasks,
+    importJobs,
+    moderatorLimit,
   ] = await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
@@ -81,7 +81,8 @@ export async function GET(req: NextRequest) {
     prisma.userAnswer.findMany({ where: { userId } }),
     prisma.userPerformance.findMany({ where: { userId } }),
     prisma.note.findMany({ where: { userId } }),
-    prisma.feedback.findMany({ where: { userId } }),
+    // Include the full clarification thread for each of the user's feedback items.
+    prisma.feedback.findMany({ where: { userId }, include: { messages: true } }),
     prisma.application.findMany({ where: { userId } }),
     prisma.aiUsageLog.findMany({ where: { userId } }),
     prisma.userMockExam.findMany({ where: { userId } }),
@@ -103,6 +104,17 @@ export async function GET(req: NextRequest) {
       where: { userId },
       include: { questions: { orderBy: { order: "asc" } } },
     }),
+    // User-authored community content + records (DSAR completeness).
+    prisma.issue.findMany({ where: { createdById: userId } }),
+    prisma.solution.findMany({ where: { authorId: userId } }),
+    prisma.solutionLike.findMany({ where: { userId } }),
+    prisma.featureRequest.findMany({ where: { createdById: userId } }),
+    prisma.featureRequestComment.findMany({ where: { authorId: userId } }),
+    prisma.featureRequestVote.findMany({ where: { userId } }),
+    prisma.studyPlan.findUnique({ where: { userId } }),
+    prisma.volunteerTask.findMany({ where: { volunteerId: userId } }),
+    prisma.importJob.findMany({ where: { userId } }),
+    prisma.moderatorLimit.findUnique({ where: { userId } }),
   ]);
 
   const payload = {
@@ -126,6 +138,16 @@ export async function GET(req: NextRequest) {
     policyAgreements,
     notifications,
     userBanks,
+    issues,
+    authoredSolutions,
+    solutionLikes,
+    featureRequests,
+    featureRequestComments,
+    featureRequestVotes,
+    studyPlan,
+    volunteerTasks,
+    importJobs,
+    moderatorLimit,
   };
 
   await logAudit({ userId, action: "DATA_EXPORTED", req });
