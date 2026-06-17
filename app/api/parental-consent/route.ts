@@ -69,6 +69,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, status: "VERIFIED" });
   }
 
+  // Fail CLOSED in production: if no mail provider is configured we must not
+  // complete the flow. Otherwise we'd either (a) silently fail to email the
+  // parent (the minor is stuck, un-gated only if consent is never verified), or
+  // (b) — via the devLink below — hand the raw verify token straight back to the
+  // signed-in minor, who could POST it to /verify and self-approve. Only a
+  // non-production environment may surface the link.
+  const isProd = process.env.NODE_ENV === "production";
+  const mailConfigured = !!process.env.RESEND_API_KEY;
+  if (isProd && !mailConfigured) {
+    return NextResponse.json(
+      { error: "Email delivery is not configured. Please contact support." },
+      { status: 500 }
+    );
+  }
+
   const { verifyUrl } = await createAndSendParentalConsent({
     userId,
     childName: user.name ?? user.email ?? "Your child",
@@ -77,7 +92,10 @@ export async function POST(req: NextRequest) {
     req,
   });
 
-  // In dev (no mail provider) expose the link so the flow can be tested.
-  const devLink = process.env.RESEND_API_KEY ? undefined : verifyUrl;
+  // Outside production ONLY (and only when no mail provider is configured),
+  // expose the link so the flow can be tested locally. DOUBLE-GATED on NODE_ENV
+  // like the dev-login provider — in production this is always undefined, so the
+  // token reaches the parent's inbox exclusively, never the minor's response.
+  const devLink = !isProd && !mailConfigured ? verifyUrl : undefined;
   return NextResponse.json({ ok: true, status: "PENDING", devLink });
 }

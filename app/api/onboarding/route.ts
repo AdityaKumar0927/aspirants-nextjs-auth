@@ -74,6 +74,27 @@ export async function POST(req: NextRequest) {
   }
   const isMinor = ageInYears(dob) < MINOR_AGE_THRESHOLD;
 
+  // Age determination is effectively ONE-SHOT for minors. A user already on
+  // record as a minor cannot re-run onboarding with an adult date of birth to
+  // flip isMinor=false and have stampOnboarding() (options.ts) release the
+  // parental-consent gate — that would bypass verifiable parental consent
+  // entirely, self-served, with no parent ever involved. Genuine DOB
+  // corrections go through the grievance / data-correction (DSAR) workflow with
+  // staff review, never a self-service re-POST.
+  const existing = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { isMinor: true },
+  });
+  if (existing?.isMinor === true && !isMinor) {
+    return NextResponse.json(
+      {
+        error:
+          "Your date of birth is already on record and can't be changed here. Please use the grievance / data-correction workflow to update it.",
+      },
+      { status: 409 }
+    );
+  }
+
   if (isMinor && !parsed.parentEmail) {
     return NextResponse.json(
       { error: "A parent or guardian email is required for users under 18." },
