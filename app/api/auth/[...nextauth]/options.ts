@@ -135,7 +135,10 @@ export const authOptions: NextAuthOptions = {
     // instead of keeping it for the full token lifetime.
     // ------------------------------------------------
     async jwt({ token, user, trigger }) {
-      const ROLE_TTL_MS = 5 * 60 * 1000
+      // Short window: bounds how long a revoked role / suspension can linger in
+      // a JWT for the edge middleware gate. Destructive API actions don't wait
+      // for this — their guards (lib/auth, lib/permissions) check the DB live.
+      const ROLE_TTL_MS = 60 * 1000
 
       // Initial sign-in: stamp id + role + DPDP onboarding flags from the
       // freshly linked user.

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { Session } from "next-auth";
-import { requireSession } from "@/lib/auth";
+import { requireSession, currentRole } from "@/lib/auth";
 
 /**
  * Capability-based access control.
@@ -81,11 +81,14 @@ export async function requireCapability(
 ): Promise<GuardResult> {
   const result = await requireSession();
   if (result.response) return result;
-  if (!hasCapability(result.session.user.role, capability)) {
+  // DB-fresh role so a revoked/demoted user loses the capability immediately.
+  const role = await currentRole(result.session.user.id);
+  if (!hasCapability(role, capability)) {
     return {
       response: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
     };
   }
+  result.session.user.role = role ?? result.session.user.role;
   return result;
 }
 
@@ -93,10 +96,12 @@ export async function requireCapability(
 export async function requireStaff(): Promise<GuardResult> {
   const result = await requireSession();
   if (result.response) return result;
-  if (!isStaffRole(result.session.user.role)) {
+  const role = await currentRole(result.session.user.id);
+  if (!isStaffRole(role)) {
     return {
       response: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
     };
   }
+  result.session.user.role = role ?? result.session.user.role;
   return result;
 }
