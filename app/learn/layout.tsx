@@ -17,9 +17,9 @@ import { ThemeProvider } from "@/components/landing/theme-provider"
 config.autoAddCss = false
 
 export const metadata = {
-  title: "Keystone — penwise",
+  title: "Learn — penwise",
   description:
-    "Build the one piece that makes hard material hold. Keystone compiles a personalized lesson prompt for your own AI, then plays the result back as an interactive, science-based lesson — no API key, your material never leaves your AI.",
+    "Understand hard material instead of just memorizing it. It compiles a personalized lesson prompt for your own AI, then plays the result back as an interactive, science-based lesson — no API key, your material never leaves your AI.",
 }
 
 export default function KeystoneLayout({ children }: { children: React.ReactNode }) {

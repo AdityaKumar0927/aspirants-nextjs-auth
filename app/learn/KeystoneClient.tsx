@@ -42,7 +42,7 @@ type Mode = "learning" | "revision" | "doubt";
 type Step = "intro" | "questionnaire" | "doubtinput" | "prompt" | "paste" | "play";
 
 const MODES: { id: Mode; title: string; tagline: string }[] = [
-  { id: "learning", title: "Learn a chapter", tagline: "Build deep understanding of new material, concept by concept." },
+  { id: "learning", title: "Study a chapter", tagline: "Build deep understanding of new material, concept by concept." },
   { id: "revision", title: "Revise for an exam", tagline: "Turn what you've learned into durable, exam-ready recall." },
   { id: "doubt", title: "Clear a doubt", tagline: "Stuck on one concept? Attack it from every angle until it clicks." },
 ];
@@ -303,9 +303,9 @@ export default function KeystoneClient() {
   return (
     <div className="w-full max-w-2xl space-y-6">
       <div className="space-y-1">
-        <h1 className="type-display text-3xl text-ink">Keystone</h1>
+        <h1 className="type-display text-3xl text-ink">Learn</h1>
         <p className="text-sm text-pencil">
-          Understand it — don’t just memorize it. Keystone builds a personalized <em>prompt</em> for the AI you already
+          Understand it — don’t just memorize it. It builds a personalized <em>prompt</em> for the AI you already
           use; you run it on your own material, paste the result back, and it becomes an interactive, science-based
           lesson. <strong className="text-ink">No API key. Your material never leaves your AI.</strong>
         </p>
@@ -392,7 +392,7 @@ export default function KeystoneClient() {
           </section>
 
           <p className="type-data text-[11px] text-pencil">
-            Keystone never calls an AI and holds no key. It compiles the prompt and plays the lesson — the thinking
+            This tool never calls an AI and holds no key. It compiles the prompt and plays the lesson — the thinking
             happens in the model you already trust. Your shelf and progress are saved on this device.
           </p>
         </div>
@@ -407,7 +407,7 @@ export default function KeystoneClient() {
           <div className="space-y-1">
             <h2 className="type-display text-lg text-ink">What are you stuck on?</h2>
             <p className="text-sm text-pencil">
-              Name the one concept, and say what about it isn’t clicking. Keystone compiles a prompt that attacks it from
+              Name the one concept, and say what about it isn’t clicking. It compiles a prompt that attacks it from
               many angles — and if the first round doesn’t land, it goes deeper.
             </p>
           </div>

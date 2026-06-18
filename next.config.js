@@ -106,6 +106,9 @@ const nextConfig = {
       // case-folded /Contact) to the grievance/support channel. Safe — different
       // destination, so no redirect loop.
       { source: "/contact", destination: "/grievance", permanent: true },
+      // The "Keystone" study feature was renamed to "Learn" (route /keystone → /learn).
+      { source: "/keystone", destination: "/learn", permanent: true },
+      { source: "/keystone/:path*", destination: "/learn/:path*", permanent: true },
     ];
   },
 };

@@ -1,7 +1,7 @@
 import KeystoneClient from "./KeystoneClient";
 
 /**
- * Keystone — Learning Mode (MVP).
+ * Learn — the no-API-key understanding engine (formerly "Keystone").
  *
  * No account or API key required: the entire flow (questionnaire → compiled
  * prompt → paste lesson JSON → interactive player) runs client-side and persists
@@ -9,7 +9,7 @@ import KeystoneClient from "./KeystoneClient";
  * into their own LLM. Hence no auth gate here; guests can use it too.
  */
 export const metadata = {
-  title: "Keystone — understand it, don't just memorize it",
+  title: "Learn — understand it, don't just memorize it",
 };
 
 export default function KeystonePage() {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import MathRenderer from "@/components/layout/MathRenderer";
 
-/** Render Markdown + LaTeX content. Shared by every Keystone player. */
+/** Render Markdown + LaTeX content. Shared by every Learn player. */
 export function Md({ text, className }: { text: string; className?: string }) {
   return (
     <div className={className ?? "text-sm leading-relaxed text-ink"}>

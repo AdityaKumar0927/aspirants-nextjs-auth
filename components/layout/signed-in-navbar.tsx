@@ -151,7 +151,7 @@ export default function NavBar({ session }: { session: Session | null }) {
         {menuOpen && (
           <div
             ref={menuRef}
-            className="absolute top-full left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-gray-800 shadow-lg z-20 md:hidden"
+            className="absolute top-full left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-paper shadow-lg z-20 md:hidden"
           >
             <MobileNavLinks
               session={session}
@@ -207,10 +207,10 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Link
-              href="/keystone"
+              href="/learn"
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
-              Keystone
+              Learn
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
@@ -301,11 +301,11 @@ function MobileNavLinks({
         My banks
       </Link>
       <Link
-        href="/keystone"
+        href="/learn"
         className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
-        Keystone
+        Learn
       </Link>
       <Link
         href="/leaderboard"

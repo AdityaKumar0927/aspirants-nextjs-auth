@@ -131,7 +131,7 @@ export const QUESTIONNAIRE: QGroup[] = [
   {
     id: "difficulty",
     title: "How you like to learn",
-    blurb: "Keystone nudges everyone toward productive struggle, but tunes the support to you.",
+    blurb: "It nudges everyone toward productive struggle, but tunes the support to you.",
     fields: [
       {
         id: "approach", label: "When you meet something new, you'd rather…", kind: "single",

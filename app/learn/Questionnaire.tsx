@@ -113,7 +113,7 @@ export default function Questionnaire({
   return (
     <div className="space-y-5">
       <div className="space-y-1">
-        <h2 className="type-display text-xl text-ink">Tell Keystone about you and your material</h2>
+        <h2 className="type-display text-xl text-ink">Tell us about you and your material</h2>
         <p className="text-sm text-pencil">
           This is the only thing that personalizes your lesson. Tap your answers — it’s quick. Nothing here is sent
           anywhere; it just shapes the prompt you’ll copy next.

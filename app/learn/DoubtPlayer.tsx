@@ -161,7 +161,7 @@ export default function DoubtPlayer({
         <div className="paper-sheet space-y-4 p-5">
           <SectionHead kicker="Still stuck — go deeper" title="Let’s attack it again" />
           <p className="text-sm text-pencil">
-            None of those landed yet. Tell me what’s <em>still</em> confusing, and Keystone will compile a deeper, more
+            None of those landed yet. Tell me what’s <em>still</em> confusing, and we’ll compile a deeper, more
             targeted prompt for your AI — informed by which angles didn’t work. This is the loop that recovers what a
             live tutor does.
           </p>

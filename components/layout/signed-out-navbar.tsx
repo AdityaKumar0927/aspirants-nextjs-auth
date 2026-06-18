@@ -114,7 +114,7 @@ export default function SignedOutNavbar() {
           {menuOpen && (
             <motion.div
               ref={menuRef}
-              className="absolute top-full left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-white dark:bg-dark-background shadow-lg z-20 md:hidden"
+              className="absolute top-full left-0 right-0 max-h-[calc(100vh-4rem)] overflow-y-auto bg-paper shadow-lg z-20 md:hidden"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -157,6 +157,16 @@ function DesktopNavLinks() {
                 className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
               >
                 {t("nav.mockExam")}
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link
+                href="/learn"
+                className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
+              >
+                Learn
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
@@ -216,7 +226,7 @@ interface MobileNavLinksProps {
 function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSupport }: MobileNavLinksProps) {
   const t = useT()
   return (
-    <nav className="p-4 space-y-2 top-0 left-0 right-0 bg-white dark:bg-dark-background shadow-md z-[100000000]">
+    <nav className="p-4 space-y-2 top-0 left-0 right-0 bg-paper shadow-md z-[100000000]">
       <Link
         href="/question-bank/guest"
         className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
@@ -230,6 +240,13 @@ function MobileNavLinks({ setMenuOpen, setShowSignInModal, supportOpen, toggleSu
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.mockExam")}
+      </Link>
+      <Link
+        href="/learn"
+        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+        onClick={() => setMenuOpen(false)}
+      >
+        Learn
       </Link>
       <Link
         href="/leaderboard"
