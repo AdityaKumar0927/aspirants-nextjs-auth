@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { format } from "date-fns";
 import {
@@ -21,14 +21,6 @@ import {
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -109,7 +101,6 @@ type FeatureRequestFormData = z.output<typeof featureRequestSchema>;
 export default function FeatureRequestPage() {
   const [featureRequests, setFeatureRequests] = useState<FeatureRequest[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<FeatureRequest | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentText, setCommentText] = useState("");
@@ -126,12 +117,14 @@ export default function FeatureRequestPage() {
     handleSubmit,
     reset,
     setValue,
+    setFocus,
     watch,
     formState: { errors, isSubmitting },
   } = useForm<FeatureRequestFormInput, unknown, FeatureRequestFormData>({
     resolver: zodResolver(featureRequestSchema),
   });
   const category = watch("category");
+  const composerRef = useRef<HTMLDivElement>(null);
 
   const fetchRequests = useCallback(async () => {
     try {
@@ -164,7 +157,6 @@ export default function FeatureRequestPage() {
         const e = await res.json().catch(() => ({}));
         throw new Error(e?.error || "Submit failed");
       }
-      setIsModalOpen(false);
       reset();
       toast.success("Feature request submitted!");
       fetchRequests();
@@ -347,99 +339,15 @@ export default function FeatureRequestPage() {
             )}
             {sortOrder === "asc" ? "Ascending" : "Descending"}
           </Button>
-          <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="mr-2 h-4 w-4" />
-                <T k="auto.featureRequestsPage.newFeatureRequest" />
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="theme-desk border-rule bg-paper text-ink sm:max-w-[480px]">
-              <DialogHeader>
-                <div className="flex items-start gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ballpoint/10 text-ballpoint">
-                    <Lightbulb className="h-5 w-5" />
-                  </span>
-                  <div className="space-y-1">
-                    <DialogTitle className="type-display text-lg text-ink">
-                      <T k="auto.featureRequestsPage.submitANewFeatureRequest" />
-                    </DialogTitle>
-                    <DialogDescription className="text-sm text-pencil">
-                      <T k="auto.featureRequestsPage.describeTheFeatureYouD" />
-                    </DialogDescription>
-                  </div>
-                </div>
-              </DialogHeader>
-              <form onSubmit={handleSubmit(handleNewFeatureSubmit)} className="space-y-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="title">
-                    <T k="auto.featureRequestsPage.title" />
-                  </Label>
-                  <Input id="title" placeholder="A short, clear summary" {...register("title")} />
-                  {errors.title && <p className="text-xs text-redpen">{errors.title.message}</p>}
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="description">
-                    <T k="auto.featureRequestsPage.description" />
-                  </Label>
-                  <Textarea
-                    id="description"
-                    rows={4}
-                    placeholder="What should it do, and what problem does it solve?"
-                    className="resize-none"
-                    {...register("description")}
-                  />
-                  {errors.description && (
-                    <p className="text-xs text-redpen">{errors.description.message}</p>
-                  )}
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="space-y-1.5">
-                    <Label htmlFor="category">
-                      <T k="auto.featureRequestsPage.category" />
-                    </Label>
-                    <Select value={category} onValueChange={(v) => setValue("category", v, { shouldValidate: true })}>
-                      <SelectTrigger id="category">
-                        <SelectValue placeholder="Select one" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {CATEGORIES.map((c) => (
-                          <SelectItem key={c} value={c}>
-                            {c}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {errors.category && (
-                      <p className="text-xs text-redpen">{errors.category.message}</p>
-                    )}
-                  </div>
-                  <div className="space-y-1.5">
-                    <Label htmlFor="tags">
-                      <T k="auto.featureRequestsPage.tagsCommaSeparated" />
-                    </Label>
-                    <Input id="tags" placeholder="e.g. dark-mode, mobile" {...register("tags")} />
-                    <p className="type-data text-[11px] text-pencil">Optional — comma-separated.</p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-end gap-2 border-t border-rule pt-4">
-                  <Button type="button" variant="outline" onClick={() => setIsModalOpen(false)}>
-                    Cancel
-                  </Button>
-                  <Button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      "Submitting…"
-                    ) : (
-                      <span className="inline-flex items-center">
-                        <Send className="mr-2 h-4 w-4" />
-                        <T k="auto.featureRequestsPage.submitRequest" />
-                      </span>
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
+          <Button
+            onClick={() => {
+              composerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+              setTimeout(() => setFocus("title"), 350);
+            }}
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            <T k="auto.featureRequestsPage.newFeatureRequest" />
+          </Button>
         </div>
       </div>
 
@@ -517,8 +425,9 @@ export default function FeatureRequestPage() {
           )}
         </ScrollArea>
 
-        <Card className="flex h-[60vh] md:h-[800px] flex-col">
-          <CardHeader>
+        <div className="flex flex-col gap-6 md:h-[800px]">
+          <Card className="flex flex-col md:min-h-0 md:flex-1">
+          <CardHeader className="pb-3">
             <CardTitle>
               <T k="auto.featureRequestsPage.featureDetails" />
             </CardTitle>
@@ -607,7 +516,97 @@ export default function FeatureRequestPage() {
               </div>
             )}
           </CardContent>
-        </Card>
+          </Card>
+
+          {/* Inline new-request composer — replaces the old modal; lives under Feature details. */}
+          <Card ref={composerRef} className="shrink-0">
+            <CardHeader>
+              <div className="flex items-start gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ballpoint/10 text-ballpoint">
+                  <Lightbulb className="h-5 w-5" />
+                </span>
+                <div className="space-y-1">
+                  <CardTitle className="type-display text-lg text-ink">
+                    <T k="auto.featureRequestsPage.submitANewFeatureRequest" />
+                  </CardTitle>
+                  <CardDescription>
+                    <T k="auto.featureRequestsPage.describeTheFeatureYouD" />
+                  </CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit(handleNewFeatureSubmit)} className="space-y-4">
+                <div className="space-y-1.5">
+                  <Label htmlFor="fr-title">
+                    <T k="auto.featureRequestsPage.title" />
+                  </Label>
+                  <Input id="fr-title" placeholder="A short, clear summary" className="bg-paper" {...register("title")} />
+                  {errors.title && <p className="text-xs text-redpen">{errors.title.message}</p>}
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="fr-description">
+                    <T k="auto.featureRequestsPage.description" />
+                  </Label>
+                  <Textarea
+                    id="fr-description"
+                    rows={5}
+                    placeholder="What should it do, and what problem does it solve?"
+                    className="resize-none bg-paper"
+                    {...register("description")}
+                  />
+                  {errors.description && <p className="text-xs text-redpen">{errors.description.message}</p>}
+                </div>
+                <div className="space-y-2">
+                  <Label>
+                    <T k="auto.featureRequestsPage.category" />
+                  </Label>
+                  <div className="flex flex-wrap gap-2">
+                    {CATEGORIES.map((c) => {
+                      const active = category === c;
+                      return (
+                        <button
+                          key={c}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() => setValue("category", c, { shouldValidate: true })}
+                          className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                            active
+                              ? "border-ballpoint bg-ballpoint text-paper"
+                              : "border-rule bg-paper text-pencil hover:border-ballpoint/50 hover:text-ink"
+                          }`}
+                        >
+                          {c}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {errors.category && <p className="text-xs text-redpen">{errors.category.message}</p>}
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="fr-tags">
+                    <T k="auto.featureRequestsPage.tagsCommaSeparated" />
+                  </Label>
+                  <div className="relative">
+                    <Tag className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-pencil" />
+                    <Input id="fr-tags" placeholder="e.g. dark-mode, mobile" className="bg-paper pl-9" {...register("tags")} />
+                  </div>
+                  <p className="type-data text-[11px] text-pencil">Optional — separate with commas.</p>
+                </div>
+                <Button type="submit" disabled={isSubmitting} className="w-full">
+                  {isSubmitting ? (
+                    "Submitting…"
+                  ) : (
+                    <span className="inline-flex items-center">
+                      <Send className="mr-2 h-4 w-4" />
+                      <T k="auto.featureRequestsPage.submitRequest" />
+                    </span>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
