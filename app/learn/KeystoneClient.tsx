@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Questionnaire from "./Questionnaire";
 import LessonPlayer from "./LessonPlayer";
@@ -72,6 +73,8 @@ export default function KeystoneClient() {
   // the shelf
   const [library, setLibrary] = useState<KLibraryItem[]>([]);
   const [signedIn, setSignedIn] = useState(false);
+  // Which shelf item is mid-delete (two-step confirm so a tap can't wipe a lesson by accident).
+  const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(null);
 
   // paste step
   const [raw, setRaw] = useState("");
@@ -360,11 +363,42 @@ export default function KeystoneClient() {
                           <span className={d.due ? "text-st-review" : "text-pencil"}>{d.text}</span>
                         </p>
                       </div>
-                      <div className="flex shrink-0 items-center gap-1">
-                        <Button size="sm" onClick={() => resumeItem(it)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-                          {it.lastStudiedAt ? "Review" : "Resume"}
-                        </Button>
-                        <button onClick={() => removeItem(it.id)} aria-label="Remove" className="type-data px-1 text-pencil hover:text-redpen">×</button>
+                      <div className="flex shrink-0 items-center gap-1.5">
+                        {confirmingDeleteId === it.id ? (
+                          <>
+                            <span className="type-data text-[11px] text-pencil">Delete this?</span>
+                            <Button size="sm" variant="ghost" onClick={() => setConfirmingDeleteId(null)} className="text-pencil">
+                              Cancel
+                            </Button>
+                            <Button
+                              size="sm"
+                              onClick={() => {
+                                removeItem(it.id);
+                                setConfirmingDeleteId(null);
+                              }}
+                              className="bg-redpen text-paper hover:bg-redpen/90"
+                            >
+                              <Trash2 className="mr-1 h-3.5 w-3.5" />
+                              Delete
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <Button size="sm" onClick={() => resumeItem(it)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
+                              {it.lastStudiedAt ? "Review" : "Resume"}
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => setConfirmingDeleteId(it.id)}
+                              aria-label={`Delete ${it.title}`}
+                              className="text-pencil hover:bg-redpen/10 hover:text-redpen"
+                            >
+                              <Trash2 className="mr-1 h-3.5 w-3.5" />
+                              Delete
+                            </Button>
+                          </>
+                        )}
                       </div>
                     </div>
                   );
