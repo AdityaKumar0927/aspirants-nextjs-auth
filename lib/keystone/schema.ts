@@ -23,6 +23,12 @@ export interface KPrereq {
   question: string;
   modelAnswer: string;
   ifShaky: string | null;
+  /** Auto-graded format (mirrors KCheck). "open" = legacy free-text reveal flow. */
+  format: KCheckFormat;
+  options: KOption[];
+  answer: string | null;
+  /** Short just-in-time re-teach shown on a WRONG answer, then a re-check. */
+  refresher: string | null;
 }
 export interface KWorkedStep {
   text: string;
@@ -32,11 +38,28 @@ export interface KDerivationStep {
   prompt: string;
   answer: string;
 }
+/** Auto-graded answer type. "open" (the default) keeps the legacy free-text + self-score check. */
+export type KCheckFormat = "mcq" | "integer" | "fillblank" | "short" | "open";
+/** Cognitive level — keeps fact recall and conceptual/application checks distinct. */
+export type KCheckLevel = "fact" | "concept" | "application";
+/** One MCQ option. Each distractor names the misconception it embodies (diagnostic distractors). */
+export interface KOption {
+  text: string;
+  correct: boolean;
+  misconception: string | null;
+}
 export interface KCheck {
   kind: "retrieval" | "transfer";
   question: string;
   modelAnswer: string;
   rubric: string[];
+  /** Auto-graded answer type. "open" (default) = free-text + manual self-score (legacy). */
+  format: KCheckFormat;
+  level: KCheckLevel | null;
+  /** MCQ choices — only populated when format === "mcq". */
+  options: KOption[];
+  /** Canonical answer for integer/fillblank/short auto-grading. */
+  answer: string | null;
 }
 export interface KMisconception {
   misconception: string;
@@ -46,10 +69,20 @@ export interface KTeachBack {
   whatToExplain: string;
   checklist: string[];
 }
+/** A generative act done on the student's OWN paper (compare-to-model optional). */
+export type KGenerativeKind = "summarize" | "draw" | "imagine" | "selfexplain" | "other";
+export interface KGenerative {
+  kind: KGenerativeKind;
+  prompt: string;
+  /** What the student compares their paper work against (compare-to-model). */
+  model: string | null;
+}
 export interface KLessonConcept {
   id: string;
   name: string;
-  anchorProblem: { prompt: string; whatToNotice: string | null } | null;
+  /** `reveal` is the SUBSTANTIAL consolidation studied AFTER the pretest attempt — the
+   *  phase where pretesting/productive-failure actually teaches. */
+  anchorProblem: { prompt: string; whatToNotice: string | null; reveal: string | null } | null;
   hintLadder: string[];
   workedExample: KWorkedStep[];
   derivation: KDerivationStep[];
@@ -57,6 +90,8 @@ export interface KLessonConcept {
   calibration: { question: string; modelAnswer: string } | null;
   misconceptions: KMisconception[];
   teachBack: KTeachBack | null;
+  /** Varied generative acts (summarize/draw/imagine/self-explain) done on paper. */
+  generative: KGenerative[];
 }
 export interface KInterleaved {
   prompt: string;
@@ -115,6 +150,28 @@ const sArr = (v: unknown, maxItems = 50): string[] =>
 const isObj = (v: unknown): v is Record<string, unknown> =>
   !!v && typeof v === "object" && !Array.isArray(v);
 
+/* Auto-graded check/prereq normalizers. All default leniently — an unknown or
+   missing `format` becomes "open" (the legacy free-text behaviour), which is the
+   whole backward-compatibility guarantee: lessons authored before these fields
+   existed simply render as they always did. */
+const CHECK_FORMATS = new Set(["mcq", "integer", "fillblank", "short", "open"]);
+const CHECK_LEVELS = new Set(["fact", "concept", "application"]);
+const GEN_KINDS = new Set(["summarize", "draw", "imagine", "selfexplain", "other"]);
+
+const normFormat = (v: unknown): KCheckFormat => {
+  const t = s(v).toLowerCase();
+  return (CHECK_FORMATS.has(t) ? t : "open") as KCheckFormat;
+};
+const normLevel = (v: unknown): KCheckLevel | null => {
+  const t = s(v).toLowerCase();
+  return CHECK_LEVELS.has(t) ? (t as KCheckLevel) : null;
+};
+const normOptions = (v: unknown): KOption[] =>
+  (Array.isArray(v) ? v : [])
+    .map((o) => (isObj(o) ? { text: s(o.text, 2_000), correct: o.correct === true, misconception: sOrNull(o.misconception, 2_000) } : null))
+    .filter((x): x is KOption => !!x && x.text.length > 0)
+    .slice(0, 8);
+
 let autoId = 0;
 const idFrom = (v: unknown, name: string): string => {
   const t = s(v, 80);
@@ -138,7 +195,7 @@ function normConcept(raw: unknown): KLessonConcept | null {
 
   const ap = isObj(raw.anchorProblem) ? raw.anchorProblem : null;
   const anchorProblem = ap && s(ap.prompt)
-    ? { prompt: s(ap.prompt, 10_000), whatToNotice: sOrNull(ap.whatToNotice, 4_000) }
+    ? { prompt: s(ap.prompt, 10_000), whatToNotice: sOrNull(ap.whatToNotice, 4_000), reveal: sOrNull(ap.reveal, 10_000) }
     : null;
 
   const workedExample: KWorkedStep[] = (Array.isArray(raw.workedExample) ? raw.workedExample : [])
@@ -157,7 +214,20 @@ function normConcept(raw: unknown): KLessonConcept | null {
       const question = s(c.question, 10_000);
       if (!question) return null;
       const kind = s(c.kind).toLowerCase() === "transfer" ? "transfer" : "retrieval";
-      return { kind, question, modelAnswer: s(c.modelAnswer, 20_000), rubric: sArr(c.rubric, 12) } as KCheck;
+      let format = normFormat(c.format);
+      const options = format === "mcq" ? normOptions(c.options) : [];
+      // An MCQ with no correct option is ungradeable — fall back to free-text.
+      if (format === "mcq" && !options.some((o) => o.correct)) format = "open";
+      return {
+        kind,
+        question,
+        modelAnswer: s(c.modelAnswer, 20_000),
+        rubric: sArr(c.rubric, 12),
+        format,
+        level: normLevel(c.level),
+        options,
+        answer: sOrNull(c.answer, 2_000),
+      } as KCheck;
     })
     .filter((x): x is KCheck => !!x)
     .slice(0, 30);
@@ -177,6 +247,17 @@ function normConcept(raw: unknown): KLessonConcept | null {
     ? { whatToExplain: s(tb.whatToExplain, 6_000), checklist: sArr(tb.checklist, 20) }
     : null;
 
+  const generative: KGenerative[] = (Array.isArray(raw.generative) ? raw.generative : [])
+    .map((g) => {
+      if (!isObj(g)) return null;
+      const prompt = s(g.prompt, 4_000);
+      if (!prompt) return null;
+      const k = s(g.kind).toLowerCase();
+      return { kind: (GEN_KINDS.has(k) ? k : "other") as KGenerativeKind, prompt, model: sOrNull(g.model, 6_000) };
+    })
+    .filter((x): x is KGenerative => !!x)
+    .slice(0, 12);
+
   return {
     id,
     name: name || id,
@@ -188,6 +269,7 @@ function normConcept(raw: unknown): KLessonConcept | null {
     calibration,
     misconceptions,
     teachBack,
+    generative,
   };
 }
 
@@ -219,7 +301,18 @@ export function validateLesson(raw: unknown): KLessonValidation {
       if (!isObj(p)) return null;
       const question = s(p.question, 6_000);
       if (!question) return null;
-      return { question, modelAnswer: s(p.modelAnswer, 10_000), ifShaky: sOrNull(p.ifShaky, 4_000) };
+      let format = normFormat(p.format);
+      const options = format === "mcq" ? normOptions(p.options) : [];
+      if (format === "mcq" && !options.some((o) => o.correct)) format = "open";
+      return {
+        question,
+        modelAnswer: s(p.modelAnswer, 10_000),
+        ifShaky: sOrNull(p.ifShaky, 4_000),
+        format,
+        options,
+        answer: sOrNull(p.answer, 2_000),
+        refresher: sOrNull(p.refresher, 10_000),
+      };
     })
     .filter((x): x is KPrereq => !!x)
     .slice(0, 30);
