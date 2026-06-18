@@ -2,12 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  QUESTIONNAIRE,
+  groupsFor,
   isFieldVisible,
   missingRequired,
   REQUIRED_FIELD_IDS,
   type KeystoneAnswers,
   type QField,
+  type QuestionnaireMode,
 } from "@/lib/keystone/questionnaire";
 
 function Chip({
@@ -101,26 +102,28 @@ export default function Questionnaire({
   setField,
   onSubmit,
   onBack,
+  mode = "learning",
 }: {
   answers: KeystoneAnswers;
   setField: (id: string, value: string | string[]) => void;
   onSubmit: () => void;
   onBack: () => void;
+  mode?: QuestionnaireMode;
 }) {
-  const missing = missingRequired(answers);
+  const missing = missingRequired(answers, mode);
   const ready = missing.length === 0;
 
   return (
     <div className="space-y-5">
       <div className="space-y-1">
-        <h2 className="type-display text-xl text-ink">Tell us about you and your material</h2>
+        <h2 className="type-display text-xl text-ink">Personalize your lesson</h2>
         <p className="text-sm text-pencil">
-          This is the only thing that personalizes your lesson. Tap your answers — it’s quick. Nothing here is sent
-          anywhere; it just shapes the prompt you’ll copy next.
+          Just your relationship to the material — your AI reads the chapter itself. It’s quick, and nothing here is
+          sent anywhere; it only shapes the prompt you’ll copy next.
         </p>
       </div>
 
-      {QUESTIONNAIRE.map((group) => (
+      {groupsFor(mode).map((group) => (
         <section key={group.id} className="paper-sheet space-y-4 p-5">
           <div className="space-y-0.5">
             <h3 className="type-display text-base text-ink">{group.title}</h3>

@@ -100,14 +100,12 @@ export default function KeystoneClient() {
     if (mode === "revision") return buildRevisionPrompt(answers);
     if (mode === "doubt") {
       const interests = [...arr(answers, "interests"), str(answers, "interestsOther")].filter(Boolean).join(", ");
-      return buildDoubtPrompt({ concept: doubtConcept, confusion: doubtConfusion, interests, level: str(answers, "level") });
+      return buildDoubtPrompt({ concept: doubtConcept, confusion: doubtConfusion, interests });
     }
     return buildLearningPrompt(answers);
   }, [mode, answers, doubtConcept, doubtConfusion]);
 
   const sampleFor = mode === "revision" ? SAMPLE_REVISION_JSON : mode === "doubt" ? SAMPLE_DOUBT_JSON : SAMPLE_LESSON_JSON;
-  const suggested: Mode | null =
-    str(answers, "goal") === "exam" ? "revision" : str(answers, "goal") === "doubt" ? "doubt" : str(answers, "goal") === "understand" ? "learning" : null;
 
   function setField(id: string, value: string | string[]) {
     setAnswers((prev) => {
@@ -382,7 +380,6 @@ export default function KeystoneClient() {
                 <button key={m.id} type="button" onClick={() => pickMode(m.id)} className="paper-sheet space-y-1.5 p-4 text-left transition hover:border-ballpoint/50">
                   <div className="flex items-center gap-2">
                     <h3 className="type-display text-base text-ink">{m.title}</h3>
-                    {suggested === m.id && <span className="type-data rounded-full bg-st-review/15 px-1.5 py-0.5 text-[10px] text-st-review">Suggested</span>}
                   </div>
                   <p className="type-data text-[11px] text-pencil">{m.tagline}</p>
                   <span className="type-data text-[11px] text-ballpoint">Start →</span>
@@ -399,7 +396,13 @@ export default function KeystoneClient() {
       )}
 
       {step === "questionnaire" && (
-        <Questionnaire answers={answers} setField={setField} onBack={() => setStep("intro")} onSubmit={() => setStep("prompt")} />
+        <Questionnaire
+          answers={answers}
+          setField={setField}
+          onBack={() => setStep("intro")}
+          onSubmit={() => setStep("prompt")}
+          mode={mode === "revision" ? "revision" : "learning"}
+        />
       )}
 
       {step === "doubtinput" && (
