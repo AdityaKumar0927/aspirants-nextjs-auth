@@ -38,6 +38,14 @@ const supportLinks = [
   { key: "volunteer", href: "/apply" },
 ]
 
+// "Study" groups the personalized study tools under one nav item (literal labels —
+// these routes aren't i18n'd). My banks is signed-in only.
+const studyLinks = [
+  { title: "Learn", desc: "Understand a chapter, revise, or clear a doubt", href: "/learn" },
+  { title: "My banks", desc: "Build a private bank or mock exam from your own material", href: "/my-banks" },
+  { title: "Exam blueprints", desc: "See what each exam tests and how it's weighted", href: "/blueprint" },
+]
+
 export default function NavBar({ session }: { session: Session | null }) {
   const t = useT()
   const router = useRouter()
@@ -53,12 +61,14 @@ export default function NavBar({ session }: { session: Session | null }) {
   ]
   const [menuOpen, setMenuOpen] = React.useState(false)
   const [supportOpen, setSupportOpen] = React.useState(false)
+  const [studyOpen, setStudyOpen] = React.useState(false)
   const [showLogoutLoader, setShowLogoutLoader] = React.useState(false)
   const menuRef = React.useRef<HTMLDivElement>(null)
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen)
     setSupportOpen(false)
+    setStudyOpen(false)
   }
 
   const toggleSupport = (e: React.MouseEvent) => {
@@ -66,11 +76,17 @@ export default function NavBar({ session }: { session: Session | null }) {
     setSupportOpen(!supportOpen)
   }
 
+  const toggleStudy = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setStudyOpen(!studyOpen)
+  }
+
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false)
         setSupportOpen(false)
+        setStudyOpen(false)
       }
     }
 
@@ -159,6 +175,8 @@ export default function NavBar({ session }: { session: Session | null }) {
               setShowSignInModal={setShowSignInModal}
               supportOpen={supportOpen}
               toggleSupport={toggleSupport}
+              studyOpen={studyOpen}
+              toggleStudy={toggleStudy}
               handleLogout={handleLogout}
             />
           </div>
@@ -195,24 +213,18 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/my-banks"
-              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
-            >
-              My banks
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/learn"
-              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
-            >
-              Learn
-            </Link>
-          </NavigationMenuLink>
+          <NavigationMenuTrigger className="font-display text-sm text-black dark:text-white">
+            Study
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[300px] gap-1 p-2 md:w-[400px] md:grid-cols-1 lg:w-[420px]">
+              {studyLinks.map((link) => (
+                <ListItem key={link.href} title={link.title} href={link.href}>
+                  {link.desc}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
@@ -221,16 +233,6 @@ function DesktopNavLinks({ session }: { session: Session | null }) {
               className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
             >
               {t("nav.leaderboard")}
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link
-              href="/blueprint"
-              className={cn(navigationMenuTriggerStyle(), "font-display text-sm text-black dark:text-white")}
-            >
-              {t("nav.blueprint")}
             </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
@@ -265,6 +267,8 @@ interface MobileNavLinksProps {
   setShowSignInModal: React.Dispatch<React.SetStateAction<boolean>>
   supportOpen: boolean
   toggleSupport: (e: React.MouseEvent) => void
+  studyOpen: boolean
+  toggleStudy: (e: React.MouseEvent) => void
   handleLogout: () => Promise<void>
 }
 
@@ -274,6 +278,8 @@ function MobileNavLinks({
   setShowSignInModal,
   supportOpen,
   toggleSupport,
+  studyOpen,
+  toggleStudy,
   handleLogout,
 }: MobileNavLinksProps) {
   const t = useT()
@@ -293,33 +299,37 @@ function MobileNavLinks({
       >
         {t("nav.mockExam")}
       </Link>
-      <Link
-        href="/my-banks"
-        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-        onClick={() => setMenuOpen(false)}
-      >
-        My banks
-      </Link>
-      <Link
-        href="/learn"
-        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-        onClick={() => setMenuOpen(false)}
-      >
-        Learn
-      </Link>
+      <div>
+        <button
+          className="flex min-h-11 items-center justify-between w-full text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          onClick={toggleStudy}
+          aria-expanded={studyOpen}
+        >
+          Study
+          <ChevronDown size={20} className={cn("transition-transform", studyOpen && "rotate-180")} />
+        </button>
+        {studyOpen && (
+          <ul className="mt-1 space-y-1 pl-4">
+            {studyLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="flex min-h-11 items-center text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <Link
         href="/leaderboard"
         className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         onClick={() => setMenuOpen(false)}
       >
         {t("nav.leaderboard")}
-      </Link>
-      <Link
-        href="/blueprint"
-        className="flex min-h-11 w-full items-center text-left font-display text-lg text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-        onClick={() => setMenuOpen(false)}
-      >
-        {t("nav.blueprint")}
       </Link>
       <div>
         <button
@@ -406,4 +416,3 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
   },
 )
 ListItem.displayName = "ListItem"
-
