@@ -133,6 +133,8 @@ export function QuestionForm({ initialData, onSubmit, onCancel, submitting }: Qu
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Scrollable body — capped so the footer below it stays in view (Save always reachable). */}
+      <div className="max-h-[60vh] space-y-4 overflow-y-auto px-1 pb-1">
       {/* Type & status */}
       <Section title="Type & status">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -386,7 +388,8 @@ export function QuestionForm({ initialData, onSubmit, onCancel, submitting }: Qu
         </div>
       </Section>
 
-      <DialogFooter className="gap-2">
+      </div>
+      <DialogFooter className="mt-4 gap-2 border-t border-rule pt-4">
         {onCancel && (
           <Button type="button" variant="outline" onClick={onCancel} disabled={submitting}>
             Cancel

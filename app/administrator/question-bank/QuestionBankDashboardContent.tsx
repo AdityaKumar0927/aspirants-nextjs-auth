@@ -21,10 +21,10 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Skeleton } from "@/components/ui/skeleton"
 import {
@@ -772,35 +772,37 @@ export function QuestionBankDashboardContent() {
 
       {/* Add dialog */}
       <Dialog open={isAddOpen} onOpenChange={setIsAddOpen}>
-        <DialogContent className="max-h-[90vh] sm:max-w-[680px]">
+        <DialogContent className="max-h-[90vh] sm:max-w-[720px]">
           <DialogHeader>
             <DialogTitle>Add new question</DialogTitle>
+            <DialogDescription className="text-sm text-pencil">
+              Fields adapt to the question type. Markdown + LaTeX ($…$) supported.
+            </DialogDescription>
           </DialogHeader>
-          <ScrollArea className="max-h-[75vh] pr-3">
-            <QuestionForm
-              onSubmit={(q) => addMutation.mutate(q)}
-              onCancel={() => setIsAddOpen(false)}
-              submitting={addMutation.isPending}
-            />
-          </ScrollArea>
+          <QuestionForm
+            onSubmit={(q) => addMutation.mutate(q)}
+            onCancel={() => setIsAddOpen(false)}
+            submitting={addMutation.isPending}
+          />
         </DialogContent>
       </Dialog>
 
       {/* Edit dialog */}
       {editing && (
         <Dialog open={!!editing} onOpenChange={() => setEditing(null)}>
-          <DialogContent className="max-h-[90vh] sm:max-w-[680px]">
+          <DialogContent className="max-h-[90vh] sm:max-w-[720px]">
             <DialogHeader>
               <DialogTitle>Edit question</DialogTitle>
+              <DialogDescription className="text-sm text-pencil">
+                Fields adapt to the question type. Markdown + LaTeX ($…$) supported.
+              </DialogDescription>
             </DialogHeader>
-            <ScrollArea className="max-h-[75vh] pr-3">
-              <QuestionForm
-                initialData={editing}
-                onSubmit={(q) => editMutation.mutate({ ...q, questionId: editing.questionId })}
-                onCancel={() => setEditing(null)}
-                submitting={editMutation.isPending}
-              />
-            </ScrollArea>
+            <QuestionForm
+              initialData={editing}
+              onSubmit={(q) => editMutation.mutate({ ...q, questionId: editing.questionId })}
+              onCancel={() => setEditing(null)}
+              submitting={editMutation.isPending}
+            />
           </DialogContent>
         </Dialog>
       )}

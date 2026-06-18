@@ -16,6 +16,7 @@ import {
   Calendar,
   Send,
   Trash2,
+  Lightbulb,
 } from "lucide-react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as z from "zod";
@@ -353,61 +354,89 @@ export default function FeatureRequestPage() {
                 <T k="auto.featureRequestsPage.newFeatureRequest" />
               </Button>
             </DialogTrigger>
-            <DialogContent className="theme-desk sm:max-w-[425px] bg-paper text-ink border-rule">
+            <DialogContent className="theme-desk border-rule bg-paper text-ink sm:max-w-[480px]">
               <DialogHeader>
-                <DialogTitle>
-                  <T k="auto.featureRequestsPage.submitANewFeatureRequest" />
-                </DialogTitle>
-                <DialogDescription>
-                  <T k="auto.featureRequestsPage.describeTheFeatureYouD" />
-                </DialogDescription>
+                <div className="flex items-start gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ballpoint/10 text-ballpoint">
+                    <Lightbulb className="h-5 w-5" />
+                  </span>
+                  <div className="space-y-1">
+                    <DialogTitle className="type-display text-lg text-ink">
+                      <T k="auto.featureRequestsPage.submitANewFeatureRequest" />
+                    </DialogTitle>
+                    <DialogDescription className="text-sm text-pencil">
+                      <T k="auto.featureRequestsPage.describeTheFeatureYouD" />
+                    </DialogDescription>
+                  </div>
+                </div>
               </DialogHeader>
               <form onSubmit={handleSubmit(handleNewFeatureSubmit)} className="space-y-4">
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="title">
                     <T k="auto.featureRequestsPage.title" />
                   </Label>
-                  <Input id="title" {...register("title")} />
-                  {errors.title && <p className="text-redpen text-sm">{errors.title.message}</p>}
+                  <Input id="title" placeholder="A short, clear summary" {...register("title")} />
+                  {errors.title && <p className="text-xs text-redpen">{errors.title.message}</p>}
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="description">
                     <T k="auto.featureRequestsPage.description" />
                   </Label>
-                  <Textarea id="description" {...register("description")} />
+                  <Textarea
+                    id="description"
+                    rows={4}
+                    placeholder="What should it do, and what problem does it solve?"
+                    className="resize-none"
+                    {...register("description")}
+                  />
                   {errors.description && (
-                    <p className="text-redpen text-sm">{errors.description.message}</p>
+                    <p className="text-xs text-redpen">{errors.description.message}</p>
                   )}
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="category">
-                    <T k="auto.featureRequestsPage.category" />
-                  </Label>
-                  <Select value={category} onValueChange={(v) => setValue("category", v, { shouldValidate: true })}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {CATEGORIES.map((c) => (
-                        <SelectItem key={c} value={c}>
-                          {c}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.category && (
-                    <p className="text-redpen text-sm">{errors.category.message}</p>
-                  )}
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="category">
+                      <T k="auto.featureRequestsPage.category" />
+                    </Label>
+                    <Select value={category} onValueChange={(v) => setValue("category", v, { shouldValidate: true })}>
+                      <SelectTrigger id="category">
+                        <SelectValue placeholder="Select one" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CATEGORIES.map((c) => (
+                          <SelectItem key={c} value={c}>
+                            {c}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {errors.category && (
+                      <p className="text-xs text-redpen">{errors.category.message}</p>
+                    )}
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="tags">
+                      <T k="auto.featureRequestsPage.tagsCommaSeparated" />
+                    </Label>
+                    <Input id="tags" placeholder="e.g. dark-mode, mobile" {...register("tags")} />
+                    <p className="type-data text-[11px] text-pencil">Optional — comma-separated.</p>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="tags">
-                    <T k="auto.featureRequestsPage.tagsCommaSeparated" />
-                  </Label>
-                  <Input id="tags" {...register("tags")} />
+                <div className="flex items-center justify-end gap-2 border-t border-rule pt-4">
+                  <Button type="button" variant="outline" onClick={() => setIsModalOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      "Submitting…"
+                    ) : (
+                      <span className="inline-flex items-center">
+                        <Send className="mr-2 h-4 w-4" />
+                        <T k="auto.featureRequestsPage.submitRequest" />
+                      </span>
+                    )}
+                  </Button>
                 </div>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Submitting…" : <T k="auto.featureRequestsPage.submitRequest" />}
-                </Button>
               </form>
             </DialogContent>
           </Dialog>

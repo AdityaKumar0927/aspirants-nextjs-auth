@@ -24,12 +24,15 @@ const footerNavs = [
   },
 ];
 
-// Colors use the desk design tokens (paper/ink/pencil/rule), which are defined
-// globally for every theme (:root / .dark / .pink) — so the footer follows the
-// light, dark AND heart/pink themes instead of being hard-coded white.
+// Colors use the desk design tokens, defined globally for every theme
+// (:root / .dark / .pink). `bg-desk` (the page-backdrop token) is used instead of
+// `bg-paper` because paper is near-white in BOTH light (#fbfbf8) and pink
+// (#fff5fa) — so the footer looked unchanged when switching light↔pink. `--desk`
+// is visibly distinct per theme (light #f1f2ec / dark #0f1021 / pink #ffd6e6), so
+// the footer now clearly follows the active theme; the top rule separates it.
 export function Footer() {
   return (
-    <footer className="border-t border-rule bg-paper">
+    <footer className="border-t border-rule bg-desk">
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
