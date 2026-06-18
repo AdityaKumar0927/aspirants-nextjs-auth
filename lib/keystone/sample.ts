@@ -107,8 +107,15 @@ const SAMPLE = {
           modelAnswer: "Constant — zero net force means zero acceleration (Newton's first law).",
           rubric: ["recognises zero net force ⇒ no change in velocity"],
         },
+        {
+          // No `format` — exercises the legacy free-text "open" check (self-scored)
+          // via the backward-compat fallback in AutoCheckCard.
+          kind: "transfer",
+          question: "In your own words, why does a heavier object accelerate less under the same force?",
+          modelAnswer: "Mass measures resistance to acceleration (inertia): with $a = F/m$, a bigger $m$ divides the same $F$ into a smaller $a$.",
+          rubric: ["links mass to inertia / resistance to acceleration", "uses $a = F/m$"],
+        },
       ],
-      calibration: { question: "Find the net force on a $3\\,\\mathrm{kg}$ mass accelerating at $2\\,\\mathrm{m/s^2}$.", modelAnswer: "$F = 6\\,\\mathrm{N}$." },
       misconceptions: [
         { misconception: "A force is needed to keep something moving at constant speed.", correction: "Force changes motion (causes acceleration). Constant velocity needs *zero* net force — that's Newton's first law." },
       ],

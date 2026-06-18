@@ -287,7 +287,16 @@ function CheckCard({ check, onScored }: { check: KCheck; onScored: (n: 0 | 1 | 2
             <p className="type-data text-[11px] text-st-answered">Model answer</p>
             <Md text={check.modelAnswer || "—"} />
           </div>
-          <SelfScore rubric={check.rubric} scored={scored} onScore={(n) => { setScored(n); onScored(n); }} />
+          <SelfScore
+            rubric={check.rubric}
+            scored={scored}
+            onScore={(n) => {
+              // Fire the outcome once (first selection) so a re-tap can't double-count
+              // the struggle delta; the visible selection can still be corrected.
+              if (scored === null) onScored(n);
+              setScored(n);
+            }}
+          />
         </div>
       )}
     </div>

@@ -87,7 +87,6 @@ export interface KLessonConcept {
   workedExample: KWorkedStep[];
   derivation: KDerivationStep[];
   checks: KCheck[];
-  calibration: { question: string; modelAnswer: string } | null;
   misconceptions: KMisconception[];
   teachBack: KTeachBack | null;
   /** Varied generative acts (summarize/draw/imagine/self-explain) done on paper. */
@@ -237,11 +236,6 @@ function normConcept(raw: unknown): KLessonConcept | null {
     .filter((x): x is KMisconception => !!x && x.misconception.length > 0)
     .slice(0, 20);
 
-  const cal = isObj(raw.calibration) ? raw.calibration : null;
-  const calibration = cal && s(cal.question)
-    ? { question: s(cal.question, 6_000), modelAnswer: s(cal.modelAnswer, 10_000) }
-    : null;
-
   const tb = isObj(raw.teachBack) ? raw.teachBack : null;
   const teachBack = tb && (s(tb.whatToExplain) || Array.isArray(tb.checklist))
     ? { whatToExplain: s(tb.whatToExplain, 6_000), checklist: sArr(tb.checklist, 20) }
@@ -266,7 +260,6 @@ function normConcept(raw: unknown): KLessonConcept | null {
     workedExample,
     derivation,
     checks,
-    calibration,
     misconceptions,
     teachBack,
     generative,

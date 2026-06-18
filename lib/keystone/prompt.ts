@@ -65,9 +65,9 @@ Understanding is built by what the STUDENT produces — but the learning LANDS i
      – "short": a few-word exact answer in \`answer\`.
      – "open": free text the student self-scores against \`rubric\` — only when it genuinely can't be auto-graded.
    Include at least one "application"-level check per concept (prefer integer/short for real production; use MCQ only with conceptual-trap distractors).
-7. CALIBRATION question (predict-confidence-then-reveal) to fight the fluency illusion.
-8. MISCONCEPTIONS with pre-written corrections.
-9. TEACH-BACK spec: what they should explain + a checklist it must hit.
+7. MISCONCEPTIONS with pre-written corrections.
+8. TEACH-BACK spec: what they should explain + a checklist it must hit.
+(The app handles confidence calibration itself — it asks the student to predict before the checks and compares to how they actually do, so you don't author a separate calibration question.)
 
 Across the chapter: PREREQUISITE checks up front, an INTERLEAVED set mixing concepts (name WHICH applies first), SYNTHESIS questions, a concept map (advance organizer), and spacing metadata.
 
@@ -133,7 +133,6 @@ OUTPUT — return EXACTLY this JSON shape (the default \`format\` is "open"; omi
           "question": "An unseen application — work it on paper, then enter the number",
           "options": [], "answer": "42", "modelAnswer": "...", "rubric": ["..."] }
       ],
-      "calibration": { "question": "A question to predict-then-check confidence on", "modelAnswer": "..." },
       "misconceptions": [ { "misconception": "A likely wrong idea", "correction": "Why it's wrong and the right idea" } ],
       "teachBack": { "whatToExplain": "Explain X as if teaching it", "checklist": ["Must mention …", "Must address misconception …"] }
     }
