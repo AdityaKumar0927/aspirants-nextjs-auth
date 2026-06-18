@@ -1,247 +1,59 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import MathRenderer from "@/components/layout/MathRenderer";
-import type {
-  KLesson,
-  KLessonConcept,
-  KCheck,
-} from "@/lib/keystone/schema";
+import type { KLesson, KLessonConcept } from "@/lib/keystone/schema";
 import type { KProgress } from "@/lib/keystone/storage";
-
-/* ----------------------------- small helpers ---------------------------- */
-
-/** Render Markdown + LaTeX content. */
-function Md({ text, className }: { text: string; className?: string }) {
-  return (
-    <div className={className ?? "text-sm leading-relaxed text-ink"}>
-      <MathRenderer text={text} />
-    </div>
-  );
-}
-
-function SectionHead({ kicker, title }: { kicker: string; title: string }) {
-  return (
-    <div className="space-y-0.5">
-      <p className="type-data text-[11px] uppercase tracking-wide text-st-review">{kicker}</p>
-      <h2 className="type-display text-xl text-ink">{title}</h2>
-    </div>
-  );
-}
-
-/** Textarea the student must write in before they can proceed/reveal. */
-function AttemptBox({
-  value,
-  onChange,
-  placeholder,
-  minChars = 1,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  placeholder?: string;
-  minChars?: number;
-}) {
-  return (
-    <textarea
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      rows={4}
-      placeholder={placeholder ?? "Write your attempt here — even a rough one. The struggle is the point."}
-      className="w-full resize-y rounded-md border border-rule bg-paper p-3 text-sm text-ink placeholder:text-pencil focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40"
-      data-min={minChars}
-    />
-  );
-}
-
-/** Hints released one rung at a time. */
-function HintLadder({ hints }: { hints: string[] }) {
-  const [shown, setShown] = useState(0);
-  if (hints.length === 0) return null;
-  return (
-    <div className="space-y-2 rounded-md border border-dashed border-rule bg-secondary/30 p-3">
-      <p className="type-data text-[11px] text-pencil">Stuck? Reveal one hint at a time — never the answer.</p>
-      <ol className="space-y-1.5">
-        {hints.slice(0, shown).map((h, i) => (
-          <li key={i} className="flex gap-2 text-sm text-ink">
-            <span className="type-data shrink-0 text-st-review">Hint {i + 1}.</span>
-            <Md text={h} className="text-sm text-ink" />
-          </li>
-        ))}
-      </ol>
-      {shown < hints.length && (
-        <Button variant="ghost" size="sm" onClick={() => setShown((s) => s + 1)} className="text-ballpoint">
-          {shown === 0 ? "Show a hint" : "Show another hint"} ({hints.length - shown} left)
-        </Button>
-      )}
-    </div>
-  );
-}
-
-/** Predict-then-reveal confidence (1–5). Returns the prediction once chosen. */
-function Calibrate({ value, onChange }: { value: number | null; onChange: (n: number) => void }) {
-  return (
-    <div className="space-y-1.5">
-      <p className="type-data text-[11px] text-pencil">First, predict: how confident are you that you’ll get this right?</p>
-      <div className="flex gap-2">
-        {[1, 2, 3, 4, 5].map((n) => (
-          <button
-            key={n}
-            type="button"
-            onClick={() => onChange(n)}
-            className={`type-data h-8 w-8 rounded-full border text-xs transition ${
-              value === n ? "border-ballpoint bg-ballpoint text-paper" : "border-rule bg-paper text-pencil hover:border-ballpoint/50"
-            }`}
-          >
-            {n}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Self-score after a reveal: Got it / Partly / Missed, plus a rubric to check against. */
-function SelfScore({
-  rubric,
-  onScore,
-  scored,
-}: {
-  rubric: string[];
-  onScore: (n: 0 | 1 | 2) => void;
-  scored: number | null;
-}) {
-  const opts: { n: 0 | 1 | 2; label: string; cls: string }[] = [
-    { n: 2, label: "Got it", cls: "border-st-answered text-st-answered" },
-    { n: 1, label: "Partly", cls: "border-orange-500/50 text-orange-600 dark:text-orange-400" },
-    { n: 0, label: "Missed", cls: "border-redpen/50 text-redpen" },
-  ];
-  return (
-    <div className="space-y-2">
-      {rubric.length > 0 && (
-        <div className="space-y-1">
-          <p className="type-data text-[11px] text-pencil">Did your answer include:</p>
-          <ul className="space-y-0.5">
-            {rubric.map((r, i) => (
-              <li key={i} className="flex gap-1.5 text-xs text-pencil">
-                <span className="text-st-review">▢</span>
-                <Md text={r} className="text-xs text-pencil" />
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      <div className="flex gap-2">
-        {opts.map((o) => (
-          <button
-            key={o.n}
-            type="button"
-            onClick={() => onScore(o.n)}
-            className={`type-data rounded-full border px-3 py-1 text-xs transition ${
-              scored === o.n ? "bg-ink text-paper border-ink" : `bg-paper ${o.cls} hover:opacity-80`
-            }`}
-          >
-            {o.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------ check card ------------------------------- */
-
-function CheckCard({
-  check,
-  onScored,
-}: {
-  check: KCheck;
-  onScored: (score: 0 | 1 | 2) => void;
-}) {
-  const [attempt, setAttempt] = useState("");
-  const [revealed, setRevealed] = useState(false);
-  const [scored, setScored] = useState<number | null>(null);
-
-  return (
-    <div className="space-y-3 rounded-md border border-rule bg-paper p-4">
-      <div className="flex items-center gap-2">
-        <span className="type-data rounded border border-st-review/30 bg-st-review/10 px-1.5 py-0.5 text-[10px] uppercase text-st-review">
-          {check.kind}
-        </span>
-      </div>
-      <Md text={check.question} />
-      {!revealed ? (
-        <>
-          <AttemptBox value={attempt} onChange={setAttempt} />
-          <Button
-            size="sm"
-            onClick={() => setRevealed(true)}
-            disabled={attempt.trim().length < 1}
-            className="bg-ballpoint text-paper hover:bg-ballpoint/90"
-          >
-            Check my answer
-          </Button>
-        </>
-      ) : (
-        <div className="space-y-3">
-          {attempt.trim() && (
-            <div className="rounded-md border border-rule bg-secondary/20 p-3">
-              <p className="type-data text-[11px] text-pencil">Your answer</p>
-              <p className="whitespace-pre-wrap text-sm text-pencil">{attempt}</p>
-            </div>
-          )}
-          <div className="rounded-md border border-st-answered/30 bg-st-answered/5 p-3">
-            <p className="type-data text-[11px] text-st-answered">Model answer</p>
-            <Md text={check.modelAnswer || "—"} />
-          </div>
-          <SelfScore
-            rubric={check.rubric}
-            scored={scored}
-            onScore={(n) => {
-              setScored(n);
-              onScored(n);
-            }}
-          />
-        </div>
-      )}
-    </div>
-  );
-}
+import {
+  Md,
+  SectionHead,
+  HintLadder,
+  Calibrate,
+  PaperReveal,
+  AutoCheckCard,
+  PrereqGate,
+} from "./primitives";
 
 /* --------------------------- concept sub-stepper -------------------------- */
-
-const SUBSTEPS = ["Attempt", "Learn", "Practice", "Teach back"] as const;
 
 function ConceptView({
   concept,
   index,
   total,
+  struggle,
+  onStruggleDelta,
   onDone,
   onCalibration,
 }: {
   concept: KLessonConcept;
   index: number;
   total: number;
+  struggle: number;
+  onStruggleDelta: (d: number) => void;
   onDone: () => void;
   onCalibration: (predicted: number, outcome: number) => void;
 }) {
+  // The step list is dynamic: the Generate step only appears when there are
+  // generative acts to do (otherwise the rail would show an empty step).
+  const steps = ["Pretest", "Learn", ...(concept.generative.length ? (["Generate"] as const) : []), "Check", "Teach back"];
   const [sub, setSub] = useState(0);
+  const current = steps[sub];
+  const goNext = () => setSub((s) => Math.min(s + 1, steps.length - 1));
 
-  // Attempt
-  const [anchorAttempt, setAnchorAttempt] = useState("");
+  // Pretest
   const [anchorRevealed, setAnchorRevealed] = useState(false);
 
-  // Learn (worked example self-explanations + derivation)
-  const [explained, setExplained] = useState<string[]>(concept.workedExample.map(() => ""));
-  const [derivAttempt, setDerivAttempt] = useState<string[]>(concept.derivation.map(() => ""));
-  const [derivShown, setDerivShown] = useState<boolean[]>(concept.derivation.map(() => false));
+  // Check — predict-confidence once, then auto-graded checks; the FIRST check's
+  // outcome is the calibration signal (recorded once).
+  const [predicted, setPredicted] = useState<number | null>(null);
+  const calibRecorded = useRef(false);
 
-  // Teach back
-  const [explanation, setExplanation] = useState("");
+  // Teach back self-assessment
   const [checked, setChecked] = useState<boolean[]>((concept.teachBack?.checklist ?? []).map(() => false));
 
-  // Calibration (predict before the practice checks)
-  const [predicted, setPredicted] = useState<number | null>(null);
+  // Guidance fading: when the student is clearly doing well across the lesson,
+  // collapse the worked example by default (they can still expand it).
+  const faded = struggle <= -2;
 
   return (
     <div className="space-y-5">
@@ -249,7 +61,7 @@ function ConceptView({
 
       {/* sub-step rail */}
       <ol className="flex flex-wrap items-center gap-1.5 text-[11px]">
-        {SUBSTEPS.map((label, i) => (
+        {steps.map((label, i) => (
           <li key={label} className="flex items-center gap-1.5">
             <span
               className={`type-data rounded-full px-2 py-0.5 ${
@@ -258,37 +70,38 @@ function ConceptView({
             >
               {label}
             </span>
-            {i < SUBSTEPS.length - 1 && <span className="text-rule">—</span>}
+            {i < steps.length - 1 && <span className="text-rule">—</span>}
           </li>
         ))}
       </ol>
 
-      {/* 0 — ATTEMPT (anchor problem, productive failure) */}
-      {sub === 0 && (
+      {/* PRETEST — attempt on paper before any teaching, then a substantial reveal */}
+      {current === "Pretest" && (
         <div className="paper-sheet space-y-4 p-5">
           {concept.anchorProblem ? (
             <>
               <p className="type-data text-[11px] text-pencil">
-                Try this <strong className="text-ink">before</strong> any teaching. Struggling here is the point — it
-                shows you what you don’t yet understand and primes the explanation.
+                A quick <strong className="text-ink">pretest</strong> — attempt it on your paper <strong className="text-ink">before</strong> any
+                teaching. Getting it wrong is expected and is the point: the struggle primes what comes next.
               </p>
               <Md text={concept.anchorProblem.prompt} />
               {!anchorRevealed ? (
                 <>
-                  <AttemptBox value={anchorAttempt} onChange={setAnchorAttempt} />
                   <HintLadder hints={concept.hintLadder} />
                   <div className="flex justify-end">
-                    <Button
-                      onClick={() => setAnchorRevealed(true)}
-                      disabled={anchorAttempt.trim().length < 1}
-                      className="bg-ballpoint text-paper hover:bg-ballpoint/90"
-                    >
-                      I’ve attempted it →
+                    <Button onClick={() => setAnchorRevealed(true)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
+                      I’ve attempted it on paper →
                     </Button>
                   </div>
                 </>
               ) : (
                 <div className="space-y-3">
+                  {concept.anchorProblem.reveal && (
+                    <div className="rounded-md border border-st-answered/30 bg-st-answered/5 p-3">
+                      <p className="type-data text-[11px] text-st-answered">Here’s the thinking — study it now</p>
+                      <Md text={concept.anchorProblem.reveal} />
+                    </div>
+                  )}
                   {concept.anchorProblem.whatToNotice && (
                     <div className="rounded-md border border-st-review/30 bg-st-review/5 p-3">
                       <p className="type-data text-[11px] text-st-review">What to notice</p>
@@ -296,85 +109,52 @@ function ConceptView({
                     </div>
                   )}
                   <div className="flex justify-end">
-                    <Button onClick={() => setSub(1)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-                      Now learn it →
-                    </Button>
+                    <Button onClick={goNext} className="bg-ballpoint text-paper hover:bg-ballpoint/90">Now learn it →</Button>
                   </div>
                 </div>
               )}
             </>
           ) : (
             <div className="flex items-center justify-between">
-              <p className="text-sm text-pencil">No anchor problem for this concept — go straight to learning it.</p>
-              <Button onClick={() => setSub(1)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-                Learn it →
-              </Button>
+              <p className="text-sm text-pencil">No pretest for this concept — go straight to learning it.</p>
+              <Button onClick={goNext} className="bg-ballpoint text-paper hover:bg-ballpoint/90">Learn it →</Button>
             </div>
           )}
         </div>
       )}
 
-      {/* 1 — LEARN (worked example + self-explanation, then co-produced derivation) */}
-      {sub === 1 && (
+      {/* LEARN — rich worked example (density fades as the student does well) + derivation */}
+      {current === "Learn" && (
         <div className="space-y-4">
           {concept.workedExample.length > 0 && (
-            <div className="paper-sheet space-y-4 p-5">
-              <h3 className="type-display text-base text-ink">Worked example</h3>
-              <p className="type-data text-[11px] text-pencil">
-                Explain each step in your own words — about the <em>content</em>, not whether you “get it”.
+            <details open={!faded} className="paper-sheet space-y-4 p-5">
+              <summary className="cursor-pointer">
+                <span className="type-display text-base text-ink">Worked example</span>
+                {faded && <span className="type-data ml-2 text-[11px] text-pencil">(you’re on a roll — expand if you want it)</span>}
+              </summary>
+              <p className="type-data mt-3 text-[11px] text-pencil">
+                Read each step and the reason it follows. On your paper, answer each “On paper:” prompt in your own words.
               </p>
-              {concept.workedExample.map((step, i) => (
-                <div key={i} className="space-y-2 border-l-2 border-rule pl-3">
-                  <Md text={step.text} />
-                  {step.selfExplain && (
-                    <div className="space-y-1">
-                      <p className="type-data text-[11px] text-st-review">{step.selfExplain}</p>
-                      <input
-                        value={explained[i]}
-                        onChange={(e) => setExplained((a) => a.map((v, j) => (j === i ? e.target.value : v)))}
-                        placeholder="Your explanation…"
-                        className="w-full rounded-md border border-rule bg-paper px-3 py-1.5 text-sm text-ink placeholder:text-pencil focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40"
-                      />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+              <div className="mt-3 space-y-4">
+                {concept.workedExample.map((step, i) => (
+                  <div key={i} className="space-y-1 border-l-2 border-rule pl-3">
+                    <Md text={step.text} />
+                    {step.selfExplain && <p className="type-data text-[11px] text-st-review">On paper: {step.selfExplain}</p>}
+                  </div>
+                ))}
+              </div>
+            </details>
           )}
 
           {concept.derivation.length > 0 && (
             <div className="paper-sheet space-y-4 p-5">
               <h3 className="type-display text-base text-ink">Derive it from first principles</h3>
               <p className="type-data text-[11px] text-pencil">
-                Co-produce each step — attempt it, then reveal. This is the difference between understanding a result
-                and just using a formula.
+                Co-produce each step on your paper — attempt it, then reveal. This is the difference between understanding a
+                result and just using a formula.
               </p>
               {concept.derivation.map((step, i) => (
-                <div key={i} className="space-y-2 border-l-2 border-rule pl-3">
-                  <Md text={step.prompt} className="text-sm text-ink" />
-                  {!derivShown[i] ? (
-                    <div className="space-y-2">
-                      <input
-                        value={derivAttempt[i]}
-                        onChange={(e) => setDerivAttempt((a) => a.map((v, j) => (j === i ? e.target.value : v)))}
-                        placeholder="What comes next, and why?"
-                        className="w-full rounded-md border border-rule bg-paper px-3 py-1.5 text-sm text-ink placeholder:text-pencil focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40"
-                      />
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setDerivShown((a) => a.map((v, j) => (j === i ? true : v)))}
-                        className="text-ballpoint"
-                      >
-                        Reveal this step
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="rounded-md border border-st-answered/30 bg-st-answered/5 p-2">
-                      <Md text={step.answer} />
-                    </div>
-                  )}
-                </div>
+                <PaperReveal key={i} prompt={step.prompt} model={step.answer} doneLabel="Show this step" />
               ))}
             </div>
           )}
@@ -394,58 +174,74 @@ function ConceptView({
           )}
 
           <div className="flex justify-end">
-            <Button onClick={() => setSub(2)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-              Practice →
-            </Button>
+            <Button onClick={goNext} className="bg-ballpoint text-paper hover:bg-ballpoint/90">{concept.generative.length ? "Generate →" : "Practice →"}</Button>
           </div>
         </div>
       )}
 
-      {/* 2 — PRACTICE (calibration + retrieval/transfer checks) */}
-      {sub === 2 && (
+      {/* GENERATE — varied generative acts on the student's own paper */}
+      {current === "Generate" && (
+        <div className="space-y-4">
+          <div className="space-y-1">
+            <h3 className="type-display text-base text-ink">Make it yours</h3>
+            <p className="type-data text-[11px] text-pencil">
+              Do each on your paper — generating it yourself is what builds understanding. Then compare with the model.
+            </p>
+          </div>
+          {concept.generative.map((g, i) => (
+            <PaperReveal key={i} kicker={g.kind} prompt={g.prompt} model={g.model} />
+          ))}
+          <div className="flex justify-end">
+            <Button onClick={goNext} className="bg-ballpoint text-paper hover:bg-ballpoint/90">Practice →</Button>
+          </div>
+        </div>
+      )}
+
+      {/* CHECK — predict, then auto-graded checks; calibrate against the first */}
+      {current === "Check" && (
         <div className="space-y-4">
           <div className="paper-sheet space-y-4 p-5">
             <h3 className="type-display text-base text-ink">Prove you’ve got it</h3>
-            {concept.checks.length === 0 && !concept.calibration && (
+            {concept.checks.length === 0 ? (
               <p className="text-sm text-pencil">No checks were generated for this concept.</p>
+            ) : (
+              <>
+                {predicted === null && (
+                  <div className="rounded-md border border-rule bg-secondary/20 p-3">
+                    <Calibrate value={predicted} onChange={setPredicted} />
+                  </div>
+                )}
+                {concept.checks.map((c, i) => (
+                  <AutoCheckCard
+                    key={i}
+                    check={c}
+                    onScored={(score) => {
+                      onStruggleDelta(score === 2 ? -1 : score === 0 ? 1 : 0);
+                      if (i === 0 && predicted !== null && !calibRecorded.current) {
+                        calibRecorded.current = true;
+                        onCalibration(predicted, score);
+                      }
+                    }}
+                  />
+                ))}
+              </>
             )}
-            {concept.calibration && concept.checks.length > 0 && predicted === null && (
-              <div className="rounded-md border border-rule bg-secondary/20 p-3">
-                <Calibrate value={predicted} onChange={setPredicted} />
-              </div>
-            )}
-            {concept.checks.map((c, i) => (
-              <CheckCard
-                key={i}
-                check={c}
-                onScored={(score) => {
-                  if (i === 0 && predicted !== null) onCalibration(predicted, score);
-                }}
-              />
-            ))}
           </div>
           <div className="flex justify-end">
-            <Button onClick={() => setSub(3)} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-              Teach it back →
-            </Button>
+            <Button onClick={goNext} className="bg-ballpoint text-paper hover:bg-ballpoint/90">Teach it back →</Button>
           </div>
         </div>
       )}
 
-      {/* 3 — TEACH BACK (protégé effect + self-evaluation) */}
-      {sub === 3 && (
+      {/* TEACH BACK — protégé effect; explain on paper, self-assess against a checklist */}
+      {current === "Teach back" && (
         <div className="paper-sheet space-y-4 p-5">
           <h3 className="type-display text-base text-ink">Teach it back</h3>
           <p className="type-data text-[11px] text-pencil">
-            Explain it as if teaching someone else — the surest test of real understanding. Then check yourself against
-            the list. (You can also paste this explanation back into your own AI and ask it to critique you.)
+            Explain it aloud or on your paper as if teaching someone — the surest test of real understanding. Then tick what
+            you covered. (You can also paste your explanation into your own AI and ask it to critique you.)
           </p>
           {concept.teachBack?.whatToExplain && <Md text={concept.teachBack.whatToExplain} className="text-sm text-ink" />}
-          <AttemptBox
-            value={explanation}
-            onChange={setExplanation}
-            placeholder="Explain the concept in your own words, from the ground up…"
-          />
           {(concept.teachBack?.checklist?.length ?? 0) > 0 && (
             <div className="space-y-1">
               <p className="type-data text-[11px] text-pencil">Your explanation should cover:</p>
@@ -467,11 +263,7 @@ function ConceptView({
             </div>
           )}
           <div className="flex justify-end">
-            <Button
-              onClick={onDone}
-              disabled={explanation.trim().length < 1}
-              className="bg-ballpoint text-paper hover:bg-ballpoint/90"
-            >
+            <Button onClick={onDone} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
               {index + 1 < total ? "Mark understood — next concept →" : "Mark understood →"}
             </Button>
           </div>
@@ -503,6 +295,9 @@ export default function LessonPlayer({
   onRestart: () => void;
 }) {
   const [view, setView] = useState<View>({ kind: "map" });
+  // Live-performance signal for guidance fading — persists across concepts.
+  const [struggle, setStruggle] = useState(0);
+  const onStruggleDelta = (d: number) => setStruggle((s) => Math.max(-3, Math.min(3, s + d)));
 
   const conceptCount = lesson.concepts.length;
   const mapConcepts = lesson.conceptMap.concepts.length
@@ -572,8 +367,9 @@ export default function LessonPlayer({
             ))}
           </ol>
           <p className="type-data text-[11px] text-pencil">
-            You’ll attempt each idea before being taught it, derive it yourself, prove you can transfer it, and teach it
-            back. A concept counts as understood only when you can produce it — not when it feels familiar.
+            For each idea you’ll attempt a pretest on paper, study a worked reveal, make it yours, prove it on quick
+            auto-graded checks, and teach it back. A concept counts as understood only when you can produce it — not when it
+            feels familiar.
           </p>
           <div className="flex justify-end">
             <Button onClick={() => setView(advanceFrom(view))} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
@@ -583,15 +379,16 @@ export default function LessonPlayer({
         </div>
       )}
 
-      {/* PREREQS */}
+      {/* PREREQS — diagnostic gate with just-in-time refreshers */}
       {view.kind === "prereqs" && (
         <div className="space-y-4">
           <SectionHead kicker="Foundations first" title="Quick prerequisite check" />
           <p className="text-sm text-pencil">
-            Make sure the ground is solid before we build. Try each, then reveal — if one’s shaky, shore it up first.
+            Let’s measure the ground before we build. Answer each — if one’s shaky, a quick refresher shores it up before we
+            rely on it.
           </p>
           {lesson.prerequisites.map((p, i) => (
-            <PrereqCard key={i} question={p.question} modelAnswer={p.modelAnswer} ifShaky={p.ifShaky} />
+            <PrereqGate key={i} prereq={p} />
           ))}
           <div className="flex justify-end">
             <Button
@@ -601,7 +398,7 @@ export default function LessonPlayer({
               }}
               className="bg-ballpoint text-paper hover:bg-ballpoint/90"
             >
-              Foundations are solid — start →
+              Start the lesson →
             </Button>
           </div>
         </div>
@@ -614,6 +411,8 @@ export default function LessonPlayer({
           concept={lesson.concepts[view.i]}
           index={view.i}
           total={conceptCount}
+          struggle={struggle}
+          onStruggleDelta={onStruggleDelta}
           onCalibration={(predicted, outcome) =>
             onProgress({
               ...progress,
@@ -632,16 +431,21 @@ export default function LessonPlayer({
         />
       )}
 
-      {/* INTERLEAVE */}
+      {/* INTERLEAVE — name the concept, then solve (on paper), then compare */}
       {view.kind === "interleave" && (
         <div className="space-y-4">
           <SectionHead kicker="Mix it up" title="Interleaved practice" />
           <p className="text-sm text-pencil">
-            These mix the chapter’s concepts. The hard part of a real exam is working out <em>which</em> idea applies —
-            so name it first, then solve.
+            These mix the chapter’s concepts. The hard part of a real exam is working out <em>which</em> idea applies — so on
+            your paper, name it first, then solve.
           </p>
           {lesson.interleaved.map((q, i) => (
-            <InterleaveCard key={i} prompt={q.prompt} whichConcept={q.whichConcept} modelAnswer={q.modelAnswer} />
+            <PaperReveal
+              key={i}
+              prompt={q.prompt}
+              model={`${q.whichConcept ? `_Concept tested: ${q.whichConcept}_\n\n` : ""}${q.modelAnswer}`}
+              doneLabel="I’ve named it and solved it — reveal"
+            />
           ))}
           <div className="flex justify-end">
             <Button
@@ -662,7 +466,7 @@ export default function LessonPlayer({
         <div className="space-y-4">
           <SectionHead kicker="The bigger picture" title="Pull it together" />
           {lesson.synthesis.map((q, i) => (
-            <PrereqCard key={i} question={q.question} modelAnswer={q.modelAnswer} ifShaky={null} />
+            <PaperReveal key={i} prompt={q.question} model={q.modelAnswer} />
           ))}
           <div className="flex justify-end">
             <Button
@@ -683,8 +487,9 @@ export default function LessonPlayer({
         <div className="paper-sheet space-y-4 p-5">
           <SectionHead kicker="Well done" title="Lesson complete" />
           <p className="text-sm text-pencil">
-            You attempted, derived, proved transfer, and taught back {progress.doneConceptIds.length} concept
-            {progress.doneConceptIds.length === 1 ? "" : "s"}. That’s understanding you produced — not just recognised.
+            You pretested, studied the reveals, generated your own understanding, proved it, and taught back{" "}
+            {progress.doneConceptIds.length} concept{progress.doneConceptIds.length === 1 ? "" : "s"}. That’s understanding
+            you produced — not just recognised.
           </p>
           {lesson.spacing.length > 0 && (
             <div className="rounded-md border border-st-review/30 bg-st-review/5 p-3">
@@ -716,90 +521,7 @@ export default function LessonPlayer({
   );
 }
 
-/* --------------------------- leaf reveal cards --------------------------- */
-
-function PrereqCard({
-  question,
-  modelAnswer,
-  ifShaky,
-}: {
-  question: string;
-  modelAnswer: string;
-  ifShaky: string | null;
-}) {
-  const [attempt, setAttempt] = useState("");
-  const [revealed, setRevealed] = useState(false);
-  return (
-    <div className="paper-sheet space-y-3 p-4">
-      <Md text={question} />
-      {!revealed ? (
-        <>
-          <AttemptBox value={attempt} onChange={setAttempt} minChars={1} />
-          <Button size="sm" onClick={() => setRevealed(true)} disabled={attempt.trim().length < 1} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-            Reveal
-          </Button>
-        </>
-      ) : (
-        <div className="space-y-2">
-          <div className="rounded-md border border-st-answered/30 bg-st-answered/5 p-3">
-            <p className="type-data text-[11px] text-st-answered">Model answer</p>
-            <Md text={modelAnswer || "—"} />
-          </div>
-          {ifShaky && (
-            <p className="type-data text-[11px] text-pencil">
-              <span className="text-orange-600 dark:text-orange-400">If this was shaky:</span> {ifShaky}
-            </p>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function InterleaveCard({
-  prompt,
-  whichConcept,
-  modelAnswer,
-}: {
-  prompt: string;
-  whichConcept: string;
-  modelAnswer: string;
-}) {
-  const [which, setWhich] = useState("");
-  const [attempt, setAttempt] = useState("");
-  const [revealed, setRevealed] = useState(false);
-  return (
-    <div className="paper-sheet space-y-3 p-4">
-      <Md text={prompt} />
-      {!revealed ? (
-        <div className="space-y-2">
-          <input
-            value={which}
-            onChange={(e) => setWhich(e.target.value)}
-            placeholder="Which concept does this test?"
-            className="w-full rounded-md border border-rule bg-paper px-3 py-1.5 text-sm text-ink placeholder:text-pencil focus:outline-none focus-visible:ring-2 focus-visible:ring-ballpoint/40"
-          />
-          <AttemptBox value={attempt} onChange={setAttempt} placeholder="Then solve it…" />
-          <Button size="sm" onClick={() => setRevealed(true)} disabled={attempt.trim().length < 1} className="bg-ballpoint text-paper hover:bg-ballpoint/90">
-            Check
-          </Button>
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {whichConcept && (
-            <p className="type-data text-[11px] text-pencil">
-              Concept tested: <span className="text-ink">{whichConcept}</span>
-            </p>
-          )}
-          <div className="rounded-md border border-st-answered/30 bg-st-answered/5 p-3">
-            <p className="type-data text-[11px] text-st-answered">Model answer</p>
-            <Md text={modelAnswer || "—"} />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+/* --------------------------- calibration summary ------------------------- */
 
 function CalibrationSummary({ progress }: { progress: KProgress }) {
   const rows = progress.calibration;
@@ -812,8 +534,8 @@ function CalibrationSummary({ progress }: { progress: KProgress }) {
       <p className="text-sm text-ink">
         {pct}% aligned{" "}
         <span className="type-data text-[11px] text-pencil">
-          ({rows.length} check{rows.length === 1 ? "" : "s"}). Closing this gap is how you stop the fluency illusion
-          fooling you.
+          ({rows.length} check{rows.length === 1 ? "" : "s"}). Closing this gap is how you stop the fluency illusion fooling
+          you.
         </span>
       </p>
     </div>
