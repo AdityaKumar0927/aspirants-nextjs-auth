@@ -15,6 +15,7 @@ import {
   Filter,
   HelpCircle,
   Flag,
+  LayoutGrid,
 } from "lucide-react";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -1503,6 +1504,20 @@ export default function QuestionBankContent(props: QuestionBankContentProps = {}
           )}
         </div>
       </div>
+
+      {/* Persistent answer-sheet trigger — the toolbar button scrolls away, so this
+          stays fixed in sight while the user moves down the list, letting them jump
+          between questions from anywhere. Opens the SAME navigator dialog (controlled
+          by navigatorOpen). Bottom-right, clear of the centered Bar pill. */}
+      <button
+        type="button"
+        onClick={() => setNavigatorOpen(true)}
+        aria-label="Open the answer sheet to jump between questions"
+        className="fixed bottom-6 right-4 z-40 flex min-h-11 items-center gap-2 rounded-full border border-rule bg-paper/95 px-4 py-2.5 text-sm font-medium tracking-tight text-ink shadow-[0_4px_20px_-8px_rgba(30,39,73,0.28)] backdrop-blur transition-all hover:border-ballpoint/50 hover:bg-secondary active:translate-y-px sm:right-6"
+      >
+        <LayoutGrid className="h-[18px] w-[18px] text-ballpoint" />
+        <span className="hidden sm:inline">Answer sheet</span>
+      </button>
     </TooltipProvider>
   );
 }
