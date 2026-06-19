@@ -1,5 +1,5 @@
 {
-  "appName": "Penwise",
+  "appName": "{{siteName}}",
   "tagline": "Shaping Dreams",
   "action": {
     "save": "Save",
@@ -19,7 +19,7 @@
   "language": {
     "label": "Language",
     "popupTitle": "Choose your language",
-    "popupSubtitle": "Pick the language you’d like to use across Penwise. You can change it anytime from the footer or your settings.",
+    "popupSubtitle": "Pick the language you’d like to use across {{siteName}}. You can change it anytime from the footer or your settings.",
     "searchPlaceholder": "Search languages…",
     "resetToEnglish": "Reset to English",
     "resetHint": "Lost in another language? Tap here to switch everything back to English.",
@@ -79,7 +79,7 @@
       },
       "volunteer": {
         "title": "Volunteer",
-        "desc": "Apply to help build Penwise."
+        "desc": "Apply to help build {{siteName}}."
       },
       "contact": {
         "title": "Contact",
@@ -399,9 +399,9 @@
       "theOldWay": "The Old Way",
       "theOldPeopleThinkThat": "The old people think that preparing for your dreams has to be stressful, lonely, AND expensive to top it all off.",
       "ourApproach": "Our Approach",
-      "atAspirantsWeThinkDifferently": "At Penwise, we think differently. We believe exam preparation should not come with a price tag, or be buried under outdated methods with delusions of 'rigour.' It should be interactive - and more importantly, accessible to everyone.",
+      "atAspirantsWeThinkDifferently": "At {{siteName}}, we think differently. We believe exam preparation should not come with a price tag, or be buried under outdated methods with delusions of 'rigour.' It should be interactive - and more importantly, accessible to everyone.",
       "ourSolution": "Our Solution",
-      "aspirantsIsMoreThanA": "Penwise is more than a website. It's a space where students can actually enjoy learning, where doubts are solved in real life (where you use our elaborate markschemes or AI), and where success stories aren't celebrated - they're created, together.",
+      "aspirantsIsMoreThanA": "{{siteName}} is more than a website. It's a space where students can actually enjoy learning, where doubts are solved in real life (where you use our elaborate markschemes or AI), and where success stories aren't celebrated - they're created, together.",
       "ourCommitment": "Our Commitment",
       "weReNotHereTo": "We're not here to sell you courses or slap a paywall on knowledge. We're here to rewrite how students prepare for exams - and make sure anyone, from Delhi to Darbhanga, has access to high quality education."
     },
@@ -439,7 +439,7 @@
       "contact": "Contact",
       "getIn": "Get in",
       "touch": "touch",
-      "questionsBugReportsOrIdeas": "Questions, bug reports, or ideas for the platform — we read every message. Use the form below, or email us directly. We are a small team building Penwise for free, so a little patience goes a long way.",
+      "questionsBugReportsOrIdeas": "Questions, bug reports, or ideas for the platform — we read every message. Use the form below, or email us directly. We are a small team building {{siteName}} for free, so a little patience goes a long way.",
       "emailUs": "Email us",
       "weUsuallyReplyWithin2": "We usually reply within 2 working days. For anything time-sensitive, mentioning the exam and topic in your subject line helps us route it faster.",
       "otherWaysToReachUs": "Other ways to reach us",
@@ -447,7 +447,7 @@
       "suggestSomethingNewOrUpvote": "— suggest something new or upvote ideas from other aspirants.",
       "grievanceDataProtection": "Grievance & data protection",
       "questionsOrComplaintsAboutHow": "— questions or complaints about how we handle your personal data.",
-      "wantToHelpBuildAspirants": "Want to help build Penwise? Volunteers and moderators can apply at",
+      "wantToHelpBuildAspirants": "Want to help build {{siteName}}? Volunteers and moderators can apply at",
       "apply": "/apply"
     },
     "contactContact": {

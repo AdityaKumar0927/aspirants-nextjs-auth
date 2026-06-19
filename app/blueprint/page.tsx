@@ -3,15 +3,18 @@ import { ArrowRight } from "lucide-react";
 import { listBlueprintExams } from "@/lib/blueprint";
 import { PaperEyebrow } from "@/components/desk";
 import T from "@/components/i18n/T"
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/site-config";
 
 // Corpus changes slowly; rebuild daily.
 export const revalidate = 86400;
 
-export const metadata = {
-  title: "Exam blueprints — what every exam actually tests | Penwise",
-  description:
-    "Free, data-driven blueprints for JEE, NEET, GATE and more — chapter-wise weightage, recurring concepts and year-over-year trends from real past papers.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata("Exam blueprints — what every exam actually tests", {
+    description:
+      "Free, data-driven blueprints for JEE, NEET, GATE and more — chapter-wise weightage, recurring concepts and year-over-year trends from real past papers.",
+  });
+}
 
 export default async function BlueprintIndexPage() {
   const exams = await listBlueprintExams();

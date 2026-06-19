@@ -13,6 +13,7 @@ import { HoverEffect } from '@/components/ui/card-hover-effect';
 import Chat from '@/components/shared/Chat';
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
 import { FAQ } from '@/components/shared/FAQ';
+import { useSiteName } from '@/components/i18n/i18n';
 import QuestionStatistics from '@/components/dashboard/question-statistics';
 import QuestionStatisticsLoading from '@/components/dashboard/question-statistics-loading';
 import { Suspense } from 'react';
@@ -64,6 +65,7 @@ const fadeUpVariants = {
 export default function Page() {
   const fadeInRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(fadeInRef as React.RefObject<HTMLDivElement>, { once: true });
+  const siteName = useSiteName();
 
   return (
     <div className="z-10 w-full px-5 xl:px-0">
@@ -76,7 +78,7 @@ export default function Page() {
             <div className="mx-auto max-w-2xl text-center">
               <div className="container w-full mx-auto">
                 <h1 className="text-3xl font-light sm:text-4xl md:text-5xl lg:text-6xl tracking-[-0.04em] drop-shadow-sm leading-tight sm:leading-[1.2] md:leading-[1.1] lg:leading-[1.1] text-center">
-                  Study Smart with Penwise
+                  Study Smart with {siteName}
                 </h1>
               </div>
               <p

@@ -5,12 +5,15 @@ import { sfPro, inter, deskFontVars } from "../fonts";
 import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/site-config";
 
-export const metadata = {
-  title: "Grievance & Data Protection — Penwise",
-  description: "Raise a data-protection grievance or contact our Grievance Officer.",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata("Grievance & Data Protection", {
+    description: "Raise a data-protection grievance or contact our Grievance Officer.",
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  });
+}
 
 export default function GrievanceLayout({
   children,

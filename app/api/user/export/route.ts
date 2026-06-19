@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { logAudit } from "@/lib/audit";
 import { rateLimit } from "@/lib/rate-limit";
+import { getSiteName } from "@/lib/site-config";
 
 /**
  * Data-principal right of access / portability (DPDP s.11): returns a complete,
@@ -117,10 +118,11 @@ export async function GET(req: NextRequest) {
     prisma.moderatorLimit.findUnique({ where: { userId } }),
   ]);
 
+  const siteName = await getSiteName();
   const payload = {
     exportedAt: new Date().toISOString(),
     notice:
-      "This file contains the personal data Penwise holds about you (DPDP Act, right of access). OAuth credentials are excluded.",
+      `This file contains the personal data ${siteName} holds about you (DPDP Act, right of access). OAuth credentials are excluded.`,
     user,
     accounts,
     settings,

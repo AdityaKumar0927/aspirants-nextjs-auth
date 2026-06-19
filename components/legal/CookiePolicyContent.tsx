@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import T from "@/components/i18n/T";
 
 /**
  * The cookie-policy body, as a self-contained document. Rendered both on the
@@ -15,7 +16,7 @@ export default function CookiePolicyContent() {
       </p>
 
       <p className="text-pencil">
-        This is the cookie policy for Penwise (&quot;Penwise&quot;, &quot;we&quot;,
+        This is the cookie policy for <T k="appName" /> (&quot;<T k="appName" />&quot;, &quot;we&quot;,
         &quot;us&quot; or &quot;our&quot;). For more information about how we may use
         personal data, please read our privacy policy or contact us at
         aspirants.contact@gmail.com.
@@ -113,19 +114,19 @@ export default function CookiePolicyContent() {
           title="Necessary Cookies"
           description="These cookies are essential for the basic functionality of our website. They enable basic features such as page navigation and access to secure areas of the site. The website cannot function properly without these cookies."
           cookies={[
-            { name: "session_id", provider: "Penwise", purpose: "Maintains user session across pages for seamless navigation.", expiry: "Session", type: "HTTP Cookie" },
-            { name: "csrf_token", provider: "Penwise", purpose: "Ensures visitor browsing security by preventing cross-site request forgery.", expiry: "1 day", type: "HTTP Cookie" },
-            { name: "consent_status", provider: "Penwise", purpose: "Stores the user's consent preferences for cookie usage.", expiry: "1 year", type: "HTTP Cookie" },
-            { name: "cookie_test", provider: "Penwise", purpose: "Used to check if the user's browser supports cookies.", expiry: "Session", type: "HTTP Cookie" },
-            { name: "XSRF-TOKEN", provider: "Penwise", purpose: "Protects the website and users from cross-site request forgery attacks.", expiry: "1 day", type: "HTTP Cookie" },
+            { name: "session_id", provider: "{{siteName}}", purpose: "Maintains user session across pages for seamless navigation.", expiry: "Session", type: "HTTP Cookie" },
+            { name: "csrf_token", provider: "{{siteName}}", purpose: "Ensures visitor browsing security by preventing cross-site request forgery.", expiry: "1 day", type: "HTTP Cookie" },
+            { name: "consent_status", provider: "{{siteName}}", purpose: "Stores the user's consent preferences for cookie usage.", expiry: "1 year", type: "HTTP Cookie" },
+            { name: "cookie_test", provider: "{{siteName}}", purpose: "Used to check if the user's browser supports cookies.", expiry: "Session", type: "HTTP Cookie" },
+            { name: "XSRF-TOKEN", provider: "{{siteName}}", purpose: "Protects the website and users from cross-site request forgery attacks.", expiry: "1 day", type: "HTTP Cookie" },
           ]}
         />
         <CookieTable
           title="Preference Cookies"
           description="Preference cookies enable a website to remember information that changes how the website behaves or looks, such as your preferred language or the region you are in."
           cookies={[
-            { name: "user_prefs", provider: "Penwise", purpose: "Stores user preferences for future visits, like language settings.", expiry: "1 year", type: "HTTP Cookie" },
-            { name: "loglevel", provider: "Penwise", purpose: "Maintains settings and outputs in the Developer Tools Console on the current session.", expiry: "Persistent", type: "HTML Local Storage" },
+            { name: "user_prefs", provider: "{{siteName}}", purpose: "Stores user preferences for future visits, like language settings.", expiry: "1 year", type: "HTTP Cookie" },
+            { name: "loglevel", provider: "{{siteName}}", purpose: "Maintains settings and outputs in the Developer Tools Console on the current session.", expiry: "Persistent", type: "HTML Local Storage" },
           ]}
         />
         <CookieTable
@@ -202,7 +203,9 @@ function CookieTable({
             {cookies.map((cookie) => (
               <tr key={cookie.name} className="border-t border-rule align-top">
                 <td className="px-3 py-2 font-medium text-ink">{cookie.name}</td>
-                <td className="px-3 py-2">{cookie.provider}</td>
+                <td className="px-3 py-2">
+                  {cookie.provider === "{{siteName}}" ? <T k="appName" /> : cookie.provider}
+                </td>
                 <td className="px-3 py-2">{cookie.purpose}</td>
                 <td className="px-3 py-2 whitespace-nowrap">{cookie.expiry}</td>
                 <td className="px-3 py-2 whitespace-nowrap">{cookie.type}</td>

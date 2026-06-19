@@ -1,4 +1,5 @@
 import { GRIEVANCE_OFFICER_EMAIL } from "@/lib/constants";
+import { getSiteName } from "@/lib/site-config";
 
 /**
  * Minimal transactional email for compliance flows (parental-consent links and
@@ -12,9 +13,10 @@ import { GRIEVANCE_OFFICER_EMAIL } from "@/lib/constants";
  */
 const RESEND_ENDPOINT = "https://api.resend.com/emails";
 
-function fromAddress(): string {
-  // e.g. "Penwise <onboarding@resend.dev>"
-  return process.env.EMAIL_FROM ?? `Penwise <${GRIEVANCE_OFFICER_EMAIL}>`;
+async function fromAddress(): Promise<string> {
+  // e.g. "Penwise <onboarding@resend.dev>" — the display name tracks the site name.
+  if (process.env.EMAIL_FROM) return process.env.EMAIL_FROM;
+  return `${await getSiteName()} <${GRIEVANCE_OFFICER_EMAIL}>`;
 }
 
 async function sendEmail(opts: {
@@ -42,7 +44,7 @@ async function sendEmail(opts: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: fromAddress(),
+        from: await fromAddress(),
         to: opts.to,
         subject: opts.subject,
         html: opts.html,
@@ -67,16 +69,17 @@ export async function sendParentalConsentEmail(params: {
   verifyUrl: string;
 }): Promise<{ sent: boolean }> {
   const { parentEmail, childName, verifyUrl } = params;
-  const subject = "Approve your child's Aspirants account";
+  const name = await getSiteName();
+  const subject = `Approve your child's ${name} account`;
   const text =
-    `${childName} has asked to use Aspirants, an exam-preparation platform.\n\n` +
+    `${childName} has asked to use ${name}, an exam-preparation platform.\n\n` +
     `Because they are under 18, Indian data-protection law (DPDP Act 2023) requires a parent or guardian to approve before we process their personal data.\n\n` +
     `We collect their name, email and study activity to provide the service. We do NOT track, profile, or show targeted advertising to children.\n\n` +
     `Approve here (link expires in 7 days):\n${verifyUrl}\n\n` +
     `If you did not expect this, you can ignore this email and no account will be activated.\n\n` +
     `Questions: ${GRIEVANCE_OFFICER_EMAIL}`;
   const html = `
-    <p><strong>${escapeHtml(childName)}</strong> has asked to use Aspirants, an exam-preparation platform.</p>
+    <p><strong>${escapeHtml(childName)}</strong> has asked to use ${escapeHtml(name)}, an exam-preparation platform.</p>
     <p>Because they are under 18, Indian data-protection law (DPDP Act 2023) requires a parent or guardian to approve before we process their personal data.</p>
     <p>We collect their name, email and study activity to provide the service. We do <strong>not</strong> track, profile, or show targeted advertising to children.</p>
     <p><a href="${escapeHtml(verifyUrl)}" style="display:inline-block;padding:10px 18px;background:#111827;color:#fff;border-radius:8px;text-decoration:none">Review &amp; approve</a></p>

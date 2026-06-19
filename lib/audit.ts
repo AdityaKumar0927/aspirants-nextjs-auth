@@ -47,7 +47,8 @@ export type AuditAction =
   | "FEATURE_REQUEST_STATUS_CHANGED"
   | "FEATURE_REQUEST_DELETED"
   | "NOTIFICATION_UPDATED"
-  | "NOTIFICATION_DELETED";
+  | "NOTIFICATION_DELETED"
+  | "SITE_CONFIG_UPDATED";
 
 /** Pulls the caller's IP and user-agent from a request's headers. */
 export function requestMeta(req: Request): {

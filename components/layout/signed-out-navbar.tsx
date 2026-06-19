@@ -37,7 +37,7 @@ const studyLinks = [
   { title: "Exam blueprints", desc: "See what each exam tests and how it's weighted", href: "/blueprint" },
 ]
 
-export default function SignedOutNavbar() {
+export default function SignedOutNavbar({ siteName }: { siteName: string }) {
   const t = useT()
   const { SignInModal, setShowSignInModal } = useSignInModal()
   const scrolled = useScroll(50)
@@ -91,9 +91,9 @@ export default function SignedOutNavbar() {
           <div className="flex justify-between items-center gap-2 h-16">
             <Link href="/" className="flex min-w-0 items-center font-display text-2xl">
               <p className="font-display text-2xl tracking-[-0.07em] sm:text-3xl sm:leading-[4rem]">
-                penwise
+                {siteName}
               </p>
-              <Image src="/bulb.svg" alt="penwise logo" width={30} height={30} className="ml-1.5 h-6 w-6 shrink-0 sm:ml-2 sm:h-7.5 sm:w-7.5" />
+              <Image src="/bulb.svg" alt={`${siteName} logo`} width={30} height={30} className="ml-1.5 h-6 w-6 shrink-0 sm:ml-2 sm:h-7.5 sm:w-7.5" />
               <span className="ml-1.5 shrink-0 text-[10px] font-semibold bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-full sm:ml-2 sm:text-xs sm:px-2 sm:py-1">BETA</span>
             </Link>
 

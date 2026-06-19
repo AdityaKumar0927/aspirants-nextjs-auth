@@ -5,12 +5,15 @@ import { sfPro, inter, deskFontVars } from "../fonts";
 import ComplianceProviders from "@/components/compliance/ComplianceProviders";
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/site-config";
 
-export const metadata = {
-  title: "Consent Notice — Penwise",
-  description: "What personal data we collect and why.",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata("Consent Notice", {
+    description: "What personal data we collect and why.",
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  });
+}
 
 export default function ConsentNoticeLayout({
   children,

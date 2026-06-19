@@ -3,12 +3,16 @@ import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter, deskFontVars } from "../fonts";
 import { Toaster } from "@/components/ui/toaster";
+import type { Metadata } from "next";
+import { buildMetadata, getSiteName } from "@/lib/site-config";
 
-export const metadata = {
-  title: "Parental approval — Penwise",
-  description: "Approve your child's Penwise account.",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const name = await getSiteName();
+  return buildMetadata("Parental approval", {
+    description: `Approve your child's ${name} account.`,
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  });
+}
 
 /** Public layout for the parental-consent verification landing page. */
 export default function ParentalConsentLayout({

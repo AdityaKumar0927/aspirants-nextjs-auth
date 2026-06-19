@@ -4,12 +4,17 @@ import cx from "classnames";
 import { sfPro, inter, deskFontVars } from "../fonts";
 import { Toaster } from "@/components/ui/toaster";
 import SessionWrapper from "@/components/compliance/SessionWrapper";
+import type { Metadata } from "next";
+import { getSiteName } from "@/lib/site-config";
 
-export const metadata = {
-  title: "Welcome to Penwise",
-  description: "A few details before you start.",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const name = await getSiteName();
+  return {
+    title: `Welcome to ${name}`,
+    description: "A few details before you start.",
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  };
+}
 
 /**
  * Minimal, deliberately escape-hatch-free layout for the onboarding gate — no

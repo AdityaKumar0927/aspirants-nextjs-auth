@@ -3,12 +3,15 @@ import "../globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "../fonts";
 import SessionWrapper from "@/components/compliance/SessionWrapper";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/site-config";
 
-export const metadata = {
-  title: "Account suspended — Penwise",
-  description: "Your account access is currently restricted.",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata("Account suspended", {
+    description: "Your account access is currently restricted.",
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  });
+}
 
 export default function SuspendedLayout({
   children,

@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { getSiteName } from "@/lib/site-config"
 
-export default function TermsAndConditions() {
+export default async function TermsAndConditions() {
+  const name = await getSiteName()
   return (
     <div className="min-h-screen text-foreground dark:text-gray-100 py-12 px-4 sm:px-6 lg:px-8 font-sans tracking-tight leading-relaxed">
       <div className="max-w-4xl mx-auto">
@@ -12,7 +14,7 @@ export default function TermsAndConditions() {
         <Card className="mb-8 bg-paper border-rule">
           <CardContent className="p-6">
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400">
-              These Terms and Conditions of Use apply to the Penwise website located at penwise-git-main-aditya-kumar-s-projects.vercel.app. BY USING
+              These Terms and Conditions of Use apply to the {name} website located at penwise-git-main-aditya-kumar-s-projects.vercel.app. BY USING
               THE SITE, YOU AGREE TO THESE TERMS OF USE; IF YOU DO NOT AGREE, DO NOT USE THE SITE.
             </p>
           </CardContent>
@@ -21,26 +23,26 @@ export default function TermsAndConditions() {
         <div className="space-y-8">
           <Section title="Introduction">
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400 mb-4">
-              Penwise reserves the right, at its sole discretion, to change, modify, add or remove portions of these
+              {name} reserves the right, at its sole discretion, to change, modify, add or remove portions of these
               Terms and Conditions at any time. It is your responsibility to check these Terms and Conditions
               periodically for changes. Your continued use of the website following the posting of changes will mean
               that you accept and agree to the changes.
             </p>
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400">
-              As long as you comply with these Terms and Conditions, Penwise grants you a personal, non-exclusive,
+              As long as you comply with these Terms and Conditions, {name} grants you a personal, non-exclusive,
               non-transferable, limited privilege to enter and use the Site.
             </p>
           </Section>
 
           <Section title="Use of the App">
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400 mb-4">
-              You may need to create an Penwise account to use all or part of our Service. Your username and password
+              You may need to create an {name} account to use all or part of our Service. Your username and password
               are for your personal use only and should be kept confidential. You understand that you are responsible
               for all use (including any unauthorized use) of your username and password.
             </p>
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400 mb-4">
               You may use our Services only for lawful personal use, and in accordance with these Terms and Conditions.
-              Penwise may, in its sole discretion, terminate your right to use our Services at any time, and may take
+              {name} may, in its sole discretion, terminate your right to use our Services at any time, and may take
               all available legal recourse for actual or suspected violations of these Terms and Conditions.
             </p>
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400 mb-4">
@@ -75,9 +77,9 @@ export default function TermsAndConditions() {
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400">
               Unless otherwise stated, copyright and all intellectual property rights in all material presented on the
               site (including but not limited to text, audio, video or graphical images), trademarks and logos appearing
-              on this site are the property of Penwise and are protected under applicable Indian laws. You agree not
+              on this site are the property of {name} and are protected under applicable Indian laws. You agree not
               to use any framing techniques to enclose any trademark or logo or other proprietary information of
-              Penwise; or remove, conceal or obliterate any copyright or other proprietary notice or any credit-line
+              {name}; or remove, conceal or obliterate any copyright or other proprietary notice or any credit-line
               or dateline on other mark or source identifier included on the Site / Service, including without
               limitation, the size, colour, location or style of all proprietary marks. Any infringement shall be
               vigorously defended and pursued to the fullest extent permitted by law.
@@ -86,7 +88,7 @@ export default function TermsAndConditions() {
 
           <Section title="Applicable Laws">
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400">
-              These Terms and Conditions and the relationship between Penwise and its users shall be governed by the
+              These Terms and Conditions and the relationship between {name} and its users shall be governed by the
               laws of the Republic of India as applied to agreements made, entered, and performed entirely in Republic
               of India, notwithstanding the users&apos; place of residence. All lawsuits arising from or relating to
               these Terms and Conditions, or your use of the Services shall be brought in the courts located in New
@@ -115,7 +117,7 @@ export default function TermsAndConditions() {
 
           <Section title="Indemnification">
             <p className="text-sm font-light text-muted-foreground dark:text-gray-400 mb-4">
-              By using Penwise, you agree to defend, indemnify, and hold harmless Penwise, its affiliates, and their
+              By using {name}, you agree to defend, indemnify, and hold harmless {name}, its affiliates, and their
               respective officers, directors, employees, and agents, from and against any and all claims, damages,
               obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to legal fees)
               arising from:
@@ -127,7 +129,7 @@ export default function TermsAndConditions() {
               </li>
               <li>
                 Violation of Terms: Any breach or violation of these Terms and Conditions, the Privacy Policy, or any
-                other policy or guidelines set forth by Penwise.
+                other policy or guidelines set forth by {name}.
               </li>
               <li>User Content: Any content you post, upload, submit, or otherwise transmit through our Site.</li>
             </ul>

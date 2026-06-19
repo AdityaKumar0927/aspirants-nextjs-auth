@@ -10,6 +10,7 @@ import {
 } from "@/lib/blueprint";
 import { PaperEyebrow } from "@/components/desk";
 import T from "@/components/i18n/T"
+import { buildMetadata } from "@/lib/site-config";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -26,17 +27,16 @@ export async function generateMetadata({
 }) {
   const { exam } = await params;
   const bp = await getExamBlueprint(exam);
-  if (!bp) return { title: "Exam blueprint | Penwise" };
+  if (!bp) return buildMetadata("Exam blueprint");
   const name = bp.displayName;
   const topSubjects = bp.subjects.slice(0, 3).map((s) => s.subject).join(", ");
   const span = `${bp.years[0]}–${bp.years[bp.years.length - 1]}`;
-  return {
-    title: `${name} blueprint — chapter-wise weightage & trends | Penwise`,
+  return buildMetadata(`${name} blueprint — chapter-wise weightage & trends`, {
     description: `${name} previous-year analysis from ${bp.totalQuestions.toLocaleString(
       "en-IN"
     )} questions (${span}): chapter-wise weightage, the most repeated chapters, and what's trending. Top subjects: ${topSubjects}.`,
     alternates: { canonical: `/blueprint/${exam}` },
-  };
+  });
 }
 
 function pct(x: number): string {

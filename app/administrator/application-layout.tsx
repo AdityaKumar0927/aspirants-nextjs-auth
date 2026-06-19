@@ -5,6 +5,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useSession, signOut } from "next-auth/react"
+import { useSiteName } from "@/components/i18n/i18n"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -88,6 +89,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const { data: session } = useSession()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const siteName = useSiteName()
 
   const pageTitle = currentPageTitle(pathname)
   const userName = session?.user?.name ?? "Administrator"
@@ -107,7 +109,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <IconDeskMark className="h-5 w-5" />
       </span>
       <div className="leading-tight">
-        <p className="type-display text-sm text-ink">Penwise</p>
+        <p className="type-display text-sm text-ink">{siteName}</p>
         <p className="type-data text-[10px] uppercase tracking-[0.18em] text-pencil">Admin console</p>
       </div>
     </div>
@@ -185,7 +187,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                   <IconDeskMark className="h-5 w-5" />
                 </span>
                 <div className="leading-tight">
-                  <p className="type-display text-sm text-ink">Penwise</p>
+                  <p className="type-display text-sm text-ink">{siteName}</p>
                   <p className="type-data text-[10px] uppercase tracking-[0.18em] text-pencil">Admin console</p>
                 </div>
               </div>

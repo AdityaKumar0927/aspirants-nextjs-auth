@@ -13,13 +13,16 @@ import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 import { ThemeProvider } from "@/components/landing/theme-provider"
+import type { Metadata } from "next"
+import { buildMetadata } from "@/lib/site-config"
 
 config.autoAddCss = false
 
-export const metadata = {
-  title: "Learn — penwise",
-  description:
-    "Understand hard material instead of just memorizing it. It compiles a personalized lesson prompt for your own AI, then plays the result back as an interactive, science-based lesson — no API key, your material never leaves your AI.",
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata("Learn", {
+    description:
+      "Understand hard material instead of just memorizing it. It compiles a personalized lesson prompt for your own AI, then plays the result back as an interactive, science-based lesson — no API key, your material never leaves your AI.",
+  })
 }
 
 export default function KeystoneLayout({ children }: { children: React.ReactNode }) {

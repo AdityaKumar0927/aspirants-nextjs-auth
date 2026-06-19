@@ -1,11 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
+import { getSiteName } from "@/lib/site-config";
 
-export const runtime = "edge";
-export const alt = "Precedent - Building blocks for your Next.js project";
+// NOTE: not edge — getSiteName() uses Prisma, which needs the Node runtime.
+// Render on demand (not at build): the local font fetch + Prisma read can't run
+// during static prerender, and on-demand rendering also lets a rename show up in
+// the OG image immediately. (Edge runtime used to disable prerender implicitly.)
+export const dynamic = "force-dynamic";
+export const alt = "Open Graph image";
 export const contentType = "image/png";
 
 export default async function OG() {
+  const name = await getSiteName();
   const sfPro = await fetch(
     new URL("./fonts/SF-Pro-Display-Medium.otf", import.meta.url),
   ).then((res) => res.arrayBuffer());
@@ -27,7 +33,7 @@ export default async function OG() {
       >
         <img
           src={`/bulb.svg`}
-          alt="Penwise Logo"
+          alt={`${name} logo`}
           tw="w-20 h-20 mb-4 opacity-95"
         />
         <h1
@@ -42,7 +48,7 @@ export default async function OG() {
             letterSpacing: "-0.02em",
           }}
         >
-          Precedent
+          {name}
         </h1>
       </div>
     ),

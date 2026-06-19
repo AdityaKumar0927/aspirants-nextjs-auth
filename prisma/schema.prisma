@@ -424,6 +424,16 @@ model KeystoneItem {
   @@index([userId])
 }
 
+/// Site-wide, runtime-editable configuration. Exactly ONE row (id = 1, enforced
+/// by always reading/writing that fixed id). `name` is the public site name shown
+/// in the nav, footer, page metadata, OG image and outbound email; editable live
+/// from the admin settings page (changes propagate via revalidateTag, no redeploy).
+model SiteConfig {
+  id        Int      @id @default(1)
+  name      String   @default("Penwise")
+  updatedAt DateTime @updatedAt
+}
+
 model UserAnswer {
   id             String   @id @default(uuid())
   questionId     String

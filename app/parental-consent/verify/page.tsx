@@ -1,4 +1,5 @@
 import { GRIEVANCE_OFFICER_EMAIL, GRIEVANCE_OFFICER_NAME } from "@/lib/constants";
+import { getSiteName } from "@/lib/site-config";
 import ConsentNotice from "@/components/compliance/ConsentNotice";
 import VerifyConfirm from "./verify-confirm";
 
@@ -13,6 +14,7 @@ export default async function ParentalConsentVerifyPage({
   searchParams: Promise<{ token?: string }>;
 }) {
   const { token } = await searchParams;
+  const name = await getSiteName();
 
   return (
     <div className="paper-sheet w-full max-w-2xl p-8">
@@ -21,7 +23,7 @@ export default async function ParentalConsentVerifyPage({
       </p>
       <h1 className="type-display mt-1 text-2xl">Approve your child&rsquo;s account</h1>
       <p className="mt-2 text-sm text-pencil">
-        Your child has asked to use Penwise, an exam-preparation platform.
+        Your child has asked to use {name}, an exam-preparation platform.
         Indian data-protection law requires your approval before we process their
         personal data. Please review the notice below.
       </p>

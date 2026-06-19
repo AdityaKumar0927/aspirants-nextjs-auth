@@ -13,13 +13,16 @@ import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 import { ThemeProvider } from "@/components/landing/theme-provider"
+import type { Metadata } from "next"
+import { buildMetadata } from "@/lib/site-config"
 
 config.autoAddCss = false
 
-export const metadata = {
-  title: "My banks — penwise",
-  description: "Turn your own study material into a private question bank or mock exam.",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata("My banks", {
+    description: "Turn your own study material into a private question bank or mock exam.",
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  })
 }
 
 export default function MyBanksLayout({ children }: { children: React.ReactNode }) {

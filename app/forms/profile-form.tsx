@@ -28,6 +28,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import T from "@/components/i18n/T"
+import { useSiteName } from "@/components/i18n/i18n"
 
 const profileFormSchema = z.object({
   username: z
@@ -81,6 +82,7 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
   const router = useRouter()
   const { toast } = useToast()
   const { update } = useSession()
+  const siteName = useSiteName()
 
   // Last-persisted acceptance state, so a save only writes (and audits) the
   // policies that actually changed.
@@ -162,7 +164,7 @@ export default function ProfileForm({ initialData, userRole, userId }: ProfileFo
         toast({
           title: "Please re-accept to continue",
           description:
-            "Withdrawing the Terms or Privacy Policy means you'll need to review and accept them again to keep using Penwise.",
+            `Withdrawing the Terms or Privacy Policy means you'll need to review and accept them again to keep using ${siteName}.`,
         })
         router.push("/onboarding")
         return

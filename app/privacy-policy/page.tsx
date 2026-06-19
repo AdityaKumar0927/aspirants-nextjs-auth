@@ -5,8 +5,10 @@ import {
   GRIEVANCE_OFFICER_NAME,
   DATA_RETENTION,
 } from "@/lib/constants"
+import { getSiteName } from "@/lib/site-config"
 
-export default function PrivacyPolicy() {
+export default async function PrivacyPolicy() {
+  const name = await getSiteName()
   return (
     <div className="min-h-screen text-foreground dark:text-gray-100 py-12 px-4 sm:px-6 lg:px-8 font-sans tracking-tight leading-relaxed">
       <div className="max-w-4xl mx-auto">
@@ -18,7 +20,7 @@ export default function PrivacyPolicy() {
         <Card className="mb-8 bg-paper border-rule">
           <CardContent className="p-6">
             <p className="text-sm font-light tracking-tight text-muted-foreground dark:text-gray-300">
-              Penwise (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), operating the website
+              {name} (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), operating the website
               penwise-git-main-aditya-kumar-s-projects.vercel.app, is the Data Fiduciary for your personal data and is committed to
               protecting it in accordance with India&rsquo;s Digital Personal Data Protection Act,
               2023 and the DPDP Rules, 2025. This policy explains what we collect, why, how long we

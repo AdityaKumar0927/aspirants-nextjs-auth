@@ -9,9 +9,11 @@ import { Text } from '@/components/admin/text'
 import { Textarea } from '@/components/admin/textarea'
 import type { Metadata } from 'next'
 import { Address } from './address'
+import { buildMetadata } from '@/lib/site-config'
+import { SiteNameField } from './site-name-field'
 
-export const metadata: Metadata = {
-  title: 'Settings',
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata('Settings')
 }
 
 export default function Settings() {
@@ -26,12 +28,13 @@ export default function Settings() {
 
       <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
         <div className="space-y-1">
-          <Subheading>Organization Name</Subheading>
-          <Text>This will be displayed on your public profile.</Text>
+          <Subheading>Site name</Subheading>
+          <Text>
+            Shown across the site — navbar, footer, page titles, the OG image and emails. Saving applies it everywhere
+            within seconds (no redeploy needed).
+          </Text>
         </div>
-        <div>
-          <Input aria-label="Organization Name" name="name" defaultValue="Penwise" />
-        </div>
+        <SiteNameField />
       </section>
 
       <Divider className="my-10" soft />

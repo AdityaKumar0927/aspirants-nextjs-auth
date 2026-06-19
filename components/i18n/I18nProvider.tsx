@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { I18nextProvider } from "react-i18next"
-import i18n, { ensureLanguageLoaded } from "./i18n"
+import i18n, { ensureLanguageLoaded, setSiteName } from "./i18n"
 import LanguagePopup from "./LanguagePopup"
 import { DEFAULT_LANG, LANG_COOKIE, isSupported, langDir } from "@/lib/i18n/languages"
 
@@ -27,6 +27,13 @@ export default function I18nProvider({ children }: { children: React.ReactNode }
     }
     document.documentElement.lang = lang
     document.documentElement.dir = langDir(lang)
+
+    // Pull the live site name so the {{siteName}} token + useSiteName() resolve
+    // to the admin-configured name (defaults to "Penwise" until this lands).
+    fetch("/api/site-config")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d?.name && setSiteName(d.name))
+      .catch(() => {})
   }, [])
 
   return (

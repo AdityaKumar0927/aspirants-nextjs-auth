@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/i18n/LanguageSwitcher';
 import T from '@/components/i18n/T';
+import { getSiteName } from '@/lib/site-config';
 
 // Labels are i18n keys (resolved client-side via <T/>); hrefs stay literal.
 const footerNavs = [
@@ -30,14 +31,15 @@ const footerNavs = [
 // (#fff5fa) — so the footer looked unchanged when switching light↔pink. `--desk`
 // is visibly distinct per theme (light #f1f2ec / dark #0f1021 / pink #ffd6e6), so
 // the footer now clearly follows the active theme; the top rule separates it.
-export function Footer() {
+export async function Footer() {
+  const siteName = await getSiteName();
   return (
     <footer className="border-t border-rule bg-desk">
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <Link href="/" className="flex flex-col items-start">
-              <span className="self-start text-3xl font-light tracking-tight whitespace-nowrap text-ink">Penwise</span>
+              <span className="self-start text-3xl font-light tracking-tight whitespace-nowrap text-ink">{siteName}</span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-pencil">
               <T k="footer.description" />
@@ -71,7 +73,7 @@ export function Footer() {
           </div>
           <div className="sm:flex sm:justify-between">
             <p className="text-xs text-pencil">
-              © {new Date().getFullYear()} Penwise. <T k="footer.rights" />
+              © {new Date().getFullYear()} {siteName}. <T k="footer.rights" />
             </p>
             <p className="mt-4 text-xs text-pencil sm:mt-0">
               <T k="footer.madeWith" />

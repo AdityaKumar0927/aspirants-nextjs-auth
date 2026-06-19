@@ -5,10 +5,12 @@ import { useDemoModal } from "@/components/dashboard/demo-modal";
 import Popover from "@/components/shared/popover";
 import Tooltip from "@/components/shared/tooltip";
 import { ChevronDown } from "lucide-react";
+import { useSiteName } from "@/components/i18n/i18n";
 
 export default function ComponentGrid() {
   const { DemoModal, setShowDemoModal } = useDemoModal();
   const [openPopover, setOpenPopover] = useState(false);
+  const siteName = useSiteName();
   return (
     <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
       <DemoModal />
@@ -47,7 +49,7 @@ export default function ComponentGrid() {
           />
         </button>
       </Popover>
-      <Tooltip content="Penwise provides a variety of study tools to enhance your learning experience.">
+      <Tooltip content={`${siteName} provides a variety of study tools to enhance your learning experience.`}>
         <div className="flex w-36 cursor-default items-center justify-center rounded-md border border-gray-300 px-3 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100">
           <p className="text-gray-600">Tooltip</p>
         </div>

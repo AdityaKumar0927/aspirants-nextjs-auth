@@ -6,15 +6,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useSiteName } from "@/components/i18n/i18n"
 
 const faqs = [
   {
     section: "Getting started",
     qa: [
       {
-        question: "What is Penwise?",
+        question: "What is {{siteName}}?",
         answer:
-          "Penwise is a study platform for Indian competitive exams — JEE, NEET, GATE, UPSC and more. You get a large bank of past-paper questions, full-length mock exams, study notes and progress tracking in one place.",
+          "{{siteName}} is a study platform for Indian competitive exams — JEE, NEET, GATE, UPSC and more. You get a large bank of past-paper questions, full-length mock exams, study notes and progress tracking in one place.",
       },
       {
         question: "How do I get started?",
@@ -56,6 +57,8 @@ const faqs = [
 ]
 
 export function FAQ() {
+  const siteName = useSiteName()
+  const fill = (s: string) => s.replaceAll("{{siteName}}", siteName)
   return (
     <section id="faq" className="py-20 sm:py-28">
       <div className="container mx-auto grid max-w-5xl gap-12 px-4 lg:grid-cols-[2fr,3fr] lg:gap-16">
@@ -68,7 +71,7 @@ export function FAQ() {
             Still got questions?
           </h2>
           <p className="mt-3 text-base font-light tracking-tight text-gray-500 dark:text-gray-400">
-            Everything you need to know about practising on Penwise. Can&apos;t
+            Everything you need to know about practising on {siteName}. Can&apos;t
             find your answer?
           </p>
           <a
@@ -94,10 +97,10 @@ export function FAQ() {
                     className="border-b border-gray-200 dark:border-gray-800"
                   >
                     <AccordionTrigger className="py-5 text-left text-base font-normal tracking-tight text-black hover:no-underline dark:text-white">
-                      {item.question}
+                      {fill(item.question)}
                     </AccordionTrigger>
                     <AccordionContent className="pb-5 text-[15px] font-light leading-relaxed tracking-tight text-gray-600 dark:text-gray-400">
-                      {item.answer}
+                      {fill(item.answer)}
                     </AccordionContent>
                   </AccordionItem>
                 ))}

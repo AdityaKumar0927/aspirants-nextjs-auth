@@ -13,13 +13,15 @@ import { Toaster } from "@/components/ui/toaster"
 import { LoadingProvider } from "@/components/layout/LoadingContext"
 import { UserPerformanceProvider } from "@/components/layout/UserPerformanceContext"
 import { ThemeProvider } from "@/components/landing/theme-provider"
+import type { Metadata } from "next"
+import { buildMetadata } from "@/lib/site-config"
 
 config.autoAddCss = false
 
-export const metadata = {
-  title: "penwise",
-  description: "",
-  metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata(undefined, {
+    metadataBase: new URL("https://penwise-git-main-aditya-kumar-s-projects.vercel.app/"),
+  })
 }
 
 const getUserId = () => {

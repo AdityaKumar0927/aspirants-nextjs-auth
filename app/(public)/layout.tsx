@@ -14,6 +14,8 @@ import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import Bar from '@/components/layout/Bar';
 import { auth } from "@/auth";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/site-config";
 
 config.autoAddCss = false;
 
@@ -27,11 +29,11 @@ const getUserId = async () => {
   }
 };
 
-export const metadata = {
-  title: 'penwise',
-  description: '',
-  metadataBase: new URL('https://penwise-git-main-aditya-kumar-s-projects.vercel.app/'),
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata(undefined, {
+    metadataBase: new URL('https://penwise-git-main-aditya-kumar-s-projects.vercel.app/'),
+  });
+}
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
   const userId = await getUserId();

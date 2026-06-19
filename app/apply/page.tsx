@@ -1,11 +1,14 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { getCurrentSession } from "@/lib/auth"
+import { buildMetadata, getSiteName } from "@/lib/site-config"
 import ApplyForm from "./apply-form"
 
-export const metadata = {
-  title: "Become a volunteer · Penwise",
-  description:
-    "Apply to volunteer with Penwise — help build free, high-quality exam prep for every aspirant.",
+export async function generateMetadata(): Promise<Metadata> {
+  const name = await getSiteName()
+  return buildMetadata("Become a volunteer", {
+    description: `Apply to volunteer with ${name} — help build free, high-quality exam prep for every aspirant.`,
+  })
 }
 
 const CONTRIBUTIONS = [
@@ -25,6 +28,7 @@ const CONTRIBUTIONS = [
 
 export default async function ApplyPage() {
   const session = await getCurrentSession()
+  const name = await getSiteName()
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-14 sm:py-20">
@@ -34,10 +38,10 @@ export default async function ApplyPage() {
           Join the team
         </p>
         <h1 className="type-display mt-3 text-4xl text-ink sm:text-5xl">
-          Become a <span className="highlight-sweep">Penwise</span> volunteer
+          Become a <span className="highlight-sweep">{name}</span> volunteer
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-pencil">
-          Penwise is built by aspirants, for aspirants. Volunteers help keep exam prep free,
+          {name} is built by aspirants, for aspirants. Volunteers help keep exam prep free,
           accurate, and genuinely useful for millions preparing across India.
         </p>
       </header>

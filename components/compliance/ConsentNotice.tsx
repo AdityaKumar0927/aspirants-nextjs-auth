@@ -3,6 +3,7 @@ import {
   GRIEVANCE_OFFICER_NAME,
   DATA_RETENTION,
 } from "@/lib/constants";
+import T from "@/components/i18n/T";
 
 /**
  * The standalone, plain-language consent notice required by DPDP Rule 3 —
@@ -37,7 +38,7 @@ export default function ConsentNotice({
   return (
     <div className="latex-font max-w-none space-y-3 text-sm leading-relaxed text-ink">
       <p>
-        Penwise (the &ldquo;Data Fiduciary&rdquo;) processes your personal data
+        <T k="appName" /> (the &ldquo;Data Fiduciary&rdquo;) processes your personal data
         under India&rsquo;s Digital Personal Data Protection Act, 2023. Please
         read this notice before you consent.
       </p>
