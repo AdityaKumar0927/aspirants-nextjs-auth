@@ -10,8 +10,18 @@ import { Subheading } from "@/components/admin/heading";
 import { Divider } from "@/components/admin/divider";
 import { Text } from "@/components/admin/text";
 import { Badge } from "@/components/admin/badge";
-import { Label, Description } from "@/components/admin/fieldset";
 import { FEATURE_KEYS, type FeatureKey } from "@/lib/feature-keys";
+
+// Plain Label/Description — NOT the Headless `@/components/admin/fieldset` ones,
+// which throw "Label is not inside a relevant parent" when rendered outside a
+// <Field>/<SwitchField>. These render anywhere; controls carry their own
+// aria-label for accessibility.
+function Label({ children }: { children: React.ReactNode }) {
+  return <div className="text-sm/6 font-medium text-zinc-950 dark:text-white">{children}</div>;
+}
+function Description({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <p className={`text-sm/6 text-zinc-500 dark:text-zinc-400 ${className}`}>{children}</p>;
+}
 
 /**
  * The operational control panel. Self-fetches the live config + announcements
@@ -213,7 +223,7 @@ function Toggle({
 }) {
   return (
     <Row label={label} description={description}>
-      <Switch checked={value} onChange={onChange} color={color} />
+      <Switch aria-label={label} checked={value} onChange={onChange} color={color} />
     </Row>
   );
 }
@@ -239,6 +249,7 @@ function NumberField({
       {description && <Description>{description}</Description>}
       <Input
         type="number"
+        aria-label={label}
         min={min}
         max={max}
         value={Number.isFinite(value) ? value : 0}
@@ -277,6 +288,7 @@ function ListField({
       {description && <Description>{description}</Description>}
       <Textarea
         rows={3}
+        aria-label={label}
         placeholder={placeholder}
         value={raw}
         onFocus={() => setEditing(true)}
@@ -373,6 +385,7 @@ function KillSwitches({
           <div className="space-y-1">
             <Label>Maintenance message</Label>
             <Input
+              aria-label="Maintenance message"
               value={config.maintenanceMessage}
               maxLength={500}
               onChange={(e) => set("maintenanceMessage", e.target.value)}
@@ -716,16 +729,16 @@ function Announcements({
       <div className="space-y-4">
         <div className="space-y-1">
           <Label>New banner</Label>
-          <Textarea rows={2} value={message} maxLength={400} placeholder="Message shown to users…" onChange={(e) => setMessage(e.target.value)} />
+          <Textarea aria-label="New banner message" rows={2} value={message} maxLength={400} placeholder="Message shown to users…" onChange={(e) => setMessage(e.target.value)} />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Select value={type} onChange={(e) => setType(e.target.value as Announcement["type"])}>
+          <Select aria-label="Banner type" value={type} onChange={(e) => setType(e.target.value as Announcement["type"])}>
             <option value="INFO">Info</option>
             <option value="SUCCESS">Success</option>
             <option value="WARNING">Warning</option>
             <option value="CRITICAL">Critical</option>
           </Select>
-          <Select value={audience} onChange={(e) => setAudience(e.target.value)}>
+          <Select aria-label="Banner audience" value={audience} onChange={(e) => setAudience(e.target.value)}>
             <option value="ALL">Everyone</option>
             <option value="FREE">Free tier</option>
             <option value="PREMIUM">Premium</option>
@@ -814,7 +827,7 @@ function ForceLogout() {
           <Description>
             Type <span className="font-mono font-semibold">{PHRASE}</span> to confirm.
           </Description>
-          <Input value={phrase} onChange={(e) => setPhrase(e.target.value)} />
+          <Input aria-label="Confirmation phrase" value={phrase} onChange={(e) => setPhrase(e.target.value)} />
           <div className="flex items-center gap-2">
             <Button type="button" color="red" disabled={phrase !== PHRASE || status === "saving"} onClick={run}>
               {status === "saving" ? "Working…" : "Confirm"}
@@ -862,6 +875,7 @@ function Impersonate({ enabled }: { enabled: boolean }) {
       <Description>Super-admin only, time-boxed (30 min), audited. Blocked from all admin actions.</Description>
       <div className="mt-2 flex items-center gap-2">
         <Input
+          aria-label="User id or email to impersonate"
           value={target}
           disabled={!enabled}
           placeholder="user id or email"
