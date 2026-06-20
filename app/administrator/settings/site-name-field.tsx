@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Input } from "@/components/admin/input";
-import { Button } from "@/components/admin/button";
+import { Button } from "@/components/ui/button";
 
 /**
  * The one functional control on the admin settings page: read + rename the site.

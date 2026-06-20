@@ -5,7 +5,7 @@ import { Switch } from "@/components/admin/switch";
 import { Input } from "@/components/admin/input";
 import { Textarea } from "@/components/admin/textarea";
 import { Select } from "@/components/admin/select";
-import { Button } from "@/components/admin/button";
+import { Button } from "@/components/ui/button";
 import { Subheading } from "@/components/admin/heading";
 import { Divider } from "@/components/admin/divider";
 import { Text } from "@/components/admin/text";
@@ -767,10 +767,10 @@ function Announcements({
                   <p className="mt-0.5 truncate text-sm text-pencil">{a.message}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
-                  <Button type="button" plain onClick={() => toggleActive(a)}>
+                  <Button type="button" variant="ghost" onClick={() => toggleActive(a)}>
                     {a.active ? "Pause" : "Resume"}
                   </Button>
-                  <Button type="button" plain onClick={() => remove(a.id)}>
+                  <Button type="button" variant="ghost" onClick={() => remove(a.id)}>
                     Delete
                   </Button>
                 </div>
@@ -819,7 +819,7 @@ function ForceLogout() {
       <Label>Force-logout all sessions</Label>
       <Description>Breach break-glass: signs out every user, including you.</Description>
       {!open ? (
-        <Button type="button" color="red" className="mt-2" onClick={() => setOpen(true)}>
+        <Button type="button" variant="destructive" className="mt-2" onClick={() => setOpen(true)}>
           Nuke all sessions
         </Button>
       ) : (
@@ -829,10 +829,10 @@ function ForceLogout() {
           </Description>
           <Input aria-label="Confirmation phrase" value={phrase} onChange={(e) => setPhrase(e.target.value)} />
           <div className="flex items-center gap-2">
-            <Button type="button" color="red" disabled={phrase !== PHRASE || status === "saving"} onClick={run}>
+            <Button type="button" variant="destructive" disabled={phrase !== PHRASE || status === "saving"} onClick={run}>
               {status === "saving" ? "Working…" : "Confirm"}
             </Button>
-            <Button type="button" plain onClick={() => { setOpen(false); setPhrase(""); }}>
+            <Button type="button" variant="ghost" onClick={() => { setOpen(false); setPhrase(""); }}>
               Cancel
             </Button>
             {status === "saved" && <span className="text-sm text-st-answered">Done.</span>}
@@ -910,10 +910,10 @@ function ConfirmModal({
         <Subheading>Confirm change</Subheading>
         <Text className="mt-2">{message}</Text>
         <div className="mt-5 flex justify-end gap-3">
-          <Button type="button" plain onClick={onCancel}>
+          <Button type="button" variant="ghost" onClick={onCancel}>
             Cancel
           </Button>
-          <Button type="button" color="red" onClick={onConfirm}>
+          <Button type="button" variant="destructive" onClick={onConfirm}>
             Yes, proceed
           </Button>
         </div>

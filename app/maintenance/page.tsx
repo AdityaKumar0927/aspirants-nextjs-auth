@@ -16,13 +16,6 @@ export default async function MaintenancePage() {
       <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">{siteName}</p>
       <h1 className="type-display mt-2 text-2xl text-ink">Down for maintenance</h1>
       <p className="mt-3 text-sm text-pencil">{config.maintenanceMessage}</p>
-      <p className="mt-5 text-xs text-pencil">
-        Are you an admin?{" "}
-        <a href="/api/auth/signin" className="text-ballpoint underline">
-          Sign in
-        </a>{" "}
-        to bypass.
-      </p>
     </div>
   );
 }

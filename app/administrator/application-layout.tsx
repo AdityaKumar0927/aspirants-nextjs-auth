@@ -8,6 +8,7 @@ import { useSession, signOut } from "next-auth/react"
 import { useSiteName } from "@/components/i18n/i18n"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import ThemeToggle from "@/components/layout/theme-toggle"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -227,7 +228,9 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <DropdownMenu>
+          <div className="flex items-center gap-1">
+            <ThemeToggle />
+            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
@@ -262,7 +265,8 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                 <span>Log out</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+            </DropdownMenu>
+          </div>
         </header>
 
         {/* Page content */}
