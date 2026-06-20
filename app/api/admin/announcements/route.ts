@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 import { logAudit } from "@/lib/audit";
-import { cleanText } from "@/lib/sanitize";
+import { cleanText } from "@/lib/clean-text";
 
 /**
  * Sitewide announcement banners (admin CRUD).

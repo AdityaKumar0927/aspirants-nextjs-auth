@@ -6,7 +6,7 @@ import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 import { logAudit } from "@/lib/audit";
 import { getAppConfig, FEATURE_KEYS, type FeatureKey } from "@/lib/app-config";
 import { syncEdgeMirror } from "@/lib/admin-controls";
-import { cleanText } from "@/lib/sanitize";
+import { cleanText } from "@/lib/clean-text";
 
 /**
  * The operational control panel API.
