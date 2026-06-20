@@ -48,7 +48,20 @@ export type AuditAction =
   | "FEATURE_REQUEST_DELETED"
   | "NOTIFICATION_UPDATED"
   | "NOTIFICATION_DELETED"
-  | "SITE_CONFIG_UPDATED";
+  | "SITE_CONFIG_UPDATED"
+  // Operational control panel
+  | "APP_CONFIG_UPDATED"
+  | "MAINTENANCE_MODE_CHANGED"
+  | "READ_ONLY_MODE_CHANGED"
+  | "REGISTRATION_TOGGLED"
+  | "FEATURE_TOGGLED"
+  | "SESSIONS_REVOKED_ALL"
+  | "SIGNUP_BLOCKED"
+  | "ANNOUNCEMENT_CREATED"
+  | "ANNOUNCEMENT_UPDATED"
+  | "ANNOUNCEMENT_DELETED"
+  | "IMPERSONATION_STARTED"
+  | "IMPERSONATION_STOPPED";
 
 /** Pulls the caller's IP and user-agent from a request's headers. */
 export function requestMeta(req: Request): {

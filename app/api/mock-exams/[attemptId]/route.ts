@@ -3,6 +3,7 @@ import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { requireSession } from "@/lib/auth"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
+import { assertWritable } from "@/lib/admin-controls"
 
 // PATCH mirrors the POST in ../route.ts: bound the results blob so it can't
 // bloat the Json column, and coerce completed to a strict boolean.
@@ -73,6 +74,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ at
 
     const csrf = assertSameOrigin(request); if (csrf) return csrf;
     const limited = await rateLimit(request, "mock-exam-attempt", { limit: 60, windowSec: 60 }, session.user.id); if (limited) return limited;
+    const ro = await assertWritable(); if (ro) return ro;
 
     const parsed = patchSchema.safeParse(await request.json())
     if (!parsed.success) {
@@ -122,6 +124,7 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ a
 
     const csrf = assertSameOrigin(request); if (csrf) return csrf;
     const limited = await rateLimit(request, "mock-exam-attempt", { limit: 60, windowSec: 60 }, session.user.id); if (limited) return limited;
+    const ro = await assertWritable(); if (ro) return ro;
 
     await prisma.userMockExam.delete({ where: { id: attemptId } })
     return NextResponse.json({ message: "Deleted successfully" })

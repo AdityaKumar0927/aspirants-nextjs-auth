@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { assertWritable } from "@/lib/admin-controls";
 
 const replySchema = z.object({ content: z.string().trim().min(1).max(5000) });
 
@@ -26,6 +27,8 @@ export async function POST(
   if (csrf) return csrf;
   const limited = await rateLimit(req, "feedback-reply", { limit: 12, windowSec: 300 }, session.user.id);
   if (limited) return limited;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   const { id } = await params;
 
@@ -90,6 +93,8 @@ export async function DELETE(
 
   const csrf = assertSameOrigin(req);
   if (csrf) return csrf;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   const { id } = await params;
   const feedback = await prisma.feedback.findUnique({

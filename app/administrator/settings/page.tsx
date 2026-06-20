@@ -1,28 +1,25 @@
-import { Button } from '@/components/admin/button'
-import { Checkbox, CheckboxField } from '@/components/admin/checkbox'
 import { Divider } from '@/components/admin/divider'
-import { Label } from '@/components/admin/fieldset'
 import { Heading, Subheading } from '@/components/admin/heading'
-import { Input } from '@/components/admin/input'
-import { Select } from '@/components/admin/select'
 import { Text } from '@/components/admin/text'
-import { Textarea } from '@/components/admin/textarea'
 import type { Metadata } from 'next'
-import { Address } from './address'
 import { buildMetadata } from '@/lib/site-config'
 import { SiteNameField } from './site-name-field'
+import { AdminControls } from './AdminControls'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return buildMetadata('Settings')
+  return buildMetadata('Controls')
 }
 
 export default function Settings() {
   return (
-    <form method="post" className="mx-auto max-w-4xl">
+    <div className="mx-auto max-w-4xl">
       <div className="space-y-1">
-        <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Workspace</p>
-        <Heading>Settings</Heading>
-        <p className="text-sm text-pencil">Manage your organization profile and preferences.</p>
+        <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Operations</p>
+        <Heading>Controls</Heading>
+        <p className="text-sm text-pencil">
+          Kill switches, feature flags, abuse defenses, announcements and security toggles. Changes take effect within
+          seconds — no redeploy. Every save is audit-logged.
+        </p>
       </div>
       <Divider className="my-10 mt-6" />
 
@@ -39,65 +36,7 @@ export default function Settings() {
 
       <Divider className="my-10" soft />
 
-      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div className="space-y-1">
-          <Subheading>Organization Bio</Subheading>
-          <Text>This will be displayed on your public profile. Maximum 240 characters.</Text>
-        </div>
-        <div>
-          <Textarea aria-label="Organization Bio" name="bio" />
-        </div>
-      </section>
-
-      <Divider className="my-10" soft />
-
-      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div className="space-y-1">
-          <Subheading>Organization Email</Subheading>
-          <Text>This is how customers can contact you for support.</Text>
-        </div>
-        <div className="space-y-4">
-          <Input type="email" aria-label="Organization Email" name="email" defaultValue="info@example.com" />
-          <CheckboxField>
-            <Checkbox name="email_is_public" defaultChecked />
-            <Label>Show email on public profile</Label>
-          </CheckboxField>
-        </div>
-      </section>
-
-      <Divider className="my-10" soft />
-
-      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div className="space-y-1">
-          <Subheading>Address</Subheading>
-          <Text>This is where your organization is registered.</Text>
-        </div>
-        <Address />
-      </section>
-
-      <Divider className="my-10" soft />
-
-      <section className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        <div className="space-y-1">
-          <Subheading>Currency</Subheading>
-          <Text>The currency that your organization will be collecting.</Text>
-        </div>
-        <div>
-          <Select aria-label="Currency" name="currency" defaultValue="cad">
-            <option value="cad">CAD - Canadian Dollar</option>
-            <option value="usd">USD - United States Dollar</option>
-          </Select>
-        </div>
-      </section>
-
-      <Divider className="my-10" soft />
-
-      <div className="flex justify-end gap-4">
-        <Button type="reset" plain>
-          Reset
-        </Button>
-        <Button type="submit">Save changes</Button>
-      </div>
-    </form>
+      <AdminControls />
+    </div>
   )
 }

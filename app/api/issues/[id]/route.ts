@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { isStaff, requireSession } from "@/lib/auth";
+import { assertWritable } from "@/lib/admin-controls";
 
 const updateSchema = z
   .object({
@@ -56,6 +57,8 @@ export async function PATCH(
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   try {
     const parsed = updateSchema.safeParse(await request.json());
@@ -107,6 +110,8 @@ export async function DELETE(
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   try {
     const issue = await prisma.issue.findUnique({

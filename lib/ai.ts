@@ -155,16 +155,26 @@ function priorityOrder(): AiProviderName[] {
  * configured key — or that can't satisfy the task, e.g. Groq for vision — are
  * omitted. Empty array means no provider is configured.
  */
-export function resolveProviders(task: AiTask): ResolvedProvider[] {
+export function resolveProviders(
+  task: AiTask,
+  opts?: { forceFallback?: boolean }
+): ResolvedProvider[] {
   const out: ResolvedProvider[] = [];
   for (const name of priorityOrder()) {
     const p = BUILDERS[name](task);
     if (p) out.push(p);
   }
+  // Admin "force AI fallback" kill switch: skip the PRIMARY provider (e.g. during
+  // a Gemini outage) without a redeploy — but only if a fallback actually exists,
+  // so forcing it can never leave the task with no provider.
+  if (opts?.forceFallback && out.length > 1) out.shift();
   return out;
 }
 
 /** Best provider for a task, or null if no API key is configured. */
-export function resolveProvider(task: AiTask): ResolvedProvider | null {
-  return resolveProviders(task)[0] ?? null;
+export function resolveProvider(
+  task: AiTask,
+  opts?: { forceFallback?: boolean }
+): ResolvedProvider | null {
+  return resolveProviders(task, opts)[0] ?? null;
 }

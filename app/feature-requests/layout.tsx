@@ -15,6 +15,7 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 import DeskThemeProvider from "@/components/theme/theme-provider"
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/site-config";
+import { guardFeaturePage } from "@/lib/page-guards";
 
 config.autoAddCss = false;
 
@@ -32,7 +33,9 @@ const getUserId = () => {
   return userId;
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  await guardFeaturePage("featureRequests");
+
   const userId = getUserId(); // Fetch the user ID
 
   return (

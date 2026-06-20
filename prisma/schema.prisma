@@ -434,6 +434,93 @@ model SiteConfig {
   updatedAt DateTime @updatedAt
 }
 
+/// Operational control panel — kill switches, feature flags, rate limits, abuse
+/// controls, business rules and security/support toggles. Exactly ONE row
+/// (id = 1, like SiteConfig). Read via getAppConfig() (lib/app-config.ts) which
+/// is request-scoped-cached and fails SOFT to DEFAULT_APP_CONFIG if the table is
+/// missing or on any DB error — so every consumer (auth, middleware, layouts,
+/// route guards) is safe to call during build-time prerender. Distinct from
+/// SiteConfig, which is purely the public branding name.
+model AppConfig {
+  id Int @id @default(1)
+
+  // --- Kill switches & feature flags ---
+  maintenanceMode     Boolean  @default(false)
+  maintenanceMessage  String   @default("We're doing some quick maintenance and will be back shortly.")
+  // IPs that bypass maintenance mode (admins always bypass) — your own office /
+  // VPN, so you're never locked out while the site is down for everyone else.
+  maintenanceAllowIps String[] @default([])
+  // Browse-but-don't-write: a lifesaver during DB migrations.
+  readOnlyMode        Boolean  @default(false)
+  // Kill the signup flow during an abuse wave or a botched launch.
+  registrationOpen    Boolean  @default(true)
+  // Per-feature kill switches: { aiHints: false, pdfExtraction: false, ... }.
+  // A MISSING key means enabled (default-on); see FEATURE_KEYS in lib/app-config.
+  features            Json     @default("{}")
+  // Force the AI provider fallback chain (skip the primary) without a redeploy —
+  // e.g. when Gemini has an outage.
+  aiFallbackForced    Boolean  @default(false)
+
+  // --- Rate limits & abuse ---
+  globalRateLimit      Int      @default(0) // per-IP requests per window; 0 = disabled
+  globalRateWindowSec  Int      @default(60)
+  perUserRateLimit     Int      @default(0) // per-user requests per window; 0 = disabled
+  perUserRateWindowSec Int      @default(60)
+  signupThrottleLimit     Int   @default(0) // max NEW accounts per window globally; 0 = disabled
+  signupThrottleWindowSec Int   @default(3600)
+  emailDomainBlocklist String[] @default([]) // e.g. disposable-email domains
+  ipBanList            String[] @default([])
+  captchaEnabled       Boolean  @default(false)
+
+  // --- Business rules ---
+  freeQuestionsPerDay    Int     @default(0) // 0 = unlimited
+  freePdfUploadsPerMonth Int     @default(0) // 0 = unlimited
+  trialDays              Int     @default(0)
+  promoCodesEnabled      Boolean @default(false)
+  pricingVisible         Boolean @default(true)
+
+  // --- Security ---
+  requireEmailVerification Boolean   @default(false)
+  sessionTimeoutMin        Int       @default(0) // idle timeout in minutes; 0 = auth default
+  adminAllowlist           String[]  @default([]) // emails permitted to wield admin (empty = role alone governs)
+  // Force-logout epoch: any session minted BEFORE this instant is rejected. The
+  // "nuke all sessions" button sets it to now().
+  sessionsValidFrom        DateTime?
+
+  // --- Support / debug ---
+  verboseLogging       Boolean @default(false)
+  adminErrorVisibility Boolean @default(false) // surface stack traces to admins in-app
+  impersonationEnabled Boolean @default(true)
+
+  updatedAt DateTime @updatedAt
+  updatedBy String? // userId of the admin who last saved
+}
+
+/// A sitewide banner. Multiple rows may exist (history); the banner surface shows
+/// the currently-active one(s) — active AND within [startsAt, endsAt] when set.
+/// audience is "ALL" or a SubscriptionTier name (e.g. "FREE") for cohort targeting.
+model Announcement {
+  id          String           @id @default(uuid())
+  message     String
+  type        AnnouncementType @default(INFO)
+  dismissible Boolean          @default(true)
+  active      Boolean          @default(true)
+  startsAt    DateTime?
+  endsAt      DateTime?
+  audience    String           @default("ALL")
+  createdAt   DateTime         @default(now())
+  createdBy   String?
+
+  @@index([active])
+}
+
+enum AnnouncementType {
+  INFO
+  WARNING
+  SUCCESS
+  CRITICAL
+}
+
 model UserAnswer {
   id             String   @id @default(uuid())
   questionId     String

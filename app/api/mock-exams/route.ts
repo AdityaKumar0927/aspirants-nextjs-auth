@@ -3,6 +3,7 @@ import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { requireSession } from "@/lib/auth"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
+import { assertWritable } from "@/lib/admin-controls"
 
 const createSchema = z.object({
   exam: z.string().trim().max(200).nullish(),
@@ -60,6 +61,7 @@ export async function POST(request: Request) {
   if (response) return response
   const csrf = assertSameOrigin(request); if (csrf) return csrf;
   const limited = await rateLimit(request, "mock-exam-write", { limit: 30, windowSec: 60 }, session.user.id); if (limited) return limited;
+  const ro = await assertWritable(); if (ro) return ro;
   try {
     const userId = session.user.id
 

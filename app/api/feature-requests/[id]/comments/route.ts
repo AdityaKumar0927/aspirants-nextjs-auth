@@ -4,9 +4,11 @@ import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity";
+import { assertWritable, requireFeature, assertNotBanned } from "@/lib/admin-controls";
 
 // Public read of a request's comments.
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const off = await requireFeature("featureRequests"); if (off) return off;
   const { id } = await params;
   const rows = await prisma.featureRequestComment.findMany({
     where: { featureRequestId: id },
@@ -40,6 +42,10 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     session.user.id
   );
   if (limited) return limited;
+
+  const off = await requireFeature("featureRequests"); if (off) return off;
+  const ro = await assertWritable(); if (ro) return ro;
+  const banned = await assertNotBanned(req); if (banned) return banned;
 
   const { id } = await params;
 

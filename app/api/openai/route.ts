@@ -5,12 +5,16 @@ import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 import { auth } from '@/auth'
 import { resolveProvider } from '@/lib/ai'
+import { readEdgeFlags } from '@/lib/edge-flags'
 
 export const runtime = 'edge'
 
+// Accept both the native Upstash env names and the Vercel Marketplace KV ones
+// (KV_REST_API_*), matching lib/rate-limit.ts and lib/edge-flags.ts, so the
+// Vercel-provisioned Redis works regardless of which pair it sets.
 const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+  url: process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN,
 })
 
 const ratelimit = new Ratelimit({
@@ -98,6 +102,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  // Edge-runtime route, so it can't use the Prisma-backed guards — it reads the
+  // Upstash-mirrored edge flags (it already depends on Upstash for rate limiting)
+  // for the IP ban list and the AI-hints kill switch. Fails open if unavailable.
+  const flags = await readEdgeFlags()
+  const ip = (req.headers.get('x-forwarded-for')?.split(',')[0] || req.headers.get('x-real-ip') || '').trim()
+  if (ip && flags?.ipBanList?.some((b) => b.trim() === ip)) {
+    return NextResponse.json({ error: 'Access denied.' }, { status: 403 })
+  }
+  if (flags?.featuresOff?.includes('aiHints')) {
+    return NextResponse.json(
+      { error: 'AI hints are temporarily turned off.' },
+      { status: 503 }
+    )
+  }
+
   // Rate-limit per user (not per IP, which is shared behind NATs/proxies).
   const { success } = await ratelimit.limit(`openai:${userId}`)
   if (!success) {
@@ -115,7 +134,7 @@ export async function POST(req: NextRequest) {
     // Resolve the hint provider (Gemini free tier first by default, then Groq,
     // then OpenAI). All are reached over the OpenAI-compatible wire format, so
     // the same openai-edge client streams from whichever is configured.
-    const provider = resolveProvider('hint')
+    const provider = resolveProvider('hint', { forceFallback: flags?.aiFallbackForced })
     if (!provider) {
       return NextResponse.json(
         { error: 'No AI provider is configured on the server' },

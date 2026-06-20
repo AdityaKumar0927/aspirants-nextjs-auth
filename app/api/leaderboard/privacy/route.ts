@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { assertWritable, requireFeature } from "@/lib/admin-controls";
 
 /**
  * The signed-in user's Merit List visibility preferences:
@@ -12,6 +13,9 @@ import { requireSession } from "@/lib/auth";
 export async function GET() {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const off = await requireFeature("leaderboard");
+  if (off) return off;
 
   const s = await prisma.userSettings.findUnique({
     where: { userId: session.user.id },
@@ -36,6 +40,12 @@ const schema = z.object({
 export async function POST(req: NextRequest) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const off = await requireFeature("leaderboard");
+  if (off) return off;
+
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   let p;
   try {

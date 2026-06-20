@@ -5,6 +5,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "@/lib/prisma"
 import { logAudit } from "@/lib/audit"
 import authConfig from "@/auth.config"
+import { getAppConfig, isEmailDomainBlocked } from "@/lib/app-config"
 
 /**
  * Full (Node-runtime) Auth.js configuration. Extends the edge-safe auth.config
@@ -47,6 +48,31 @@ function stampOnboarding(
     : true
 }
 
+/** Strip all identity claims — turns the token effectively signed-out. Used when
+ * the DB user is gone, the force-logout epoch invalidates the session, or it
+ * idles out. Downstream guards treat the absent role as a non-admin nobody. */
+function clearIdentity(token: JWT) {
+  token.id = undefined
+  token.role = undefined
+  token.onboardingComplete = undefined
+  token.isMinor = undefined
+  token.parentalConsentOk = undefined
+}
+
+/** Mirror the AppConfig security controls (force-logout epoch + idle timeout)
+ * onto the token so the per-request check needs no DB read. Fails soft. */
+async function syncSecurityControls(token: JWT, now: number) {
+  try {
+    const cfg = await getAppConfig()
+    token.sessionsValidFromMs = cfg.sessionsValidFrom ? cfg.sessionsValidFrom.getTime() : 0
+    token.idleTimeoutMs = cfg.sessionTimeoutMin > 0 ? cfg.sessionTimeoutMin * 60_000 : 0
+  } catch {
+    token.sessionsValidFromMs = token.sessionsValidFromMs ?? 0
+    token.idleTimeoutMs = token.idleTimeoutMs ?? 0
+  }
+  token.controlSyncedAt = now
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(prisma),
@@ -81,15 +107,63 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // (A) signIn(): bootstrap the User row + a default "member" role on first
     // sign-in, mirroring the previous behaviour (the adapter links the Google
     // account to this email).
-    async signIn({ user }) {
+    async signIn({ user, account }) {
       if (!user.email) return false
       try {
+        const config = await getAppConfig()
         const existingUser = await prisma.user.findUnique({
           where: { email: user.email },
           include: { UserRole: true },
         })
 
         if (!existingUser) {
+          // --- Abuse controls, applied to NEW sign-ups only (so an admin can't
+          // accidentally lock out established users by tightening these). ---
+
+          // Registration kill switch — flip off during an abuse wave / botched launch.
+          if (!config.registrationOpen) {
+            await logAudit({
+              action: "SIGNUP_BLOCKED",
+              metadata: { reason: "registration-closed", email: user.email },
+            })
+            return false
+          }
+          // Email-domain blocklist (disposable-email floods).
+          if (isEmailDomainBlocked(user.email, config)) {
+            await logAudit({
+              action: "SIGNUP_BLOCKED",
+              metadata: { reason: "domain-blocklist", email: user.email },
+            })
+            return false
+          }
+          // Require a provider that asserts a verified email (Google does;
+          // dev-login does not). Only meaningful for non-Google providers.
+          if (
+            config.requireEmailVerification &&
+            account?.provider &&
+            account.provider !== "google"
+          ) {
+            await logAudit({
+              action: "SIGNUP_BLOCKED",
+              metadata: { reason: "email-unverified", email: user.email },
+            })
+            return false
+          }
+          // Global signup throttle: a brake on mass account creation. The OAuth
+          // signIn callback has no request IP, so this is a GLOBAL window (total
+          // new accounts), which is exactly what stops a registration flood.
+          if (config.signupThrottleLimit > 0) {
+            const since = new Date(Date.now() - config.signupThrottleWindowSec * 1000)
+            const recent = await prisma.user.count({ where: { createdAt: { gt: since } } })
+            if (recent >= config.signupThrottleLimit) {
+              await logAudit({
+                action: "SIGNUP_BLOCKED",
+                metadata: { reason: "signup-throttle", email: user.email },
+              })
+              return false
+            }
+          }
+
           const memberRole = await prisma.userRole.upsert({
             where: { name: "member" },
             update: {},
@@ -124,8 +198,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // (B) jwt(): stamp id/role/onboarding on sign-in, then re-sync from the DB
     // when stale or on an explicit update(), so a revoked role / suspension /
     // verified parental consent reflects within ROLE_TTL_MS in the edge gate.
+    // Also enforces the admin "force-logout all" epoch and the idle-timeout.
     async jwt({ token, user, trigger }) {
       const ROLE_TTL_MS = 60 * 1000
+      const now = Date.now()
 
       if (user?.email) {
         const dbUser = await prisma.user.findUnique({
@@ -135,14 +211,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (dbUser) {
           token.id = dbUser.id
           token.role = dbUser.UserRole?.name ?? "member"
-          token.roleSyncedAt = Date.now()
+          token.roleSyncedAt = now
           stampOnboarding(token, dbUser)
         }
+        // Session lifecycle markers for the force-logout / idle-timeout checks.
+        token.loginAt = now
+        token.lastActiveAt = now
+        await syncSecurityControls(token, now)
         return token
       }
 
       const stale =
-        !token.roleSyncedAt || Date.now() - token.roleSyncedAt > ROLE_TTL_MS
+        !token.roleSyncedAt || now - token.roleSyncedAt > ROLE_TTL_MS
       if (token.id && (trigger === "update" || stale)) {
         const dbUser = await prisma.user.findUnique({
           where: { id: token.id as string },
@@ -152,14 +232,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           token.role = dbUser.UserRole?.name ?? "member"
           stampOnboarding(token, dbUser)
         } else {
-          token.id = undefined
-          token.role = undefined
-          token.onboardingComplete = undefined
-          token.isMinor = undefined
-          token.parentalConsentOk = undefined
+          clearIdentity(token)
         }
-        token.roleSyncedAt = Date.now()
-        token.onboardingSyncedAt = Date.now()
+        token.roleSyncedAt = now
+        token.onboardingSyncedAt = now
+      }
+
+      // Re-sync the security controls (force-logout epoch + idle timeout) on the
+      // same low-frequency window, then enforce them locally on every request.
+      const controlStale =
+        !token.controlSyncedAt || now - token.controlSyncedAt > ROLE_TTL_MS
+      if (token.id && (trigger === "update" || controlStale)) {
+        await syncSecurityControls(token, now)
+      }
+      if (token.id) {
+        // Force-logout: any session minted before the epoch is invalidated. A
+        // token with no recorded loginAt (minted before this code shipped)
+        // counts as "before", so the first nuke clears legacy sessions too.
+        if (token.sessionsValidFromMs && (token.loginAt ?? 0) < token.sessionsValidFromMs) {
+          clearIdentity(token)
+          return token
+        }
+        // Idle timeout.
+        if (token.idleTimeoutMs && token.lastActiveAt && now - token.lastActiveAt > token.idleTimeoutMs) {
+          clearIdentity(token)
+          return token
+        }
+        token.lastActiveAt = now
       }
       return token
     },

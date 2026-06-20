@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import { getCurrentSession, requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
 import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity";
+import { assertWritable, requireFeature, assertNotBanned } from "@/lib/admin-controls";
 
 export const CATEGORIES = [
   "UI/UX",
@@ -16,6 +17,8 @@ export const CATEGORIES = [
 
 // Public list. If signed in, marks which requests the caller has upvoted.
 export async function GET() {
+  const off = await requireFeature("featureRequests"); if (off) return off;
+
   const session = await getCurrentSession();
   const myId = session?.user?.id ?? null;
 
@@ -61,6 +64,10 @@ export async function POST(req: NextRequest) {
   if (csrf) return csrf;
   const limited = await rateLimit(req, "feature-request", { limit: 5, windowSec: 600 }, session.user.id);
   if (limited) return limited;
+
+  const off = await requireFeature("featureRequests"); if (off) return off;
+  const ro = await assertWritable(); if (ro) return ro;
+  const banned = await assertNotBanned(req); if (banned) return banned;
 
   let body: unknown;
   try {

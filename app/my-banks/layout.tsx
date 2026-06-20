@@ -15,6 +15,7 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 import { ThemeProvider } from "@/components/landing/theme-provider"
 import type { Metadata } from "next"
 import { buildMetadata } from "@/lib/site-config"
+import { guardFeaturePage } from "@/lib/page-guards"
 
 config.autoAddCss = false
 
@@ -25,7 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default function MyBanksLayout({ children }: { children: React.ReactNode }) {
+export default async function MyBanksLayout({ children }: { children: React.ReactNode }) {
+  await guardFeaturePage("userBanks")
   return (
     <html lang="en">
       <head>

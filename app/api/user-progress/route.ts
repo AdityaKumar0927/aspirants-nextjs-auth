@@ -3,6 +3,7 @@ import { NextResponse } from "next/server"
 import { z } from "zod"
 import { requireSession } from "@/lib/auth"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
+import { assertWritable } from "@/lib/admin-controls"
 
 const postSchema = z.object({
   questionId: z.string().min(1),
@@ -34,6 +35,8 @@ export async function POST(request: Request) {
   if (csrf) return csrf
   const limited = await rateLimit(request, "user-progress", { limit: 120, windowSec: 60 }, session.user.id)
   if (limited) return limited
+  const ro = await assertWritable()
+  if (ro) return ro
 
   try {
     const parsed = postSchema.safeParse(await request.json())

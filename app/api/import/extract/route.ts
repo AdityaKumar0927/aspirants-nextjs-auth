@@ -6,6 +6,8 @@ import { Redis } from "@upstash/redis";
 import prisma from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth";
 import { assertSameOrigin } from "@/lib/rate-limit";
+import { assertWritable, requireFeature } from "@/lib/admin-controls";
+import { getAppConfig } from "@/lib/app-config";
 import { QUESTION_TYPES } from "@/lib/validations/question";
 import { resolveProviders, type ResolvedProvider } from "@/lib/ai";
 
@@ -314,6 +316,14 @@ export async function POST(request: Request) {
   const csrf = assertSameOrigin(request);
   if (csrf) return csrf;
 
+  // Admin kill switch for PDF extraction (e.g. flip off during a Gemini outage)
+  // and the global read-only mode (block heavy writes during a DB migration).
+  const appConfig = await getAppConfig();
+  const featureOff = await requireFeature("pdfExtraction", appConfig);
+  if (featureOff) return featureOff;
+  const readOnly = await assertWritable(appConfig);
+  if (readOnly) return readOnly;
+
   if (ratelimit) {
     const { success } = await ratelimit.limit(session.user.id);
     if (!success) {
@@ -323,7 +333,8 @@ export async function POST(request: Request) {
 
   // Vision-capable providers, in fallback order (Gemini first by default,
   // OpenAI last). Groq is excluded automatically — it has no vision model here.
-  const providers = resolveProviders("extraction");
+  // Honor the admin "force AI fallback" kill switch.
+  const providers = resolveProviders("extraction", { forceFallback: appConfig.aiFallbackForced });
   if (providers.length === 0) {
     // Distinguish "no key anywhere" from "AI_PROVIDER is pinned to a provider
     // that can't do vision" (groq) — otherwise the operator is told to set keys

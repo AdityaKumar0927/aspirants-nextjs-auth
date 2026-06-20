@@ -3,6 +3,7 @@ import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { auth } from "@/auth"
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit"
+import { assertWritable } from "@/lib/admin-controls"
 import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity"
 
 const feedbackSchema = z.object({
@@ -53,6 +54,8 @@ export async function POST(request: Request) {
 
     const limited = await rateLimit(request, "feedback", { limit: 6, windowSec: 300 }, session.user.id)
     if (limited) return limited
+    const ro = await assertWritable()
+    if (ro) return ro
 
     const parsed = feedbackSchema.safeParse(await request.json())
     if (!parsed.success) {

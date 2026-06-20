@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import { NextResponse } from "next/server"
 import authConfig from "@/auth.config"
+import { readEdgeFlags } from "@/lib/edge-flags"
 
 /**
  * Edge middleware: admin protection + the DPDP onboarding gate (Auth.js v5).
@@ -33,6 +34,7 @@ const ONBOARDING_EXEMPT = [
   "/consent-notice",
   "/grievance",
   "/blueprint", // public, SEO-facing — reachable without onboarding
+  "/maintenance", // the maintenance screen itself must always be reachable
 ]
 
 function isExempt(pathname: string): boolean {
@@ -49,9 +51,42 @@ function isOnboarded(user: {
   return user.onboardingComplete === true && user.parentalConsentOk === true
 }
 
-export default auth((req) => {
+export default auth(async (req) => {
   const user = req.auth?.user
   const { pathname } = req.nextUrl
+  const isAdmin = user?.role === "administrator"
+
+  // --- Edge abuse / maintenance fast-path -----------------------------------
+  // Reads the Upstash-mirrored flags (lib/edge-flags). Best-effort: null when
+  // Upstash isn't configured, in which case the authoritative Node-layer gate
+  // (the maintenance gate in the public layout, the per-route guards) applies.
+  const ip = (
+    req.headers.get("x-forwarded-for")?.split(",")[0] ||
+    req.headers.get("x-real-ip") ||
+    ""
+  ).trim()
+  const flags = await readEdgeFlags()
+
+  if (flags?.ipBanList?.length && ip && !isAdmin && flags.ipBanList.some((b) => b.trim() === ip)) {
+    return new NextResponse("Access denied.", { status: 403 })
+  }
+
+  if (
+    flags?.maintenanceMode &&
+    !isAdmin &&
+    pathname !== "/maintenance" &&
+    !pathname.startsWith("/administrator") &&
+    !flags.maintenanceAllowIps.some((a) => a.trim() === ip)
+  ) {
+    return NextResponse.redirect(new URL("/maintenance", req.url))
+  }
+  // When the edge mirror EXPLICITLY says maintenance is off, don't strand anyone
+  // on the maintenance screen. We require flags to be present (not null): if the
+  // mirror is unavailable we must NOT bounce off /maintenance, or we'd ping-pong
+  // with the Node-layer gate (which redirects TO /maintenance) into a loop.
+  if (flags && !flags.maintenanceMode && pathname === "/maintenance") {
+    return NextResponse.redirect(new URL("/", req.url))
+  }
 
   // /administrator/* is admin-only. Non-admins (incl. signed-out) go home.
   if (pathname.startsWith("/administrator") && user?.role !== "administrator") {

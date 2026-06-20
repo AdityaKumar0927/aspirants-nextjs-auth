@@ -13,21 +13,17 @@ import { UserPerformanceProvider } from "@/components/layout/UserPerformanceCont
 import Nav from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import Bar from '@/components/layout/Bar';
-import { auth } from "@/auth";
+import { getCurrentSession } from "@/lib/auth";
+import { getAppConfig } from "@/lib/app-config";
+import { isMaintenanceBlocked } from "@/lib/admin-controls";
+import { AnnouncementBanner } from "@/components/layout/AnnouncementBanner";
+import { ImpersonationBanner } from "@/components/layout/ImpersonationBanner";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/site-config";
 
 config.autoAddCss = false;
-
-const getUserId = async () => {
-  try {
-    const session = await auth();
-    return session?.user?.id ?? null;
-  } catch (error) {
-    console.error('Error fetching user ID:', error);
-    return null;
-  }
-};
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata(undefined, {
@@ -36,7 +32,26 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const userId = await getUserId();
+  // Impersonation-aware: when an admin is impersonating, the whole public app
+  // renders as the target user (and the banner shows it). Fails soft to signed-out.
+  let session = null;
+  try {
+    session = await getCurrentSession();
+  } catch (error) {
+    console.error('Error fetching session:', error);
+  }
+  const userId = session?.user?.id ?? null;
+
+  // Node-layer maintenance gate (the authoritative fallback when the edge mirror
+  // / Upstash isn't configured). Admins and allow-listed IPs bypass.
+  const config = await getAppConfig();
+  if (config.maintenanceMode) {
+    const hdrs = await headers();
+    const ip = (hdrs.get('x-forwarded-for')?.split(',')[0] || hdrs.get('x-real-ip') || '').trim();
+    if (isMaintenanceBlocked(config, { ip, isAdmin: session?.user?.role === 'administrator' })) {
+      redirect('/maintenance');
+    }
+  }
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -66,6 +81,9 @@ export default async function PublicLayout({ children }: { children: React.React
               <ComplianceProviders>
                 <TooltipProvider>
                   <div className="fixed inset-0 z-[-10]"></div>
+                  <Suspense fallback={null}>
+                    <AnnouncementBanner />
+                  </Suspense>
                   <Suspense fallback="...">
                     <Nav />
                   </Suspense>
@@ -74,6 +92,7 @@ export default async function PublicLayout({ children }: { children: React.React
                   </main>
                   <Bar userId={userId} />
                   <Footer />
+                  <ImpersonationBanner />
                   <Toaster />
                 </TooltipProvider>
               </ComplianceProviders>

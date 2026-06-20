@@ -9,6 +9,12 @@ declare module "next-auth" {
       onboardingComplete?: boolean;
       isMinor?: boolean;
       parentalConsentOk?: boolean;
+      /**
+       * Set ONLY on an impersonation overlay (lib/auth.ts getCurrentSession):
+       * the userId of the real admin acting as this user. Privileged guards
+       * refuse to act while this is present.
+       */
+      impersonatedBy?: string;
     } & DefaultSession["user"];
   }
 
@@ -30,5 +36,15 @@ declare module "next-auth/jwt" {
     parentalConsentOk?: boolean;
     /** epoch ms of the last DB onboarding re-sync. */
     onboardingSyncedAt?: number;
+    /** epoch ms this session was minted (drives the force-logout epoch check). */
+    loginAt?: number;
+    /** epoch ms of the last activity (drives the idle-timeout check). */
+    lastActiveAt?: number;
+    /** epoch ms of the last AppConfig (security controls) re-sync. */
+    controlSyncedAt?: number;
+    /** mirrored AppConfig.sessionsValidFrom in epoch ms (0 = unset). */
+    sessionsValidFromMs?: number;
+    /** mirrored idle timeout in ms (0 = disabled). */
+    idleTimeoutMs?: number;
   }
 }

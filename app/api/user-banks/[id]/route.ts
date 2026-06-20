@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { assertSameOrigin } from "@/lib/rate-limit";
+import { assertWritable, requireFeature, assertNotBanned } from "@/lib/admin-controls";
 import { normalizeEditQuestions, MAX_BANK_QUESTIONS } from "@/lib/userbank/schema";
 
 /**
@@ -48,6 +49,9 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
   const { session, response } = await requireSession();
   if (response) return response;
 
+  const off = await requireFeature("userBanks");
+  if (off) return off;
+
   const { id } = await params;
   const bank = await prisma.userBank.findUnique({
     where: { id },
@@ -68,6 +72,13 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   const csrf = assertSameOrigin(req);
   if (csrf) return csrf;
+
+  const off = await requireFeature("userBanks");
+  if (off) return off;
+  const ro = await assertWritable();
+  if (ro) return ro;
+  const banned = await assertNotBanned(req);
+  if (banned) return banned;
 
   const { id } = await params;
   const owned = await requireOwnedBank(id, session.user.id);
@@ -201,6 +212,13 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
   const csrf = assertSameOrigin(req);
   if (csrf) return csrf;
+
+  const off = await requireFeature("userBanks");
+  if (off) return off;
+  const ro = await assertWritable();
+  if (ro) return ro;
+  const banned = await assertNotBanned(req);
+  if (banned) return banned;
 
   const { id } = await params;
   const owned = await requireOwnedBank(id, session.user.id);

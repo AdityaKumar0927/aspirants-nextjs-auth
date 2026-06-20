@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { assertSameOrigin, rateLimit } from "@/lib/rate-limit";
+import { assertWritable, requireFeature } from "@/lib/admin-controls";
 
 /** DELETE /api/keystone/[id] — remove one of the caller's shelf items (IDOR-safe). */
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -12,6 +13,11 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
   if (csrf) return csrf;
   const limited = await rateLimit(req, "keystone-del", { limit: 120, windowSec: 60 }, session.user.id);
   if (limited) return limited;
+
+  const off = await requireFeature("learn");
+  if (off) return off;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   const { id } = await params;
   // deleteMany scoped by userId: a non-owner's delete simply matches nothing.

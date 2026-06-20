@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
+import { assertWritable, requireFeature, assertNotBanned } from "@/lib/admin-controls";
 
 /**
  * DELETE /api/feature-requests/[id] — the author permanently deletes their OWN
@@ -13,6 +14,10 @@ export async function DELETE(
 ) {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const off = await requireFeature("featureRequests"); if (off) return off;
+  const ro = await assertWritable(); if (ro) return ro;
+  const banned = await assertNotBanned(_req); if (banned) return banned;
 
   const { id } = await params;
 

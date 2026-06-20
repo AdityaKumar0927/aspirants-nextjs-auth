@@ -4,6 +4,7 @@ import { Prisma } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { assertWritable, requireFeature } from "@/lib/admin-controls";
 
 /**
  * Keystone shelf sync (signed-in users only).
@@ -68,6 +69,8 @@ function toClient(it: Row) {
 export async function GET() {
   const { session, response } = await requireSession();
   if (response) return response;
+  const off = await requireFeature("learn");
+  if (off) return off;
   const rows = await prisma.keystoneItem.findMany({
     where: { userId: session.user.id },
     orderBy: { updatedAt: "desc" },
@@ -86,6 +89,11 @@ export async function POST(req: NextRequest) {
   if (csrf) return csrf;
   const limited = await rateLimit(req, "keystone-sync", { limit: 120, windowSec: 60 }, session.user.id);
   if (limited) return limited;
+
+  const off = await requireFeature("learn");
+  if (off) return off;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   // Cap the raw body BEFORE deserializing (the per-field refines run after).
   let body: unknown;

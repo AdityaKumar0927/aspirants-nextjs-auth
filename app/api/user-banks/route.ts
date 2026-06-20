@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { assertSameOrigin, rateLimit } from "@/lib/rate-limit";
+import { assertWritable, requireFeature, assertNotBanned } from "@/lib/admin-controls";
 import { bankMetaSchema, validateBankImport } from "@/lib/userbank/schema";
 
 /**
@@ -16,6 +17,9 @@ import { bankMetaSchema, validateBankImport } from "@/lib/userbank/schema";
 export async function GET() {
   const { session, response } = await requireSession();
   if (response) return response;
+
+  const off = await requireFeature("userBanks");
+  if (off) return off;
 
   const banks = await prisma.userBank.findMany({
     where: { userId: session.user.id },
@@ -46,6 +50,13 @@ export async function POST(req: NextRequest) {
   if (csrf) return csrf;
   const limited = await rateLimit(req, "user-bank-create", { limit: 20, windowSec: 3600 }, session.user.id);
   if (limited) return limited;
+
+  const off = await requireFeature("userBanks");
+  if (off) return off;
+  const ro = await assertWritable();
+  if (ro) return ro;
+  const banned = await assertNotBanned(req);
+  if (banned) return banned;
 
   // Guard the raw size before parsing (banks can carry up to 500 questions).
   const rawBody = await req.text();

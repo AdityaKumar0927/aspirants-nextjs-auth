@@ -3,6 +3,7 @@ import { z } from "zod";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { rateLimit, assertSameOrigin } from "@/lib/rate-limit";
+import { assertWritable } from "@/lib/admin-controls";
 import { containsProfanity, PROFANITY_ERROR } from "@/lib/profanity";
 
 const MAX_ISSUES = 500;
@@ -50,6 +51,8 @@ export async function POST(req: NextRequest) {
   if (csrf) return csrf;
   const limited = await rateLimit(req, "issue", { limit: 8, windowSec: 600 }, session.user.id);
   if (limited) return limited;
+  const ro = await assertWritable();
+  if (ro) return ro;
 
   try {
     const parsed = createSchema.safeParse(await req.json());
