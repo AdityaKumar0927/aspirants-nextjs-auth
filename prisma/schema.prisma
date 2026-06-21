@@ -979,7 +979,12 @@ model UserBankQuestion {
   answerMin      Float?
   answerMax      Float?
   explanation    String? // markdown/LaTeX text
-  markscheme     String?
+  markscheme     String? // legacy / fallback: a single markscheme string
+  // Progressive hints, revealed one at a time during practice.
+  hints          String[] @default([])
+  // Structured, elaborate markscheme: { concept?, approach?, solution?, commonMistakes? }.
+  // Preferred over `markscheme`/`explanation` when present.
+  markschemeData Json?
   subject        String?
   topic          String?
   difficulty     String?

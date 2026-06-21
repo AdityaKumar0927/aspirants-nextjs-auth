@@ -30,6 +30,8 @@ function toQbQuestion(row: BankQuestion, index: number): QbQuestion {
     answerMax: row.answerMax,
     explanation: row.explanation ?? undefined,
     markscheme: row.markscheme ?? undefined,
+    hints: row.hints,
+    markschemeData: row.markschemeData,
     subject: row.subject ?? undefined,
     topic: row.topic ?? undefined,
     difficulty: row.difficulty ?? undefined,
@@ -107,6 +109,7 @@ export default function BankPractice({ bank }: { bank: Bank }) {
       pagination: false,
       signInGate: false,
       meritRecording: false,
+      learningMode: true,
     }),
     []
   );

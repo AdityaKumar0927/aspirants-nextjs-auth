@@ -1,4 +1,5 @@
 import type { ExamQuestionType } from "@/lib/exam-helpers";
+import type { StructuredMarkscheme } from "@/lib/userbank/schema";
 
 /** A question row as returned by GET /api/user-banks/[id]. */
 export interface BankQuestion {
@@ -14,6 +15,8 @@ export interface BankQuestion {
   answerMax: number | null;
   explanation: string | null;
   markscheme: string | null;
+  hints: string[];
+  markschemeData: StructuredMarkscheme | null;
   subject: string | null;
   topic: string | null;
   difficulty: string | null;

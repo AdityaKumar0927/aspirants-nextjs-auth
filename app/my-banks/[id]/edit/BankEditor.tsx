@@ -25,6 +25,11 @@ interface EditQ {
   answerMax: number | null;
   explanation: string;
   markscheme: string;
+  hints: string; // one hint per line
+  msConcept: string;
+  msApproach: string;
+  msSolution: string;
+  msMistakes: string;
   subject: string;
   topic: string;
   difficulty: string;
@@ -59,6 +64,11 @@ function toEdit(q: BankQuestion): EditQ {
     answerMax: q.answerMax,
     explanation: q.explanation ?? "",
     markscheme: q.markscheme ?? "",
+    hints: (q.hints ?? []).join("\n"),
+    msConcept: q.markschemeData?.concept ?? "",
+    msApproach: q.markschemeData?.approach ?? "",
+    msSolution: q.markschemeData?.solution ?? "",
+    msMistakes: q.markschemeData?.commonMistakes ?? "",
     subject: q.subject ?? "",
     topic: q.topic ?? "",
     difficulty: q.difficulty ?? "",
@@ -84,6 +94,11 @@ function blankQ(): EditQ {
     answerMax: null,
     explanation: "",
     markscheme: "",
+    hints: "",
+    msConcept: "",
+    msApproach: "",
+    msSolution: "",
+    msMistakes: "",
     subject: "",
     topic: "",
     difficulty: "",
@@ -109,6 +124,16 @@ function toPayload(q: EditQ) {
     answerMax: q.type === "Numerical" ? q.answerMax : null,
     explanation: q.explanation.trim() || null,
     markscheme: q.markscheme.trim() || null,
+    hints: q.hints.split("\n").map((s) => s.trim()).filter(Boolean),
+    markschemeData:
+      q.msConcept.trim() || q.msApproach.trim() || q.msSolution.trim() || q.msMistakes.trim()
+        ? {
+            concept: q.msConcept.trim() || undefined,
+            approach: q.msApproach.trim() || undefined,
+            solution: q.msSolution.trim() || undefined,
+            commonMistakes: q.msMistakes.trim() || undefined,
+          }
+        : null,
     subject: q.subject.trim() || null,
     topic: q.topic.trim() || null,
     difficulty: q.difficulty.trim() || null,
@@ -268,7 +293,15 @@ function EditableQuestionCard({
       )}
 
       <textarea value={q.explanation} onChange={(e) => set({ explanation: e.target.value })} rows={2} placeholder="Explanation (optional)" className={`${inputCls} resize-y`} />
-      <textarea value={q.markscheme} onChange={(e) => set({ markscheme: e.target.value })} rows={2} placeholder="Mark scheme (optional)" className={`${inputCls} resize-y`} />
+      <textarea value={q.markscheme} onChange={(e) => set({ markscheme: e.target.value })} rows={2} placeholder="Mark scheme — single block (optional; ignored if you fill the structured sections below)" className={`${inputCls} resize-y`} />
+      <textarea value={q.hints} onChange={(e) => set({ hints: e.target.value })} rows={2} placeholder="Hints — one per line, revealed one at a time (optional)" className={`${inputCls} resize-y`} />
+      <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Structured markscheme (optional)</p>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <textarea value={q.msConcept} onChange={(e) => set({ msConcept: e.target.value })} rows={2} placeholder="Concept — the principle being tested" className={`${inputCls} resize-y`} />
+        <textarea value={q.msApproach} onChange={(e) => set({ msApproach: e.target.value })} rows={2} placeholder="Approach — how to think about it" className={`${inputCls} resize-y`} />
+        <textarea value={q.msSolution} onChange={(e) => set({ msSolution: e.target.value })} rows={2} placeholder="Solution — the worked steps" className={`${inputCls} resize-y`} />
+        <textarea value={q.msMistakes} onChange={(e) => set({ msMistakes: e.target.value })} rows={2} placeholder="Common mistakes" className={`${inputCls} resize-y`} />
+      </div>
 
       <div className="flex flex-wrap gap-3">
         <label className="type-data flex items-center gap-1 text-xs text-pencil">

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { requireSession } from "@/lib/auth";
 import { assertSameOrigin } from "@/lib/rate-limit";
@@ -178,6 +179,8 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
         answerMax: q.answerMax,
         explanation: q.explanation,
         markscheme: q.markscheme,
+        hints: q.hints,
+        markschemeData: q.markschemeData ? (q.markschemeData as Prisma.InputJsonValue) : Prisma.DbNull,
         subject: q.subject,
         topic: q.topic,
         difficulty: q.difficulty,

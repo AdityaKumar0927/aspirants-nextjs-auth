@@ -28,7 +28,18 @@ OUTPUT FORMAT (return exactly this shape):
       "answerText": null,
       "answerMin": null,
       "answerMax": null,
-      "explanation": "Why the answer is correct (optional but recommended).",
+      "explanation": "Short note on why the answer is correct (optional).",
+      "hints": [
+        "A gentle nudge toward the relevant idea — don't give it away.",
+        "A more specific hint.",
+        "A final hint that almost gets them there."
+      ],
+      "markscheme": {
+        "concept": "The key principle or definition being tested.",
+        "approach": "How to think about it — the strategy, before any numbers.",
+        "solution": "The full worked solution, step by step, ending at the answer.",
+        "commonMistakes": "The typical errors students make on this."
+      },
       "subject": "e.g. Physics",
       "topic": "e.g. Thermodynamics",
       "difficulty": "easy",
@@ -59,6 +70,13 @@ RULES:
   or draw it with ASCII art, or give TikZ code inside the text — never an image URL.
 - Use Markdown for emphasis, lists, and tables where helpful.
 - "difficulty" should be one of: easy, medium, hard.
+- HINTS (recommended): add a "hints" array of 1–4 short hints, ordered from a gentle nudge to
+  almost-the-answer. They are revealed ONE AT A TIME during practice, so each should add a little.
+- ELABORATE MARKSCHEME (strongly recommended — this is the point): make "markscheme" an OBJECT
+  with these optional sections — "concept" (the principle/idea being tested), "approach" (how to
+  think about it, before any numbers), "solution" (the full worked steps, ending at the answer),
+  and "commonMistakes". Teach the idea, don't just state the answer. (A plain "markscheme" string
+  still works if you'd rather write one block.)
 - "marks"/"negMarks" are optional; include them if the material implies a scheme.
 - Aim for a good mix of types and difficulties. Make as many questions as the material supports.
 - Return ONLY the JSON code block. No commentary, no explanation outside the JSON.

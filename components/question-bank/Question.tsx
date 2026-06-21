@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { encodeMultiAnswer } from "@/lib/exam-helpers"
+import type { StructuredMarkscheme } from "@/lib/userbank/schema"
 import { isImageSrc } from "@/lib/is-image-src"
 import { useSwipeable } from "react-swipeable"
 import MathRenderer from "@/components/layout/MathRenderer"
@@ -112,6 +113,29 @@ function OptionMark({
   )
 }
 
+/** One labelled section of a structured markscheme (concept / approach / …). */
+function MarkschemeSection({ label, text }: { label: string; text?: string }) {
+  if (!text) return null
+  return (
+    <div>
+      <p className="type-data text-[11px] uppercase tracking-[0.14em] text-ballpoint">{label}</p>
+      <div className="latex-font mt-1 text-sm leading-7 text-ink">
+        {isImageSrc(text) ? (
+          <Image
+            src={text}
+            alt={label}
+            width={800}
+            height={600}
+            className="rounded-md w-full h-auto object-contain diagram-darkbg"
+          />
+        ) : (
+          <MathRenderer text={text} />
+        )}
+      </div>
+    </div>
+  )
+}
+
 /* ------------------------------------------------------------------
    1) Enums & Types
    ------------------------------------------------------------------ */
@@ -139,6 +163,8 @@ interface QuestionType {
   options?: string[]
   markscheme?: string
   explanation?: string
+  hints?: string[]
+  markschemeData?: StructuredMarkscheme | null
   correctOption?: string
   diagramUrl?: string
   exam?: string
@@ -187,6 +213,10 @@ interface QuestionProps {
   showReportIssue?: boolean     // FeedbackPopover → /api/issues (report to admins)
   showDiscussion?: boolean      // community Solutions/Discussion thread
   showDifficultyRating?: boolean
+  // Learning-science mode (custom banks): progressive hints + a markscheme
+  // reveal gated behind a confirm (the structured markscheme renders whenever
+  // markschemeData is present, regardless of this flag).
+  learningMode?: boolean
 }
 
 /* ------------------------------------------------------------------
@@ -229,8 +259,22 @@ function Question({
   showReportIssue = true,
   showDiscussion = true,
   showDifficultyRating = true,
+  learningMode = false,
 }: QuestionProps) {
   const displayNumber = currentQuestionIndex + 1
+
+  // Learning-science state (custom banks): how many hints are revealed, and
+  // whether the "are you sure?" markscheme gate is currently showing / cleared.
+  const hints = question.hints ?? []
+  const [revealedHints, setRevealedHints] = useState(0)
+  const [confirmingMarkscheme, setConfirmingMarkscheme] = useState(false)
+  const [markschemeConfirmed, setMarkschemeConfirmed] = useState(false)
+  // Reset per-question reveal state when the card switches questions.
+  useEffect(() => {
+    setRevealedHints(0)
+    setConfirmingMarkscheme(false)
+    setMarkschemeConfirmed(false)
+  }, [question.questionId])
 
   // For older MCQ
   const [pendingOption, setPendingOption] = useState<string | null>(null)
@@ -404,11 +448,14 @@ function Question({
   function handleOptionSelect(letter: string) {
     setPendingOption(letter)
   }
-  async function handleMcqSubmit() {
+  function handleMcqSubmit() {
     if (!pendingOption || !question.questionId) return
-    await handleMarkComplete(question.questionId, true)
+    // Show the verdict INSTANTLY (client-side grading), then persist completion
+    // in the background — the correct/incorrect feedback must never wait on a
+    // server round-trip.
     handleOptionClick(question.questionId, pendingOption, question.correctOption ?? "N/A")
     setLocalSelectedOption(pendingOption)
+    void handleMarkComplete(question.questionId, true)
   }
   function cleanOptionText(option: string): string {
     // Remove "A: " prefix etc.
@@ -435,27 +482,27 @@ function Question({
       prev.includes(letter) ? prev.filter((x) => x !== letter) : [...prev, letter]
     )
   }
-  async function handleMcqmSubmit() {
+  function handleMcqmSubmit() {
     if (!question.questionId) return
-    await handleMarkComplete(question.questionId, true)
     handleOptionClick(question.questionId, encodeMultiAnswer(mcqmSelections), question.correctOption ?? "")
+    void handleMarkComplete(question.questionId, true)
   }
 
   /* ------------------------------
      Fill Blanks
      ------------------------------ */
-  async function handleFillBlanksSubmit() {
+  function handleFillBlanksSubmit() {
     if (!question.questionId) return
-    await handleMarkComplete(question.questionId, true)
+    // handleNumericalSubmit grades instantly (verdict dispatched before its own
+    // background save) and persists completion — no need to await a save first.
     handleNumericalSubmit(question.questionId, fillBlanksInput, question.correctOption ?? "")
   }
 
   /* ------------------------------
      Subjective
      ------------------------------ */
-  async function handleSubjectiveSubmit() {
+  function handleSubjectiveSubmit() {
     if (!question.questionId) return
-    await handleMarkComplete(question.questionId, true)
     handleNumericalSubmit(question.questionId, subjectiveAnswer, question.correctOption ?? "")
   }
 
@@ -470,6 +517,40 @@ function Question({
     // user change a question's difficulty for everyone).
     setLocalDifficultyRating(newRating)
   }
+
+  /* ------------------------------
+     Hints + markscheme gate (learning mode)
+     ------------------------------ */
+  function revealNextHint() {
+    setRevealedHints((n) => Math.min(hints.length, n + 1))
+  }
+  function openMarkscheme() {
+    setMarkschemeConfirmed(true)
+    setConfirmingMarkscheme(false)
+    setShowMarkschemeModal(true)
+    if (question.questionId) handleMarkschemeToggle(question.questionId)
+  }
+  function onMarkschemeButtonClick() {
+    if (showMarkschemeModal) {
+      setShowMarkschemeModal(false)
+      if (question.questionId) handleMarkschemeToggle(question.questionId)
+      return
+    }
+    // Learning mode: don't reveal instantly — confirm first (desirable difficulty).
+    if (learningMode && !markschemeConfirmed) {
+      setConfirmingMarkscheme(true)
+      return
+    }
+    openMarkscheme()
+  }
+
+  const hasStructuredMs = !!(
+    question.markschemeData &&
+    (question.markschemeData.concept ||
+      question.markschemeData.approach ||
+      question.markschemeData.solution ||
+      question.markschemeData.commonMistakes)
+  )
 
   /* ------------------------------
      Render
@@ -886,20 +967,68 @@ function Question({
               </div>
             )}
 
-            {/* Show Markscheme */}
+            {/* Hints — revealed one at a time (learning mode only) */}
+            {learningMode && hints.length > 0 && (
+              <div className="mt-5 rounded-lg border border-rule bg-secondary/30 p-4">
+                <p className="type-data text-[11px] uppercase tracking-[0.14em] text-pencil">Hints</p>
+                {revealedHints > 0 && (
+                  <ol className="mt-2 space-y-2">
+                    {hints.slice(0, revealedHints).map((h, i) => (
+                      <li key={i} className="flex gap-2 text-sm">
+                        <span className="shrink-0 font-medium text-ballpoint">{i + 1}.</span>
+                        <div className="latex-font min-w-0 text-pencil">
+                          <MathRenderer text={h} />
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                {revealedHints < hints.length ? (
+                  <Button variant="outline" size="sm" className="mt-3" onClick={revealNextHint}>
+                    {revealedHints === 0 ? "Show a hint" : `Next hint (${revealedHints}/${hints.length})`}
+                  </Button>
+                ) : (
+                  <p className="mt-2 text-xs text-pencil">All {hints.length} hints shown.</p>
+                )}
+              </div>
+            )}
+
+            {/* Show Markscheme — gated behind a confirm in learning mode */}
             {markschemeEnabled && (
               <div className="mt-4">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setShowMarkschemeModal(!showMarkschemeModal)
-                    if (question.questionId) {
-                      handleMarkschemeToggle(question.questionId)
-                    }
-                  }}
-                >
-                  {showMarkschemeModal ? "Hide markscheme" : "Show markscheme"}
-                </Button>
+                {confirmingMarkscheme ? (
+                  <div className="rounded-lg border border-st-review/30 bg-st-review/5 p-4">
+                    <p className="text-sm font-medium text-ink">Reveal the full solution?</p>
+                    <p className="mt-0.5 text-sm text-pencil">
+                      You&rsquo;ll remember it better by working it through yourself first
+                      {hints.length > 0 ? " — try a hint" : ""}.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {revealedHints < hints.length && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            revealNextHint()
+                            setConfirmingMarkscheme(false)
+                          }}
+                        >
+                          {revealedHints === 0 ? "Show a hint instead" : "Show another hint"}
+                        </Button>
+                      )}
+                      <Button variant="ghost" size="sm" onClick={() => setConfirmingMarkscheme(false)}>
+                        Keep trying
+                      </Button>
+                      <Button variant="destructive" size="sm" onClick={openMarkscheme}>
+                        Reveal anyway
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <Button variant="outline" onClick={onMarkschemeButtonClick}>
+                    {showMarkschemeModal ? "Hide markscheme" : "Show markscheme"}
+                  </Button>
+                )}
               </div>
             )}
 
@@ -999,40 +1128,48 @@ function Question({
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-y-auto max-h-[60vh] custom-scrollbar">
-                    {question.explanation
-                      ? typeof question.explanation === "string" &&
-                        isImageSrc(question.explanation) ? (
-                          <div className="relative w-full max-w-lg mx-auto">
-                            <Image
-                              src={question.explanation}
-                              alt="Explanation image"
-                              width={800}
-                              height={600}
-                              className="rounded-md w-full h-auto object-contain diagram-darkbg"
-                            />
-                          </div>
-                        ) : (
-                          <div className="latex-font">
-                            <MathRenderer text={String(question.explanation || "")} />
-                          </div>
-                        )
-                      : question.markscheme
-                      ? isImageSrc(question.markscheme) ? (
-                          <div className="relative w-full max-w-lg mx-auto">
-                            <Image
-                              src={question.markscheme}
-                              alt="Markscheme image"
-                              width={800}
-                              height={600}
-                              className="rounded-md w-full h-auto object-contain diagram-darkbg"
-                            />
-                          </div>
-                        ) : (
-                          <div className="latex-font">
-                            <MathRenderer text={question.markscheme} />
-                          </div>
-                        )
-                      : "No explanation available"}
+                    {hasStructuredMs && question.markschemeData ? (
+                      <div className="space-y-4">
+                        <MarkschemeSection label="Concept" text={question.markschemeData.concept} />
+                        <MarkschemeSection label="Approach" text={question.markschemeData.approach} />
+                        <MarkschemeSection label="Solution" text={question.markschemeData.solution} />
+                        <MarkschemeSection label="Common mistakes" text={question.markschemeData.commonMistakes} />
+                      </div>
+                    ) : question.explanation ? (
+                      isImageSrc(question.explanation) ? (
+                        <div className="relative w-full max-w-lg mx-auto">
+                          <Image
+                            src={question.explanation}
+                            alt="Explanation image"
+                            width={800}
+                            height={600}
+                            className="rounded-md w-full h-auto object-contain diagram-darkbg"
+                          />
+                        </div>
+                      ) : (
+                        <div className="latex-font">
+                          <MathRenderer text={String(question.explanation || "")} />
+                        </div>
+                      )
+                    ) : question.markscheme ? (
+                      isImageSrc(question.markscheme) ? (
+                        <div className="relative w-full max-w-lg mx-auto">
+                          <Image
+                            src={question.markscheme}
+                            alt="Markscheme image"
+                            width={800}
+                            height={600}
+                            className="rounded-md w-full h-auto object-contain diagram-darkbg"
+                          />
+                        </div>
+                      ) : (
+                        <div className="latex-font">
+                          <MathRenderer text={question.markscheme} />
+                        </div>
+                      )
+                    ) : (
+                      "No explanation available"
+                    )}
                   </div>
                 </CardContent>
               </Card>

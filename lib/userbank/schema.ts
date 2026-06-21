@@ -15,8 +15,19 @@ export const MAX_OPTIONS = 10;
 const MAX_TEXT = 20_000;
 const MAX_RICH = 50_000;
 const MAX_FIELD = 5_000;
+const MAX_HINTS = 6;
+const MAX_HINT_LEN = 1_000;
 
 export type UserBankQuestionType = ExamQuestionType;
+
+/** A structured, elaborate markscheme. Every section is optional; whichever the
+ *  student's material provides is shown as a labelled block during practice. */
+export interface StructuredMarkscheme {
+  concept?: string;
+  approach?: string;
+  solution?: string;
+  commonMistakes?: string;
+}
 
 /** A normalized question, ready to render or persist as a UserBankQuestion. */
 export interface NormalizedBankQuestion {
@@ -30,6 +41,8 @@ export interface NormalizedBankQuestion {
   answerMax: number | null;
   explanation: string | null;
   markscheme: string | null;
+  hints: string[];
+  markschemeData: StructuredMarkscheme | null;
   subject: string | null;
   topic: string | null;
   difficulty: string | null;
@@ -78,6 +91,18 @@ const toNum = (v: unknown): number | null => {
   return Number.isFinite(n) ? n : null;
 };
 
+/** Parse a structured-markscheme object → trimmed sections, or null if empty. */
+function parseMarkschemeData(v: unknown): StructuredMarkscheme | null {
+  if (!v || typeof v !== "object" || Array.isArray(v)) return null;
+  const o = v as Record<string, unknown>;
+  const concept = trimStr(o.concept, MAX_RICH) ?? undefined;
+  const approach = trimStr(o.approach, MAX_RICH) ?? undefined;
+  const solution = trimStr(o.solution, MAX_RICH) ?? undefined;
+  const commonMistakes = trimStr(o.commonMistakes ?? o.mistakes, MAX_RICH) ?? undefined;
+  if (!concept && !approach && !solution && !commonMistakes) return null;
+  return { concept, approach, solution, commonMistakes };
+}
+
 const letterFor = (i: number) => String.fromCharCode(65 + i);
 
 /** Map a correct-answer reference (letter or full option text) to a letter key.
@@ -107,6 +132,19 @@ function normalizeOne(raw: any): NormalizedBankQuestion | null {
     .filter((c: string | null): c is string => !!c)
     .map((c: string) => toKey(c, options));
 
+  const hints = (Array.isArray(raw?.hints) ? raw.hints : [])
+    .map((h: unknown) => trimStr(h, MAX_HINT_LEN))
+    .filter((h: string | null): h is string => !!h)
+    .slice(0, MAX_HINTS);
+
+  // `markscheme` may be a plain string (legacy) OR a structured object; an
+  // explicit `markschemeData` key is also accepted. Structured wins when present.
+  const rawMs = raw?.markscheme;
+  const markschemeData =
+    parseMarkschemeData(raw?.markschemeData) ??
+    (rawMs && typeof rawMs === "object" ? parseMarkschemeData(rawMs) : null);
+  const markscheme = markschemeData ? null : trimStr(rawMs, MAX_RICH);
+
   return {
     text,
     type,
@@ -117,7 +155,9 @@ function normalizeOne(raw: any): NormalizedBankQuestion | null {
     answerMin: toNum(raw?.answerMin),
     answerMax: toNum(raw?.answerMax),
     explanation: trimStr(raw?.explanation, MAX_RICH),
-    markscheme: trimStr(raw?.markscheme, MAX_RICH),
+    markscheme,
+    hints,
+    markschemeData,
     subject: trimStr(raw?.subject, 200),
     topic: trimStr(raw?.topic, 200),
     difficulty: trimStr(raw?.difficulty, 50),

@@ -36,6 +36,7 @@ import Popover from "@/components/shared/popover";
 import Question from "@/components/question-bank/Question";
 import { DialogClose } from "@/components/ui/dialog";
 import { gradeAnswer, normalizeQuestion } from "@/lib/exam-helpers";
+import type { StructuredMarkscheme } from "@/lib/userbank/schema";
 
 /* ------------------------------------------------------------------
    1) Enums & Types
@@ -71,6 +72,9 @@ export interface QuestionType {
   markscheme?: string;
   // We keep `explanation` as the DB field for markschemes
   explanation?: string;
+  // Custom-bank learning-science fields (undefined for global questions).
+  hints?: string[];
+  markschemeData?: StructuredMarkscheme | null;
   notes?: string;
   diagramUrl?: string;
   exam?: string;
@@ -362,6 +366,9 @@ export interface QuestionBankFeatures {
   pagination: boolean;
   signInGate: boolean;
   meritRecording: boolean;
+  // Learning-science mode for custom banks: progressive hints + a markscheme
+  // reveal gated behind a confirm + structured (concept/approach/solution) display.
+  learningMode: boolean;
 }
 
 const DEFAULT_FEATURES: QuestionBankFeatures = {
@@ -372,6 +379,7 @@ const DEFAULT_FEATURES: QuestionBankFeatures = {
   pagination: true,
   signInGate: true,
   meritRecording: true,
+  learningMode: false,
 };
 
 const ALL_FACETS: FilterKey[] = [
@@ -1158,6 +1166,7 @@ export default function QuestionBankContent(props: QuestionBankContentProps = {}
             showReportIssue={features.community}
             showDiscussion={features.community}
             showDifficultyRating={features.difficultyRating}
+            learningMode={features.learningMode}
           />
 
           {/* Next/Prev on mobile */}
@@ -1480,6 +1489,7 @@ export default function QuestionBankContent(props: QuestionBankContentProps = {}
                     showReportIssue={features.community}
                     showDiscussion={features.community}
                     showDifficultyRating={features.difficultyRating}
+                    learningMode={features.learningMode}
                   />
                 );
               })}
