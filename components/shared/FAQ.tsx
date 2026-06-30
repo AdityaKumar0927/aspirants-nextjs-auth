@@ -62,8 +62,9 @@ export function FAQ() {
   return (
     <section id="faq" className="py-20 sm:py-28">
       <div className="container mx-auto grid max-w-5xl gap-12 px-4 lg:grid-cols-[2fr,3fr] lg:gap-16">
-        {/* Left rail — heading + contact CTA */}
-        <div className="lg:sticky lg:top-28 lg:self-start">
+        {/* Left rail — heading + contact CTA. NOT sticky: it should scroll with
+            the page, not follow the viewport past the questions column. */}
+        <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-600 dark:text-blue-400">
             FAQ
           </p>
