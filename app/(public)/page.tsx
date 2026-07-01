@@ -175,7 +175,7 @@ export default function Page() {
             {/* Main content */}
             <div className="max-w-3xl mx-auto mt-12 sm:mt-24 text-center space-y-6 sm:space-y-8">
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-normal text-gray-800 dark:text-white tracking-tight">
-                Join aspirants today{' '}
+                Join {siteName} today{' '}
                 <span className="block italic font-light">
                   save time
                 </span>
